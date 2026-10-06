@@ -12,10 +12,10 @@ computations that would refute it; these are sufficient tests, not a complete li
 \toprule
 Statement & Gives (via) & Evidence & Refuted, for example, by \\
 \midrule
-Conj.~\ref{conj:U} & $\RH\Leftrightarrow\condE$ (Thm.~\ref{thm:logic}) & Section~\ref{sec:uniqueness} & a second admissible pair \\
+Conj.~\ref{conj:U} & $\RH\Leftrightarrow\condE$ (Thm.~\ref{thm:logic}) & Section~\ref{sec:uniqueness}; Cor.~\ref{cor:nearrigid} & a second admissible pair \\
 Conj.~\ref{conj:S} & $\kstar=0$ under \condE\ (Thm.~\ref{thm:duality}(a)) & Table~\ref{tab:kappa-ladder} & an admissible pair at $q=1$ with $\mu\ge\lambda\dd t$,
 $\lambda>0$; the finite certificates here cannot confirm it \\
-Conj.~\ref{conj:family} & \condS, \condU\ (Thm.~\ref{thm:criterion}) & Prop.~\ref{thm:finiteJ}; Obs.~\ref{obs:family} & a singular $M_J$;
+Conj.~\ref{conj:family} & \condS, \condU\ (Thm.~\ref{thm:criterion}, Cor.~\ref{cor:magic}(a)) & Prop.~\ref{thm:finiteJ}; Obs.~\ref{obs:family} & a singular $M_J$;
 $p_k^{(J)}\le0$ with $J\ge10$; $a_J\ge\pi/2$; no finite prefix of the family alone refutes (c) \\
 \bottomrule
 \end{tabular}
@@ -31,15 +31,16 @@ the conjectures of Cohn and Miller on explicit sequences converging to magic fun
 \item $M_J$ is non-singular for every $J\ge1$.
 \item For every $J\ge10$ all coefficients $p^{(J)}_k$, $0\le k\le2J$, are positive, and
 $a^*:=\sup_{J\ge10}\max_{1\le k\le2J}\bigl((2k)!\,p^{(J)}_k\bigr)^{1/(2k)}<\pi/2$.
-\item $P_J\to P_\infty$ coefficientwise, and $F_\infty:=\Xi^2P_\infty(t^2)$ satisfies $\FT F_\infty(\xi)>0$ for every
-$\xi\in[\xin2,\infty)\setminus\xiPP$.
+\item $P_J\to P_\infty$ coefficientwise, and $F_\infty:=\Xi^2P_\infty(t^2)$ satisfies $\FT F_\infty(\xi)\ge0$ for every $\xi\ge\xin2$.
 \end{enumerate}
 \end{conjecture}
 
 \emph{Implication.} The conjecture implies \condS\ and \condU\ unconditionally, hence $\RH\Leftrightarrow\condE$. Indeed (b) is
 \eqref{eq:POSa} with $a=a^*$ and $C=1$, so Proposition~\ref{prop:coeff} gives $H_J\ge1$ on $\RR$ and $|H_J(t)|\le\cosh(a^*|t|)$; with this
 bound, coefficientwise convergence gives $H_J\to H_\infty$ locally uniformly with a uniform exponential majorant of type $a^*<\pi/2$, so
-$\FT F_J\to\FT F_\infty$ pointwise by dominated convergence, and (c) gives \hyp{Mg}. Remark~\ref{rem:variant}(a) applies.
+$\FT F_J\to\FT F_\infty$ pointwise by dominated convergence, and (c) gives \hyp{Mg}. Remark~\ref{rem:variant}(a) applies. Part (c) is
+weaker than in an earlier version of this paper, which asked for $\FT F_\infty>0$ off $\xiPP$; the weakening rests on
+Theorem~\ref{thm:zerosupport}.
 
 \emph{Evidence.} Parts (a) and (b) are certified at $J\in\{10,60,61,110,111\}$ (Proposition~\ref{thm:finiteJ}) and computed for
 $1\le J\le110$ and $10\le J\le110$ respectively (Numerical observation~\ref{obs:family}), which also shows why (b) starts at $J=10$.
@@ -58,8 +59,11 @@ $q=1$ whose zero measure is certified to satisfy $\mu\ge\lambda\dd t$ with $\lam
 Lemma~\ref{lem:weak-duality}. Proposition~\ref{thm:notcritical}
 certifies pairs of this kind for other archimedean data, at $\xi_2$ and at their natural gaps. Under \condE, \condS\ says $\kstar=0$, that is, every
 admissible $\mu$ is purely atomic on one discrete set (Theorem~\ref{thm:crit}), and the optimised degree-one explicit-formula conductor
-bound is exactly $1$. Conjecture~\ref{conj:U} would be refuted by a single admissible pair other than $\pz$; the results of
-Section~\ref{sec:uniqueness} exclude such pairs on $\zeta$'s support and with finitely many extra zeros.
+bound is exactly $1$. Conjecture~\ref{conj:U} would be refuted by a single admissible pair other than $\pz$. The results of
+Section~\ref{sec:uniqueness} exclude such pairs when the zero measure is carried by $\Zz\cup\{0\}$, whatever the prime measure
+(Theorem~\ref{thm:zerosupport}), and when it is carried by $\Zz$ and countably many further points satisfying \eqref{eq:summable} with the
+prime measure on $\BRS$ (Theorem~\ref{thm:Gfin}). Corollary~\ref{cor:nearrigid} bounds the zero mass off $\Zz$ at low height for every
+admissible pair.
 
 \subsection{Open problems}
 
@@ -67,10 +71,13 @@ Section~\ref{sec:uniqueness} exclude such pairs on $\zeta$'s support and with fi
 \item\label{op:Beurling} \emph{Beurling case.} Conjecture~\ref{conj:U} for zero measures with integer weights and prime measures that
 generate a multiplicative semigroup which is not uniformly discrete; the uniformly discrete case is treated in \cite{N4} (in
 preparation), using \cite{LO15}; compare \cite{Lag99}.
-\item \emph{Extra primes.} Finitely many extra prime-side atoms off $\BRS$ (Remark~\ref{rem:extraprimes}), in particular atoms at positions
-$\eta$ with $e^{4\pi\eta}$ irrational.
-\item \emph{Infinitely many extra zeros} on the zero side, for instance countable, locally finite sets $E$ with
-$\sum_{e\in E}\mu(\{e\})\,|\zeta(\frac12+ie)|\,(1+|e|)^{-1/4+\delta}<\infty$ for some $\delta>0$.
+\item \emph{Extra primes.} Prime-side mass off $\BRS$ together with extra zeros. Without extra zeros, that is, when the zero measure is
+carried by $\Zz\cup\{0\}$, every prime-side mass off $\zeta$'s nodes is excluded by Theorem~\ref{thm:zerosupport}; with extra zeros the
+problem is open, in particular for atoms at positions $\eta$ with $e^{4\pi\eta}$ irrational (Remark~\ref{rem:extraprimes}).
+\item \emph{Infinitely many extra zeros} on the zero side without a summability condition. The case of countable $E$ with
+$\sum_{e\in E}\mu(\{e\})\,|\zeta(\frac12+ie)|\,(1+|e|)^{-1/4+\delta}<\infty$ for some $\delta>0$, asked in an earlier version of this paper, is
+settled by Theorem~\ref{thm:Gfin}, with the prime measure on $\BRS$, under the weaker condition \eqref{eq:summable}. Countable $E$ without such a condition, and extra
+zero-side mass that is not atomic, remain open.
 \item\label{op:strict-compl} \emph{Strict complementarity.} Does \condU\ imply the existence of an exact magic function
 without spurious zeros?
 \item \emph{The existence statement} \condE, that is $\kstar\ge0$, without assuming RH: Odlyzko's question

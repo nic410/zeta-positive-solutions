@@ -174,7 +174,7 @@ For the exact family $(P_J)_{J\in\Jset}$ of Proposition~\ref{prop:E} we consider
 \item[\hyp{G$_a$}] There are $\delta\in(0,\frac12)$, $a<\pi/2$ and $C$ with $\lvert H_J(t)\rvert\le Ce^{a\lvert\Re t\rvert}$ on
 $\lvert\Im t\rvert\le\frac12+\delta$ for all $J\in\Jset$.
 \item[\hyp{Z$_\infty$}] No real point is a limit of zeros of $H_{J_k}$ with $J_k\in\Jset$, $J_k\to\infty$.
-\item[\hyp{Mg}] For every $\xi\in[\xi_2,\infty)\setminus\xiPP$, $\liminf_{J\in\Jset}\FT F_J(\xi)>0$.
+\item[\hyp{Mg}] For every $\xi\ge\xi_2$, $\liminf_{J\in\Jset}\FT F_J(\xi)\ge0$.
 \end{itemize}
 Given \hyp{G$_a$}, \hyp{Z$_\infty$} is equivalent to: for every $T>0$,
 $\liminf_{J\in\Jset}\min_{\lvert t\rvert\le T}H_J(t)>0$ (Appendix~\ref{app:proofs-M}). It holds, for instance, if there are
@@ -186,20 +186,23 @@ coefficient bound \eqref{eq:POSa} below, which would give \hyp{G$_a$} and \hyp{Z
 \begin{theorem}[Theorem D]\label{thm:criterion}
 Assume \hyp{N}, \hyp{G$_a$}, \hyp{Z$_\infty$} and \hyp{Mg} for the exact family. Then some subsequential limit
 $F_\infty=\Xi^2H_\infty$, with $H_\infty\in\Hc$ and $H_\infty>0$ on $\RR$, satisfies $F_\infty\in\Cone\cap\Tc$,
-$\Arch(F_\infty)=0$, $F_\infty^{-1}(0)\cap\RR=\Zz$ and $\FT F_\infty^{-1}(0)\cap[\xi_2,\infty)=\xiPP$. Hence \condS\
-and \condU\ hold, and $\RH\Leftrightarrow\condE$; under either, $\kstar=0$ and
-$\Kad=\{\pz\}$.
+$\Arch(F_\infty)=0$ and $F_\infty^{-1}(0)\cap\RR=\Zz$. Hence \condS\ and \condU\ hold, and $\RH\Leftrightarrow\condE$; under either,
+$\kstar=0$ and $\Kad=\{\pz\}$.
 \end{theorem}
+
+In an earlier version of this paper \hyp{Mg} asked for $\liminf_{\Jset}\FT F_J(\xi)>0$ at every $\xi\in[\xi_2,\infty)\setminus\xiPP$, so that
+the zeros of $\FT F_\infty$ in $[\xi_2,\infty)$ lay in $\BRS$. Theorem~\ref{thm:zerosupport} makes that unnecessary; this weakening is due to
+Astra (OpenAI), contributed during an independent review of an earlier version of this paper, and independently verified. Under the
+strict form the proof below gives, in addition, $\FT F_\infty^{-1}(0)\cap[\xi_2,\infty)=\xiPP$.
 
 \begin{proof}
 Hypotheses (i), (ii) of Lemma~\ref{lem:robust} are \hyp{G$_a$} and $P_J(0)=1$. For (v): if $n=n_j$, then
-$\FT F_J(\xi_n)=0$ for every $J\in\Jset$ with $J\ge j$. For (iv): at $\xi\in\xiPP$ this holds by (v), elsewhere by
-\hyp{Mg}. For (iii): by the equivalent form of \hyp{Z$_\infty$}, for each $T$ there is $c_T>0$ with $H_J\ge c_T$ on
-$[-T,T]$ for all large $J\in\Jset$. So Lemma~\ref{lem:robust} applies, and its limit satisfies $H_\infty\ge c_T>0$ on
-$[-T,T]$ for every $T$. Hence $F_\infty^{-1}(0)\cap\RR=\Zz$. For $\xi\in[\xi_2,\infty)\setminus\xiPP$,
-$\FT F_\infty(\xi)=\lim\FT F_J(\xi)\ge\liminf_{\Jset}\FT F_J(\xi)>0$, so the zeros of $\FT F_\infty$ on $[\xi_2,\infty)$ are
-exactly $\xiPP\subset\BRS$. Lemma~\ref{lem:robust} gives \condS, and Corollary~\ref{cor:magic}, applied to $F_\infty$, gives \condU, and
-RH under \condE; conversely RH implies \condE{} (Theorem~\ref{thm:logic}). Under either, $\kstar\ge0$ (Theorem~\ref{thm:duality}), so
+$\FT F_J(\xi_n)=0$ for every $J\in\Jset$ with $J\ge j$. Hypothesis (iv) is \hyp{Mg}. For (iii): by the equivalent form of
+\hyp{Z$_\infty$}, for each $T$ there is $c_T>0$ with $H_J\ge c_T$ on $[-T,T]$ for all large $J\in\Jset$. So Lemma~\ref{lem:robust} applies,
+and its limit satisfies $H_\infty\ge c_T>0$ on $[-T,T]$ for every $T$. Hence $F_\infty^{-1}(0)\cap\RR=\Zz$. (Under the strict form of
+\hyp{Mg}, $\FT F_\infty(\xi)=\lim\FT F_J(\xi)>0$ for $\xi\in[\xi_2,\infty)\setminus\xiPP$, which gives the additional statement above.)
+Lemma~\ref{lem:robust} gives \condS, and Corollary~\ref{cor:magic}(a), applied to $F_\infty$, gives \condU, and RH under \condE; conversely RH
+implies \condE{} (Theorem~\ref{thm:logic}). Under either, $\kstar\ge0$ (Theorem~\ref{thm:duality}), so
 $\kstar=0$, and $\Kad=\{\pz\}$.
 \end{proof}
 
@@ -231,5 +234,25 @@ By Proposition~\ref{prop:coeff}(1), the coefficient bound \eqref{eq:POSa} for al
 and \eqref{eq:POSa} for all large $J$ imply \condS\ and \condU.
 (b) If $\kstar=0$ and some weak magic function $F^*$ has only finitely many real zeros outside $\Zz$ and satisfies $\widehat Z(F^*)\subseteq\BRS$, then
 RH holds and $\Kad=\{\pz\}$: $\kstar=0$ gives \condE\ (Theorem~\ref{thm:duality}), by Theorem~\ref{thm:crit}(c) every admissible pair is
-carried by $Z(F^*)\times\widehat Z(F^*)$, and Theorem~\ref{thm:Gfin} applies to each of them.
+carried by $Z(F^*)\times\widehat Z(F^*)$, and Theorem~\ref{thm:Gfin} applies to each of them. If $Z(F^*)\subseteq\Zz\cup\{0\}$, the condition
+on $\widehat Z(F^*)$ is not needed: every admissible pair is then carried by $\Zz\cup\{0\}$ on the zero side, and
+Theorem~\ref{thm:zerosupport} applies.
 \end{remark}
+
+A second route to \condU\ and \condS\ uses certificates directly, without a limit function.
+
+\begin{corollary}[A certificate route]\label{cor:certroute}
+Suppose that there are $F_J\in\Cone$, for $J$ in an infinite set, and constants $c_J>0$ with $F_J\ge c_J\,\Xi^2$ on $\RR$ and
+$\Arch(F_J)/c_J\to0$. Then \condU\ and \condS\ hold.\astranote
+\end{corollary}
+
+\begin{proof}
+For $(\mu,\nu)\in\Kad$, Lemma~\ref{lem:weak-duality} gives $0\le c_J\int\Xi^2\dd\mu\le\int F_J\dd\mu\le\Arch(F_J)$, so $\int\Xi^2\dd\mu=0$; as
+$\Xi^2>0$ off $\Zz$, $\mu$ is carried by $\Zz$, and Theorem~\ref{thm:zerosupport} gives $(\mu,\nu)=\pz$. Moreover $\int F_J\ge c_J\int\Xi^2>0$, so
+$\kstar\le\Arch(F_J)/\int F_J\le\max(0,\Arch(F_J)/c_J)/\int\Xi^2\to0$.
+\end{proof}
+
+The route needs exact cone members $F_J$ at infinitely many $J$; when $\Arch(F_J)>0$ for every $J$, as for the certificates of
+Section~\ref{ssec:kappa}, no finite ladder of certificates can supply it. It needs no compactness and no \hyp{Z$_\infty$}. We do not know
+whether either set of hypotheses implies the other. The certificates of Section~\ref{ssec:kappa} have
+$c_J=1$, and give the finite-$J$ bound of Corollary~\ref{cor:nearrigid}.

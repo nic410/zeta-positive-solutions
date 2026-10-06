@@ -1,17 +1,21 @@
 # Positive solutions of the explicit formula for ζ(s): near-criticality and uniqueness
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23197915.svg)](https://doi.org/10.5281/zenodo.23197915)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23197915.svg)](https://doi.org/10.5281/zenodo.23197915) [![Lean](https://github.com/nic410/zeta-positive-solutions/actions/workflows/lean.yml/badge.svg)](https://github.com/nic410/zeta-positive-solutions/actions/workflows/lean.yml)
 
 **Status: preprint, October 2026; not yet peer-reviewed.** Author: Nic Johns. Licensing: the papers and documentation
 are CC BY 4.0, the scripts are Apache-2.0 (see [Licence](#licence)).
 
-This repository contains a mathematics research paper (42 pages) in analytic number theory, the scripts and logs
+This repository contains a mathematics research paper (48 pages) in analytic number theory, the scripts and logs
 behind every computer-assisted statement in it, and a companion manuscript and three notes from the same project.
 
 **How it was made.** The mathematics, the proofs, the numerical certificate scripts and the text were produced by AI
 agents: instances of Anthropic's Claude working as coordinated agents, with separate Claude agents acting as hostile
 referees. The independent checks included a review of the paper and its certificates by OpenAI's Astra, which re-ran
-every certificate; its corrections are incorporated.
+every certificate; its corrections are incorporated. Two theorems and their proofs were contributed by OpenAI's Astra
+during an independent review of an earlier version of the paper, and were then checked line by line by independent
+Claude referees: the zero-side support theorem (Theorem 3.6), and the extension of Theorem B from finitely to countably
+many extra zeros (Theorem 3.8, with its aggregate estimates and mean-value argument, Lemmas B.3–B.4). Astra also
+contributed their consequences Corollary 3.9(a), Corollary 4.11 and the weakening of hypothesis (Mg) in Theorem 4.8.
 **No human mathematician has yet checked the proofs line by line.**
 
 ## What the result says, in plain language
@@ -34,13 +38,18 @@ admissible pair exists". Under Conjecture U, however, RH becomes equivalent to t
 
 The results, in order of weight:
 
-1. **Uniqueness near ζ's own solution (Theorem B).** Suppose an admissible pair has its zero measure carried by the
-   zeros of ζ together with finitely many extra points, and its prime measure carried by the Bondarenko–Radchenko–Seip
-   interpolation nodes. Then it is ζ's own pair, and RH holds. "Near" means exact containment in these sets, up to
-   finitely many extra points on the zero side; it is not a statement about small displacements. The proof needs the
-   prime measure to be positive on only one residue class of nodes, and the zero measure to be positive only at the
-   origin. It uses theta-group cusp expansions and Landau's theorem on Dirichlet series with non-negative
-   coefficients.
+1. **Uniqueness near ζ's own solution (Theorem B).**
+   - (a) If an admissible pair has its zero measure carried by the zeros of ζ and the origin, then it is ζ's own pair,
+     and RH holds. Nothing is assumed about the prime measure (Theorem 3.6, due to Astra).
+   - (b) The same holds if the zero measure is carried by the zeros of ζ together with countably many extra points
+     satisfying a summability condition (for instance finitely many), and the prime measure by the
+     Bondarenko–Radchenko–Seip interpolation nodes (Theorem 3.8; the extension from finitely to countably many extra
+     points is due to Astra).
+
+   "Near" means exact containment in these sets, up to the stated extra points on the zero side; it is not a statement
+   about small displacements. Part (b) needs the prime measure to be positive on only one residue class of nodes, and
+   the zero measure to be positive only at the origin; its proof uses theta-group cusp expansions and a mean-value
+   argument for an almost periodic function.
 2. **Duality, and criticality as atomicity (Theorem A).** Linear-programming duality attaches one number to the
    problem, the **slack** κ\*. Admissible pairs exist if and only if κ\* ≥ 0, a positivity statement that involves
    neither zeros nor primes. The number q_min = e^{−2πκ\*} is the best degree-one conductor bound that the explicit
@@ -49,13 +58,12 @@ The results, in order of weight:
    functions have a non-negative Fourier transform everywhere. If admissible pairs exist, κ\* = 0 exactly when every admissible zero
    measure is purely atomic, carried by one discrete set.
 
-   A **magic-function principle** (the Corollary after Theorem B) links this to uniqueness. Suppose some test
-   function F ≥ 0, with Fourier transform non-negative beyond the gap, satisfies all of the following:
-   - its explicit-formula value is 0;
-   - it has only finitely many real zeros outside the zero set of ζ;
-   - every zero of its Fourier transform beyond the gap lies in the Bondarenko–Radchenko–Seip nodes.
-
-   Then Conjecture U holds.
+   A **magic-function principle** (the Corollary after Theorem B) links this to uniqueness. Let F ≥ 0 be a test
+   function whose Fourier transform is non-negative beyond the gap, and whose explicit-formula value is 0.
+   - If every real zero of F lies in the zero set of ζ or at the origin, then Conjecture U holds; no condition on the
+     zeros of its Fourier transform is needed.
+   - The same holds if F has finitely many other real zeros (or countably many, under a summability condition) and
+     every zero of its Fourier transform beyond the gap lies in the Bondarenko–Radchenko–Seip nodes.
 3. **Certified bounds (Theorem C; computer-assisted).** Unconditionally, −2.7112·10⁻³ ≤ κ\* ≤ 1.1508391·10⁻⁹⁰⁶, so
    1 − 7.3·10⁻⁹⁰⁶ ≤ q_min < 1.017182. Only if an admissible pair exists, for instance under RH, is κ\* ≥ 0, that is,
    q_min ≤ 1. The theorem sharpens the bound that the explicit-formula method can give; the arithmetic conductor of ζ is
@@ -63,11 +71,15 @@ The results, in order of weight:
    tables give 0.997 for this bound. The upper bound comes from an explicit test function that vanishes at every zero
    of ζ, and a ladder of such certificates, J = 20, …, 100, keeps improving with J. The certificates are evidence for
    Conjecture S (κ\* ≤ 0), and they form a reproducible tool: a shipped script checks each one in exact and interval
-   arithmetic.
+   arithmetic. They also give **near-rigidity** (Corollary 5.3): every admissible pair has ∫Ξ²dμ ≤ 3.21·10⁻⁹⁰⁶, so
+   its zero measure puts mass at most 3.21·10⁻⁹⁰⁶/min_I Ξ² on any compact interval I that avoids the zeros of ζ. This is
+   informative at low height.
 4. **What remains, specified (Theorem D).** Conjecture U and κ\* ≤ 0 would follow from asymptotic properties of an
    explicit family of test functions Ξ²P_J(t²), defined by Hermite interpolation at the first J prime powers. These
-   properties are open. At J = 10, 60, 61, 110 and 111 the paper certifies that the interpolation problem is
-   non-singular, together with the coefficient bound behind two of the hypotheses.
+   properties are open; the limiting Fourier transforms need only be non-negative beyond the gap. At J = 10, 60, 61,
+   110 and 111 the paper certifies that the interpolation problem is non-singular, together with the coefficient bound
+   behind two of the hypotheses. Conjectures U and S would also follow from exact cone members F_J ≥ c_JΞ² with
+   𝒜(F_J)/c_J → 0 (Corollary 4.11, due to Astra).
 5. **Two examples for contrast.** The archimedean data of the quadratic fields ℚ(√5) and ℚ(√−3) have strictly
    positive slack, both with ζ's gap and at the fields' own natural gaps. This indicates that near-criticality is a
    property of ζ's data rather than of the method.
@@ -78,9 +90,10 @@ The results, in order of weight:
   only κ\* ≥ −2.7112·10⁻³ is known, that is, q_min < 1.017182.
 - It does **not** prove κ\* = 0, Conjecture U or Conjecture S (κ\* ≤ 0). The exponent 906 reflects a computational
   budget (J = 100), not a limit.
-- Uniqueness is proved only **near ζ's own solution**: a zero measure carried by ζ's zeros plus finitely many points,
-  and a prime measure on the Bondarenko–Radchenko–Seip nodes. Extra prime-side mass off these nodes, or infinitely many extra zeros, are not
-  covered.
+- Uniqueness is proved only **near ζ's own solution**: either a zero measure carried by ζ's zeros and the origin (any
+  prime measure), or a zero measure carried by ζ's zeros plus countably many summable points with the prime measure on
+  the Bondarenko–Radchenko–Seip nodes. Extra zeros together with prime-side mass off these nodes, extra zeros without
+  the summability condition, and diffuse extra zero mass are not covered.
 - The hypotheses of Theorem D concern infinitely many J, or a limit in J, and are **open**. Only finite-J instances
   are certified; convergence of the family is neither assumed nor proved.
 - The comparison with ℚ(√5) and ℚ(√−3) concerns **two examples**; it is not a statement about L-functions in
@@ -91,11 +104,12 @@ The results, in order of weight:
 
 | Kind of evidence | What it covers | Where |
 |---|---|---|
-| **Certified numerics** (exact rational arithmetic, exact Sturm sequences, Arb ball arithmetic) | every computer-assisted statement: Theorem 5.1 and Corollary 5.2 (κ\* ≤ 1.1508391·10⁻⁹⁰⁶), and Propositions 5.3, 5.4, 5.5, 5.8 and 5.9. Each has a standalone verifier, a parameter file pinned by SHA-256, and the log of a fresh run | `paper/anc/`; Appendix C of the paper |
-| **Written proofs only** | Theorems A, B and D, the corollary after Theorem B, and every other proved statement (Sections 2–4 and Appendix B); no formal verification | `paper/` |
-| **Independent AI referee reviews** | several rounds of review by separate Claude agents acting as hostile referees: the mathematics, the computations, the literature, the focus of the paper, and a final cold-read regression check. Their requested repairs were incorporated | cleaned review records will be added in a later release |
+| **Certified numerics** (exact rational arithmetic, exact Sturm sequences, Arb ball arithmetic) | every computer-assisted statement: Theorem 5.1 and Corollaries 5.2 and 5.3 (κ\* ≤ 1.1508391·10⁻⁹⁰⁶; ∫Ξ²dμ ≤ 3.21·10⁻⁹⁰⁶), and Propositions 5.4, 5.5, 5.6, 5.9 and 5.10. Each has a standalone verifier, a parameter file pinned by SHA-256, and the log of a fresh run | `paper/anc/`; Appendix C of the paper |
+| **Lean 4, checked by the Lean kernel** | the logical spine: Theorems A–D and the Corollary are stated in Lean and derived from an explicit ledger of axioms (cited theorems, certificate outputs, and analytic steps of the paper not yet formalised) | `paper/anc/lean/` and its `README.md` |
+| **Written proofs** | Theorems A, B and D, the Corollary, and every other proved statement (Sections 2–4 and Appendix B) | `paper/` |
+| **Independent AI reviews** | several rounds of review by separate Claude agents acting as hostile referees (the mathematics, the computations, the literature, the focus of the paper, cold-read regression checks); an independent review by OpenAI's Astra, which contributed Theorems 3.6 and 3.8 (as extended); and line-by-line checks of those two proofs by independent Claude referees. Requested repairs were incorporated | cleaned review records will be added in a later release |
 
-Values that were computed but not certified appear only in Numerical observation 5.6 (and, by reference, in the
+Values that were computed but not certified appear only in Numerical observation 5.7 (and, by reference, in the
 evidence for Conjecture 6.1); they are never used in a proof. The supplementary works have their own status, stated in
 `supplementary/README.md`.
 
@@ -107,20 +121,22 @@ evidence for Conjecture 6.1); they are never used in a proof. The supplementary 
 | `LICENSE`, `LICENSE-CC-BY-4.0` | Apache-2.0 (code) and CC BY 4.0 (papers and documentation); see [Licence](#licence) |
 | `paper/main.tex`, `paper/macros.tex`, `paper/refs.bib` | the paper's LaTeX sources |
 | `paper/sections/` | the section files that `main.tex` inputs: Sections 1–6 and Appendices A–C |
-| `paper/build/main.pdf` | the compiled paper (42 pages) |
+| `paper/build/main.pdf` | the compiled paper (48 pages) |
 | `paper/production/` | the bibliography style `amsplain-doi.bst`, and `make_arxiv_tarball.sh`, which builds the arXiv source tarball (sources, `main.bbl`, `anc/`) and test-compiles it from a clean unpack |
 | `paper/anc/` | the ancillary files as they would be posted on arXiv: verifiers, parameter files, logs, `SHA256SUMS`, and `README.md` with commands, expected output and runtimes |
+| `paper/anc/lean/` | the Lean 4 formalisation of the paper's logical spine, with its axiom ledger, status table and audit scripts; see its `README.md` |
+| `.github/workflows/lean.yml` | continuous integration for the Lean project in `paper/anc/lean/` (the "Lean" badge above) |
 | `supplementary/` | a companion manuscript and three notes from the same project, each with its LaTeX sources, a compiled `build/main.pdf` and, where present, its own `anc/`; overview in `supplementary/README.md` |
 
 ## Where to start
 
 - **5-minute skim.** This file, then the abstract and §1.4 "What is claimed and what is not" of
   `paper/build/main.pdf` (pp. 1 and 4).
-- **A mathematician.** §1 of the paper (pp. 1–6) states Theorems A–D and points to their proofs: §2 duality and
-  criticality, §3 uniqueness (the cusp expansions are in Appendix B.1.5), §4 the criterion, §5 the certified bounds,
-  §6 the conjectures and open problems.
+- **A mathematician.** §1 of the paper (pp. 1–7) states Theorems A–D and points to their proofs: §2 duality and
+  criticality, §3 uniqueness (the zero-side support proof is in Appendix B.1.4, the cusp expansions and the mean-value
+  step in Appendix B.1.6), §4 the criterion, §5 the certified bounds, §6 the conjectures and open problems.
 - **Reproducing the numerics.** `paper/anc/README.md`: Python ≥ 3.10 with `python-flint==0.9.0` and `mpmath==1.3.0`
-  only; every certificate has its command and expected output. The three batches take 39.0, 44.4 and 27.5
+  only; every certificate has its command and expected output. The three batches take 41.6, 52.0 and 29.1
   CPU-minutes.
 - **Rebuilding the PDF.** From `paper/`, run pdflatex, then bibtex, then pdflatex again until LaTeX no longer asks for a
   rerun (four pdflatex passes in all for the paper):
@@ -169,6 +185,10 @@ The DOI above is the concept DOI, which always resolves to the latest archived v
 own version DOI on [Zenodo](https://doi.org/10.5281/zenodo.23197915) (v1.0.0: 10.5281/zenodo.23197916). GitHub's
 "Cite this repository" button (generated from `CITATION.cff`) gives the same reference in other formats.
 
+## Related repository
+
+[nic410/dirichlet-critical-zeros](https://github.com/nic410/dirichlet-critical-zeros) (DOI [10.5281/zenodo.23070759](https://doi.org/10.5281/zenodo.23070759)) is an earlier paper by the same author, produced the same way: an unconditional proportion of simple zeros on the critical line for a weighted family of Dirichlet L-functions, with a Lean 4 formalisation. The two papers are independent; neither uses the other's results.
+
 ## Licence
 
 Copyright 2026 Nic Johns.
@@ -177,8 +197,9 @@ Copyright 2026 Nic Johns.
   texts and PDFs under `supplementary/`, and the READMEs and other documentation outside `anc/` directories,
   including this one):
   [Creative Commons Attribution 4.0 International](LICENSE-CC-BY-4.0) (CC BY 4.0).
-- **Code** (everything under `paper/anc/` and under the `anc/` directories in `supplementary/`, including their
-  READMEs, and the build script `paper/production/make_arxiv_tarball.sh`): [Apache License 2.0](LICENSE).
+- **Code** (everything under `paper/anc/`, including the Lean project in `paper/anc/lean/`, and under the `anc/`
+  directories in `supplementary/`, including their READMEs; the build script `paper/production/make_arxiv_tarball.sh`;
+  and the CI workflow in `.github/`): [Apache License 2.0](LICENSE).
 
 The bibliography style `amsplain-doi.bst` (in `paper/production/` and in each supplementary work) is a modified copy
 of the American Mathematical Society's `amsplain.bst` and remains under the LaTeX Project Public License 1.3c, as

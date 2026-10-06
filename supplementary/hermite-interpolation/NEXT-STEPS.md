@@ -36,6 +36,10 @@ items below affects the correctness of a stated result.
 - The far-node asymptotics for the true kernel (Theorem 9.27) have O-constants that depend on the node set. Explicit
   remainders, as for the model (Proposition 7.6), are needed to certify the tail constant B₁₁₀.
 - State more precisely which arguments the obstruction (Proposition 7.11) excludes and which it does not.
+- The criterion now needs only the non-strict condition (Mg), and the certificate route needs no limit: for infinitely
+  many J, P_J > 0 on [0, ∞), the front statement (FR) at J, and Arch(F_J)/min H_J → 0. Decide which step laws of Section 9 are
+  still needed in the strict form (Mg>) (which also describes the zero set of the limit transform), and whether the tail results of
+  Section 9 can give the bound on Arch(F_J).
 - The hypotheses (C01), (C02), (Z) of the sandwich step and the root-count hypothesis (CNT₁) are supported only by
   computations; consider whether any of them can be proved for the model.
 - Quantify which property of the prime powers the front law of the model (Conjecture 11.4) uses: it fails on the integer
@@ -66,6 +70,8 @@ items below affects the correctness of a stated result.
 
 ## Alignment with the main paper
 
+- The non-strict form of Theorem D and the certificate route of the main paper (its Corollary 4.11) rest on its zero-side
+  support theorem (Theorem 3.6), contributed by Astra (OpenAI); Section 2 cites them.
 - Section 2 restates results of the main paper as Facts; the criterion through the zero-killing family is cited as
   its Theorem D. When that paper is final, align the restated statements and constants with it and cite the other
   Facts by number. The root geometry of the exact members (Proposition 9.9) is certified here, not there.

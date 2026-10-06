@@ -5,8 +5,8 @@
 We return to the exact family $(P_J)_{J\in\Jset}$ of the true kernel (Fact~\ref{prop:E}) and to the four hypotheses
 \hyp{N}, \hyp{G$_a$}, \hyp{Z$_\infty$}, \hyp{Mg} of the criterion recalled in Fact~\ref{thm:M}. Section~\ref{ssec:zeroside}
 derives \hyp{G$_a$} and \hyp{Z$_\infty$} from root counts and from a coefficientwise step law; Section~\ref{ssec:front}
-derives \hyp{Mg} near the front $x\approx n_J$ from a step law \hyp{TEL} and a summability condition \hyp{ES};
-Sections~\ref{ssec:FF}--\ref{ssec:tailbound} treat \hyp{Mg} away from the front, where it reduces to a finite
+derives \hyp{Mg$_>$}, and hence \hyp{Mg}, near the front $x\approx n_J$ from a step law \hyp{TEL} and a summability condition \hyp{ES};
+Sections~\ref{ssec:FF}--\ref{ssec:tailbound} treat \hyp{Mg$_>$} away from the front, where it reduces to a finite
 certificate plus the summability of the scalar increments $\Delta p_1^{(K)}$, and prove the far-node asymptotics of
 the true kernel; Section~\ref{ssec:piece1} gives exact identities for the coefficient step. Every statement of this
 section is either proved for all $J$ under explicitly named hypotheses, or a finite certificate; none of the named
@@ -220,10 +220,10 @@ Theorem~\ref{thm:IG}(b) with $J_0=10$, and $(2\pi A,\pi/2)\ne\emptyset$ since $A
 \subsection{The front: a step law}\label{ssec:front}
 %----------------------------------------------------------------------
 
-Hypothesis \hyp{Mg} of Fact~\ref{thm:M} asks for positivity of $\liminf_J\FT F_J$ at every point. On a fixed
-compact range of $x$ it reduces to a summable tail of increments (Section~\ref{ssec:FF}). Near the front $x\approx n_J$,
-however, the relative decrements $(\FT F_J-\FT F_{J+1})/\FT F_J$ are close to $1$, and a statement uniform in $J$ is
-needed there. We formulate it as a step law. In this subsection $\FT F_J$ is viewed as a function of $x=e^{2\pi\xi}$,
+Fact~\ref{thm:M} asks for $\liminf_J\FT F_J\ge0$ at every point \hyp{Mg}; the results below give the strict form \hyp{Mg$_>$},
+which implies it. On a fixed compact range of $x$ this reduces to a summable tail of increments (Section~\ref{ssec:FF}). Near the
+front $x\approx n_J$, however, the relative decrements $(\FT F_J-\FT F_{J+1})/\FT F_J$ are close to $1$, and a statement uniform in $J$
+is a natural way to control them. We formulate it as a step law. In this subsection $\FT F_J$ is viewed as a function of $x=e^{2\pi\xi}$,
 derivatives are taken in $x$, and $\FT F_0:=\Psi$.
 
 \begin{hypothesis}[Step law]\label{hyp:TEL}
@@ -258,9 +258,9 @@ Hence:
 (iii) $p^{(J)}_{2J}\ge0$, and $p^{(J)}_{2J}>0$ if and only if the doubled chain of $\yPP_J$ is regular;
 (iv) that chain is regular if the doubled chain of $\yPP_{J-1}$ is regular and the half-step interpolant (double at
 $n_1,\dots,n_{J-1}$, simple at $n_J$) has a simple zero at $n_J$.
-If \hyp{ES} holds as well, then $\liminf_J\FT F_J(x)>0$ for every $x\in[1,\infty)\setminus\PP$ (pointwise \hyp{Mg}). If
+If \hyp{ES} holds as well, then $\liminf_J\FT F_J(x)>0$ for every $x\in[1,\infty)\setminus\PP$ (pointwise \hyp{Mg$_>$}). If
 \hyp{EVEN-TEL$_J$} holds for every $J>J_0$ in place of \hyp{TEL$_J$}, then
-$\FT F_J(x)\ge\FT F_{J_0}(x)\prod_{J_0<K\le J}(1-x^2/n_K^2)^2$, and pointwise \hyp{Mg} holds without \hyp{ES}.
+$\FT F_J(x)\ge\FT F_{J_0}(x)\prod_{J_0<K\le J}(1-x^2/n_K^2)^2$, and pointwise \hyp{Mg$_>$} holds without \hyp{ES}.
 \end{theorem}
 
 \begin{proof}
@@ -385,7 +385,7 @@ for every $J>J_0$, and \hyp{ES}. Then (S) and (U) hold, and $\RH\Leftrightarrow\
 \end{corollary}
 
 \begin{proof}
-By Theorem~\ref{thm:B}, pointwise \hyp{Mg} holds on $[1,\infty)\setminus\PP\supseteq[2,\infty)\setminus\PP$. By
+By Theorem~\ref{thm:B}, pointwise \hyp{Mg$_>$}, and hence \hyp{Mg}, holds on $[1,\infty)\setminus\PP\supseteq[2,\infty)\setminus\PP$. By
 Fact~\ref{prop:POS}, \hyp{POS$_a$} gives \hyp{G$_a$} and \hyp{Z$^+$} with $h\equiv1$; and $\Jset\supseteq[J_0,\infty)$ is
 infinite. Corollary~\ref{cor:Mvariants}(M$^+$) applies.
 \end{proof}
@@ -401,7 +401,7 @@ summability of the scalar tail $\sum_K\lvert\Delta p_1^{(K)}\rvert$ via the rank
 the kind discussed in Section~\ref{ssec:tailbound}.
 
 \begin{remark}[EVEN-TEL and the geometric form of TEL]\label{rem:EVEN-TEL}
-(a) \hyp{EVEN-TEL$_J$} is stronger than \hyp{TEL$_J$} and, with \hyp{B$^+$}$_{J_0}$, gives pointwise \hyp{Mg} without \hyp{ES}
+(a) \hyp{EVEN-TEL$_J$} is stronger than \hyp{TEL$_J$} and, with \hyp{B$^+$}$_{J_0}$, gives pointwise \hyp{Mg$_>$} without \hyp{ES}
 (Theorem~\ref{thm:B}); on the computed data its margin shrinks (Numerical observation~\ref{obs:misc}(e)), so we do not
 conjecture it.
 (b) The following is proved, for any base kernel. Assume \hyp{N} at $J-1$ and $J$ and $\FT F_{J-1}(n_J)\ne0$, let
@@ -430,7 +430,7 @@ $n_1,\dots,n_{J_1}$. Assume \hyp{N}$_J$ for all $J\ge J_1$ and
 (c) $\sum_K\eps_K<\infty$.
 Then $\FT F_J\ge\mu\prod_{J_1\le K<J}(1-\eps_K)\,w\ge\mu\prod_{K\ge J_1}(1-\eps_K)\,w$ on $I_X$ for every $J\ge J_1$. With
 $w=\Psione\varrho$, where $\varrho(x):=\bigl((x-n_i)(n_{i+1}-x)/(n_{i+1}-n_i)\bigr)^2$ on each gap $(n_i,n_{i+1})$, one has
-$d^2/4\le\varrho\le d^2$ with $d=\operatorname{dist}(x,\PP)$, and the conclusion is a quantitative form of \hyp{Mg} on $[2,X]$.
+$d^2/4\le\varrho\le d^2$ with $d=\operatorname{dist}(x,\PP)$, and the conclusion is a quantitative form of \hyp{Mg$_>$} on $[2,X]$.
 \end{theorem}
 
 \begin{proof}
@@ -438,7 +438,7 @@ By induction, $\FT F_{K+1}=\FT F_K+D_K\ge(1-\eps_K)\FT F_K$, and $\FT F_K\ge0$ o
 length $L$, $(x-n_i)(n_{i+1}-x)/L=d\,(L-d)/L$ with $(L-d)/L\in[\frac12,1]$.
 \end{proof}
 
-Theorem~\ref{thm:T} is a statement on one compact interval. Since \hyp{Mg} is pointwise, it follows on all of
+Theorem~\ref{thm:T} is a statement on one compact interval. Since \hyp{Mg$_>$} is pointwise, it follows on all of
 $[\xi_2,\infty)$ by exhaustion once the hypotheses of Theorem~\ref{thm:T} hold for every finite $X$, with $\mu$, $w$ and the
 starting index $J_1$ allowed to depend on $X$; one fixed $X$, such as a computed one, does not suffice. Near the front the
 relative decrements are close to $1$, which makes (b) and (c) hard to verify unless $J_1(X)$ is taken well beyond the prime
@@ -453,7 +453,7 @@ Let $X$, $I_X$ and $J_1$ be as in Theorem~\ref{thm:T}, and assume \hyp{N}$_K$ fo
 \item[\hyp{$\Phi$}] there is $R<\infty$ with $\lvert D_K\rvert\le R\,\lvert\Delta p_1^{(K)}\rvert\,\FT F_{J_1}$ on $I_X$ for all $K\ge J_1$;
 \item[\hyp{p}] $\delta:=\sum_{K\ge J_1}\lvert\Delta p_1^{(K)}\rvert<1/R$.
 \end{itemize}
-Then $\FT F_J\ge(1-R\delta)\FT F_{J_1}$ on $I_X$ for all $J\ge J_1$. Hence \hyp{Mg} holds on $[2,X]$, quantitatively with
+Then $\FT F_J\ge(1-R\delta)\FT F_{J_1}$ on $I_X$ for all $J\ge J_1$. Hence \hyp{Mg$_>$} holds on $[2,X]$, quantitatively with
 $\theta(X):=(1-R\delta)\min_{I_X}\FT F_{J_1}/(\Psione\min(1,d^2))>0$; the minimum exists, because at a node the quotient
 tends to $\FT F_{J_1}''/(2\Psione(dx/d\xi)^2)>0$. If \hyp{N} fails for some $K$, the same holds along $\Jset$, with
 differences taken between consecutive members.
@@ -477,7 +477,7 @@ Theorem~\ref{thm:FFred} and the two infinite hypotheses
 for some $\eta\ge0$;
 \item[\hyp{p}] $(1+\eta)R_1\delta<1$, where $\delta:=\sum_{K\ge J_1}\lvert\Delta p_1^{(K)}\rvert$.
 \end{itemize}
-Then $\FT F_J\ge(1-(1+\eta)R_1\delta)\FT F_{J_1}$ on $I_X$ for all $J\ge J_1$; hence \hyp{Mg} holds on $[2,X]$. By
+Then $\FT F_J\ge(1-(1+\eta)R_1\delta)\FT F_{J_1}$ on $I_X$ for all $J\ge J_1$; hence \hyp{Mg$_>$} holds on $[2,X]$. By
 Proposition~\ref{prop:base}, \hyp{B} and $R_1$ are certified for the exact members with $(J_1,X)=(60,31)$,
 $R_1=1.021\cdot10^9$, and $(J_1,X)=(110,53)$, $R_1=4.844\cdot10^9$.
 \end{corollary}

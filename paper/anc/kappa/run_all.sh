@@ -22,3 +22,7 @@ export PY=${PY:-python3}
 ./runlog.sh kappa/logs/J60.log  "$PY" kappa/verify_kappa.py kappa/params/J60.json  --prec 1700 --order 28 --workers "$W"
 ./runlog.sh kappa/logs/J100.log "$PY" kappa/verify_kappa.py kappa/params/J100.json --prec 3300 --order 28 \
             --order-far 64 --order-switch 121 --workers "$W"
+# H >= 1 on R for the nine ladder functions (exact expansion of H = P(t^2)), and the weak-duality bound on int Xi^2 dmu
+./runlog.sh kappa/logs/H_nonneg.log "$PY" kappa/check_H_nonneg.py kappa/params/J20.json kappa/params/J23.json \
+            kappa/params/J24.json kappa/params/J30.json kappa/params/J35.json kappa/params/J40.json kappa/params/J50.json \
+            kappa/params/J60.json kappa/params/J100.json --duality-log kappa/logs/J100.log

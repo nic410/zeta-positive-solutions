@@ -4,7 +4,8 @@
 
 This appendix contains the longer proofs, in the order of the sections; each statement in the main text says where
 its proof is. The heart of Theorem~\ref{thm:Gfin} is in Appendix~\ref{app:cusp}: Lemma~\ref{lem:cusp-class2} computes the
-expansions at the three cusps, and Lemma~\ref{lem:class2-landau} is the Landau step.
+expansions at the three cusps for a single $s$, Lemma~\ref{lem:aggregate} estimates them in aggregate, and Lemma~\ref{lem:meanvalue} is the
+mean-value step.
 
 \subsection{Proofs for Sections~\ref{sec:setting} and~\ref{sec:uniqueness}}
 
@@ -181,16 +182,91 @@ singularity. Thus $\Delta\mu=-\sum c_i\delta_{z_i}$ and $\widehat{\Delta\mu}(\xi
 all $c_i=0$. Then $\Delta\mu=0$ and $\Delta\nu=0$.
 \end{proof}
 
+\subsubsection{Zero-side support}\label{app:proofs-zerosupport}
+\begin{proof}[Proof of Theorem~\textup{\ref{thm:zerosupport}}]
+Let $a_0:=\mu(\{0\})\ge0$, and let $\nu^\sharp$ be the image of $\nu$ under $\xi\mapsto x=e^{2\pi\xi}$, a positive measure on $[2,\infty)$.
+Recall that $\Lambda(\sqrt m):=0$ when $m$ is not a square, and write $\mathcal Mf(w):=\int_0^\infty f(x)x^{w-1}\dd x$ and
+$p_k(f):=\sup_t(1+|t|)^k|f(t)|$.
+
+\emph{Step 1: a continuous lattice functional.} Lemma~\ref{lem:apriori} with $X=\log R/2\pi$ gives $\nu^\sharp([R,2R])\le CR^{1/2}$ for
+$R\ge2$. For an even Schwartz function $f$, $\sum_{k\ge1}|f(kx)|\le\zeta(3)p_3(f)x^{-3}$, and dyadic summation gives $\int x^{-5/2}\dd\nu^\sharp<\infty$.
+So
+\[
+L(f):=\int_{[2,\infty)}\sqrt x\sum_{k\ge1}f(kx)\dd\nu^\sharp(x)
+\]
+converges absolutely, and $|L(f)|\le C'p_3(f)$: $L$ is a continuous linear functional on even Schwartz functions. The same bound makes all the
+integrals below absolutely convergent, which justifies the regroupings.
+
+\emph{Step 2: the values on the basis.} As $\mu$ is carried by $\Zz\cup\{0\}$ and $U_m$ vanishes on $\Zz$, testing the admissibility identity
+on $U_m$ gives $a_0U_m(0)+\frac1\pi\int\widehat{U_m}\dd\nu=\frac1\pi\Lambda(\sqrt m)m^{-1/4}$. With
+$\widehat{U_m}(\xi)=m^{-1/4}\sqrt x\,u_m(x)$ and, as in the proof of Lemma~\ref{lem:structure},
+$\pi m^{1/4}a_0U_m(0)=-\tilde\varrho_0\sum_{d^2\mid m}\boldsymbol\mu(d)\alpha_{m/d^2}(\frac14)$, where $\tilde\varrho_0:=2a_0\Xi(0)$, this reads
+$\int\sqrt x\,u_m\dd\nu^\sharp=\Lambda(\sqrt m)+\tilde\varrho_0\sum_{d^2\mid m}\boldsymbol\mu(d)\alpha_{m/d^2}(\frac14)$. As $B_N=\sum_{k^2\mid N}u_{N/k^2}$,
+square-divisor M\"obius inversion gives, for $N\ge1$,
+\begin{equation}\label{eq:L-bN}
+L(b_N)=\tfrac12(\log N)\one_\square(N)+\tilde\varrho_0\,\alpha_N(\tfrac14).
+\end{equation}
+
+\emph{Step 3: the identity for self-dual functions.} Let $f$ be even and Schwartz with $\hat f=f$ and $f(0)=0$. By the interpolation theorem
+of Radchenko and Viazovska \cite[Theorem~1]{RV19}, $f=\sum_{N\ge0}f(\sqrt N)\,b_N$ pointwise. The proof of \cite[Theorem~2]{RV19} in its
+\S6 shows that every Schwartz seminorm of $b_N$ grows at most polynomially in $N$, while $f(\sqrt N)$ decays faster than every power of $N$;
+so the series converges in the Schwartz topology, and its limit is $f$ because it is the pointwise limit. Both $L$ and
+$f\mapsto\mathcal Mf(\frac12)$ are continuous on even Schwartz functions (for the latter, $|f(x)|x^{-1/2}\le p_0(f)x^{-1/2}$ on $(0,1]$ and
+$\le p_2(f)x^{-5/2}$ on $[1,\infty)$). By \cite[(3.17)]{BRS}, $\GR(w)\alpha_N(\frac w2)=2\mathcal Mb_N(w)$ for $\Re w>0$ (the range
+$\Re w>0$ follows by Fubini from \cite[(3.12), (3.16)]{BRS}). At $w=\frac12$, with $\Xi(0)=-\frac18\GR(\frac12)\zeta(\frac12)$, this gives
+$\tilde\varrho_0\alpha_N(\frac14)=-\frac12a_0\zeta(\frac12)\mathcal Mb_N(\frac12)$. Applying $L$ termwise, by \eqref{eq:L-bN} and
+$b_N(\sqrt n)=\delta_{Nn}$,
+\begin{equation}\label{eq:L-f}
+L(f)=\sum_{n\ge2}(\log n)f(n)-\tfrac12a_0\,\zeta(\tfrac12)\,\mathcal Mf(\tfrac12).
+\end{equation}
+
+\emph{Step 4: a limiting test.} Let $g(t):=\sin^2(\pi t)/(\pi^2(t^2-1))$, with $g(\pm1):=0$. It is entire, even and $O(t^{-2})$; it vanishes
+at every integer; and $g(t)>0$ for real $|t|>1$ off the integers. Its Fourier transform is $h(u):=-\sin(2\pi|u|)/2\pi$ for $|u|\le1$ and
+$h(u):=0$ for $|u|>1$, since $2\int_0^1h(u)\cos(2\pi tu)\dd u=g(t)$; so $h(0)=h(\pm1)=0$. For $0<\eps\le1$ put $g_\eps(t):=g(t)e^{-\pi\eps t^2}$,
+$\gamma_\eps(u):=\eps^{-1/2}e^{-\pi u^2/\eps}$ and
+\[
+f_\eps:=g_\eps+h*\gamma_\eps-c_\eps\,e^{-\pi t^2},\qquad c_\eps:=(h*\gamma_\eps)(0).
+\]
+Since $\widehat{g_\eps}=h*\gamma_\eps$ and $e^{-\pi t^2}$ is its own transform, $f_\eps$ is even, Schwartz and self-dual, $f_\eps(0)=0$, and
+$c_\eps\to h(0)=0$. For $y\ge2$, $|(h*\gamma_\eps)(y)|\le\pi^{-1}e^{-\pi(y-1)^2}$ uniformly in $\eps\le1$; so
+$|f_\eps(y)|\le Cy^{-2}+Ce^{-\pi(y-1)^2}$ and $f_\eps(y)\to g(y)$. The lattice sums $\sum_k|f_\eps(kx)|$ are therefore $O(x^{-2})$ on $[2,\infty)$
+uniformly in $\eps$, and $\int x^{-3/2}\dd\nu^\sharp<\infty$; by dominated convergence,
+\[
+L(f_\eps)\to G_\nu:=\int\sqrt x\sum_{k\ge1}g(kx)\dd\nu^\sharp(x).
+\]
+In \eqref{eq:L-f}, $f_\eps(n)=(h*\gamma_\eps)(n)-c_\eps e^{-\pi n^2}\to0$ for $n\ge2$, dominated by a summable Gaussian, so the sum tends to $0$.
+Moreover $f_\eps\to g+h$ in $L^1((0,\infty),x^{-1/2}\dd x)$ (a uniform bound near $0$, the bound above on $[2,\infty)$), so
+$\mathcal Mf_\eps(\frac12)\to\mathcal M(g+h)(\frac12)$. Hence $G_\nu=-\frac12a_0\zeta(\frac12)\mathcal M(g+h)(\frac12)$. Now $\int_0^\infty g=\frac12h(0)=0$
+and $\int_0^1h=0$, so
+\[
+\mathcal Mg(\tfrac12)=\int_0^\infty g(x)\,(x^{-1/2}-1)\dd x<0,\qquad \mathcal Mh(\tfrac12)=\int_0^1h(x)\,(x^{-1/2}-\sqrt2)\dd x<0,
+\]
+since in each integrand the two factors have opposite signs on either side of $x=1$, respectively $x=\frac12$. (In fact
+$\mathcal Mg(\frac12)=\mathcal Mh(\frac12)$, as the Fourier transform preserves $\mathcal Mf(\frac12)$ for even $f$.) Also $\zeta(\frac12)<0$. Every
+summand of $G_\nu$ is non-negative, as $kx\ge2$; so $0\le G_\nu=-\frac12a_0\zeta(\frac12)\mathcal M(g+h)(\frac12)\le0$, whence $a_0=0$ and
+$G_\nu=0$.
+
+\emph{Step 5: conclusion.} The series $G(x):=\sum_{k\ge1}g(kx)$ converges locally uniformly on $[2,\infty)$, so $G$ is continuous; $G\ge0$,
+$G(x)\ge g(x)>0$ for non-integral $x$, and $G=0$ at the integers. As $\nu^\sharp\ge0$ and $\int\sqrt xG\dd\nu^\sharp=0$, $\nu^\sharp$ is carried
+by $\{2,3,4,\dots\}$. Put $w_d:=\nu^\sharp(\{d\})$. As $b_{m^2}(j)=\delta_{jm}$ for integers $j\ge1$, \eqref{eq:L-bN} with $N=m^2$ and $a_0=0$
+reads $\sum_{d\mid m,\ d\ge2}\sqrt d\,w_d=\log m$ for every $m\ge1$, and M\"obius inversion gives $\sqrt m\,w_m=\Lambda(m)$. Thus
+$\nu^\sharp(\{m\})=\Lambda(m)m^{-1/2}$, that is, $\nu=\nuz$, and Theorem~\ref{thm:logic}(b) gives RH and $\mu=\muz$.
+\end{proof}
+
 \subsubsection{Structure of pairs with extra atoms}\label{app:proofs-structure}
 \begin{proof}[Proof of Lemma~\textup{\ref{lem:structure}}]
-Since $U_m$ vanishes on $\Zz$, $\widehat{U_m}(\frac{\log m'}{4\pi})=\delta_{mm'}$ and \eqref{eq:W-BRS} holds, testing on $U_m$ gives
+Since $U_m$ vanishes on $\Zz$, $\widehat{U_m}(\frac{\log m'}{4\pi})=\delta_{mm'}$ and \eqref{eq:W-BRS} holds, testing on $U_m$ gives, with an
+absolutely convergent sum over $E$,
 \[
 \sum_{e\in E}a_eU_m(e)+\frac1\pi\,\nu\big(\{\tfrac{\log m}{4\pi}\}\big)=\frac1\pi\Lambda(\sqrt m)m^{-1/4}.
 \]
 Multiply by $\pi m^{1/4}$. By \eqref{eq:Um} and $\GR(\frac12+it)\zeta(\frac12+it)=-2\Xi(t)/(\frac14+t^2)$,
 $\pi m^{1/4}a_eU_m(e)=-\frac{a_e\Xi(e)}{2(\frac14+e^2)}\sum_{d^2\mid m}\boldsymbol\mu(d)\alpha_{m/d^2}(s_e)$. The atoms at $\pm e$ give equal
-terms, because $a_{-e}=a_e$, $\Xi$ is even and $\alpha_N(s_{-e})=\alpha_N(\overline{s_e})=\alpha_N(s_e)$; so
-$\pi m^{1/4}\sum_ea_eU_m(e)=-\sum_{d^2\mid m}\boldsymbol\mu(d)c_{m/d^2}(E)$. Hence
+terms, because $a_{-e}=a_e$, $\Xi$ is even and $\alpha_N(s_{-e})=\alpha_N(\overline{s_e})=\alpha_N(s_e)$; as the sum converges absolutely, they
+may be paired. So $\sum_{e\in E_+}|\tilde\varrho_e\,h_m(e)|<\infty$ for every $m$, where $h_m(e):=\sum_{d^2\mid m}\boldsymbol\mu(d)\alpha_{m/d^2}(s_e)$.
+Square-divisor M\"obius inversion gives $\alpha_N(s_e)=\sum_{k^2\mid N}h_{N/k^2}(e)$, a finite sum, so each series $c_N(E)$ converges absolutely,
+the finite M\"obius sums may be interchanged with the sum over $e$, and $\pi m^{1/4}\sum_ea_eU_m(e)=-\sum_{d^2\mid m}\boldsymbol\mu(d)c_{m/d^2}(E)$.
+Hence
 \[
 \ell_m=\Lambda(\sqrt m)\one_\square(m)+\sum_{d^2\mid m}\boldsymbol\mu(d)\,c_{m/d^2}(E).
 \]
@@ -199,9 +275,9 @@ $g_N=\sum_{k^2\mid N}f_{N/k^2}$ for all $N$) and $\sum_{k^2\mid N}\Lambda(\sqrt{
 $N=M^2$ give \eqref{eq:CN}. If $\nu$ lives on $[\xin2,\infty)$ then $\ell_1=\ell_2=\ell_3=0$, and
 \eqref{eq:CN} at $N\le3$ gives $c_N=0$. Testing on $V_{\rho,j}$, whose transform vanishes on $\BRS$, and using \eqref{eq:W-BRS}
 gives the three identities for $w_\gamma$ and $\sum_ea_eV_{\rho,j}(e)$, exactly as in the proof of Proposition~\ref{thm:support}. If
-$a=0$, that proof gives $(\mu,\nu)=\pz$; conversely $\muz(E)=0$. Trivially $a=0$ implies $c\equiv0$; if $c\equiv0$ then
-$\tilde\varrho_e=0$ for all $e$ by Lemma~\ref{lem:cusp0} in Appendix~\ref{app:cusp}, and $\tilde\varrho_e=0$ forces $a_e=0$ since $\Xi(e)\ne0$ for
-$e\notin\Zz$. Finally, if $(\mu,\nu)\in\Kad$ then $\ell_m\ge0$, so $C_N\ge0$.
+$a=0$, that proof gives $(\mu,\nu)=\pz$; conversely $\muz(E)=0$. Trivially $a=0$ implies $c\equiv0$. If $c\equiv0$ and \eqref{eq:summable}
+holds, then $\tilde\varrho_e=0$ for all $e$ by the last assertion of Lemma~\ref{lem:meanvalue} in Appendix~\ref{app:cusp}, and
+$\tilde\varrho_e=0$ forces $a_e=0$ since $\Xi(e)\ne0$ for $e\notin\Zz$. Finally, if $(\mu,\nu)\in\Kad$ then $\ell_m\ge0$, so $C_N\ge0$.
 \end{proof}
 
 \subsubsection{Cusp expansions}\label{app:cusp}
@@ -280,28 +356,85 @@ $1+\omega+\bar\omega=0$; for $e>0$, $v^{s_e-1/2}=v^{-\overline{s_e}}$ and $\frac
 exponents equal $-\frac14$ and $9^{-1/4}=3^{-1/2}$.
 \end{proof}
 
-\begin{lemma}[Landau step]\label{lem:class2-landau}
-Let $E_+\subset[0,\infty)$ be finite, $\tilde\varrho_e\in\RR$ with $\tilde\varrho_0\ge0$ if $0\in E_+$, and $c_N:=\sum_{e\in E_+}\tilde\varrho_e\alpha_N(s_e)$. If $c_N\ge0$
-for every $N\equiv2\pmod 3$, then $\tilde\varrho_e=0$ for every $e\in E_+$.
+For countably many $s_e$ we need the expansion of Lemma~\ref{lem:cusp-class2} in aggregate, with no per-$s$ constants. In the rest of
+this subsection $E_+\subset[0,\infty)$ is countable, $a_e$ $(e\in E_+)$ are real, $b_e:=|a_e|\,|\zeta(\frac12+ie)|$, and
+\begin{equation}\label{eq:summable-b}
+\sum_{e\in E_+,\,e>0}b_e\,(1+e)^{-1/2}<\infty,\quad\text{or, more generally,}\quad A(T):=\sum_{e\in E_+,\,0<e\le T}b_e=o(T^{1/2});
+\end{equation}
+the first condition implies the second (split the series at a large $R$). We put $\tilde\varrho_e:=a_e\Xi(e)/(\frac14+e^2)=-\frac12a_e\GR(\frac12+ie)\zeta(\frac12+ie)$
+for $e>0$ and $\tilde\varrho_0:=2a_0\Xi(0)$, and $c_N:=\sum_{e\in E_+}\tilde\varrho_e\,\alpha_N(s_e)$. By Stirling's formula,
+$|\tilde\varrho_e|\le C\,b_e(1+e)^{-1/4}e^{-\pi e/4}$; and by partial summation \eqref{eq:summable-b} gives $\sum_{e>0}b_e(1+e)^{-1}<\infty$ and
+$\sum_{e>0}b_e(1+e)^{\kappa}e^{-\delta e}<\infty$ for all $\kappa$ and all $\delta>0$.
+
+\begin{lemma}[Aggregate expansion]\label{lem:aggregate}
+\textup{(a)} $|\tilde\varrho_e\,\alpha_N(s_e)|\le C(1+N)^{C}\,b_e(1+e)^{-1}$ for $e>0$, with $C$ independent of $e$ and $N$. Hence the series
+$c_N$ converge absolutely, and $|c_N|\le C'(1+N)^C$.
+
+\textup{(b)} As $v\to0^+$, with $u:=\log(1/v)$,
+\[
+v^{1/4}\sum_{N\equiv2\,(3)}c_Ne^{-\pi Nv}=Q(u)+o(1),\qquad Q(u):=B_0+\sum_{e\in E_+,\,e>0}\big(B_ee^{ieu/2}+\overline{B_e}e^{-ieu/2}\big),
+\]
+where $B_e:=\frac{\tilde\varrho_e}3(1-3\cdot9^{-s_e})$ for $e>0$ and $B_0:=\frac{2\tilde\varrho_0}3(1-\sqrt3)$ ($B_0:=0$ if $0\notin E_+$); and
+$\sum_e|B_e|<\infty$.\astranote
 \end{lemma}
 
 \begin{proof}
-The Dirichlet series $D(w):=\sum_{N\equiv2\,(3)}c_NN^{-w}$ has non-negative coefficients of polynomial growth, so it converges in some
-half-plane; let $\sigma_c\in[-\infty,\infty)$ be its abscissa of convergence, which equals its abscissa of absolute convergence. (Polynomial
-growth alone does not exclude $\sigma_c=-\infty$, for instance if only finitely many $c_N$ are non-zero.) As $\Theta_E^{(2)}(v)=O(e^{-2\pi v})$
-for $v\ge1$, Lemma~\ref{lem:cusp-class2} gives, for $\Re w>\max(\sigma_c,\frac14)$,
+(a) By \cite[(3.17)]{BRS}, $\GR(w)\alpha_N(\frac w2)=2\mathcal Mb_N(w)$ for $\Re w>0$ (the range follows by Fubini from \cite[(3.12), (3.16)]{BRS});
+at $w=\frac12+ie$ this gives $\tilde\varrho_e\alpha_N(s_e)=-a_e\zeta(\frac12+ie)\,\mathcal Mb_N(\frac12+ie)$. In the variable $y=\log x$,
+$\mathcal Mb_N(\frac12+ie)=\int_\RR\phi_N(y)e^{iey}\dd y$ with $\phi_N(y):=e^{y/2}b_N(e^y)$, and one integration by parts gives
+$|\mathcal Mb_N(\frac12+ie)|\le2(1+e)^{-1}(\|\phi_N\|_{L^1}+\|\phi_N'\|_{L^1})$; the boundary terms vanish, since $\phi_N$ decays like $e^{y/2}$
+as $y\to-\infty$ and faster than any exponential as $y\to\infty$. Both norms are bounded by finitely many Schwartz seminorms of $b_N$, which
+grow at most polynomially in $N$ (the proof of \cite[Theorem~2]{RV19}, \S6). The bound for $c_N$ follows from $\sum_{e>0}b_e(1+e)^{-1}<\infty$.
+
+(b) By (a), $G(z):=\sum_{e\in E_+}\tilde\varrho_e\mathsf F(z,s_e)=\sum_{N\ge0}c_Ne^{\pi iNz}$, with absolute convergence for $\Im z>0$, and
+$G(X+iY)=c_0+O(e^{-\pi Y})$ uniformly in $X$ for $Y\ge1$. As $\vartheta(X+iY)=1+O(e^{-\pi Y})$, also $G/\vartheta=c_0+O(e^{-\pi Y})$ for $Y\ge Y_0$.
+The coefficients $c_N$ are real, so $G(-\bar z)=\overline{G(z)}$, and $G$ has period $2$. By orthogonality of additive characters,
 \[
-\pi^{-w}\Gamma(w)D(w)=\int_0^\infty\Theta_E^{(2)}(v)v^{w-1}\dd v=\sum_{e>0}\Big(\frac{B_e}{w-s_e}+\frac{\overline{B_e}}{w-\overline{s_e}}\Big)+\frac{B_0}{w-\frac14}+\frac Cw+H(w),
+\Theta^{(2)}(v):=\sum_{N\equiv2\,(3)}c_Ne^{-\pi Nv}=\tfrac13\Big[G(iv)+\omega\,G(\tfrac23+iv)+\bar\omega\,\overline{G(\tfrac23+iv)}\Big].
 \]
-with $H$ analytic in $\Re w>-\frac34$. Call $\widetilde D(w)$ the right side multiplied by $\pi^w\Gamma(w)^{-1}$: it is meromorphic in $\Re w>-\frac34$, with
-poles at most at the non-real points $s_e,\overline{s_e}$ and at $\frac14$ (the pole of $C/w$ is cancelled by the zero of $1/\Gamma$), and, by analytic
-continuation, $D=\widetilde D$ on $\Re w>\max(\sigma_c,-\frac34)$ away from these points. Since the points $s_e$ are distinct and
-$\pi^{s_e}\Gamma(s_e)^{-1}\ne0$, $\widetilde D$ has a pole at $s_e$ and $\overline{s_e}$ exactly when $B_e\ne0$ ($e>0$), and at $\frac14$ exactly when $B_0\ne0$.
-Suppose that some $B_e\ne0$. Then $\widetilde D$ has a pole on the line $\Re w=\frac14$; as $D$ is analytic in $\Re w>\sigma_c$ and equals $\widetilde D$
-there, $\sigma_c\ge\frac14$, and in particular $\sigma_c$ is finite. By Landau's theorem \cite[Theorem~1.7]{MV07}, $D$ is singular at the real
-point $\sigma_c$. As $\widetilde D$ is analytic on the real half-line $(\frac14,\infty)$, $\sigma_c=\frac14$ and $D$ is singular at $\frac14$; so $B_0\ne0$,
-hence $\tilde\varrho_0>0$ and $B_0<0$. But then, for real $\sigma\downarrow\frac14$, $0\le D(\sigma)=\widetilde D(\sigma)=\pi^{1/4}\Gamma(\frac14)^{-1}B_0(\sigma-\frac14)^{-1}+O(1)\to-\infty$,
-a contradiction. Hence $B_e=0$ for all $e$; as $|3\cdot9^{-s_e}|=\sqrt3\ne1$ and $1-\sqrt3\ne0$, every $\tilde\varrho_e=0$.
+Sum \eqref{eq:unroll}, with the words $S$ at $iv$ and $W$ at $\tau=\frac23+iv$ as in Lemmas~\ref{lem:cusp0} and~\ref{lem:cusp-class2}, over $e$ with
+the weights $\tilde\varrho_e$. Every sum below converges absolutely, by the bounds that follow. The first term at each cusp is
+$-\vartheta(\tau')G(W'\tau')/\vartheta(W'\tau')$, with $\Im W'\tau'=1/v$, respectively $1/(9v)$; it equals $-c_0\vartheta(\tau')$ up to
+$O(v^{-1/2}e^{-\pi/(9v)})$, and the theta terms $-c_0\vartheta$ cancel in the projection, because no square is $\equiv2\pmod3$. The cusp $0$
+contributes $\frac13\sum_e\tilde\varrho_e(v^{-s_e}+v^{s_e-1/2})$ exactly. At $\tau$ there remain three terms. The singular one is
+$(\mathfrak p_s|w_4)(\tau)=j(v)\big[(9v)^{-s}(1+6iv)^s+(9v)^{s-1/2}(1+6iv)^{1/2-s}\big]$ with $j(v)=i\sqrt3+O(v)$ independent of $s$. For $s=s_e$ the
+factors $(1+6iv)^{s}$ and $(1+6iv)^{1/2-s}$ are at most $Ce^{3ev}$, and their derivatives in $v$ at most $C(1+e)e^{3ev}$; so, after multiplication by
+$v^{1/4}$, replacing $(\mathfrak p_{s_e}|w_4)(\tau)$ by $i\sqrt3\,(9^{-s_e}v^{-s_e}+9^{s_e-1/2}v^{s_e-1/2})$ costs at most
+$Cv\,|\tilde\varrho_e|(1+e)e^{3ev}\le Cv\,b_e(1+e)^{3/4}e^{-\pi e/8}$ for $v\le\pi/24$, which is $O(v)$ after summing over $e$. The two intermediate
+terms are $\mathfrak p_s(\tau)$ and $(\mathfrak p_s|T^2S)(\tau)=-(\tau/i)^{-1/2}\mathfrak p_s(2-1/\tau)$. For $0<v\le\frac1{10}$ both points
+$z\in\{\tau,2-1/\tau\}$ have $\Re z$ and $|z|$ bounded above and below and $|\arg(z/i)|\le\frac\pi2-v$, since
+$\frac\pi2-|\arg(\tau/i)|=\arctan\frac{3v}2$ and $\frac\pi2-|\arg((2-1/\tau)/i)|=\arctan\frac v{2/9+2v^2}$; hence $|\mathfrak p_{s_e}(z)|\le Ce^{\pi e/4-ev/2}$
+and
+\[
+v^{1/4}|\tilde\varrho_e|\big(|\mathfrak p_{s_e}(\tau)|+|(\tau/i)^{-1/2}\mathfrak p_{s_e}(2-1/\tau)|\big)\le C\,\big[b_e(1+e)^{-1/2}\big]\big[(v(1+e))^{1/4}e^{-ev/2}\big].
+\]
+The second bracket is bounded uniformly in $v\le\frac1{10}$ and $e$, and tends to $0$ as $v\to0$ for each $e$. Under the first condition in
+\eqref{eq:summable-b}, dominated convergence shows that the sum over $e$ is $o(1)$. Under the second, put $H(T):=\sum_{0<e\le T}b_e(1+e)^{-1/4}$;
+partial summation gives $H(T)=(1+T)^{-1/4}A(T)+\frac14\int_0^TA(t)(1+t)^{-5/4}\dd t=o(T^{1/4})$, and
+$v^{1/4}\sum_eb_e(1+e)^{-1/4}e^{-ev/2}=\frac12v^{5/4}\int_0^\infty H(t)e^{-vt/2}\dd t\to0$ (split the integral at a large $T_0$). The term $e=0$ is
+bounded, so its contribution is $O(v^{1/4})$. Collecting terms, the cusps $\frac23$ and $\frac43$ contribute
+$\frac13\big(\omega\,i\sqrt3+\overline{\omega\,i\sqrt3}\big)\sum_e\tilde\varrho_e(9^{-s_e}v^{-s_e}+9^{s_e-1/2}v^{s_e-1/2})=-\sum_e\tilde\varrho_e(9^{-s_e}v^{-s_e}+9^{s_e-1/2}v^{s_e-1/2})$,
+as $9^{s_e-1/2}v^{s_e-1/2}=\overline{9^{-s_e}v^{-s_e}}$ makes the bracket real. With the contribution of the cusp $0$ and
+$v^{1/4}v^{-s_e}=e^{ieu/2}$, $v^{1/4}v^{s_e-1/2}=e^{-ieu/2}$, this gives (b); $\sum|B_e|<\infty$ because $|\tilde\varrho_e|\le Cb_e(1+e)^{-1/4}e^{-\pi e/4}$.
+\end{proof}
+
+\begin{lemma}[Mean-value step]\label{lem:meanvalue}
+Assume \eqref{eq:summable-b}, $a_0\ge0$ if $0\in E_+$, and $c_N\ge0$ for every $N\equiv2\pmod3$. Then $\tilde\varrho_e=0$ for every $e\in E_+$.
+The same conclusion holds, without the sign conditions, if $c_N=0$ for every $N\equiv2\pmod3$.\astranote
+\end{lemma}
+
+\begin{proof}
+Let $Q$ be as in Lemma~\ref{lem:aggregate}. It is a real, uniformly almost periodic function, $|Q|\le M:=|B_0|+2\sum_{e>0}|B_e|<\infty$, and
+$\Theta^{(2)}(e^{-u})\ge0$ gives: for every $\eta>0$ there is $u_\eta$ with $Q(u)\ge-\eta$ for $u\ge u_\eta$. The frequencies $\pm\frac e2$
+$(e>0)$ are distinct and non-zero, and the series for $Q$ and $Q^2$ converge absolutely; so, by dominated convergence,
+\[
+\lim_{T\to\infty}\frac1T\int_0^TQ(u)\dd u=B_0,\qquad \lim_{T\to\infty}\frac1T\int_0^TQ(u)^2\dd u=B_0^2+2\sum_{e>0}|B_e|^2.
+\]
+As $Q\ge-\eta$ eventually, $B_0\ge-\eta$ for every $\eta$, so $B_0\ge0$; and $B_0\le0$, since $\tilde\varrho_0=2a_0\Xi(0)\ge0$ ($\Xi(0)>0$) and
+$1-\sqrt3<0$. So $B_0=0$. For $q\in[-\eta,M]$ we have $(q-M)(q+\eta)\le0$, hence $q^2\le Mq+M\eta+\eta^2$; applying this to $Q(u)$ for $u\ge u_\eta$
+and averaging, $B_0^2+2\sum_{e>0}|B_e|^2\le MB_0+M\eta+\eta^2=M\eta+\eta^2$. Letting $\eta\to0$, every $B_e$ vanishes. If instead every $c_N$ with
+$N\equiv2\pmod3$ vanishes, then $Q(u)=o(1)$ and the mean square vanishes directly. Finally $|3\cdot9^{-s_e}|=\sqrt3\ne1$ and
+$1-\sqrt3\ne0$, so every $\tilde\varrho_e$ vanishes.
 \end{proof}
 
 \subsection{Proofs for Section~\ref{sec:family}}
@@ -429,8 +562,9 @@ which is the content of \hyp{Z$_\infty$} and \hyp{Mg}.
 
 \emph{Further remarks.} (a) In \hyp{N} it suffices that the linear system $M_Jp=-b_J$ be solvable for infinitely many
 $J$, choosing any solution; invertibility is used nowhere else, although the family is then not canonical.
-(b) Different subsequences may have different limits; under \hyp{Z$_\infty$} and \hyp{Mg} all of them have the zero sets
-$\Zz$ and $\xiPP$, and convex combinations of limits are again exact magic functions.
+(b) Different subsequences may have different limits; under \hyp{Z$_\infty$} and \hyp{Mg} all of them have real zero set $\Zz$,
+and the zeros of their transforms in $[\xi_2,\infty)$ include $\xiPP$ (and are exactly $\xiPP$ under the strict form of \hyp{Mg});
+convex combinations of limits are again exact magic functions.
 (c) The strict inequality $a<\pi/2$ in \hyp{G$_a$} is essential: for $a=\pi/2$ the majorant $m$ is not integrable, $F_\infty$
 need not lie in $\Tc$, and neither the explicit formula nor complementary slackness is available. Uniformity of $C$ and $a$
 in $J$ is equally essential, since every single polynomial satisfies the bound with some constant.

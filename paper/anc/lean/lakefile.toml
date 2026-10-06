@@ -1,0 +1,29 @@
+name = "PositivityRigidity"
+version = "0.1.0"
+defaultTargets = ["PositivityRigidity"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+autoImplicit = false
+
+# Same Mathlib pin as the Lean formalisation of the families paper
+# (github.com/nic410/dirichlet-critical-zeros) and as the `zeta23` project of anthropics/formal-math
+# (zeta23/lakefile.toml).
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "51e6992efd06126df61a496bebf8f49482a4e129"
+
+# The Lean formalisation of Alpöge–Furman, arXiv:2608.13637: subdirectory `zeta23` of
+# https://github.com/anthropics/formal-math (formerly anthropics/zeta-23-lean; GitHub redirects the old URL).
+# Same pin as the formalisation of the families paper. See README.md, section "Zeta23", for what is (and is
+# not) imported.
+[[require]]
+name = "Zeta23"
+git = "https://github.com/anthropics/zeta-23-lean"
+rev = "fbdc36bbf17d20af3fd0447c6d1a8a02773c9844"
+subDir = "zeta23"
+
+[[lean_lib]]
+name = "PositivityRigidity"

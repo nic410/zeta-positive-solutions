@@ -32,12 +32,12 @@ abstract: >-
   linear-programming duality such pairs exist if and only if a positivity statement involving neither zeros nor
   primes holds; its slack κ* gives the optimal degree-one explicit-formula conductor bound q_min = exp(−2πκ*). We
   conjecture that ζ's own pair is the only solution; this does not imply the Riemann hypothesis, but makes it
-  equivalent to existence. We prove the conjecture for pairs carried by the zeros of ζ plus finitely many points
-  and by the Bondarenko–Radchenko–Seip nodes, using positivity of the prime measure only on one residue class of
-  nodes, and of the zero measure only at the origin. Certificates of the form Ξ²(H + ε·exp(−πt²)), with H a
-  polynomial in t², vanish at every zero of ζ and show unconditionally that κ* ≤ 1.1508391·10⁻⁹⁰⁶. Uniqueness
-  would follow from asymptotic properties of a family of such functions, defined by Hermite interpolation at the
-  prime powers.
+  equivalent to existence. We prove it when the zero measure lives on the zeros of ζ and the origin, whatever the
+  prime measure, and when it lives on the zeros plus countably many summable points with the prime measure on the
+  Bondarenko–Radchenko–Seip nodes. Certificates of the form Ξ²(H + ε·exp(−πt²)), with H ≥ 1 a polynomial in t²,
+  vanish at every zero of ζ and show unconditionally that κ* ≤ 1.1508391·10⁻⁹⁰⁶ and that every solution has
+  ∫Ξ² dμ ≤ 3.21·10⁻⁹⁰⁶. Uniqueness would follow from asymptotic properties of such functions defined by Hermite
+  interpolation at the prime powers.
 preferred-citation:
   type: article
   status: preprint

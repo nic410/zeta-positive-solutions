@@ -141,26 +141,49 @@ $\frac1\pi\nu(\{\frac{\log m}{4\pi}\})=\frac1\pi\Lambda(\sqrt m)m^{-1/4}$, i.e.\
 The proof uses the identity $\Arch=\Spec_{\mu,\nu}$ only for $F\in\{U_m,V_{\rho,j}\}$, and no positivity. In this form it applies to
 real measures $\mu$ (even) and $\nu$ carried by $\Zz$ and $\BRS$, and we use it so in the proof of Theorem~\ref{thm:Gfin}.
 
+For admissible pairs the hypothesis on $\nu$ can be dropped, and an atom of $\mu$ at the origin can be allowed.
 
-\subsection{Finitely many extra zeros}\label{ssec:Gfin}
+\begin{theorem}[Zero-side support]\label{thm:zerosupport}
+Let $(\mu,\nu)\in\Kad$, and assume that $\mu$ is carried by $\Zz\cup\{0\}$. Then RH holds and $(\mu,\nu)=\pz$.\astranote
+\end{theorem}
 
-Fix a finite symmetric set $E\subset\RR\setminus\Zz$, and put $E_+:=E\cap[0,\infty)$ and $s_e:=\frac14+\frac{ie}2$.
+No hypothesis on $\nu$ is made beyond admissibility: neither discreteness nor support in $\BRS$. In particular, for admissible pairs,
+Proposition~\ref{thm:support} holds without its hypothesis on $\nu$. The proof uses $\nu\ge0$, so the signed form of
+Proposition~\ref{thm:support} used in the proof of Theorem~\ref{thm:Gfin} is not strengthened.
+
+\emph{Sketch of the proof} (Appendix~\ref{app:proofs-zerosupport}). Let $\nu^\sharp$ be the image of $\nu$ under $\xi\mapsto x=e^{2\pi\xi}$, a
+positive measure on $[2,\infty)$ with $\nu^\sharp([R,2R])\ll R^{1/2}$ by Lemma~\ref{lem:apriori}; so the lattice functional
+$L(f):=\int\sqrt x\sum_{k\ge1}f(kx)\dd\nu^\sharp(x)$ is continuous on even Schwartz functions. Testing the admissibility identity on the
+functions $U_m$, which vanish on $\Zz$, and inverting over square divisors gives $L(b_N)=\frac12(\log N)\one_\square(N)+2\mu(\{0\})\Xi(0)\alpha_N(\frac14)$.
+As the interpolation series of Radchenko and Viazovska converges in Schwartz space, every even Schwartz function $f$ with $\hat f=f$ and
+$f(0)=0$ satisfies $L(f)=\sum_{n\ge2}(\log n)f(n)-\frac12\mu(\{0\})\zeta(\frac12)\int_0^\infty f(x)x^{-1/2}\dd x$. The function
+$g(t)=\sin^2(\pi t)/(\pi^2(t^2-1))$ vanishes at the integers, is positive at all other points of $(1,\infty)$, and $\hat g$ is supported in
+$[-1,1]$ and vanishes at $0$ and $\pm1$. Gaussian regularisations of $g+\hat g$ in this identity give
+$0\le\int\sqrt x\sum_kg(kx)\dd\nu^\sharp(x)=-\frac12\mu(\{0\})\zeta(\frac12)\int_0^\infty(g+\hat g)(x)x^{-1/2}\dd x\le0$, as both $\zeta(\frac12)$
+and the last integral are negative. Hence $\mu(\{0\})=0$ and $\nu^\sharp$ is carried by the integers $n\ge2$. Testing on $b_{m^2}$ and inverting
+over divisors gives $\nu^\sharp(\{m\})=\Lambda(m)m^{-1/2}$, that is, $\nu=\nuz$, and Theorem~\ref{thm:logic}(b) gives RH and $\mu=\muz$.
+
+
+\subsection{Countably many extra zeros}\label{ssec:Gfin}
+
+Fix a countable symmetric set $E\subset\RR\setminus\Zz$, and put $E_+:=E\cap[0,\infty)$ and $s_e:=\frac14+\frac{ie}2$.
 
 \begin{lemma}[Structure of pairs with extra atoms]\label{lem:structure}
 Let $\mu$ be an even real measure carried by $\Zz\cup E$ and $\nu$ a real measure carried by $\BRS$ such that
-$\Arch(F)=\Spec_{\mu,\nu}(F)$ for $F=U_m$ $(m\ge1)$ and $F=V_{\rho,j}$. Write $a_e:=\mu(\{e\})$, $w_\gamma:=\mu(\{\gamma\})$,
+$\Arch(F)=\Spec_{\mu,\nu}(F)$, with absolutely convergent integrals, for $F=U_m$ $(m\ge1)$ and $F=V_{\rho,j}$. Write $a_e:=\mu(\{e\})$, $w_\gamma:=\mu(\{\gamma\})$,
 $\ell_m:=m^{1/4}\nu(\{\frac{\log m}{4\pi}\})$, $C_N:=\sum_{k^2\mid N}\ell_{N/k^2}$,
 \[
 \tilde\varrho_e:=\frac{a_e\,\Xi(e)}{\frac14+e^2}\ (e>0),\qquad \tilde\varrho_0:=2a_0\,\Xi(0),\qquad c_N(E):=\sum_{e\in E_+}\tilde\varrho_e\,\alpha_N(s_e)\in\RR .
 \]
-Then for every $N\ge1$
+Then the series $c_N(E)$ converge absolutely, and for every $N\ge1$
 \begin{equation}\label{eq:CN}
 C_N=c_N(E)+\tfrac12(\log N)\one_\square(N).
 \end{equation}
 Moreover: $c_1=c_2=c_3=0$ when $\nu$ is carried by $[\xin2,\infty)$; $w_\gamma=m_\gamma-\frac12\sum_{e\in E}a_eV_{\rho,0}(e)$
 for $\gamma>0$ and $\rho=\frac12+i\gamma$; $\frac12\sum_ea_eV_{\rho,0}(e)=m(\rho)$ for every zero $\rho$ off the line with $\Im\rho>0$;
-$\sum_ea_eV_{\rho,j}(e)=0$ for $1\le j<m(\rho)$; and $(\mu,\nu)=\pz$ if and only if $a=0$, if and only if $c(E)\equiv0$. If
-$(\mu,\nu)\in\Kad$, then $C_N\ge0$ for all $N$; in particular $c_N(E)\ge0$ for every non-square $N$.
+$\sum_ea_eV_{\rho,j}(e)=0$ for $1\le j<m(\rho)$; and $(\mu,\nu)=\pz$ if and only if $a=0$, and, under the summability condition
+\eqref{eq:summable} below, if and only if $c(E)\equiv0$. If $(\mu,\nu)\in\Kad$, then $C_N\ge0$ for all $N$; in particular $c_N(E)\ge0$ for
+every non-square $N$.
 \end{lemma}
 
 The proof is in Appendix~\ref{app:proofs-structure}.
@@ -168,21 +191,30 @@ The proof is in Appendix~\ref{app:proofs-structure}.
 At a non-square $N$ there is no room: $c_N(E)\ge0$ outright. At squares, $\zeta$'s own prime mass $\frac12\log N$ gives a positive
 margin, which is why a soft argument cannot work there.
 
-\begin{theorem}[Finitely many extra zeros]\label{thm:Gfin}
-Let $E\subset\RR\setminus\Zz$ be finite and symmetric. Let $\mu$ be an even real measure carried by $\Zz\cup E$ and $\nu$ a real
-measure carried by $\BRS$ such that $\Arch(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$ for every BRS function $F$ (in particular, if the
-identity holds on $\Tc$ with absolutely convergent integrals). Assume $\nu(\{\frac{\log m}{4\pi}\})\ge0$ for every $m\equiv2\pmod3$, and
-$\mu(\{0\})\ge0$ if $0\in E$. Then RH holds, $\mu=\muz$ and $\nu=\nuz$. In particular every admissible pair carried by
-$(\Zz\cup E)\times\BRS$ is $\pz$.
+\begin{theorem}[Countably many extra zeros]\label{thm:Gfin}
+Let $E\subset\RR\setminus\Zz$ be countable and symmetric. Let $\mu$ be an even real measure carried by $\Zz\cup E$ and $\nu$ a real
+measure carried by $\BRS$ such that $\Arch(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$, with absolutely convergent integrals, for every BRS
+function $F$ (in particular, if the identity holds on $\Tc$ with absolutely convergent integrals). Assume $\nu(\{\frac{\log m}{4\pi}\})\ge0$
+for every $m\equiv2\pmod3$, $\mu(\{0\})\ge0$ if $0\in E$, and, with $a_e:=\mu(\{e\})$ and
+$A(T):=\sum_{e\in E,\,0<e\le T}|a_e|\,|\zeta(\frac12+ie)|$,
+\begin{equation}\label{eq:summable}
+\sum_{e\in E,\,e>0}|a_e|\,|\zeta(\tfrac12+ie)|\,(1+e)^{-1/2}<\infty,\qquad\text{or, more generally,}\qquad A(T)=o(T^{1/2}).
+\end{equation}
+Then RH holds, $\mu=\muz$ and $\nu=\nuz$. In particular every admissible pair carried by $(\Zz\cup E)\times\BRS$ and satisfying
+\eqref{eq:summable} is $\pz$. For finite $E$, \eqref{eq:summable} holds trivially.\footnote{The extension from finite to countable $E$ (with Lemmas~\ref{lem:aggregate}
+and~\ref{lem:meanvalue}) is due to Astra (OpenAI), contributed during an independent review of an earlier version of this paper, and
+independently verified. The case of finite $E$, with Lemma~\ref{lem:structure} for finite $E$ and Lemmas~\ref{lem:cusp0}
+and~\ref{lem:cusp-class2}, is from that earlier version.}
 \end{theorem}
 
 
 \begin{proof}
 By Lemma~\ref{lem:structure}, \eqref{eq:CN} holds. If $N\equiv2\pmod 3$ and $k^2\mid N$, then $3\nmid k$, so
 $N/k^2\equiv2\pmod3$; hence $c_N(E)=C_N=\sum_{k^2\mid N}\ell_{N/k^2}\ge0$ for all $N\equiv2\pmod3$ (no such $N$ is a square). Since
-$a_0\ge0$ and $\Xi(0)=-\frac18\pi^{-1/4}\Gamma(\frac14)\zeta(\frac12)>0$, we have $\tilde\varrho_0\ge0$. Lemma~\ref{lem:class2-landau} in
-Appendix~\ref{app:cusp} now gives $\tilde\varrho_e=0$ for every $e\in E_+$, so $a\equiv0$, $\mu$ is carried by $\Zz$, and the
-proof of Proposition~\ref{thm:support} (which uses no positivity) gives RH, $\mu=\muz$ and $\nu=\nuz$.
+$a_0\ge0$ and $\Xi(0)=-\frac18\pi^{-1/4}\Gamma(\frac14)\zeta(\frac12)>0$, we have $\tilde\varrho_0\ge0$. Lemma~\ref{lem:meanvalue} in
+Appendix~\ref{app:cusp}, whose hypotheses are \eqref{eq:summable} and these signs, now gives $\tilde\varrho_e=0$ for every $e\in E_+$. As
+$\Xi(e)\ne0$ for $e\notin\Zz$, $a\equiv0$, so $\mu$ is carried by $\Zz$, and the proof of Proposition~\ref{thm:support} (which uses no
+positivity) gives RH, $\mu=\muz$ and $\nu=\nuz$.
 \end{proof}
 
 \emph{The argument in more detail.} Positivity enters only through the residue class $2\bmod3$, and the work is to see the extra
@@ -190,62 +222,78 @@ zeros in the coefficients $c_N(E)$ of that class. Their generating function
 \[
 \Theta_E(\tau):=\sum_{N\ge1}c_N(E)e^{\pi iN\tau}=\sum_{e\in E_+}\tilde\varrho_e\big(\mathsf F(\tau,s_e)-\alpha_0(s_e)\big)
 \]
-is a finite combination of the modular integrals of \eqref{eq:BRS-FE}, and by orthogonality of additive characters the class
-$2\bmod3$ is picked out by three cusps:
+is a combination of the modular integrals of \eqref{eq:BRS-FE}, absolutely convergent under \eqref{eq:summable}, and by orthogonality of
+additive characters the class $2\bmod3$ is picked out by three cusps:
 \[
 \Theta_E^{(2)}(v):=\sum_{N\equiv2\,(3)}c_N(E)e^{-\pi Nv}=\tfrac13\Big[\Theta_E(iv)+\omega\,\Theta_E\big(\tfrac23+iv\big)+\bar\omega\,\Theta_E\big(\tfrac43+iv\big)\Big].
 \]
 The points $0$, $\frac23$ and $\frac43$ are cusps of $\Gamma_\vartheta$ equivalent to $\infty$. At $0$, \eqref{eq:BRS-FE} itself gives the
-expansion of $\mathsf F(iv,s)$ as $v\to0^+$. At $\frac23$, the word $ST^2ST^2S$ maps $\frac23$ to $\infty$, and unrolling \eqref{eq:BRS-FE}
-along it writes $\mathsf F(\frac23+iv,s)$ as $-\alpha_0(s)\vartheta(\frac23+iv)$ plus explicit powers of $v$, a constant and an error
-$O(v^{3/4})$; at $\frac43$ one uses $\mathsf F(-\bar\tau,s)=\overline{\mathsf F(\tau,s)}$ (Lemmas~\ref{lem:cusp0} and~\ref{lem:cusp-class2}). Two
-cancellations follow. Each cusp contributes a theta term of size $v^{-1/2}$, and these combine to
-$-\alpha_0(s)\sum_{n^2\equiv2\,(3)}e^{-\pi n^2v}$, which vanishes identically because no square is $\equiv2\pmod3$; and the constants
-$\alpha_0(s_e)$ cancel because $1+\omega+\bar\omega=0$. What remains is the exact expansion
+behaviour of $\mathsf F(iv,s)$ as $v\to0^+$. At $\frac23$, the word $ST^2ST^2S$ maps $\frac23$ to $\infty$, and unrolling \eqref{eq:BRS-FE}
+along it writes $\mathsf F(\frac23+iv,s)$ as $-\alpha_0(s)\vartheta(\frac23+iv)$ plus explicit powers of $v$ and terms that are analytic at
+$v=0$; at $\frac43$ one uses $\mathsf F(-\bar\tau,s)=\overline{\mathsf F(\tau,s)}$ (Lemmas~\ref{lem:cusp0} and~\ref{lem:cusp-class2}). Two
+cancellations follow. Each cusp contributes a theta term of size $v^{-1/2}$, and these combine to a multiple of
+$\sum_{n^2\equiv2\,(3)}e^{-\pi n^2v}$, which vanishes identically because no square is $\equiv2\pmod3$; and the constants
+$\alpha_0(s_e)$ cancel because $1+\omega+\bar\omega=0$. For a single $s$ the remaining terms are explicit (Lemma~\ref{lem:cusp-class2}).
+For countably many $s_e$ we estimate them in aggregate (Lemma~\ref{lem:aggregate}): \eqref{eq:summable}, Stirling's formula and an
+argument margin of size $v$ at the two intermediate points of the word show that, with $u:=\log(1/v)$,
 \begin{gather*}
-\Theta_E^{(2)}(v)=\sum_{e\in E_+,\,e\ne0}\big(B_ev^{-s_e}+\overline{B_e}v^{-\overline{s_e}}\big)+B_0v^{-1/4}+C+O(v^{3/4})\qquad(v\to0^+),\\
-B_e=\frac{\tilde\varrho_e}3\big(1-3\cdot9^{-s_e}\big),\qquad B_0=\frac{2\tilde\varrho_0}3\big(1-\sqrt3\big).
+v^{1/4}\,\Theta_E^{(2)}(v)=Q(u)+o(1)\qquad(v\to0^+),\qquad Q(u):=B_0+\sum_{e\in E_+,\,e>0}\big(B_ee^{ieu/2}+\overline{B_e}e^{-ieu/2}\big),\\
+B_e=\frac{\tilde\varrho_e}3\big(1-3\cdot9^{-s_e}\big),\qquad B_0=\frac{2\tilde\varrho_0}3\big(1-\sqrt3\big),
 \end{gather*}
-Since $|3\cdot9^{-s_e}|=\sqrt3\ne1$, $B_e=0$ only if $\tilde\varrho_e=0$. Landau's theorem concludes. The Dirichlet series
-$D(w):=\sum_{N\equiv2\,(3)}c_N(E)N^{-w}$ has non-negative coefficients, and $\pi^{-w}\Gamma(w)D(w)=\int_0^\infty\Theta_E^{(2)}(v)v^{w-1}\dd v$. By the
-expansion, $D$ continues meromorphically to $\Re w>-\frac34$, with poles at most at the non-real points $s_e$, $\overline{s_e}$ and at
-$\frac14$, where the residue has the sign of $B_0\le0$. If some $B_e\ne0$, the continuation has a pole on the line $\Re w=\frac14$, so the
-abscissa of convergence of $D$ is at least $\frac14$, and in particular finite (it is not $-\infty$). A Dirichlet series with non-negative
-coefficients is singular at the real point of its abscissa of convergence \cite[Theorem~1.7]{MV07}; as the continuation is analytic on
-$(\frac14,\infty)$, that point is $\frac14$, so $B_0\ne0$ and $D(\sigma)\to-\infty$ as $\sigma\downarrow\frac14$, which is impossible since
-$D(\sigma)\ge0$. So every $B_e$ vanishes.
+with $\sum|B_e|<\infty$. Since $|3\cdot9^{-s_e}|=\sqrt3\ne1$, $B_e=0$ only if $\tilde\varrho_e=0$. A mean-value argument concludes
+(Lemma~\ref{lem:meanvalue}). The almost periodic function $Q$ has mean $B_0$ and mean square $B_0^2+2\sum_{e>0}|B_e|^2$, and
+$\liminf_{u\to\infty}Q(u)\ge0$ because $\Theta_E^{(2)}\ge0$. So $B_0\ge0$; as $B_0\le0$, $B_0=0$; and a bounded function with mean $0$ that is
+eventually $\ge-\eta$, for every $\eta>0$, has mean square $0$, so every $B_e$ vanishes. In an earlier version of this paper, for finite
+$E$, the last step used Landau's theorem on Dirichlet series with non-negative coefficients \cite[Theorem~1.7]{MV07} instead.
 
 \emph{Related results.} The identities of Lemma~\ref{lem:structure} are the explicit-formula form of a remark in \cite[\S4.1]{BRS}:
 by Bochner's converse theorem \cite{Boc51}, a Dirichlet series with the functional equation of the kernel and finitely many poles is
 determined up to the kernels themselves, which strengthens Knopp's abundance principle \cite{Kno00}. The restriction to a residue
 class is a twist by additive characters, the standard tool of the degree-one classification of the Selberg class
-\cite{CG93,KP99,Sou05}; there it is not combined with positivity or with Landau's theorem. The closest uniqueness theorem we found is
+\cite{CG93,KP99,Sou05}; there it is not combined with positivity. The closest uniqueness theorem we found is
 Booker's converse theorem for positive $L$-data \cite[Definition~1.3, Theorem~1.7]{Boo15}. There the zero multiplicities are real,
 integral outside a finite set, and non-negative outside a finite set, and positive data of degree less than $5/3$ are $1$ or shifted
 Dirichlet $L$-functions; the prime side is a priori supported on $\{\log n\}$ with growth conditions on the coefficients. Theorem~\ref{thm:Gfin}
 is complementary to it, not a generalisation: it allows non-integral weights at infinitely many ordinates and prime mass at the non-square
-points of $\BRS$, imposes no growth condition, and uses positivity on the prime side, on one residue class, instead of on the zero side; but
-it requires the zero measure to be carried by $\Zz$ and finitely many further points, and the prime measure by $\BRS$. In the language of Fourier summation formulas \cite{Gon23}, the signed
+points of $\BRS$, imposes no growth condition on the prime side, and uses positivity on the prime side, on one residue class, instead of on the zero side; but
+it requires the zero measure to be carried by $\Zz$ and countably many further points satisfying \eqref{eq:summable}, and the prime measure
+by $\BRS$. In the language of Fourier summation formulas \cite{Gon23}, the signed
 pairs that the BRS basis produces on $\Zz\cup E$ are exactly what the theorem excludes under positivity.
 
 
 \subsection{The magic-function principle}
 
 \begin{corollary}[Magic-function principle]\label{cor:magic}
-Suppose some $F\in\Cone$ satisfies $\Arch(F)=0$, has only finitely many real zeros outside $\Zz$, and has $\widehat Z(F)\subseteq\BRS$.
-Then $\Kad\subseteq\{\pz\}$, that is, \condU\ holds. If \condE\ holds as well, then RH holds and $\Kad=\{\pz\}$.
+Let $F\in\Cone$ with $\Arch(F)=0$, and let $E:=Z(F)\setminus\Zz$ be the set of its real zeros outside $\Zz$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item If $E\subseteq\{0\}$, then \condU\ holds.
+\item If $\widehat Z(F)\subseteq\BRS$ and
+\begin{equation}\label{eq:summableF}
+\sum_{n\ge0}(1+n)^{-1/2}\log(3+n)\,\max_{e\in E\cap[n,n+1]}|\zeta(\tfrac12+ie)|<\infty
+\end{equation}
+(the maximum over an empty set being $0$; this holds whenever $E$ is finite), then \condU\ holds.
+\end{enumerate}
+In either case, if \condE\ holds as well, then RH holds and $\Kad=\{\pz\}$.
 \end{corollary}
 
+Part~(a) is due to Astra (OpenAI), contributed during an independent review of an earlier version of this paper, and independently
+verified; it needs no condition on the zeros of $\hF$.
+
 \begin{proof}
-By Lemma~\ref{lem:compslack}, every admissible pair is carried by $(\Zz\cup E)\times\BRS$ with $E:=Z(F)\setminus\Zz$, which is finite and
-symmetric because $F$ is even. Theorem~\ref{thm:Gfin} applies.
+Let $(\mu,\nu)\in\Kad$. As $0=\Arch(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$ with both integrals non-negative, $\int F\dd\mu=0$; so
+$\mu(\{F>1/k\})\le k\int F\dd\mu=0$ for every $k$, and $\mu$ is carried by $Z(F)\subseteq\Zz\cup E$. (a) Theorem~\ref{thm:zerosupport} applies. (b) By
+Lemma~\ref{lem:compslack}, $\nu$ is carried by $\widehat Z(F)\subseteq\BRS$. The set $E$ is symmetric, because $F$ is even, and countable,
+because $F$ is analytic and not identically zero. By Lemma~\ref{lem:apriori}, $\mu(E\cap[n,n+1])\le C\log(3+n)$, so
+$\sum_{e\in E,\,e>0}\mu(\{e\})|\zeta(\frac12+ie)|(1+e)^{-1/2}$ is at most $C$ times the sum in \eqref{eq:summableF}, and
+Theorem~\ref{thm:Gfin} applies.
 \end{proof}
 
 As in the proof that the Leech lattice is the unique optimal lattice in its dimension \cite{CK09}, the zeros of an extremal function
-determine the extremal configuration. The prime-side condition $\widehat Z(F)\subseteq\BRS$ is needed (Remark~\ref{rem:extraprimes}). The converse,
-that \condU\ implies the existence of such an $F$, is not known: given \condE\ it amounts to a strict complementarity statement for an
-infinite-dimensional linear programme (Problem~\ref{op:strict-compl}). The functions of Section~\ref{sec:family} have the form $\Xi^2H$,
-for which $Z(\Xi^2H)=\Zz\cup\{\text{real zeros of }H\}$.
+determine the extremal configuration. With extra real zeros, the prime-side condition $\widehat Z(F)\subseteq\BRS$ in (b) is needed by the
+method (Remark~\ref{rem:extraprimes}). The converse, that \condU\ implies the existence of such an $F$, is not known: given \condE\ it
+amounts to a strict complementarity statement for an infinite-dimensional linear programme (Problem~\ref{op:strict-compl}). The functions of
+Section~\ref{sec:family} have the form $\Xi^2H$, for which $Z(\Xi^2H)=\Zz\cup\{\text{real zeros of }H\}$; so (a) applies to $\Xi^2H$
+whenever $H$ has no real zeros other than possibly $0$.
 
 \subsection{Integer weights and extra prime atoms}
 
@@ -256,10 +304,12 @@ Delone property \cite{Lag99}, it is treated in \cite{N4} (in preparation) with t
 support and spectrum \cite{LO15}; Problem~\ref{op:Beurling} asks for the general case.
 
 \begin{remark}[Extra prime atoms]\label{rem:extraprimes}
-Theorem~\ref{thm:Gfin} allows extra zeros but no prime mass off $\BRS$, and this is where the method stops. An extra prime-side atom
+If $\mu$ is carried by $\Zz\cup\{0\}$, Theorem~\ref{thm:zerosupport} excludes every extra prime mass: atoms at any position, finitely or
+infinitely many, and diffuse mass. With extra zeros, Theorem~\ref{thm:Gfin} still needs the prime measure on $\BRS$, and this is where the
+method stops. An extra prime-side atom
 at $\eta$ enters the analogue of the identities \eqref{eq:CN} through the numbers $B_N(x_\eta)$, $x_\eta=e^{2\pi\eta}$, which are the Fourier
 coefficients of a second modular integral built from $\vartheta(x_\eta^2\tau)$. Its sums over a class of quadratic non-residues
 modulo an odd prime have a leading term of order $v^{-1/2}$ at the cusps, given by Gauss sums, when $x_\eta^2$ is rational; when
-$x_\eta^2$ is irrational that leading term vanishes. So an atom with $x_\eta^2\notin\QQ$ is invisible to the leading-order argument
-behind Landau's theorem; see \cite{N2}.
+$x_\eta^2$ is irrational that leading term vanishes. So an atom with $x_\eta^2\notin\QQ$ is invisible to the leading-order argument of
+Lemma~\ref{lem:meanvalue}; see \cite{N2}.
 \end{remark}

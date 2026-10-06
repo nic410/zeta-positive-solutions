@@ -106,6 +106,25 @@ $2\pi\kappa_{100}\le7.2309354\cdot10^{-906}$. Then $\qmin\ge e^{-7.2309354\cdot1
 and~\ref{thm:duality}).
 \end{proof}
 
+The same certificate also bounds how far the zero measure of any positive solution can stray from the zeros of $\zeta$.
+
+\begin{corollary}[Near-criticality forces near-rigidity]\label{cor:nearrigid}
+Every admissible pair $(\mu,\nu)$ satisfies $\int\Xi^2\dd\mu\le3.21\cdot10^{-906}$. Consequently $\mu(I)\le3.21\cdot10^{-906}/\min_I\Xi^2$ for
+every compact interval $I\subset\RR\setminus\Zz$.
+\end{corollary}
+
+\begin{proof}[Proof (computer-assisted; exact arithmetic; Appendix~\ref{app:anc})]
+For $J=100$, $H=\prod_j(1+r_jt^2+s_jt^4)=P(t^2)$ is expanded exactly over $\QQ$: $P(0)=1$ and every coefficient of $P$ is positive. So
+$H\ge1$ on $\RR$ and $\Frep=\Xi^2(H+\eps e^{-\pi t^2})\ge\Xi^2$. As $\Frep\in\Cone$, Lemma~\ref{lem:weak-duality} gives
+$\int\Xi^2\dd\mu\le\int\Frep\dd\mu\le\Arch(\Frep)\le3.20903614143\cdot10^{-906}$, the upper bound for $\Arch(\Frep)$ from step (3) of
+the proof of Theorem~\ref{thm:kappa} (\texttt{A\_upper} in its log). On $I$,
+$\Xi^2\ge\min_I\Xi^2>0$.
+\end{proof}
+
+So every positive solution of the explicit formula, whether or not RH holds, has its zero measure concentrated on the zeros of $\zeta$, up to
+$3.21\cdot10^{-906}$ measured against $\Xi^2$. As $\Xi(t)^2$ decays like $e^{-\pi|t|/2}$, the bound is informative only at low height.
+The same expansion shows that $H\ge1$ for all nine certificates of Table~\ref{tab:kappa-ladder}.
+
 \subsection{The classical cone and low-height rigidity}
 
 Let $f_k(u):=L_k^{(-1/2)}(2\pi u^2)e^{-\pi u^2}$; these are even Hermite functions, with $\widehat{f_k}=(-1)^kf_k$. They form the Laguerre basis

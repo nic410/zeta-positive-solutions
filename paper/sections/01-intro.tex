@@ -87,23 +87,31 @@ function}, a limit of near-optimal test functions. Abstract sign and gap conditi
 is attached to the zeros of $\zeta$ and the points $\BRS$ and does not assume RH.
 
 \begin{lthm}{B}[Uniqueness near $\zeta$'s support]\label{thm:intro-B}
-Let $E\subset\RR\setminus\Zz$ be finite. If $(\mu,\nu)\in\Kad$, $\mu$ is carried by $\Zz\cup E$, and $\nu$ is carried by $\BRS$, then RH holds and
-$(\mu,\nu)=\pz$.
+Let $(\mu,\nu)\in\Kad$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item If $\mu$ is carried by $\Zz\cup\{0\}$, then RH holds and $(\mu,\nu)=\pz$. No condition on $\nu$ is needed.
+\item Let $E\subset\RR\setminus\Zz$ be countable. If $\mu$ is carried by $\Zz\cup E$, $\nu$ is carried by $\BRS$, and
+$\sum_{e\in E,\,e>0}\mu(\{e\})\,|\zeta(\frac12+ie)|\,(1+e)^{-1/2}<\infty$, then RH holds and $(\mu,\nu)=\pz$. This holds whenever $E$ is finite.
+\end{enumerate}
 \end{lthm}
 
-This follows from Theorem~\ref{thm:Gfin} applied to $E\cup(-E)$. That theorem uses positivity of $\nu$ only at the nodes $\log m/(4\pi)$
-with $m\equiv2\pmod3$, a progression that contains none of $\zeta$'s own prime-power nodes, and positivity of $\mu$ only at $0$.
+These are Theorem~\ref{thm:zerosupport} and Theorem~\ref{thm:Gfin} applied to $E\cup(-E)$. Part (a), and the extension of (b) from finite to
+countable $E$ with its mean-value argument, are due to Astra (OpenAI), contributed during an independent review of an earlier version of
+this paper, and independently verified. Theorem~\ref{thm:Gfin} uses positivity of $\nu$ only at the nodes $\log m/(4\pi)$ with
+$m\equiv2\pmod3$, a progression that contains none of $\zeta$'s own prime-power nodes, and positivity of $\mu$ only at $0$; it also allows
+the weaker condition $\sum_{e\in E,\,0<e\le T}\mu(\{e\})|\zeta(\frac12+ie)|=o(T^{1/2})$.
 
 \begin{introcor}[Magic-function principle]
-If some $F\in\Cone$ with $\Arch(F)=0$ has only finitely many real zeros outside $\Zz$, and the zeros of $\hF$ in $[\xin2,\infty)$ lie in
-$\BRS$, then \condU\ holds; if moreover \condE\ holds, then RH holds and $\Kad=\{\pz\}$.
+Let $F\in\Cone$ with $\Arch(F)=0$. If every real zero of $F$ lies in $\Zz\cup\{0\}$, then \condU\ holds. The same holds if the zeros of $\hF$
+in $[\xin2,\infty)$ lie in $\BRS$ and $F$ has only finitely many real zeros outside $\Zz$, or countably many satisfying the summability
+condition of Corollary~\ref{cor:magic}(b). If moreover \condE\ holds, then RH holds and $\Kad=\{\pz\}$.
 \end{introcor}
 
-This is Corollary~\ref{cor:magic}: by complementary slackness (Lemma~\ref{lem:compslack}), every admissible pair is carried by the
-real zeros of $F$ and the zeros of $\hF$ in $[\xin2,\infty)$, and Theorem~\ref{thm:intro-B} applies. It is the chain that links the
-two halves of the paper: near-extremal certificates for the conductor problem, whose limit is an exact magic function with only
-finitely many real zeros outside $\Zz$ and with the zeros of its transform in $[\xin2,\infty)$ inside $\BRS$, would prove \condU\ through
-complementary slackness and Theorem~\ref{thm:intro-B}. Theorem~\ref{thm:intro-D} below states this for an explicit family.
+This is Corollary~\ref{cor:magic}: complementary slackness (Lemma~\ref{lem:compslack}) puts every admissible pair on the real zeros of $F$ and the
+zeros of $\hF$ in $[\xin2,\infty)$, and Theorem~\ref{thm:intro-B} applies. It is the chain that links the two halves of the paper:
+near-extremal certificates for the conductor problem, whose limit is an exact magic function with all its real zeros in $\Zz\cup\{0\}$,
+would prove \condU\ through Theorem~\ref{thm:intro-B}(a), with no condition on the zeros of its transform. Theorem~\ref{thm:intro-D} below states
+this for an explicit family, and Corollary~\ref{cor:certroute} gives a route that needs no limit function.
 
 \begin{lthm}{C}[Near-criticality]\label{thm:intro-C}
 \begin{enumerate}[label=\textup{(\alph*)}]
@@ -122,7 +130,10 @@ at every zero of $\zeta$, on or off the line, so $\Arch$ of it is a sum over pri
 Section~\ref{ssec:hermite}, the transform of $\Xi^2P_J(t^2)$ has zeros of order at least two at the first $J$ prime powers, so that sum
 would start at the $(J+1)$-st prime power. The certificate uses a rational approximation $H$ of $P_J(t^2)$ and a small positive cushion,
 which leave small contributions at the first $J$ prime powers; the proof bounds these contributions and the tail rigorously
-(Section~\ref{ssec:kappa}). The exponent $906$ is a computational budget ($J=100$); the evidence for \condS\ is the ladder of
+(Section~\ref{ssec:kappa}). Since $H\ge1$ for these certificates, they also bound every positive solution:
+$\int\Xi^2\dd\mu\le3.21\cdot10^{-906}$ for every admissible pair, so $\mu(I)\le3.21\cdot10^{-906}/\min_I\Xi^2$ for every compact interval $I$ that
+avoids $\Zz$ (Corollary~\ref{cor:nearrigid}). Near-criticality thus forces near-rigidity, at low height. The exponent $906$ is a
+computational budget ($J=100$); the evidence for \condS\ is the ladder of
 Table~\ref{tab:kappa-ladder}, in which the certified bounds keep improving from $J=20$ to $J=100$. A certificate of the classical
 (Gaussian--Laguerre) kind shows that every admissible pair, whether or not RH holds, puts mass at most $2.4\cdot10^{-13}$ into each gap
 between the first six positive zero ordinates of $\zeta$, shrunk by $0.1$ at both ends, and at most $3.8\cdot10^{-8}$ into listed windows between low prime powers
@@ -136,7 +147,9 @@ Theorem~\ref{thm:criterion}, then \condS\ and \condU\ hold, and RH$\Leftrightarr
 \end{lthm}
 
 Here $P_J$ is the polynomial with $P_J(0)=1$ and degree at most $2J$ for which the transform of $F_J$ has zeros of order at least two at the first $J$
-prime powers; the certificates of Theorem~\ref{thm:intro-C}(a) are rational approximations of these functions.
+prime powers; the certificates of Theorem~\ref{thm:intro-C}(a) are rational approximations of these functions. The hypotheses ask for uniform
+growth bounds, no real limit zeros, and non-negativity of $\liminf_J\FT F_J$ beyond the gap; by Theorem~\ref{thm:intro-B}(a) no strict
+positivity of the limiting transform is needed.
 
 \subsection{What is claimed and what is not}\label{ssec:claims}
 
@@ -150,8 +163,10 @@ results are stated.
 RH, and unconditionally we know only $\kstar\ge-2.7112\cdot10^{-3}$, that is, $\qmin<1.017182$. We never claim $\kstar=0$.
 \item The hypotheses of Theorem~\ref{thm:intro-D} concern infinitely many $J$, or a limit in $J$, and are open. Only finite-$J$ instances
 are certified (Proposition~\ref{thm:finiteJ}); convergence of the family is neither assumed nor proved.
-\item Uniqueness is proved only near $\zeta$'s support: Theorem~\ref{thm:intro-B} allows finitely many extra zeros, but no prime mass off
-$\BRS$.
+\item Uniqueness is proved only near $\zeta$'s support. Theorem~\ref{thm:intro-B}(a) allows any prime measure but no extra zeros other than
+$0$; Theorem~\ref{thm:intro-B}(b) allows countably many extra zeros under a summability condition, but no prime mass off $\BRS$. Extra zeros
+together with prime mass off $\BRS$, extra zeros without summability, and non-atomic extra zero mass are open. Corollary~\ref{cor:nearrigid} is quantitative only at
+low height.
 \item The comparison with $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$ concerns two examples, at $\zeta$'s gap and at their natural gaps; it is not a
 statement about $L$-functions in general (Remark~\ref{rem:gap}).
 \end{enumerate}
@@ -168,7 +183,10 @@ certifies two-sided bounds for them; from the prime side of the explicit formula
 for $L=2$ is at most $3.2\cdot10^{-283}$, a quadratic analogue of Theorem~\ref{thm:intro-C}. Connes \cite{Con26} extremises a restriction
 of Weil's form built from the primes $p\le13$ to approximate the first $50$ zeros. None of these works makes a statement about positive
 solutions of the explicit formula. Weil's Hermitian form and the explicit formula are also the tools of recent work on a different
-question, the proportion of simple zeros on the critical line \cite{AF26,Lam26}; the proof in \cite{AF26} was found by an AI model. The problem that defines $\kstar$ involves only the archimedean data and the gap, and so does the Gaussian--Laguerre
+question, the proportion of simple zeros on the critical line \cite{AF26,Lam26}; the proof in \cite{AF26} was found by an AI model. An
+AI-generated preprint, not peer-reviewed, claims that $\zeta$ and every Dirichlet $L$-function are zero-free in $\Re s>7/8$
+\cite{OAI26qrh}; the authors report a Lean formalisation of this statement. It concerns the location of zeros, not positive solutions of
+\eqref{eq:intro-EF}, and nothing here uses it. The problem that defines $\kstar$ involves only the archimedean data and the gap, and so does the Gaussian--Laguerre
 certificate of Proposition~\ref{thm:kappaOPS}. The certificates of Theorem~\ref{thm:intro-C}(a), in contrast, are built from arithmetic
 input: the factor $\Xi^2$, which vanishes at the zeros of $\zeta$, and Hermite interpolation at the prime powers.
 
@@ -180,7 +198,7 @@ support; Gon\c{c}alves and
 Vedana \cite{GV25} and Vedana \cite{Ved26} completed the classification on the line and extended it to a strip. These classifications
 concern formulas whose summation side is a countable sum of point masses, whereas an admissible pair may have an arbitrary positive prime
 measure; so they are related frameworks, which apply directly only to admissible pairs with a discrete prime measure (for instance one
-carried by $\BRS$, as in Theorem~\ref{thm:intro-B}). None of these works imposes positivity on both sides with fixed archimedean data.
+carried by $\BRS$, as in Theorem~\ref{thm:intro-B}(b)). None of these works imposes positivity on both sides with fixed archimedean data.
 
 \emph{Conductor bounds and characterisations of $\zeta$.} The method for discriminants is due to Stark and Odlyzko, with the explicit
 formula introduced by Serre and refinements by Poitou \cite{Sta74,Odl76,Ser75,Poi77,Poi77b}; Odlyzko treated Artin conductors \cite{Odl77}
@@ -205,8 +223,13 @@ functions of \cite{Via17,CKMRV17,CKMRV22} are the model for our use of ``magic f
 \cite{CK09}. In that setting near-sharpness is familiar, and our results have direct analogues there: Theorem~\ref{thm:intro-C} corresponds to
 the certificate of Cohn and Kumar that the linear programming bound in dimension $24$ is sharp up to a factor $1+1.65\cdot10^{-30}$
 \cite{CK09}; the explicit admissible pairs of Propositions~\ref{prop:lowerbound} and~\ref{thm:notcritical} correspond to the dual
-certificates with which Cohn and Triantafillou proved non-sharpness in other dimensions \cite{CT22}; and Theorem~\ref{thm:intro-D} with
-Conjecture~\ref{conj:family} corresponds to the sequences that Cohn and Miller conjectured to converge to magic functions \cite{CM16}. The cone $\Cone$ is a sign-uncertainty cone \cite{BCK10,CG19,CIR24}, and Bourgain, Clozel and Kahane already related such
+certificates with which Cohn and Triantafillou proved non-sharpness in dimensions $12$, $16$, $20$, $28$ and $32$ \cite{CT22}; and Theorem~\ref{thm:intro-D} with
+Conjecture~\ref{conj:family} corresponds to the sequences that Cohn and Miller conjectured to converge to magic functions \cite{CM16}. In dimension $2$, an AI-generated preprint, not
+peer-reviewed, claims the sharp case of the Cohn--Elkies bound \cite[Conjecture~7.3]{CE03} through a radial Schwartz certificate obtained by
+Hermite-cardinal interpolation at a periodic superset of the triangular-lattice shells, with signs certified in interval arithmetic
+\cite{OAI26planar}; the authors report a Lean formalisation of the existence of this certificate. The analogue for the explicit formula, an
+exact certificate giving \condS, is what Theorem~\ref{thm:intro-D} and Conjecture~\ref{conj:family} ask for; the periodic-node device has
+no counterpart for the prime powers. The cone $\Cone$ is a sign-uncertainty cone \cite{BCK10,CG19,CIR24}, and Bourgain, Clozel and Kahane already related such
 problems to zeta functions and discriminant bounds \cite[\S4]{BCK10}. Linear programmes over trace and crossing formulas, with near-sharp
 bounds attained by special arithmetic objects, appear in the bootstrap \cite{HMR19,KMP24}. Fourier optimisation with the explicit formula
 is usually done under GRH \cite{CMS19,CGdL}; our problem is unconditional on the archimedean side and asks about all positive solutions. A

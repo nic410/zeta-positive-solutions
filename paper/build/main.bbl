@@ -196,6 +196,12 @@ A.~M. Odlyzko, \emph{Discriminant bounds}, Unpublished tables, dated 29 November
 \bibitem{Odl77}
 Andrew~M. Odlyzko, \emph{On conductors and discriminants}, Algebraic Number Fields: {$L$}-functions and {G}alois Properties ({P}roc. {S}ympos., {U}niv. {D}urham, {D}urham, 1975) (Albrecht Fr{\"o}hlich, ed.), Academic Press, London, 1977, pp.~377--407.
 
+\bibitem{OAI26qrh}
+{OpenAI}, \emph{The quasi-{R}iemann hypothesis: a zero-free half-plane {$\Re s>7/8$}}, AI-generated preprint dated 30 September 2026, OpenAI mathematics collection, \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf}, 2026, Not peer-reviewed; repository commit adc7f12.
+
+\bibitem{OAI26planar}
+\bysame, \emph{A sharp {F}ourier certificate for planar circle packing}, AI-generated preprint dated 23 September 2026, OpenAI mathematics collection, \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-sharp-Fourier-certificate-for-planar-circle-packing-September-23-2026/paper.pdf}, 2026, Not peer-reviewed; repository commit adc7f12.
+
 \bibitem{Per17}
 Alberto Perelli, \emph{Converse theorems: from the {R}iemann zeta function to the {S}elberg class}, Boll. Unione Mat. Ital. \textbf{10} (2017), no.~1, 29--53, arXiv:1605.02354, \href{https://doi.org/10.1007/s40574-016-0085-x}{doi:10.1007/s40574-016-0085-x}.
 

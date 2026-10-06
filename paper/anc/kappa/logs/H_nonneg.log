@@ -1,0 +1,27 @@
+# command : python kappa/check_H_nonneg.py kappa/params/J20.json kappa/params/J23.json kappa/params/J24.json kappa/params/J30.json kappa/params/J35.json kappa/params/J40.json kappa/params/J50.json kappa/params/J60.json kappa/params/J100.json --duality-log kappa/logs/J100.log
+# date    : 2026-10-06T21:35:02Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+H(t) = prod_j (1 + r_j t^2 + s_j t^4) = P(t^2), P expanded exactly over Q; certified: P(0) = 1, all coefficients >= 0
+kappa/params/J20.json (sha256 d686e47b0412358c8ad519370655c6f8600c2d44d25ee8da8e39ab66551c5ec8; factor list checked): J = 20, deg P = 40, 41 coefficients, 41 of them > 0; P(0) = 1: True; min coefficient >= 1.30650e-137 (k = 40); max coefficient <= 1.00000e0 (k = 0)
+CLAIM      : J = 20: all coefficients of P >= 0 and P(0) = 1, so H >= 1 on R and F_rep >= Xi^2 ... implied
+kappa/params/J23.json (sha256 9ea699b1bb61092b89ce2fd2f0f57a560e9f1c4563daf81fca3e03e5dde66e80; factor list checked): J = 23, deg P = 46, 47 coefficients, 47 of them > 0; P(0) = 1: True; min coefficient >= 1.27610e-165 (k = 46); max coefficient <= 1.00000e0 (k = 0)
+CLAIM      : J = 23: all coefficients of P >= 0 and P(0) = 1, so H >= 1 on R and F_rep >= Xi^2 ... implied
+kappa/params/J24.json (sha256 55fde51339c382ccce6d0ad32c32db53e3a50bf825749b5eac0f6a097d207e30; factor list checked): J = 24, deg P = 48, 49 coefficients, 49 of them > 0; P(0) = 1: True; min coefficient >= 3.17389e-175 (k = 48); max coefficient <= 1.00000e0 (k = 0)
+CLAIM      : J = 24: all coefficients of P >= 0 and P(0) = 1, so H >= 1 on R and F_rep >= Xi^2 ... implied
+kappa/params/J30.json (sha256 472a5a881d5e96d55b8ce013e028416bd7bd7950ea936161a1dca60cba0c201c; factor list checked): J = 30, deg P = 60, 61 coefficients, 61 of them > 0; P(0) = 1: True; min coefficient >= 2.32938e-235 (k = 60); max coefficient <= 1.00000e0 (k = 0)
+CLAIM      : J = 30: all coefficients of P >= 0 and P(0) = 1, so H >= 1 on R and F_rep >= Xi^2 ... implied
+kappa/params/J35.json (sha256 35e8cc8eb2b4c5fc478b69807a9fbaa94ea60fee62548d71e641eef033ae7dcb; factor list checked): J = 35, deg P = 70, 71 coefficients, 71 of them > 0; P(0) = 1: True; min coefficient >= 5.35793e-288 (k = 70); max coefficient <= 1.00000e0 (k = 0)
+CLAIM      : J = 35: all coefficients of P >= 0 and P(0) = 1, so H >= 1 on R and F_rep >= Xi^2 ... implied
+kappa/params/J40.json (sha256 b3b711578a6e21ad75ad6c69ce3a1a384bfef1255f94ef365f1dab15897e8884; factor list checked): J = 40, deg P = 80, 81 coefficients, 81 of them > 0; P(0) = 1: True; min coefficient >= 1.01561e-342 (k = 80); max coefficient <= 1.00000e0 (k = 0)
+CLAIM      : J = 40: all coefficients of P >= 0 and P(0) = 1, so H >= 1 on R and F_rep >= Xi^2 ... implied
+kappa/params/J50.json (sha256 3e95b34b9579df88b72d66249e830d8af795816e702690bf209fb30fbff3d100; factor list checked): J = 50, deg P = 100, 101 coefficients, 101 of them > 0; P(0) = 1: True; min coefficient >= 1.03612e-456 (k = 100); max coefficient <= 1.00000e0 (k = 0)
+CLAIM      : J = 50: all coefficients of P >= 0 and P(0) = 1, so H >= 1 on R and F_rep >= Xi^2 ... implied
+kappa/params/J60.json (sha256 e22afd8721e40313f47f4ee5ab3415dcc4d5c24502c17c4994499a9971e94a7e; factor list checked): J = 60, deg P = 120, 121 coefficients, 121 of them > 0; P(0) = 1: True; min coefficient >= 5.67378e-576 (k = 120); max coefficient <= 1.00000e0 (k = 0)
+CLAIM      : J = 60: all coefficients of P >= 0 and P(0) = 1, so H >= 1 on R and F_rep >= Xi^2 ... implied
+kappa/params/J100.json (sha256 1186be2c9c2e575810781c02fc8a22ee060ffa4c61be4e8eab21b63a90719662; factor list checked): J = 100, deg P = 200, 201 coefficients, 201 of them > 0; P(0) = 1: True; min coefficient >= 4.57917e-1091 (k = 200); max coefficient <= 1.00000e0 (k = 0)
+CLAIM      : J = 100: all coefficients of P >= 0 and P(0) = 1, so H >= 1 on R and F_rep >= Xi^2 ... implied
+duality    : kappa/logs/J100.log: certified True, J = 100, parameter file sha256 1186be2c9c2e575810781c02fc8a22ee060ffa4c61be4e8eab21b63a90719662; A(F_rep) <= A_upper = 3.20903614143e-906
+CLAIM      : J = 100: every admissible pair (mu, nu) has int Xi^2 dmu <= int F_rep dmu <= A(F_rep) <= 3.21e-906 ... implied
+RESULT     : CERTIFIED
+# exit code 0; wall time 55.6 s

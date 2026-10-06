@@ -58,10 +58,16 @@ $\condU\Rightarrow\condS$. \textup{(d)} \textup{(Complementary slackness.)} If
 $F\in\Cone$ and $\Arch(F)=0$, every admissible pair $(\mu,\nu)$ has $\mu$ carried by $Z(F)$ and $\nu$ by $\widehat Z(F)$.
 \end{fact}
 
-\begin{fact}[Magic-function principle; {\cite[Corollary~3.8]{PaperI}}]\label{thm:magic-unique}
-Suppose some $F\in\Cone$ satisfies $\Arch(F)=0$, has only finitely many real zeros outside $\Zz$, and has $\widehat Z(F)\subseteq\BRS$.
-Then $\Kad\subseteq\{\pz\}$, i.e.\ \condU\ holds. If \condE\ holds as well, then RH holds and $\Kad=\{\pz\}$.
+\begin{fact}[Magic-function principle; {\cite[Corollary~3.9]{PaperI}}]\label{thm:magic-unique}
+Let $F\in\Cone$ with $\Arch(F)=0$, and let $E:=Z(F)\setminus\Zz$ be the set of its real zeros outside $\Zz$.
+\textup{(a)} If $E\subseteq\{0\}$, then \condU\ holds.
+\textup{(b)} If $\widehat Z(F)\subseteq\BRS$ and $\sum_{n\ge0}(1+n)^{-1/2}\log(3+n)\max_{e\in E\cap[n,n+1]}\lvert\zeta(\frac12+ie)\rvert<\infty$ (the maximum
+over an empty set being $0$; this holds whenever $E$ is finite), then \condU\ holds.
+In either case, if \condE\ holds as well, then RH holds and $\Kad=\{\pz\}$.
 \end{fact}
+
+Part (a) rests on the zero-side support theorem \cite[Theorem~3.6]{PaperI}, contributed by Astra (OpenAI): an admissible
+pair whose zero measure is carried by $\Zz\cup\{0\}$ is $\pz$, with no assumption on the prime measure.
 
 %----------------------------------------------------------------------
 \subsection{The zero-killing family}\label{ssec:setting-family}
@@ -149,8 +155,13 @@ For the exact family $(P_J)_{J\in\Jset}$ the companion paper considers the follo
 \item[\hyp{G$_a$}] There are $\delta\in(0,\frac12)$, $a<\pi/2$ and $C$ with $\lvert H_J(t)\rvert\le Ce^{a\lvert\Re t\rvert}$ on
 $\lvert\Im t\rvert\le\frac12+\delta$ for all $J\in\Jset$.
 \item[\hyp{Z$_\infty$}] No real point is a limit of zeros of $H_{J_k}$ with $J_k\in\Jset$, $J_k\to\infty$.
-\item[\hyp{Mg}] For every $\xi\in[\xi_2,\infty)\setminus\xiPP$, $\liminf_{J\in\Jset}\FT F_J(\xi)>0$.
+\item[\hyp{Mg}] For every $\xi\ge\xi_2$, $\liminf_{J\in\Jset}\FT F_J(\xi)\ge0$.
 \end{itemize}
+We also use the strict form, which is not needed for Fact~\ref{thm:M}:
+\begin{itemize}[leftmargin=3.2em]
+\item[\hyp{Mg$_>$}] For every $\xi\in[\xi_2,\infty)\setminus\xiPP$, $\liminf_{J\in\Jset}\FT F_J(\xi)>0$.
+\end{itemize}
+It implies \hyp{Mg}, because $\FT F_J(\xi_n)=0$ for every prime power $n=n_j$ and every $J\ge j$.
 Given \hyp{G$_a$}, \hyp{Z$_\infty$} is equivalent to: for every $T>0$, $\liminf_{J\in\Jset}\min_{\lvert t\rvert\le T}H_J(t)>0$; it is
 implied by \hyp{R$_\eta$}: there are $\eta>0$ and $J_0$ such that every zero of $H_J$, $J\in\Jset$, $J\ge J_0$, has
 $\lvert\Im t\rvert\ge\eta$ \cite{PaperI}.
@@ -158,27 +169,38 @@ $\lvert\Im t\rvert\ge\eta$ \cite{PaperI}.
 \begin{fact}[A criterion through the zero-killing family; {\cite[Theorem~D]{PaperI}}]\label{thm:M}
 Assume \hyp{N}, \hyp{G$_a$}, \hyp{Z$_\infty$} and \hyp{Mg} for the exact family. Then some subsequential limit
 $F_\infty=\Xi^2H_\infty$, with $H_\infty\in\Hc$ and $H_\infty>0$ on $\RR$, satisfies $F_\infty\in\Cone\cap\Tc$,
-$\Arch(F_\infty)=0$, $F_\infty^{-1}(0)\cap\RR=\Zz$ and $\FT F_\infty^{-1}(0)\cap[\xi_2,\infty)=\xiPP$. Hence \condS\ and \condU\ hold,
-and $\RH\Leftrightarrow\condE$; under either, $\kstar=0$ and $\Kad=\{\pz\}$.
+$\Arch(F_\infty)=0$ and $F_\infty^{-1}(0)\cap\RR=\Zz$. Hence \condS\ and \condU\ hold, and $\RH\Leftrightarrow\condE$; under either,
+$\kstar=0$ and $\Kad=\{\pz\}$.
 \end{fact}
+
+Under \hyp{Mg$_>$}, moreover, $\FT F_\infty^{-1}(0)\cap[\xi_2,\infty)=\xiPP$ \cite{PaperI}.
+
+Under \hyp{Mg$_>$} the criterion follows from Fact~\ref{thm:magic-unique}(b), which uses the zero set of $\FT F_\infty$. Under \hyp{Mg}
+it follows from Fact~\ref{thm:magic-unique}(a): by complementary slackness every admissible pair is carried by
+$Z(F_\infty)\times\widehat Z(F_\infty)$, and $Z(F_\infty)=\Zz$ suffices. Strict positivity in the limit is therefore not needed for \condS\ and
+\condU; it only describes $\widehat Z(F_\infty)$. The zero-side support theorem also gives a second route, with no limit
+\cite[Corollary~4.11]{PaperI}: if there are $F_J\in\Cone$, for $J$ in an infinite set, and $c_J>0$ with $F_J\ge c_J\,\Xi^2$ on $\RR$ and
+$\Arch(F_J)/c_J\to0$, then \condU\ and \condS\ hold. For every admissible pair, $\int\Xi^2\dd\mu\le\Arch(F_J)/c_J$, and the certificates
+of \cite{PaperI} give $\int\Xi^2\dd\mu\le3.21\cdot10^{-906}$ unconditionally \cite[Corollary~5.3]{PaperI}. For the exact family this route needs, for
+infinitely many $J$, that $P_J>0$ on $[0,\infty)$ and that the front statement \hyp{FR} below holds at $J$, together with a bound
+$\Arch(F_J)/\min_{\RR}H_J\to0$ for the tail of Fact~\ref{prop:E}.
 
 None of \hyp{N}, \hyp{G$_a$}, \hyp{Z$_\infty$}, \hyp{Mg} is known for all $J$, and the hypotheses of Fact~\ref{thm:M} amount to the
 existence of an exact magic function of the form $\Xi^2H$, which is strictly more than \condS. This paper reduces them further,
 to explicit step laws (Section~\ref{sec:true}); those laws are open as well. The following variants are used below; (M$^+$)
-is also in \cite{PaperI}.
+is also in \cite[Remark~4.10(a)]{PaperI}.
 
 \begin{corollary}[Variants of the criterion]\label{cor:Mvariants}
 The conclusions of Fact~\ref{thm:M} (\condS, \condU, and $\RH\Leftrightarrow\condE$) also hold under each of the following
 replacements, all other hypotheses being unchanged.
 \begin{enumerate}[label=(M\arabic*),leftmargin=3em]
-\item[(M$^\sharp$)] \hyp{Mg} replaced by \hyp{Mg$_{\BRS}$}: $\liminf_{\Jset}\FT F_J(\xi)>0$ for
-$\xi\in[\xi_2,\infty)\setminus\BRS$, and $\liminf_{\Jset}\FT F_J\ge0$ on $\BRS\setminus\xiPP$.
 \item[(M$^+$)] \hyp{Z$_\infty$} replaced by \hyp{Z$^+$}: there is $h:\RR\to(0,\infty)$ with $H_J\ge h$ on $\RR$ for all large
 $J\in\Jset$ (the pointwise form $\liminf_{\Jset}H_J(t)>0$ for every $t$ suffices); then $H_\infty\ge h>0$.
 \item[(M$_{\mathrm{fin}}$)] \hyp{Z$_\infty$} replaced by: $\liminf_{\Jset}H_J\ge0$ on $\RR$, and either \hyp{R$_k$} there are
 $k\in\NN$, $\eta>0$ and $J_0$ such that $H_J$ ($J\ge J_0$) has at most $k$ zeros, counted with multiplicity, in
 $S_\eta$; or \hyp{R$_E$} there is a finite $E_0\subset\RR$ with $\liminf_{\Jset}\min_KH_J>0$ for every compact
-$K\subset\RR\setminus E_0$; and \hyp{Mg} replaced by \hyp{Mg$_{\BRS}$}. ($H_\infty$ may then have finitely many real zeros.)
+$K\subset\RR\setminus E_0$; and \hyp{Mg} replaced by \hyp{Mg$_{\BRS}$}: $\liminf_{\Jset}\FT F_J(\xi)>0$ for $\xi\in[\xi_2,\infty)\setminus\BRS$, and
+$\liminf_{\Jset}\FT F_J\ge0$ on $\BRS\setminus\xiPP$. ($H_\infty$ may then have finitely many real zeros.)
 \end{enumerate}
 \end{corollary}
 
@@ -189,8 +211,9 @@ elsewhere by \hyp{Mg} or by \hyp{Mg$_{\BRS}$}; and (iii) holds by \hyp{Z$_\infty
 hypothesis that replaces it. It remains to check the uniqueness clause. Under \hyp{Mg$_{\BRS}$}, $\FT F_\infty>0$ on $[\xi_2,\infty)\setminus\BRS$. Under \hyp{Z$^+$},
 $H_\infty(t)=\lim H_J(t)\ge h(t)>0$. Under \hyp{R$_E$}, $H_\infty>0$ on $\RR\setminus E_0$. Under \hyp{R$_k$}, $H_\infty$ has
 at most $k$ zeros in $S_\eta$: otherwise Hurwitz's theorem, applied on disjoint small discs around $k+1$ of them,
-would give more than $k$ zeros of $H_J$ in $S_\eta$ for large $J$ \cite[VII.2.5]{Con73}. In every case $H_\infty$ has finitely
-many real zeros, and Fact~\ref{thm:magic-unique} gives \condU, and RH under \condE.
+would give more than $k$ zeros of $H_J$ in $S_\eta$ for large $J$ \cite[VII.2.5]{Con73}. Under (M$^+$), $Z(F_\infty)=\Zz$ and
+Fact~\ref{thm:magic-unique}(a) gives \condU; under (M$_{\mathrm{fin}}$), $H_\infty$ has finitely many real zeros and
+$\widehat Z(F_\infty)\subseteq\BRS$, and Fact~\ref{thm:magic-unique}(b) gives \condU. In both cases RH follows under \condE.
 \end{proof}
 
 \begin{fact}[Coefficient bounds control the zero side; {\cite[Proposition~4.9]{PaperI}}]\label{prop:POS}
@@ -208,7 +231,7 @@ every root $u$ of $P_J$ satisfies $\lvert u\rvert\ge\min_kp_{k-1}^{(J)}/p_k^{(J)
 By (1), \hyp{POS$_a$} gives \hyp{Z$^+$} with $h\equiv1$, so \hyp{N}, \hyp{POS$_a$} and \hyp{Mg} imply \condS\ and \condU, by
 Corollary~\ref{cor:Mvariants}(M$^+$), as in \cite[Remark~4.10(a)]{PaperI}.
 
-\begin{fact}[Certified finite-$J$ instances; {\cite[Proposition~5.5]{PaperI}}]\label{thm:finiteJ}
+\begin{fact}[Certified finite-$J$ instances; {\cite[Proposition~5.6]{PaperI}}]\label{thm:finiteJ}
 For $J\in\{10,60,61,110,111\}$ the Hermite matrix $M_J$ is non-singular, every coefficient of the exact $P_J$ is positive, and
 $\max_{1\le k\le2J}((2k)!\,p_k^{(J)})^{1/2k}\le0.71636$, that is, $0<p_k^{(J)}\le0.71636^{2k}/(2k)!$. Hence $H_J\ge1$ on $\RR$ and
 $\lvert H_J(t)\rvert\le\cosh(0.71636\lvert t\rvert)$ on $\CC$.
@@ -227,8 +250,8 @@ conjecture behind Fact~\ref{thm:M}.
 \item $M_J$ is non-singular for every $J\ge1$.
 \item For every $J\ge10$ all coefficients $p^{(J)}_k$, $0\le k\le2J$, are positive, and
 $a^*:=\sup_{J\ge10}\max_{1\le k\le2J}\bigl((2k)!\,p^{(J)}_k\bigr)^{1/(2k)}<\pi/2$.
-\item $P_J\to P_\infty$ coefficientwise, and $F_\infty:=\Xi^2P_\infty(t^2)$ satisfies $\FT F_\infty(\xi)>0$ for every
-$\xi\in[\xin2,\infty)\setminus\xiPP$.
+\item $P_J\to P_\infty$ coefficientwise, and $F_\infty:=\Xi^2P_\infty(t^2)$ satisfies $\FT F_\infty(\xi)\ge0$ for every
+$\xi\in[\xin2,\infty)$.
 \end{enumerate}
 \end{conjecture}
 

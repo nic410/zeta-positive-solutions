@@ -84,6 +84,11 @@ where Ξ(t) = ξ(½ + it) is Riemann's ξ-function. The file also records the SH
    certified upper bound 𝒜_upper adds the tail exactly once.
 4. κ* ≤ 𝒜(F_rep)/F̂_rep(0) ≤ 𝒜_upper / F̂_{Ξ²H}(0)_lower, printed rounded up to 8 significant digits.
 
+`kappa/check_H_nonneg.py` expands H(t) = P(t²) exactly over ℚ for the nine parameter files and certifies P(0) = 1 and
+that every coefficient of P is ≥ 0; hence H ≥ 1 on ℝ and F_rep ≥ Ξ². With the J = 100 certificate (𝒜(F_rep) ≤ 𝒜_upper,
+read from `kappa/logs/J100.log` after checking its parameter hash) and weak duality, every admissible pair satisfies
+∫Ξ²dμ ≤ ∫F_rep dμ ≤ 𝒜(F_rep) ≤ 3.21·10⁻⁹⁰⁶ (𝒜_upper rounded up, with an exact check of the direction).
+
 **The cushion constants.** `verify_kappa.py` recomputes both constants at start-up with the code of `lib/cushion.py`:
 the archimedean value 𝒜(Ξ²e^{−πt²}) as an Arb ball (rigorous `acb.integral` on [0, 8] plus a tail bound), of which it
 uses the *upper endpoint* (so ε𝒜(Ξ²e^{−πt²}) is bounded above by ε times that endpoint, which is below
@@ -175,6 +180,7 @@ lines) of the shipped log verbatim.
 | κ* ≤ 5.2941806·10⁻⁹¹ (ladder table) | `python kappa/verify_kappa.py kappa/params/J24.json --prec 500 --order 24 --workers 1` | `kappa/params/J24.json` (`55fde513…7d207e30`) | Arb, 500 bits; Taylor order 24; ε = 10⁻⁹³; x_far = 70; 456 pieces | 8 s | `(4) kappa* <= A_upper / Fhat_H(0)_lower <= 5.2941806e-91`; `CERTIFIED: True` |
 | κ* ≤ 1.1963682·10⁻⁸⁰ (ladder table) | `python kappa/verify_kappa.py kappa/params/J23.json --prec 500 --order 24 --workers 1` | `kappa/params/J23.json` (`9ea699b1…dde66e80`) | Arb, 500 bits; Taylor order 24; ε = 10⁻⁸⁶; x_far = 66; 409 pieces | 7 s | `(4) kappa* <= A_upper / Fhat_H(0)_lower <= 1.1963682e-80`; `CERTIFIED: True` |
 | κ* ≤ 2.0151627·10⁻⁶² (ladder table) | `python kappa/verify_kappa.py kappa/params/J20.json --prec 600 --order 28 --workers 1` | `kappa/params/J20.json` (`d686e47b…551c5ec8`) | Arb, 600 bits; Taylor order 28; ε = 10⁻⁶⁷; x_far = 55; 215 pieces | 7 s | `(4) kappa* <= A_upper / Fhat_H(0)_lower <= 2.0151627e-62`; `CERTIFIED: True` |
+| H ≥ 1 on ℝ for the nine ladder functions (every coefficient of P ≥ 0, P(0) = 1, where H(t) = P(t²)), hence F_rep ≥ Ξ²; and, by weak duality, ∫Ξ²dμ ≤ 3.21·10⁻⁹⁰⁶ for every admissible pair (J = 100) | `python kappa/check_H_nonneg.py kappa/params/J20.json kappa/params/J23.json kappa/params/J24.json kappa/params/J30.json kappa/params/J35.json kappa/params/J40.json kappa/params/J50.json kappa/params/J60.json kappa/params/J100.json --duality-log kappa/logs/J100.log` | `kappa/params/J20.json` (`d686e47b…551c5ec8`)<br>`kappa/params/J23.json` (`9ea699b1…dde66e80`)<br>`kappa/params/J24.json` (`55fde513…7d207e30`)<br>`kappa/params/J30.json` (`472a5a88…ba0c201c`)<br>`kappa/params/J35.json` (`35e8cc8e…33ae7dcb`)<br>`kappa/params/J40.json` (`b3b71157…897e8884`)<br>`kappa/params/J50.json` (`3e95b34b…bff3d100`)<br>`kappa/params/J60.json` (`e22afd87…71e94a7e`)<br>`kappa/params/J100.json` (`1186be2c…90719662`) | exact (P expanded over ℚ); 𝒜_upper read from `kappa/logs/J100.log` (its parameter hash and certification are checked) | 56 s | `CLAIM      : J = 100: all coefficients of P >= 0 and P(0) = 1, so H >= 1 on R and F_rep >= Xi^2 ... implied`; `CLAIM      : J = 100: every admissible pair (mu, nu) has int Xi^2 dmu <= int F_rep dmu <= A(F_rep) <= 3.21e-906 ... implied`; `RESULT     : CERTIFIED` |
 | The cushion constants 𝒜(Ξ²e^{−πt²}) and I_δ | `python kappa/cushion_A.py` | — | Arb: `acb.integral` at 128 bits on [0, 8] plus tail bound; I_δ from K₀, K₁ at 200 bits on 50 monotone pieces | < 1 s | `A(Xi^2 e^{-pi t^2}) = [0.930646274515431 +/- 2.27e-16]`; `rounded up: A <= 9.30646274516e-1`; `(rounded down: 9.782880564e-2)` |
 | Validation of K₀, K₁, of the Bessel form and of the explicit-formula normalisation (**not a certificate**) | `python kappa/selftest.py` | — | Arb (1000 bits for K₀, K₁; 200 bits) against mpmath and direct integration | 247 s | `SELFTEST PASSED: True` |
 
@@ -260,7 +266,7 @@ From this directory, with `PY` set to a Python that has python-flint 0.9.0 and m
 
 ```sh
 export PY=python3
-kappa/run_all.sh        # cushion constants, self-test, κ* for J = 20 ... 100 (40.6 CPU-minutes)
+kappa/run_all.sh        # cushion constants, self-test, κ* for J = 20 ... 100 (41.6 CPU-minutes)
 exact/run_all.sh        # (N), (POS) and the coefficient bound at J = 10, 60, 61, 110, 111 (52.0 CPU-minutes)
 general/run_all.sh      # classical cone, F₈₀ and windows, control examples, ζ pair, identity checks (29.1 CPU-minutes)
 sha256sum -c SHA256SUMS # inputs and shipped outputs unchanged

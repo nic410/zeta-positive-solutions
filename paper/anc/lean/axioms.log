@@ -1,0 +1,346 @@
+# command : nice -n 10 taskset -c 8-15 lake env lean scripts/print_axioms.lean
+# date    : 2026-10-06T22:57:05Z
+# toolchain: leanprover/lean4:v4.33.0-rc2; Mathlib 51e6992efd06126df61a496bebf8f49482a4e129; Zeta23 fbdc36bbf17d20af3fd0447c6d1a8a02773c9844
+# Every theorem depends only on ledger axioms (PosRig.*, all in PositivityRigidity/Ledger.lean) and propext, Classical.choice, Quot.sound.
+'PosRig.theoremA' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_no_gap,
+ PosRig.floor_bound,
+ PosRig.weak_magic_functions,
+ Quot.sound]
+'PosRig.logic_display' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_no_gap,
+ PosRig.explicit_formula,
+ PosRig.floor_bound,
+ PosRig.logic_b,
+ Quot.sound]
+'PosRig.theoremB'' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_lemma36_landau,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.corollary_magic' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_lemma36_landau,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.theoremC' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.cert_kappaOPS,
+ PosRig.cert_kappa_ladder,
+ PosRig.cert_lowerbound,
+ PosRig.floor_bound,
+ Quot.sound]
+'PosRig.theoremD'' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.Zinf_lower_bound,
+ PosRig.brs_lemma36_landau,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ PosRig.robust_compactness,
+ PosRig.xi_decay,
+ Quot.sound]
+'PosRig.conjS_equivalences' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_no_gap,
+ PosRig.floor_bound,
+ Quot.sound]
+'PosRig.theoremB_a' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.logic_b,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.theoremB_b' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_countable_meanvalue,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.corollary_magic_a' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.logic_b,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.theoremD_nonstrict'' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.Zinf_lower_bound,
+ PosRig.explicit_formula,
+ PosRig.logic_b,
+ PosRig.robust_compactness,
+ PosRig.xi_decay,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.Gset_inTδ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.Admissible.isLocallyFinite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.weak_duality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.not_dominatesLeb_of_cone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.duality' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_gaussian,
+ PosRig.duality_no_gap,
+ Quot.sound]
+'PosRig.K_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.prop_2_8' depends on axioms: [propext, Classical.choice, PosRig.duality_no_gap, PosRig.floor_bound, Quot.sound]
+'PosRig.duality_no_gap_hyp_of_ge' depends on axioms: [propext, Classical.choice, PosRig.floor_bound, Quot.sound]
+'PosRig.exists_admissible_shift' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_no_gap,
+ PosRig.floor_bound,
+ Quot.sound]
+'PosRig.prop_2_8_dominates' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_no_gap,
+ PosRig.floor_bound,
+ Quot.sound]
+'PosRig.logic_a' depends on axioms: [propext, Classical.choice, PosRig.explicit_formula, Quot.sound]
+'PosRig.logic_c' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_no_gap,
+ PosRig.explicit_formula,
+ PosRig.logic_b,
+ Quot.sound]
+'PosRig.logic_d' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_no_gap,
+ PosRig.explicit_formula,
+ PosRig.floor_bound,
+ PosRig.logic_b,
+ Quot.sound]
+'PosRig.conductor_form' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_no_gap,
+ PosRig.floor_bound,
+ Quot.sound]
+'PosRig.qmin_le_one_of_RH' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_no_gap,
+ PosRig.explicit_formula,
+ Quot.sound]
+'PosRig.criticality' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_no_gap,
+ PosRig.floor_bound,
+ PosRig.weak_magic_functions,
+ Quot.sound]
+'PosRig.criticality_c' depends on axioms: [propext, Classical.choice, PosRig.weak_magic_functions, Quot.sound]
+'PosRig.comp_slackness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.support_uniqueness_thm' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.prop_3_5' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_lemma36_landau,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.prop_3_5_strong' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.logic_b,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.zero_support_theorem' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.logic_b,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.zero_support_rigidity_sanity' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.explicit_formula,
+ Quot.sound]
+'PosRig.thm_3_7' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.thm_3_7_admissible' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_lemma36_landau,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.extra_zeros_countable' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.extra_zeros_countable_admissible' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_countable_meanvalue,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.theoremB_b_countable' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_countable_meanvalue,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.theoremB_finite_of_countable' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_countable_meanvalue,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.cumulativeCond_of_weightedCond' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.weightedCond_of_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.magic_function_principle' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_lemma36_landau,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ Quot.sound]
+'PosRig.magic_principle_zero' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.logic_b,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.condU_iff_carriedBy' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.logic_b,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.condU_iff_Xi_sq' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.logic_b,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.carriedBy_Zzeta_of_lintegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.carriedBy_Zzeta_of_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.isClosed_Zzeta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.zero_killing_EF' depends on axioms: [propext, Classical.choice, PosRig.explicit_formula, Quot.sound]
+'PosRig.FT_Ffam_pp' depends on axioms: [propext, Classical.choice, PosRig.xi_decay, Quot.sound]
+'PosRig.deriv_FT_Ffam_pp' depends on axioms: [propext, Classical.choice, PosRig.xi_decay, Quot.sound]
+'PosRig.Ffam_mem_TestClass' depends on axioms: [propext, Classical.choice, PosRig.xi_decay, Quot.sound]
+'PosRig.Xi_sq_mem_TestClass' depends on axioms: [propext, Classical.choice, PosRig.xi_decay, Quot.sound]
+'PosRig.Arch_Ffam_tail' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.explicit_formula,
+ PosRig.xi_decay,
+ Quot.sound]
+'PosRig.Arch_nonneg_of_zero_killing' depends on axioms: [propext, Classical.choice, PosRig.explicit_formula, Quot.sound]
+'PosRig.theoremD' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.Zinf_lower_bound,
+ PosRig.brs_lemma36_landau,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ PosRig.robust_compactness,
+ PosRig.xi_decay,
+ Quot.sound]
+'PosRig.theoremD_nonstrict' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.Zinf_lower_bound,
+ PosRig.explicit_formula,
+ PosRig.logic_b,
+ PosRig.robust_compactness,
+ PosRig.xi_decay,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.hypMg0_of_hypMg' depends on axioms: [propext, Classical.choice, PosRig.xi_decay, Quot.sound]
+'PosRig.coeff_bound_consequences' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.remark_4_10a' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_lemma36_landau,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ PosRig.robust_compactness,
+ PosRig.xi_decay,
+ Quot.sound]
+'PosRig.remark_4_10a_nonstrict' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.explicit_formula,
+ PosRig.logic_b,
+ PosRig.robust_compactness,
+ PosRig.xi_decay,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.remark_4_10b' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_lemma36_landau,
+ PosRig.duality_no_gap,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ PosRig.weak_magic_functions,
+ Quot.sound]
+'PosRig.remark_4_10b_zero' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.duality_no_gap,
+ PosRig.logic_b,
+ PosRig.weak_magic_functions,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.certificate_route' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.explicit_formula,
+ PosRig.logic_b,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.thm_5_1' depends on axioms: [propext, Classical.choice, PosRig.cert_kappa_ladder, Quot.sound]
+'PosRig.cor_5_2' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.cert_kappa_ladder,
+ PosRig.floor_bound,
+ Quot.sound]
+'PosRig.cor_5_2_RH' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.cert_kappa_ladder,
+ PosRig.duality_no_gap,
+ PosRig.explicit_formula,
+ PosRig.floor_bound,
+ Quot.sound]
+'PosRig.near_rigidity' depends on axioms: [propext, Classical.choice, PosRig.cert_near_rigidity, Quot.sound]
+'PosRig.near_rigidity_interval' depends on axioms: [propext, Classical.choice, PosRig.cert_near_rigidity, Quot.sound]
+'PosRig.Frep_ge_Xi_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.prop_5_3' depends on axioms: [propext, Classical.choice, PosRig.cert_kappaOPS, PosRig.floor_bound, Quot.sound]
+'PosRig.prop_5_4' depends on axioms: [propext, Classical.choice, PosRig.cert_lowheight, Quot.sound]
+'PosRig.prop_5_5' depends on axioms: [propext, Classical.choice, PosRig.cert_finiteJ, Quot.sound]
+'PosRig.prop_5_8' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.cert_lowerbound,
+ PosRig.duality_no_gap,
+ PosRig.floor_bound,
+ Quot.sound]
+'PosRig.prop_5_9_a' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.cert_Qsqrt5_dual,
+ PosRig.cert_Qsqrt5_pair,
+ Quot.sound]
+'PosRig.prop_5_9_b' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.cert_Qsqrtm3_dual,
+ PosRig.cert_Qsqrtm3_pair,
+ Quot.sound]
+'PosRig.prop_5_9_not_singleton' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.cert_Qsqrt5_pair,
+ PosRig.cert_Qsqrtm3_pair,
+ Quot.sound]
+'PosRig.conjFamily_implies' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.brs_lemma36_landau,
+ PosRig.explicit_formula,
+ PosRig.riemannZeta_neg_of_mem_Ioo,
+ PosRig.robust_compactness,
+ PosRig.xi_decay,
+ Quot.sound]
+'PosRig.conjFamily0_implies' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.explicit_formula,
+ PosRig.logic_b,
+ PosRig.robust_compactness,
+ PosRig.xi_decay,
+ PosRig.zero_support_rigidity,
+ Quot.sound]
+'PosRig.conjFamily0_of_conjFamily' depends on axioms: [propext, Classical.choice, PosRig.xi_decay, Quot.sound]
+'PosRig.posc_a' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.posc_b'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.TestClass.Arch_eq_paper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.RH_iff_critical' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.explicit_formula_of_paleyWiener' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.paperFT_mem_TestClass' depends on axioms: [propext, Classical.choice, Quot.sound]

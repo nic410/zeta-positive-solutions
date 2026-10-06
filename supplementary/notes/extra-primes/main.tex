@@ -64,21 +64,24 @@ theta-group class sums and an obstruction}
 \begin{abstract}
 A companion paper studies positive solutions of Weil's explicit formula with the archimedean data of the Riemann zeta
 function, and proves that a solution whose zero measure lives on the zeros of $\zeta$ plus finitely many extra points, and
-whose prime measure lives on the interpolation nodes $\log m/4\pi$ of Bondarenko, Radchenko and Seip, is $\zeta$'s own. This
-note treats extra atoms of the prime measure off these nodes. Through theta-group class sums we show that an extra atom at a
-position $x$ with $x^2$ rational, if it is the only one of this type, is excluded whenever an explicit Gauss-sum invariant
-$\kappa_{q,b}(x)$ is positive: for some quadratic non-residue class $b\bmod q$ if there are no extra zeros, and for the class
-$2\bmod3$ if there are finitely many; that a lone extra atom, with no extra zeros, must lie in a closed, nowhere-dense set of
-positions; and that positions with $x^2$ irrational are invisible to every argument at leading order in the class sums. On the zero side,
+whose prime measure lives on the interpolation nodes $\log m/4\pi$ of Bondarenko, Radchenko and Seip, is $\zeta$'s own. By a
+theorem of Astra in the companion paper, a solution whose zero measure lives on the zeros of $\zeta$, possibly with an atom at the
+origin, is $\zeta$'s own whatever its prime measure, so extra prime mass matters only together with extra zeros. This note treats extra atoms of the
+prime measure off the nodes. Through theta-group class sums we show that an extra atom at a position $x$ with $x^2$ rational, if
+it is the only one of this type, is excluded whenever an explicit Gauss-sum invariant $\kappa_{3,2}(x)$ is positive, also in the
+presence of finitely many extra zeros, and that positions with $x^2$ irrational are invisible to every argument at leading order
+in the class sums. Our statements for general non-residue classes and the nowhere-density of the possible positions assume no extra
+zeros; they remain statements about theta class sums. On the zero side,
 the same class sums give a positive-spanning property of the basis functions attached to the class $2\bmod3$.
 \end{abstract}
 
 \maketitle
 
 \noindent\textbf{Status.} This note accompanies the companion paper \cite{PaperI} and has not been peer-reviewed. It records
-partial results: every numbered statement in Sections~\ref{sec:classsums}, \ref{sec:signpatterns} and~\ref{app:proofs} is proved, but the question it
-addresses, uniqueness with finitely many extra prime-side atoms, remains open: neither a lone extra atom at an arbitrary
-position nor countably many extra zeros (Section~\ref{sec:countable}) is settled. The two numerical observations
+partial results: every numbered statement in Sections~\ref{sec:classsums}, \ref{sec:signpatterns} and~\ref{app:proofs} is proved. The
+question it addresses, uniqueness when the prime measure has extra atoms, is settled in \cite{PaperI} when there are no extra zeros
+(\cite[Theorem~3.6]{PaperI}, due to Astra); the results here matter only when there are extra zeros, and that case remains open.
+Countably many extra zeros, with summable weights, are also handled in \cite{PaperI} (Section~\ref{sec:countable}). The two numerical observations
 (Section~\ref{sec:observations}) are not certified and are not used in any proof. The results of \cite{PaperI} that are used are
 recalled in Section~\ref{sec:setting}, as Facts.
 
@@ -96,8 +99,8 @@ beyond $\xin2=\log2/2\pi$, that satisfies Weil's explicit formula with the archi
 pair $\pz$, and proves this for pairs whose zero measure is carried by the real zeros of $\zeta$ together with finitely many extra
 points and whose prime measure is carried by the set $\BRS=\{\log m/4\pi:m\ge1\}$ of the interpolation theorem of Bondarenko,
 Radchenko and Seip \cite{BRS} (Fact~\ref{thm:Gfin}). Its proof tests the pair against the interpolation basis of \cite{BRS}, sums
-the resulting node identities over the class $N\equiv2\pmod3$, which contains no squares, and applies Landau's theorem to a
-Dirichlet series with non-negative coefficients.
+the resulting node identities over the class $N\equiv2\pmod3$, which contains no squares, and concludes with a mean-value argument
+for the resulting almost periodic function (Fact~\ref{lem:class2-landau}).
 
 This note asks what happens when the prime measure has extra atoms off $\BRS$. An extra atom at $\eta$, with $x_\eta=e^{2\pi\eta}$,
 enters the node identities through the coefficients $B_N(x_\eta)$ of a second modular integral $G_{x_\eta}$, and the natural tools
@@ -107,16 +110,25 @@ are its class sums over a quadratic non-residue class $b\bmod q$. We show:
 explicit combination of normalised Gauss sums if $x^2\in\QQ$ (Proposition~\ref{prop:classsum});
 \item rational-type extra atoms are constrained: if $\kappa_{q,b}(x_\eta)>0$ for some admissible class, a lone rational-type extra atom
 at $\eta$ is excluded, whatever irrational-type extras accompany it (Theorem~\ref{thm:extra-primes});
-\item the positions where $\kappa_{3,2}>0$ are dense (Lemma~\ref{lem:D}), so a lone extra atom, with no extra zeros, lies in a closed,
-nowhere-dense set of positions (Proposition~\ref{prop:C0});
+\item the positions where $\kappa_{3,2}>0$ are dense (Lemma~\ref{lem:D}), so the positions that the class sums cannot exclude form a closed,
+nowhere-dense set (Proposition~\ref{prop:C0});
 \item irrational-type extras are invisible at leading order (Proposition~\ref{prop:invisible}): no argument at leading order in the class
-sums, and so no Landau--Mellin argument of the kind used for Fact~\ref{thm:Gfin}, can exclude them.
+sums can exclude them.
 \end{enumerate}
 Item (iv) is the obstruction. On the zero side, the same class sums show that the values of the BRS functions $U_m$,
 $m\equiv2\pmod3$, at finitely many positive points off $\Zz$ positively span (Proposition~\ref{prop:signpattern}); this gives no
 information on extra prime atoms. Numerical observations suggest that irrational-type extras are visible at intermediate scales
-(Section~\ref{sec:observations}), and Section~\ref{sec:countable} outlines an extension of Fact~\ref{thm:Gfin} to countably many
-extra zeros. The open problems are in Section~\ref{sec:open}.
+(Section~\ref{sec:observations}). The open problems are in Section~\ref{sec:open}.
+
+The companion paper also contains two theorems contributed by Astra (OpenAI). The first, the zero-side
+support theorem (Fact~\ref{fact:zerosupport}), shows that an admissible pair whose zero measure is carried by $\Zz\cup\{0\}$ is
+$\zeta$'s pair, with no assumption on the prime measure. So every extra prime mass, atomic or not, at rational or irrational
+positions, is excluded when there are no extra zeros, and the results of this note matter only when there are extra zeros: there
+Theorem~\ref{thm:extra-primes}(b) and Proposition~\ref{prop:invisible} still apply, while Theorem~\ref{thm:extra-primes}(a) and
+Proposition~\ref{prop:C0}(a), which assume no extra zeros, are now statements about the class sums only. Lemma~\ref{lem:P0}
+anticipated the route of that theorem, whose proof carries it out in the limit, for all positions at once. The second theorem extends
+Fact~\ref{thm:Gfin} to countably many extra zeros with summable weights and settles the extension proposed in
+Section~\ref{sec:countable}.
 
 %======================================================================
 \section{Setting}\label{sec:setting}
@@ -196,16 +208,24 @@ $(\mu,\nu)\in\Kad$, then $C_N\ge0$ for all $N$; in particular $c_N(E)\ge0$ for e
 \end{lemma}
 
 The proof is in Appendix~\ref{app:proofs-structure}. The case $\mathcal X=\emptyset$, with the statements that follow ``moreover'',
-is the structure lemma of \cite{PaperI}.
+is \cite[Lemma~3.7]{PaperI}, which allows countable $E$.
 
 
 
-\begin{fact}[Finitely many extra zeros {\cite{PaperI}}]\label{thm:Gfin}
+\begin{fact}[Finitely many extra zeros; the case of finite $E$ of {\cite[Theorem~3.8]{PaperI}}]\label{thm:Gfin}
 Let $E\subset\RR\setminus\Zz$ be finite and symmetric. Let $\mu$ be an even real measure carried by $\Zz\cup E$ and $\nu$ a real
 measure carried by $\BRS$ such that $\Arch(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$ for every BRS function $F$ (in particular, if the
 identity holds on $\Tc$ with absolutely convergent integrals). Assume $\nu(\{\frac{\log m}{4\pi}\})\ge0$ for every $m\equiv2\pmod3$, and
 $\mu(\{0\})\ge0$ if $0\in E$. Then RH holds, $\mu=\muz$ and $\nu=\nuz$. In particular every admissible pair carried by
-$(\Zz\cup E)\times\BRS$ is $\pz$ \textup{(}\cite[Theorem~B]{PaperI}\textup{)}.
+$(\Zz\cup E)\times\BRS$ is $\pz$ \textup{(}\cite[Theorem~B(b)]{PaperI}\textup{)}.
+\end{fact}
+
+In \cite[Theorem~3.8]{PaperI} this is proved, by a theorem of Astra, for countable symmetric $E\subset\RR\setminus\Zz$ with
+$\sum_{e\in E,\,e>0}\lvert\mu(\{e\})\rvert\,\lvert\zeta(\frac12+ie)\rvert\,(1+e)^{-1/2}<\infty$, or more generally with partial sums of
+$\lvert\mu(\{e\})\rvert\,\lvert\zeta(\frac12+ie)\rvert$ over $0<e\le T$ of order $o(T^{1/2})$.
+
+\begin{fact}[Zero-side support; {\cite[Theorem~3.6]{PaperI}}, due to Astra]\label{fact:zerosupport}
+If $(\mu,\nu)\in\Kad$ and $\mu$ is carried by $\Zz\cup\{0\}$, then RH holds and $(\mu,\nu)=\pz$. No assumption on $\nu$ is made.
 \end{fact}
 
 \subsection{The theta function near rational points}\label{ssec:theta}
@@ -249,7 +269,7 @@ $\gamma\tau=-\frac23+\frac i{9v}$; moreover $\chi(\gamma)=-1$, $\chi(T^2S)=-1$, 
 \end{equation}
 and both are analytic near $\tau=\frac23$, the second with value $(\frac32)^{1/2}e^{i\pi/4}\cdot\sqrt2\,e^{i\pi/4}=i\sqrt3$ there.
 
-\begin{fact}[The class $2\bmod3$ {\cite{PaperI}}]\label{lem:cusp-class2}
+\begin{fact}[The class $2\bmod3$; {\cite[Lemma~B.2]{PaperI}}]\label{lem:cusp-class2}
 Let $\Re s=\frac14$. As $v\to0^+$,
 \begin{multline*}
 \tfrac13\Big[\mathsf F(iv,s)+\omega\,\mathsf F(\tfrac23+iv,s)+\bar\omega\,\mathsf F(\tfrac43+iv,s)\Big]\\
@@ -264,11 +284,12 @@ particular $\Theta_E^{(2)}(v)=O(v^{-1/4})$.
 \end{fact}
 
 The function $\Theta_E^{(2)}$ is the class sum of the node identities of Lemma~\ref{lem:structure} with $\mathcal X=\emptyset$ over the class
-$2\bmod3$; in \cite{PaperI} its expansion and Landau's theorem give Fact~\ref{thm:Gfin}.
+$2\bmod3$; in \cite{PaperI} its expansion and a mean-value argument give Fact~\ref{thm:Gfin}.
 
-\begin{fact}[Landau step {\cite{PaperI}}]\label{lem:class2-landau}
-Let $E_+\subset[0,\infty)$ be finite, $\tilde\varrho_e\in\RR$ with $\tilde\varrho_0\ge0$ if $0\in E_+$, and $c_N:=\sum_{e\in E_+}\tilde\varrho_e\alpha_N(s_e)$.
-If $c_N\ge0$ for every $N\equiv2\pmod 3$, then $\tilde\varrho_e=0$ for every $e\in E_+$.
+\begin{fact}[Mean-value step; the case of finite $E_+$ of {\cite[Lemma~B.4]{PaperI}}]\label{lem:class2-landau}
+Let $E_+\subset[0,\infty)$ be finite, let $a_e\in\RR$ $(e\in E_+)$, put $\tilde\varrho_e:=a_e\Xi(e)/(\frac14+e^2)$ for $e>0$ and
+$\tilde\varrho_0:=2a_0\Xi(0)$, and $c_N:=\sum_{e\in E_+}\tilde\varrho_e\alpha_N(s_e)$. If $a_0\ge0$ when $0\in E_+$, and $c_N\ge0$ for every
+$N\equiv2\pmod 3$, then $\tilde\varrho_e=0$ for every $e\in E_+$.
 \end{fact}
 
 %======================================================================
@@ -327,7 +348,8 @@ $\frac1\pi\int\hF\dd\nu\ge\frac1\pi\beta_{\eta_0}\hF(\eta_0)\ge0$.
 \end{proof}
 
 No positivity of $F$ on $\RR$, and none of $\hF$ off $\BRS\cup\mathcal X$, is needed. Examples are $\Xi^2H$ and non-negative
-combinations of BRS functions $U_m$ over non-square $m$.
+combinations of BRS functions $U_m$ over non-square $m$. When $E\subseteq\{0\}$ the route of this lemma is carried out, in the limit and
+for all positions at once, by the proof of Fact~\ref{fact:zerosupport}.
 
 \begin{theorem}[Rational prime-side extras]\label{thm:extra-primes}
 Let $(\mu,\nu)\in\Kad$ with $\mu$ carried by $\Zz\cup E$ and $\nu$ carried by $\BRS\cup\mathcal X$, where $E$ and $\mathcal X$ are finite as
@@ -356,7 +378,8 @@ $0\ge\sum_\eta\beta_\eta\sqrt{x_\eta}\sum\lambda_{q,b}\kappa_{q,b}(x_\eta)$ is a
 \end{proof}
 
 For $E\ne\emptyset$ and $q\ge5$ the argument needs the analogue of Fact~\ref{lem:cusp-class2} for the class $b\bmod q$, which
-is not proved here (Section~\ref{sec:open}).
+is not proved here (Section~\ref{sec:open}). For $E=\emptyset$, Fact~\ref{fact:zerosupport} gives more than part (a): every $\beta_\eta$
+vanishes. Part (a) remains a statement about the class sums.
 
 \begin{lemma}[A closed form on a dense family]\label{lem:D}
 Let $d\equiv1\pmod{24}$ be prime, let $a\equiv5\pmod6$ be an integer with $d\nmid a$, and put $X:=a/d$, $x:=\sqrt X$. Then
@@ -379,8 +402,8 @@ an extra atom $\eta$ with $x_\eta^2\notin\QQ$ makes no contribution to the inequ
 This is the irrational case of Proposition~\ref{prop:classsum}.
 \end{proof}
 
-The reading of this proposition is an obstruction: no argument at leading order in the class sums, and so no Landau--Mellin
-argument of the kind used for Fact~\ref{thm:Gfin}, can exclude irrational-type extras. Shifted prime powers $x^2=n^2\pm\delta$,
+The reading of this proposition is an obstruction: no argument at leading order in the class sums can exclude irrational-type
+extras. Shifted prime powers $x^2=n^2\pm\delta$,
 and the spurious points of near-optimal test functions observed numerically, are of this type. Heuristically, such extras are
 visible at intermediate scales: near a good rational approximation of $x^2$ the class sum behaves like that of the rational
 point (Numerical observation~\ref{obs:routeC}).
@@ -400,6 +423,7 @@ non-residue $b\bmod q$.
 $x_\eta^2\in\mathfrak B$.
 \item $\mathfrak B$ is closed relative to $(4,\infty)\setminus\ZZ$, and nowhere dense in $\RR$.
 \end{enumerate}
+By Fact~\ref{fact:zerosupport}, the hypothesis of \textup{(a)} never holds; \textup{(b)} is a statement about theta class sums.
 \end{proposition}
 
 \begin{proof}
@@ -443,7 +467,8 @@ $\GR(s)\zeta(s)=-2\Xi(e)/(\frac14+e^2)$, and $\frac s2=s_e$. Hence \eqref{eq:Um}
 \]
 and $c^*_m\ge0$ for every $m\equiv2\pmod3$. By M\"obius inversion, $c_N=\sum_{k^2\mid N}c^*_{N/k^2}$. If $N\equiv2\pmod3$ and $k^2\mid N$, then
 $3\nmid k$, so $N/k^2\equiv2\pmod3$; hence $c_N\ge0$ for every $N\equiv2\pmod3$. In (b), $\tilde\varrho_0\ge0$ because $\Xi(0)>0$.
-Fact~\ref{lem:class2-landau}, applied with $E_+=E'$, gives $\tilde\varrho_e=0$ for every $e\in E'$, and $\Xi(e)\ne0$ because $e\notin\Zz$; so $a=0$.
+Fact~\ref{lem:class2-landau}, applied with $E_+=E'$ and with the weight $2a_0$ in place of $a_0$ (which gives the same $\tilde\varrho_0$), yields
+$\tilde\varrho_e=0$ for every $e\in E'$, and $\Xi(e)\ne0$ because $e\notin\Zz$; so $a=0$.
 
 The equivalences are facts about the convex cone $K\subset\RR^n$ generated by the vectors in question and its dual cone
 $K^*=\{a:\langle a,v\rangle\ge0\text{ for all }v\in K\}$. In (a) the statement says that $K^*=\{0\}$. Then $K$ is dense, hence equal to $\RR^n$,
@@ -473,13 +498,14 @@ information on extra prime atoms.
 \section{Countably many extra zeros: an outline}\label{sec:countable}
 %======================================================================
 
-\begin{remark}[Countably many extra zeros: an outline]\label{rem:Gsum}
-We expect that the proof of Fact~\ref{thm:Gfin} extends to countable, locally finite sets $E$ with
-$\sum_{e\in E}\mu(\{e\})\,|\zeta(\frac12+ie)|\,(1+|e|)^{-1/4+\delta}<\infty$ for some $\delta>0$. A complete proof would need control, uniform
-in $e$, of the tails of $\mathsf F(\gamma\tau,s_e)$ and of the background terms $\tilde\varrho_e(\tau/i)^{s_e-1/2}$ at the regular points
-$\frac23$ and $\frac12$ of the cusp expansions; this is not carried out here. For a positive density of spurious atoms with masses of order $1$ the
-method fails at the threshold: heuristically, the background terms then have partial sums of size $\asymp T^{1/4}$, which is exactly what
-the Landau argument cannot absorb.
+\begin{remark}[Countably many extra zeros]\label{rem:Gsum}
+We had proposed to extend Fact~\ref{thm:Gfin} to countable, locally finite sets $E$ with
+$\sum_{e\in E}\mu(\{e\})\,|\zeta(\frac12+ie)|\,(1+|e|)^{-1/4+\delta}<\infty$ for some $\delta>0$, which would need control, uniform in $e$,
+of the cusp expansions at the regular points $\frac23$ and $\frac12$. This is now proved in \cite[Theorem~3.8]{PaperI}, by a theorem of Astra, under the
+weaker hypothesis $\sum_{e\in E}\mu(\{e\})\,|\zeta(\frac12+ie)|\,(1+|e|)^{-1/2}<\infty$ (more generally, when the partial sums of
+$\mu(\{e\})|\zeta(\frac12+ie)|$ over $0\le e\le T$ are $o(\sqrt T)$) and without local finiteness: the intermediate cusp terms are bounded
+in aggregate, and a mean-value argument replaces Landau's theorem. Without such a summability condition, for instance for a positive
+density of extra zeros with masses of order $1$, the question remains open.
 \end{remark}
 
 %======================================================================
@@ -495,7 +521,8 @@ values, a non-negative combination of the $17$ class vectors with $q\le13$ is po
 remaining $3$ once the classes with $q\in\{17,19,23\}$ are added. The values for $q=3$ are exact Gauss-sum evaluations; for $q\ge5$ they
 were obtained by numerical extrapolation of $v^{1/2}T^{(x)}_{q,b}(v)$ as $v\downarrow3\cdot10^{-6}$, with no closed form and no interval
 certification. Only $X>4$ corresponds to positions in $[\xin2,\infty)$. If certified, Theorem~\ref{thm:extra-primes}(a) would exclude a lone
-rational extra atom at each such $X$ when $E=\emptyset$.
+rational extra atom at each such $X$ when $E=\emptyset$; for admissible pairs that case is now settled by Fact~\ref{fact:zerosupport}, so
+these values concern the class sums only.
 \end{observation}
 
 \begin{observation}[Irrational extras at intermediate scales]\label{obs:routeC}
@@ -504,7 +531,8 @@ $\delta\in[0.003,0.067]$, and $x^2\in\{4+(\sqrt2-1),\,5+(\phi-1),\,9+1/e,\,16+\s
 function $v^{1/4}T^{(x)}_{3,2}(v)$ reaches a positive value, between $+0.10$ and $+0.81$, somewhere in $10^{-9}\le v\le10^{-2.75}$; and for all
 $15$ pairs formed from six of these positions the corresponding linear feasibility problem has positive margin ($0.08$--$0.67$). The class
 sums were computed from the exact cocycle formula with exponentially small terms dropped and $\vartheta$ evaluated to $25$ digits; they are
-not interval-certified. If certified, Lemma~\ref{lem:structure} would exclude a lone extra atom (resp.\ these pairs) at these positions.
+not interval-certified. If certified, Lemma~\ref{lem:structure} would exclude a lone extra atom (resp.\ these pairs) at these positions;
+with $E=\emptyset$ this is now implied by Fact~\ref{fact:zerosupport}, so the computation concerns the class sums only.
 \end{observation}
 
 %======================================================================
@@ -512,21 +540,26 @@ not interval-certified. If certified, Lemma~\ref{lem:structure} would exclude a 
 %======================================================================
 
 \begin{enumerate}[label=\textup{(\arabic*)}]
-\item \emph{Lone extra atoms.} Is the set $\mathfrak B$ of Proposition~\ref{prop:C0} empty? Theorem~\ref{thm:extra-primes} and
-Proposition~\ref{prop:C0} leave a closed, nowhere-dense set of positions, and irrational positions are invisible to the
-leading-order argument (Proposition~\ref{prop:invisible}). This seems to need theta-sum asymptotics along continued fractions and a
-Duffin--Schaeffer-type step \cite{DS41,KoMa20}. Lemma~\ref{lem:P0} gives another route: a single node-positive test function that is
-positive at the position of the atom excludes it.
+\item \emph{Theta class sums.} Is the set $\mathfrak B$ of Proposition~\ref{prop:C0} empty? For admissible pairs without extra zeros the
+question is settled by Fact~\ref{fact:zerosupport}, but it remains a question about theta class sums: Theorem~\ref{thm:extra-primes} and
+Proposition~\ref{prop:C0} leave a closed, nowhere-dense set of positions, and irrational positions are invisible to the leading-order
+argument (Proposition~\ref{prop:invisible}). This seems to need theta-sum asymptotics along continued fractions and a
+Duffin--Schaeffer-type step \cite{DS41,KoMa20}.
+\item \emph{Extra zeros and extra prime atoms together.} Exclude extra prime mass when $\mu$ has finitely many extra zeros and $\nu$ is
+arbitrary. Lemma~\ref{lem:P0} gives one route: a single node-positive test function that vanishes on $E$ and is positive at the
+position of the atom excludes it.
 \item \emph{Extra zeros and other classes.} For $E\ne\emptyset$ and $q\ge5$, the analogue of Fact~\ref{lem:cusp-class2} for the
 non-residue classes $b\bmod q$, which would extend Theorem~\ref{thm:extra-primes}(b) to these classes.
-\item \emph{Infinitely many extra zeros} on the zero side (Section~\ref{sec:countable} is an outline only).
+\item \emph{Infinitely many extra zeros} without the summability condition of Section~\ref{sec:countable}.
 \item \emph{Certification} of the computations of Numerical observations~\ref{obs:rational-extras} and~\ref{obs:routeC}.
 \end{enumerate}
 
 \section*{AI-use statement}
 This note was produced with substantial use of AI. The mathematical arguments, the numerical computations and the text were generated by instances of Claude Opus 5.5
 (Anthropic) working as coordinated agents: one set of agents developed the arguments, separate agents acted as
-independent hostile referees of each component, and the referees' requested repairs were incorporated. The
+independent hostile referees of each component, and the referees' requested repairs were incorporated. The zero-side
+support theorem and its extension to countably many extra zeros (Theorems~3.6 and~3.8 of the companion paper), which this note
+cites, were contributed by Astra (OpenAI) and checked by independent referee agents before inclusion. The
 author initiated and directed this project, designed its verification process, and reviewed the results and the
 verification record, but did not independently check every step of the written proofs. The author takes full
 responsibility for the content of this note, including any errors, and welcomes independent verification and
