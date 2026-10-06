@@ -1,0 +1,29 @@
+# command : python general/verify_general.py general/params/zeta_K80_s12_F80.json
+# date    : 2026-10-06T19:59:14Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+parameter file : general/params/zeta_K80_s12_F80.json
+sha256         : c0f3afc2d3367ebdadd0897a6e2f15fc5ae8a7caf8b7c6879b504119a845eee6
+object         : K = 80, s = 12, eps = 1e-30, Gamma_R shifts ['0'], log N = 0, pole residue 1
+numerics       : 512-bit Arb, integral over [0, 200], rel_tol 2^-200, abs_tol 1e-60
+P, Q built     : degrees 80, 80 (0.0 s)
+Sturm(P)       : length 81 (2.5 s)
+Sturm(Q)       : length 81 (5.5 s)
+P              : P(0) > 0: True; leading coefficient > 0: True; distinct real roots in (0, oo): 0
+Q              : Q(0) > 0: True; leading coefficient > 0: True; distinct real roots in (0, oo): 0
+Q at gap edge  : Y_lo < Y_c < Y_hi rational, |Y_hi - Y_lo| <= 2^-219; roots in (Y_lo, oo): 0, in (Y_hi, oo): 0; Q(Y_lo) = [7.9245607e-35 +/- 1.42e-43] (> 0: True)
+POSITIVITY     : F_rep > 0 on R: True | F_rep^ > 0 on [xi_2, oo) (cone): True | F_rep^ > 0 on R (OPS cone): True
+integral       : int_0^T F_rep(t) sum_j Re psi = [0.0123160622241027260468220701869 +/- 4.69e-32] (imaginary part [+/- 4.72e-58]) (296 s)
+tail bound     : [6.03e-51 +/- 2.00e-55]
+A(F_rep)       = [7.725254245948889853868706e-25 +/- 4.30e-50]
+int F_rep      = [0.9999999999999999444888488 +/- 3.13e-26]
+D = 2F_rep(i/2)= [0.17826909547316649588 +/- 4.13e-21]
+A/int F_rep    = [7.725254245948890282706462e-25 +/- 3.56e-50]
+---- read-off (decimal bounds rounded outward)
+SLACK          : kappa*_OPS (and kappa*) of the data <= 7.7252542459488902828e-25
+CLAIM          : kappa*_OPS (and kappa*) <= 7.7253e-25 ... implied
+CONDUCTOR      : no admissible pair for log q < -4.8539203972372782891e-24; q_min = exp(-2 pi kappa*) >= 1 - 4.85393e-24
+POLE RESIDUE   : D > 0; A_r(F_rep) < 0, hence no admissible pair, for every r < 1 - A/D, A/D <= 4.33347924129e-24
+summary written: general/results/zeta_K80_s12_F80.json
+RESULT         : CERTIFIED (296 s)
+# exit code 0; wall time 295.8 s

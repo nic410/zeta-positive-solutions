@@ -1,0 +1,11 @@
+# command : python exact/verify_base.py exact/out/P10_ball.txt --X 16 --theta 0.786684 --prec 800 --workers 1
+# date    : 2026-10-06T15:43:36Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+P-enclosure exact/out/P10_ball.txt (sha256 4e55d361d6d2c05f15565bd3c94d56b9f5e0715acecda9fd362410181bdc48d3): J = 10; region [xi_2, xi_X], X = 16 (10 nodes); theta = 0.786684; 800 bits, Taylor order 28
+  node    2: Fhat''(xi_n) = [116.24 +/- 2.71e-3];  h = 4.00e-03;  c_2'/(theta sup Psi_1 n^2 ((e^{2 pi h}-1)/h)^2) = [1.596 +/- 4.57e-4];  [computed Fhat(xi_n) = [+/- 1.54e-215], Fhat'(xi_n) = [+/- 5.76e-213]: zero balls]
+  node   16: Fhat''(xi_n) = [5.1072e-13 +/- 2.41e-18];  h = 2.00e-03;  c_2'/(theta sup Psi_1 n^2 ((e^{2 pi h}-1)/h)^2) = [5.688e+17 +/- 4.91e+13];  [computed Fhat(xi_n) = [+/- 1.01e-228], Fhat'(xi_n) = [+/- 8.76e-226]: zero balls]
+(i) Fhat''(xi_n) > 0 at all 10 nodes n <= 16; node neighbourhoods certified (1 s)
+(ii) all 9 gaps certified: 142 pieces; min over pieces of lower(Fhat)/upper(theta Psi_1 min(1,d^2)) = 1.00098e0 (gap 2-3)
+CERTIFIED: Fhat_J >= 0.786684 Psi_1 min(1, d^2) on [xi_2, xi_16] and Fhat_J'' > 0 at the nodes (J = 10): True   (8 s)
+# exit code 0; wall time 8.1 s

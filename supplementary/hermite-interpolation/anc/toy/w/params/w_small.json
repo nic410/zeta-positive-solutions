@@ -1,0 +1,8 @@
+{
+ "statement": "Theorems W2 and W3: for J = 2, 3 and y_1 = g + w_1, y_k = y_{k-1} + h + w_k (w >= 0, distinct nodes): (N), mu_j > 0, Q''(y_j) > 0",
+ "cases": {
+  "2": {"regions": {"a": {"g": "157/25", "h": "157/25"}, "b": {"g": "8", "h": "0"}}, "check_point": ["13/2", "27/2"]},
+  "3": {"regions": {"a": {"g": "157/25", "h": "157/25"}, "b": {"g": "12", "h": "0"}}, "check_point": ["13/2", "71/5", "47/2"]}
+ },
+ "pt_constant": "21/20"
+}

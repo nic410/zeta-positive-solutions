@@ -1,0 +1,232 @@
+%======================================================================
+\section{The tail of the model and an obstruction}\label{sec:model-tail}
+%======================================================================
+
+\subsection{The tail of the model}\label{ssec:toy-tail}
+
+We use the objects of Definition~\ref{def:nested}(iii) for the model: $\Pi_{\yv}$, the $p_1$-rule $\Lrule_{\yv}$,
+$\ell_k$, $\ell_1^*$, $\ell_2^*$, the extension elements $E_m$, $E_*=\ell_1^*E_2-\ell_2^*E_1$ and the screening factor
+$S_{\yv}=-p_{2J}\ell_1^*$. In the model we take the data of $P$ at a node to be $(Q_P(y_j),Q_P'(y_j))$; this multiplies
+the derivative weights of the $p_1$-rule by the positive factors $e^{-y_j}$ and changes no sign. Put
+\[
+  R_0:=R_{\yv},\quad R_m:=Q_{E_m}/A_{\yv}\ (m\ge1),\quad R_*:=Q_{E_*}/A_{\yv}=\ell_1^*R_2-\ell_2^*R_1,
+  \quad \mathcal W:=\Wr(R_1,R_2).
+\]
+The top two coefficients of $Q_{E_m}$ come from $\tau_{2J+m}$ alone, and those of $Q_{\yv}$ from $p_{2J}\tau_{2J}$. By
+\eqref{eq:tau}, and dividing by $A_{\yv}=y^{2J}-\sigma y^{2J-1}+\cdots$ with $\sigma:=2\sum_jy_j$,
+\begin{equation}\label{eq:Rtop}
+  R_0=p_{2J}\bigl(y^{2J}+\kappa_0y^{2J-1}+\cdots\bigr),\qquad R_m=(-1)^m\bigl(y^{2J+2m}+\kappa_my^{2J+2m-1}+\cdots\bigr),
+\end{equation}
+where $\kappa_m:=\sigma-\binom{4J+2m}{2}$. So $R_m$ has degree $2J+2m$ and leading coefficient $(-1)^m$, and $\mathcal W$ has degree $4J+5$ and leading coefficient
+$-2$. Since Wronskians are multiplied by $g^2$ when all functions are multiplied by $g$,
+Proposition~\ref{prop:insertion}(b) reads, for $Y\in(0,\infty)\setminus\yv$: \hyp{N}$_{\yv\cup\{Y\}}$ if and only if
+$\mathcal W(Y)\neq0$, and then $P_{\yv\cup\{Y\}}=P_{\yv}+aE_1+bE_2$ with
+\begin{equation}\label{eq:toy-insertion}
+  \begin{gathered}
+  a=-\frac{\Wr(R_0,R_2)}{\mathcal W},\qquad b=\frac{\Wr(R_0,R_1)}{\mathcal W},\qquad
+  \Delta_{\yv}(Y)=\frac{\Wr(R_0,R_*)}{\mathcal W},\\
+  \mu_Y=\frac{R_*(Y)}{A_{\yv}(Y)\mathcal W(Y)},\qquad
+  Q''_{\yv\cup\{Y\}}(Y)=\frac{A_{\yv}(Y)\Wr(R_0,R_1,R_2)(Y)}{\mathcal W(Y)},
+  \end{gathered}
+\end{equation}
+where $\mu_Y$ is the derivative weight of the new node in the $p_1$-rule of $\yv\cup\{Y\}$, and
+$\Delta_{\yv}'(Y)=-Q''_{\yv\cup\{Y\}}(Y)\,\mu_Y$.
+
+\begin{theorem}[Far-node asymptotics in the model]\label{thm:Ftoy}
+Assume \hyp{N}$_{\yv}$ and $p_{2J}(\yv)\neq0$, and let $Y_{\mathcal W}(\yv)$ be the largest real zero of $\mathcal W$, or
+$y_J$ if this is larger. For $Y>Y_{\mathcal W}(\yv)$:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item \hyp{N}$_{\yv\cup\{Y\}}$ holds, and $a=2p_{2J}Y^{-2}+O(Y^{-3})$, $b=p_{2J}Y^{-4}+O(Y^{-5})$; in particular
+$P_{\yv\cup\{Y\}}\to P_{\yv}$ coefficientwise at rate $O(Y^{-2})$;
+\item $\Delta_{\yv}(Y)=2S_{\yv}Y^{-2}+16J\,S_{\yv}Y^{-3}+O(Y^{-4})$;
+\item $Q''_{\yv\cup\{Y\}}(Y)=8p_{2J}Y^{4J-2}(1+O(Y^{-1}))$, $\mu_Y=\frac{S_{\yv}}{2p_{2J}}Y^{-4J-1}+O(Y^{-4J-2})$ and
+$\Delta_{\yv}'(Y)=-4S_{\yv}Y^{-3}+O(Y^{-4})$.
+\end{enumerate}
+The implied constants depend on $\yv$; $\Delta_{\yv}$, $a$ and $b$ are rational functions of $Y$.
+\end{theorem}
+
+The proof (Appendix~\ref{app:proofs-toy}) expands the Wronskians in \eqref{eq:toy-insertion} to two orders with
+\eqref{eq:Rtop}.
+
+The relative coefficient $8J$ in (2) does not depend on the node positions. For the true kernel the corresponding
+constant is $8(J+1)$ (Theorem~\ref{thm:Ftrue}): the frozen double root of $P^{\Xi}$ acts as one more node.
+
+\begin{corollary}[Signs in the far field]\label{cor:Ftoy-signs}
+If $p_{2J}(\yv)>0$ and $S_{\yv}>0$, there is $Y_0(\yv)$ such that for all $Y\ge Y_0$: \hyp{N}$_{\yv\cup\{Y\}}$,
+$\mu_Y>0$, $Q''_{\yv\cup\{Y\}}(Y)>0$ and $\Delta_{\yv}(Y)>0$. If $p_{2J}>0$ and $S_{\yv}<0$, then $\mu_Y<0$ and
+$\Delta_{\yv}(Y)<0$ for all large $Y$.
+\end{corollary}
+
+\begin{proof}
+Immediate from Theorem~\ref{thm:Ftoy}.
+\end{proof}
+
+\begin{proposition}[One far node changes $S$ by the factor $1-8/z$]\label{prop:screening-toy}
+Assume \hyp{N}$_{\yv}$ and $p_{2J}(\yv)\neq0$. As $z\to\infty$, $S_{\yv\cup\{z\}}=S_{\yv}(1-8/z)+O(z^{-2})$.
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+\begin{proposition}[Two far nodes]\label{prop:SMinf}
+Assume \hyp{N}$_{\yv}$ and $p_{2J}(\yv)\neq0$. Let $z=L\alpha$ and $s=L\beta$, with $(\alpha,\beta)$ in a compact
+subset of $(0,\infty)^2$ \textup{(}the diagonal allowed\textup{)}, and $L\to\infty$. Then, uniformly and together with
+all derivatives,
+\[
+  p_1(\yv\cup\{z,s\})=p_1(\yv)+2S_{\yv}\Bigl[\frac1{z^2}+\frac1{s^2}+8J\Bigl(\frac1{z^3}+\frac1{s^3}\Bigr)-\frac{8}{zs(z+s)}\Bigr]+O(L^{-4}),
+\]
+and $\partial_z\partial_s\,p_1(\yv\cup\{z,s\})=-32S_{\yv}(z^2+3zs+s^2)/(z^2s^2(z+s)^3)+O(L^{-6})$.
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+The case of one node in the same computation reproduces Theorem~\ref{thm:Ftoy}(2). In the far field, therefore,
+$\mu_Y>0$, $\Delta_{\yv}>0$, the sign of the two-node interaction, and the decrease
+$S_{\yv\cup\{z\}}<S_{\yv}$ are all governed by the single sign of $S_{\yv}$ (given $p_{2J}>0$).
+The screening factor also has an exact multiplicative update.
+
+\begin{proposition}[Tur\'an-type update of the screening factor]\label{prop:screening-update}
+For $r\ge0$ let $V_r:=u^{r+2J}-\bigl(\text{Hermite interpolant of }u^{r+2J}\text{ in }
+\operatorname{span}(u^r,\dots,u^{r+2J-1})\text{ at }\yv\bigr)$ and $\Wr_{ab}:=\Wr(Q_{V_a},Q_{V_b})$. Assume
+\hyp{N} for $\yv$ and for $\yv\cup\{z\}$, $z\notin\yv$, and $D_0(\yv),D_2(\yv),D_3(\yv)\neq0$, where $D_r(\yv):=D_r(B)$
+for the doubled chain $B$ of $\yv$ \textup{(}Proposition~\ref{thm:halfstep}, $\varphi=e^{-y}$\textup{)}. Then
+$D_r(\yv\cup\{z\})=e^{-2z}D_r(\yv)\,\Wr_{r,r+1}(z)$ for $r=0,1,2$, and
+\[
+  \Tu(z):=\frac{S_{\yv\cup\{z\}}}{S_{\yv}}=\frac{\Wr_{01}(z)\,\Wr_{23}(z)}{\Wr_{12}(z)^2}.
+\]
+Hence $S_{\yPP_K}=S_{\yPP_1}\prod_{k<K}\Tu_k$ with $\Tu_k:=\bigl[\Wr_{01}\Wr_{23}/\Wr_{12}^2\bigr]_{\yPP_k}(y_{k+1})$.
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+\paragraph{Tail bounds in the model}
+The kernel-free tail statements of Section~\ref{sec:chain} apply to the model verbatim. By
+Proposition~\ref{prop:tail-general}, if \hyp{N} and the set-comparison law
+$(\mathrm{SM})_k$: $\Delta_{\yPP_{k+1}}(y_n)\le\Delta_{\yPP_k}(y_n)$ ($n>k+1$) hold for every $k\ge J_1$, then every
+partial sum of the scalar tail satisfies $\sum_{K=J_1}^{J}\Delta p_1^{(K)}\le\sum_{j=J_1+1}^{J+1}\Delta_{\yPP_{J_1}}(y_j)$, a
+sum of values of one explicit rational function. By Theorem~\ref{thm:Tprime}, the same kind of bound follows from the
+one-base laws $(\mathrm{CP})_i$ and $(\mathrm{UM})_i$ at every chain level $i\ge2J_1$. These laws, and the far-node
+expansion of Theorem~\ref{thm:Ftoy} with explicit remainders, are certified on finite ranges.
+
+\begin{proposition}[Certified far-node remainders]\label{prop:Fremainder}
+Let $\yv=\yPP_J$ with $J\in\{6,10,20\}$. For every $Y\ge y_{J+1}$,
+\[
+  \Delta_{\yv}(Y)=\frac{2S_{\yv}}{Y^2}\Bigl(1+\frac{8J}Y+\lambda_Y\frac{C_J}{Y^2}\Bigr)\quad\text{for some }\lambda_Y\in[0,1],
+\]
+with $C_6=1300$, $C_{10}=4000$ and $C_{20}=11000$; here $S_{\yv}=0.0371185\ldots$, $0.0140380\ldots$ and $0.0056532\ldots$.
+\end{proposition}
+
+\begin{proposition}[Certified set-comparison law]\label{prop:SMset-cert}
+For every $k=1,\dots,60$ and every real $x>y_{k+1}$: \hyp{N} holds for $\yPP_k\cup\{x\}$ and $\yPP_{k+1}\cup\{x\}$, and
+$\Delta_{\yPP_{k+1}}(x)<\Delta_{\yPP_k}(x)$. Consequently $\Delta p_1^{(K)}\le\Delta_{\yPP_{J_1}}(y_{K+1})$ for
+$1\le J_1\le K\le61$.
+\end{proposition}
+
+\begin{proposition}[Certified one-base laws at sampled levels]\label{prop:UM-cert}
+Let $J\in\{2,4,8,12,20,30,40,60\}$ and let $B$ be either chain level $\yPP_J$ (all nodes double) or $\yPP_J+y_{J+1}$. With
+$F_r=F_r^B$ as in Proposition~\ref{thm:halfstep} \textup{(}$\varphi=e^{-y}$\textup{)}, $q_1=F_2/F_1$ and $a=a_B=F_0F_2/F_1^2$: on
+$[y_{J+1},\infty)$ one has $F_1\ne0$ \textup{(}at the level $\yPP_J+y_{J+1}$, with the confluent value at $y_{J+1}$\textup{)},
+$a'(y)>4/y^2$ and $q_1'<0$, and $0<a(y_{J+1})\le1-4/y_{J+1}$. In particular
+$(\mathrm{UM})$ holds at both levels, and $S_{\yPP_{J+1}}/S_{\yPP_J}\le(1-4/y_{J+1})^2$.
+\end{proposition}
+
+\begin{proof}[Proofs of Propositions~\ref{prop:Fremainder}--\ref{prop:UM-cert} \textup{(computer-assisted)}]
+All three are Arb computations with the nodes $2\pi n_j$ as balls (real $\pi$), rigorous ball solves (which certify the
+relevant instances of \hyp{N}), and Descartes certificates at $c=y_{J+1}$ (resp.\ $c=y_{k+1}$) in the sense of
+Lemma~\ref{lem:posc}(a); the working precision is raised until every sign is decided. By \eqref{eq:toy-insertion},
+$\Delta_{\yv}=N/\mathcal W$ off the nodes, with $N:=\Wr(R_0,R_*)$ and $\mathcal W=\Wr(R_1,R_2)$.
+\emph{Proposition~\ref{prop:Fremainder}} (\nolinkurl{toy/ft/verify_farbound.py}, \nolinkurl{toy/ft/params/farbound.json}):
+put $\mathcal E:=Y^3N/(2S_{\yv})-(Y+8J)\mathcal W$, so that $Y^2\Delta_{\yv}/(2S_{\yv})-1-8J/Y=\mathcal E/(Y\mathcal W)$. The
+script shows that $-\mathcal W$, $-Y\mathcal E$ and $Y\mathcal E-C_J\mathcal W$ have positive Taylor coefficients at $c$; the two top coefficients of
+$Y\mathcal E$ vanish identically by Theorem~\ref{thm:Ftoy}(2), and the script checks that their balls contain $0$ before
+dropping them.
+\emph{Proposition~\ref{prop:SMset-cert}} (\nolinkurl{toy/sm/verify_smset.py}, \nolinkurl{toy/sm/params/smset.json}): with the
+superscript $+$ for the objects of $\yPP_{k+1}$,
+$\Delta_{\yPP_{k+1}}-\Delta_{\yPP_k}=(N^+\mathcal W-N\mathcal W^+)/(\mathcal W\mathcal W^+)$, and all Taylor coefficients at $c$
+of $\mathcal W$, $\mathcal W^+$ and $N^+\mathcal W-N\mathcal W^+$ are certified negative; $\mathcal W(x)\ne0$ is \hyp{N} for the
+enlarged node set (Proposition~\ref{prop:insertion}(b)). The consequence is the argument of Proposition~\ref{prop:tail-general}, which uses $(\mathrm{SM})_k$
+only for $J_1\le k<K$.
+\emph{Proposition~\ref{prop:UM-cert}} (\nolinkurl{toy/um/verify_um.py}, \nolinkurl{toy/um/params/um.json}, $6000$ bits): the
+polynomials $y^2(F_0\Wr(F_1,F_2)-F_2\Wr(F_0,F_1))-4F_1^3=F_1^3(y^2a'-4)$ and $F_1^3$ are one-signed with the same sign, and
+$\Wr(F_1,F_2)=F_1^2q_1'$ has negative Taylor coefficients; at the level $\yPP_J+y_{J+1}$ every $F_r$ has the exact factor
+$y-y_{J+1}$, whose contribution to the lowest Taylor coefficients is checked to vanish and removed. Finally $a(y_{J+1})>0$
+is certified at both levels, and $a(y_{J+1})\le1-4/y_{J+1}$ follows from $a'>4/y^2$ and $a(y)\to1$ as $y\to\infty$ (by
+\eqref{eq:tau}, $F_r$ has leading term $(-1)^{r+K}y^{2r+2K}e^{-y}$, $K=|B|$). The bound for $S_{\yPP_{J+1}}/S_{\yPP_J}$ is Proposition~\ref{thm:halfstep}\textup{(H6)}.
+\end{proof}
+
+Further computed tail data of the model (uncertified) are collected in Numerical observation~\ref{obs:toytail-data}.
+
+%----------------------------------------------------------------------
+\subsection{An obstruction}\label{ssec:toy-obstruction}
+%----------------------------------------------------------------------
+
+The laws needed for the tail, the Tur\'an inequality $\Tu<1$ and the set-comparison law $(\mathrm{SM})$, are
+statements about five functions at one or two points. We first write them in that form.
+
+For a node set $\yv$ let $D_r(\yv)$ be as in Proposition~\ref{prop:screening-update} and, when $D_r(\yv)\neq0$, let
+$V_r$ be the element of $\operatorname{span}(u^r,\dots,u^{r+2J})$, monic in $u^{r+2J}$, with zero data at $\yv$; put
+$v_r:=Q_{V_r}$. Thus $V_0=P_{\yv}/p_{2J}$ and $V_1=E_1$. For points $z\neq x$ off $\yv$ write
+$[ij]_z:=\Wr(v_i,v_j)(z)$ and $[i_1i_2i_3i_4](z,x):=\det\bigl[v_{i_b}^{(e)}(w_a)\bigr]$, with rows
+$(w_a,e)=(z,0),(z,1),(x,0),(x,1)$, and define
+\[
+  \Tu(z):=\frac{[01]_z[23]_z}{[12]_z^2},\qquad
+  I(z,x):=-\frac{[0234](z,x)}{[1234](z,x)}+\frac{[02]_z}{[12]_z}+\frac{[02]_x}{[12]_x}.
+\]
+Both are unchanged if all $v_r$ are multiplied by one non-vanishing function.
+
+\begin{lemma}[Insertion through the companion solutions]\label{lem:selfsim}
+Let $D_r(\yv)\neq0$ for $0\le r\le4$, let $z\neq x$ be points of $(0,\infty)\setminus\yv$, and assume \hyp{N} for
+$\yv\cup\{z\}$, $\yv\cup\{x\}$ and $\yv\cup\{z,x\}$. Then $\Delta_{\yv}(x)=-S_{\yv}[02]_x/[12]_x$ and
+\[
+  \Delta^2_{\yv}(z,x):=\Delta_{\yv\cup\{z\}}(x)-\Delta_{\yv}(x)=S_{\yv}\,I(z,x).
+\]
+Moreover $\Tu(z)=S_{\yv\cup\{z\}}/S_{\yv}$ \textup{(}Proposition~\ref{prop:screening-update}\textup{)}.
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+For the model $v_r$ has degree $4J+2r$ and, by \eqref{eq:tau}, $v_r=(-1)^ry^{4J+2r}\bigl(1+\kappa_r/y+O(y^{-2})\bigr)$ with
+$\kappa_r=-\binom{4J+2r}{2}$, a quadratic function of $r$ with second difference $-4$. The next lemma isolates what
+this quadratic term does.
+
+\begin{lemma}[First-order law for perturbed monomial systems]\label{lem:firstorder}
+For constants $\kappa_0,\dots,\kappa_4$, an integer $d\ge2$ and a parameter $t$, let
+$v_r(y):=(-1)^ry^{d+2r}(1+t\kappa_r/y)$, $r=0,\dots,4$, and define $\Tu$ and $I$ from these $v_r$ as above. At $t=0$,
+$\Tu\equiv1$ and $I\equiv0$; and
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\partial_t\Tu(z)|_{t=0}=(3\kappa_0-5\kappa_1+\kappa_2+\kappa_3)/(2z)$;
+\item if $\kappa_r=\alpha+\beta r+Cr^2$, then $\partial_tI(z,x)|_{t=0}=8C/(xz(x+z))$.
+\end{enumerate}
+In particular both derivatives vanish when $\kappa_r$ is affine in $r$, and for $\kappa_r=Cr^2$ they equal $4C/z$ and
+$8C/(xz(x+z))$; neither depends on $d$.
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+By Lemma~\ref{lem:firstorder}, $x^2I/(2(\Tu-1))\to x/(x+z)$ at first order,
+independently of $C$: the far-field shape of the set-comparison law is universal. For the model ($C=-2$) the first-order
+terms are $-8/z$ and $-16/(xz(x+z))$, the leading terms of Propositions~\ref{prop:screening-toy} and~\ref{prop:SMinf}.
+
+\begin{proposition}[Sign regularity cannot prove the tail of the model]\label{prop:obstruction}
+Fix $d\ge2$ and $c>0$, and for $\kappa\in\RR^5$ let $v^\kappa_r(y):=(-1)^ry^{d+2r}(1+\kappa_r/y)$ on $[c,\infty)$.
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item There is $\delta=\delta(c,d)>0$ such that for $|\kappa|<\delta$ every Wronskian
+$W_I:=\Wr(v^\kappa_i:i\in I)$, $I\subseteq\{0,\dots,4\}$, has no zero on $[c,\infty)$ and has there the sign of the
+monomial system $\kappa=0$, and $\pm W_I(c+t)$ has only positive Taylor coefficients in $t$.
+\item Along $\kappa=s\cdot(r^2)_{r=0}^4$, for fixed $z,x>c$, $z\neq x$: $\Tu(z)-1=4s/z+O(s^2)$ and
+$I(z,x)=8s/(xz(x+z))+O(s^2)$.
+\end{enumerate}
+Consequently, any family of sign conditions on the five-function system $(v_0,\dots,v_4)$ on $[c,\infty)$ that holds at
+the monomial system and is stable under small perturbations of $\kappa$ (for instance: extended Chebyshev properties,
+non-vanishing of all Wronskians, and positivity of their Taylor coefficients at $c$) is satisfied both by systems with
+$\Tu>1$, $I>0$ and by systems with $\Tu<1$, $I<0$. Such conditions therefore cannot imply the Tur\'an inequality
+$\Tu<1$ or, via Lemma~\ref{lem:selfsim}, the set-comparison law $I\le0$.
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+The scope of this obstruction is narrow, and deliberately so: it concerns sign conditions on the fixed-window
+five-function system that are open in the perturbation parameter. Arguments that use more structure (the exact kernel,
+other windows, the node set as a whole, or a strict second-order input such as concavity of $r\mapsto\kappa_r$, which
+degenerates to equality at the monomial system) are not excluded. A computed example with $d=4$, $c=10$ and
+$s=\pm\frac12$ is in Numerical observation~\ref{obs:misc}(c).
+

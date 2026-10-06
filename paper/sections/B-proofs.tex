@@ -1,0 +1,448 @@
+%======================================================================
+\section{Long proofs}\label{app:proofs}
+%======================================================================
+
+This appendix contains the longer proofs, in the order of the sections; each statement in the main text says where
+its proof is. The heart of Theorem~\ref{thm:Gfin} is in Appendix~\ref{app:cusp}: Lemma~\ref{lem:cusp-class2} computes the
+expansions at the three cusps, and Lemma~\ref{lem:class2-landau} is the Landau step.
+
+\subsection{Proofs for Sections~\ref{sec:setting} and~\ref{sec:uniqueness}}
+
+\subsubsection{Duality}\label{app:proofs-duality}
+We complete the proof of Theorem~\ref{thm:duality}. Throughout, $g_\sigma(t):=\sigma^{-1}e^{-\pi t^2/\sigma^2}$, so that
+$\widehat{g_\sigma}(\xi)=e^{-\pi\sigma^2\xi^2}$.
+
+\emph{Approximation.} Let $F\in\Tc_\delta$, $0<\sigma\le1$, $F_\sigma:=F*g_\sigma$, and for $N\ge1$ let
+$R_{\sigma,N}(t):=N^{-1}\sum_{|k|\le N^2}F(k/N)g_\sigma(t-k/N)$, an element of $\Gc$. Since $1+|t|\le(1+|u|)(1+|t-u|)$, we have
+$|F_\sigma(t)|\le C(1+|t|)^{-2}$ uniformly in $\sigma\le1$, and $|R_{\sigma,N}(t)|\le C_\sigma(1+|t|)^{-2}$ uniformly in $N$. As $N\to\infty$,
+$R_{\sigma,N}\to F_\sigma$ pointwise (Riemann sums), and $F_\sigma\to F$ pointwise as $\sigma\to0$. On the Fourier side
+$\widehat{F_\sigma}=\hF\widehat{g_\sigma}$ and $\widehat{R_{\sigma,N}}=\widehat{g_\sigma}S_N$ with $S_N(\xi):=N^{-1}\sum_{|k|\le N^2}F(k/N)e^{-2\pi i\xi k/N}$, a real
+function with $|S_N|\le N^{-1}\sum_k|F(k/N)|\le C$. By Poisson summation $N^{-1}\sum_{k\in\ZZ}F(k/N)e^{-2\pi i\xi k/N}=\sum_{j\in\ZZ}\hF(\xi+jN)$,
+so Lemma~\ref{lem:testclass}(a) and $|F(t)|\le\|F\|_\delta(1+|t|)^{-2}$ give
+\begin{equation}\label{eq:alias}
+|S_N(\xi)-\hF(\xi)|\le\eps_N:=C_F\big(e^{-\pi N/2}+N^{-1}\big)\qquad(|\xi|\le N/2).
+\end{equation}
+In particular $S_N\to\hF$ pointwise. By Lemma~\ref{lem:testclass}(b), $\Arch(G)=2\int\widehat G\cosh(\pi\xi)\dd\xi+\int G\,\Oinf$ for
+$G\in\Tc$; with the dominating functions $C(1+|t|)^{-2}|\Oinf(t)|$, $C\widehat{g_\sigma}(\xi)\cosh(\pi\xi)$ and $|\hF(\xi)|\cosh(\pi\xi)$, dominated
+convergence gives $\lim_{\sigma\to0}\lim_{N\to\infty}\Arch(R_{\sigma,N})=\Arch(F)$. The same dominating functions show that
+$\lim_\sigma\lim_N\Spec_{\mu,\nu}(R_{\sigma,N})=\Spec_{\mu,\nu}(F)$ whenever $\int(1+t^2)^{-1}\dd|\mu|<\infty$ and
+$\int e^{-\pi(1+2\delta)|\xi|}\dd|\nu|<\infty$.
+
+\emph{Proof of \textup{(a)}, \textup{(iii)}$\Rightarrow$\textup{(ii)}.} Let $F\in\Cone\cap\Tc_\delta$, and fix $0<\sigma'<\sigma\le1$. Then
+$R_{\sigma,N}\ge0$. On $[\xin2,N/2]$, \eqref{eq:alias} and $\hF\ge0$ give $\widehat{R_{\sigma,N}}\ge-\eps_N\widehat{g_\sigma}\ge-\eps_N\widehat{g_{\sigma'}}$; for
+$|\xi|>N/2$, $|\widehat{R_{\sigma,N}}|\le C\widehat{g_\sigma}\le Ce^{-\pi(\sigma^2-\sigma'^2)N^2/4}\widehat{g_{\sigma'}}$. Hence, with
+$\eta_N:=\max(\eps_N,Ce^{-\pi(\sigma^2-\sigma'^2)N^2/4})\to0$, the function $R_{\sigma,N}+\eta_Ng_{\sigma'}$ lies in $\Cone\cap\Gc$. By (iii)
+$\Arch(R_{\sigma,N})+\eta_N\Arch(g_{\sigma'})\ge0$; letting $N\to\infty$ and then $\sigma\to0$ gives $\Arch(F)\ge0$.
+
+\emph{Proof of \textup{(b)}.} The proof of Lemma~\ref{lem:apriori} used the identity only on $\Gc$, and only for the non-negative
+functions $A_T,B_X$; so the a priori bounds hold for $(\mu,\nu)$. For $F\in\Tc$, the approximation above gives
+$\Spec_{\mu,\nu}(F)=\lim\lim\Spec_{\mu,\nu}(R_{\sigma,N})=\lim\lim\Arch(R_{\sigma,N})=\Arch(F)$, and the integrals converge absolutely. Convexity of
+$\Kad$ is clear. By Lemma~\ref{lem:apriori} the masses of all $(\mu,\nu)\in\Kad$ on compact sets are uniformly bounded, so $\Kad$ is relatively
+compact for the vague topologies. It is closed: if $(\mu_k,\nu_k)\to(\mu,\nu)$ vaguely with $(\mu_k,\nu_k)\in\Kad$, then for $F\in\Gc$ the
+contributions of $|t|>R$ and of $\xi>R$ to $\Spec_{\mu_k,\nu_k}(F)$ tend to $0$ as $R\to\infty$, uniformly in $k$ (Gaussian decay of $F$ and
+$\hF$ against the uniform bounds), so the identity passes to the limit on $\Gc$, and the limit pair is admissible by the first part of (b).
+
+\emph{Proof of \textup{(a)}, \textup{(ii)}$\Rightarrow$\textup{(i)}.} Every element of $\Gc$ is a real combination of the functions
+$e^{-\pi(t-a)^2/s^2}\cos(2\pi bt+\varphi)+e^{-\pi(t+a)^2/s^2}\cos(2\pi bt-\varphi)$. Let $\{F_j\}_{j\ge1}$ enumerate the rational combinations of
+these functions with rational parameters, together with all $A_T,B_X$ ($T,X\in\ZZ$) of the proof of Lemma~\ref{lem:apriori}. Every
+$F\in\Gc$ is a limit of a sequence $F_{j_k}$ with $\|F_{j_k}-F\|_\delta\to0$ and with $|F_{j_k}(t)|\le Ce^{-ct^2}$, $|\widehat{F_{j_k}}(\xi)|\le Ce^{-c\xi^2}$
+for some $C,c>0$ independent of $k$. Put
+\[
+P_W:=\sum_{T\in\ZZ}(1+|T|)^{-4}A_T,\qquad Q_W:=\sum_{X\in\ZZ}e^{-2\pi|X|}B_X ;
+\]
+since $\|A_T\|_{\delta'}\ll(1+|T|)^2$ and $\|B_X\|_{\delta'}\ll e^{\pi(1+2\delta')|X|}$, both series converge in the norm $\|\cdot\|_{\delta'}$ for
+every $\delta'<\frac12$. Their terms are entire, so the sums are analytic on the open strip $|\Im z|<1$, which contains the closed strip
+$|\Im z|\le\frac12+\delta$ for every $\delta<\frac12$; hence $P_W,Q_W\in\Tc_\delta$ for every $\delta<\frac12$, and $P_W,Q_W\in\Cone$ with $P_W(t)\ge c(1+|t|)^{-4}$ and $\widehat{Q_W}(\xi)\ge ce^{-2\pi|\xi|}$. Let $V_K:=\operatorname{span}\{F_1,\dots,F_K,P_W,Q_W\}$,
+$C_K:=\Cone\cap V_K$, and $\mathcal N(F):=\int F(t)e^{-t^2}\dd t+\int_{\xin2}^\infty\hF(\xi)e^{-\xi^2}\dd\xi$. If $F\in C_K\setminus\{0\}$ then $\mathcal N(F)>0$,
+so by (ii) the functional $\Arch_\eps:=\Arch+\eps\mathcal N$ ($0<\eps\le1$) is strictly positive on $C_K\setminus\{0\}$. In $V_K^*$, let $\Gamma_K$ be
+the convex cone generated by the functionals $F\mapsto F(t)$ ($t\in\RR$) and $F\mapsto\hF(\xi)/\pi$ ($\xi\ge\xin2$). Its dual cone in $V_K$ is
+$C_K$, so the dual cone of $C_K$ is $\overline{\Gamma_K}$ (bipolar theorem). By compactness of $\{F\in C_K:\|F\|=1\}$, every functional close
+to $\Arch_\eps|_{V_K}$ is positive on $C_K\setminus\{0\}$; hence $\Arch_\eps|_{V_K}$ is an interior point of $\overline{\Gamma_K}$, and so of
+$\Gamma_K$ \cite[Theorem~6.3]{Roc70}. By Carath\'eodory's theorem \cite[Theorem~17.1]{Roc70} there are finitely supported measures
+$\mu_K\ge0$ on $\RR$, which we may take even since $V_K$ consists of even functions, and $\nu_K\ge0$ on $[\xin2,\infty)$ with
+$\Arch_\eps=\Spec_{\mu_K,\nu_K}$ on $V_K$. Testing on $P_W$ and $Q_W$ gives $\int(1+|t|)^{-4}\dd\mu_K\le B$ and $\int e^{-2\pi\xi}\dd\nu_K\le B$, with $B$
+independent of $K$ and $\eps\le1$. By Helly's selection theorem a subsequence converges vaguely to some $(\mu^\eps,\nu^\eps)$. For fixed $j$ the
+identity $\Spec_{\mu_K,\nu_K}(F_j)=\Arch_\eps(F_j)$ holds for $K\ge j$, and the Gaussian decay of $F_j$ and $\widehat{F_j}$ against the bounds just
+proved controls the tails uniformly in $K$; so $\Spec_{\mu^\eps,\nu^\eps}(F_j)=\Arch_\eps(F_j)$ for every $j$, and the two bounds persist. Letting
+$\eps\to0$ along a sequence in the same way gives $(\mu,\nu)$ with $\Spec_{\mu,\nu}(F_j)=\Arch(F_j)$ for every $j$. By the density property of
+$\{F_j\}$ and dominated convergence the identity holds on $\Gc$, and $(\mu,\nu)\in\Kad$ by (b).
+
+\subsubsection{A priori bounds and the logic}\label{app:proofs-apriori}
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:apriori}}]
+Let $g(t)=e^{-\pi t^2}$, so $\widehat g=g$, and put
+\[
+A_T:=g(\cdot-T)+2g+g(\cdot+T),\qquad B_X:=2g(t)\big(1+\cos2\pi Xt\big).
+\]
+Both lie in $\Gc$ and are non-negative, with $\widehat{A_T}(\xi)=2g(\xi)(1+\cos2\pi T\xi)\ge0$ and
+$\widehat{B_X}=2g+g(\cdot-X)+g(\cdot+X)\ge0$. Moreover $A_T\ge e^{-\pi}$ on $[T-1,T+1]$ and $\widehat{B_X}\ge e^{-\pi}$
+on $[X-1,X+1]$. Since all integrands are non-negative, Lemma~\ref{lem:weak-duality} applies (for the second bound with
+$F=B_X$, $J=[X-1,X+1]\cap[\xin2,\infty)$) and gives $\mu([T-1,T+1])\le e^{\pi}\Arch(A_T)$ and
+$\nu([X-1,X+1])\le\pi e^{\pi}\Arch(B_X)$. Now $|A_T(\pm\frac i2)|\le4e^{\pi/4}$ and
+$\int A_T\Oinf\le2\int g(t-T)\,C\log(2+|t|)\dd t+C\le C'\log(3+|T|)$; also $B_X(\pm\frac i2)=2e^{\pi/4}(1+\cosh\pi X)$ and
+$|\int B_X\Oinf|\le C$. This proves the two local bounds. Summing them over unit intervals gives the integrability
+statements, and then Lemma~\ref{lem:testclass}(a) and $|F(t)|\le\|F\|_\delta(1+|t|)^{-2}$ give the bound for
+$\Spec_{\mu,\nu}$. Only the identity on the two families $A_T,B_X\subset\Gc$ was used; for $\Arch+\lambda\int(\cdot)$
+the extra terms $\lambda\int A_T=4\lambda$ and $\lambda\int B_X\le4|\lambda|$ are bounded. Finally
+$\nuz([X-1,X+1])=\sum_{e^{2\pi(X-1)}\le n\le e^{2\pi(X+1)}}\Lambda(n)n^{-1/2}\asymp e^{\pi X}$ by the prime number theorem.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\textup{\ref{thm:logic}}]
+(a) Under RH every $t_\rho$ is real, and Lemma~\ref{lem:explicit-formula} says $\Arch=\Spec_{\muz,\nuz}$ on $\Tc$, with
+absolutely convergent integrals; $\muz$ is even and positive and $\nuz$ is positive on $[\xin2,\infty)$.
+
+(b) Let $(\mu,\nuz)\in\Kad$. By Lemma~\ref{lem:explicit-formula}, $\int F\dd\mu=\sum_\rho F(t_\rho)$ for all $F\in\Tc$.
+Suppose that $\rho_0=\beta_0+i\gamma_0$ is a zero with $\beta_0\ne\frac12$, and put $\eta_\rho:=\beta-\frac12$ for
+$\rho=\beta+i\gamma$, $y:=\gamma_0$, $g_u(t):=e^{-\pi ut^2}$ and $F_u:=g_u(\cdot-y)+g_u(\cdot+y)\in\Gc$ $(u\ge1)$. Since
+$\{t_\rho\}$ is symmetric under $t\mapsto-t$, $\sum_\rho F_u(t_\rho)=2S(u)$ with $S(u):=\sum_\rho g_u(t_\rho-y)$, and
+\[
+g_u(t_\rho-y)=e^{\pi u\epsilon_\rho}e^{iu\omega_\rho},\qquad \epsilon_\rho:=\eta_\rho^2-(\gamma-y)^2,\quad \omega_\rho:=2\pi(\gamma-y)\eta_\rho .
+\]
+If $\epsilon_\rho>0$ then $|\gamma-y|<|\eta_\rho|<\frac12$, so only finitely many $\rho$ have $\epsilon_\rho>0$; the others contribute
+at most $\sum_\rho e^{\pi \epsilon_\rho}\le e^{\pi/4}\sum_\rho e^{-\pi(\gamma-y)^2}<\infty$, uniformly in $u\ge1$. Let
+$\epsilon_{\max}:=\max_\rho \epsilon_\rho\ge \epsilon_{\rho_0}=\eta_{\rho_0}^2>0$. The zeros with $\epsilon_\rho=\epsilon_{\max}$ contribute
+$e^{\pi u\epsilon_{\max}}P(u)$ with $P(u)=\sum_\omega m_\omega e^{i\omega u}$, a finite sum over distinct real $\omega$ with
+integer coefficients $m_\omega\ge0$, not all zero; the remaining zeros with $\epsilon_\rho>0$ contribute
+$O(e^{\pi u\epsilon'})$ with $\epsilon'<\epsilon_{\max}$. The Bohr mean of $|P|^2$ is $\sum_\omega m_\omega^2\ge1$, so $|P(u)|\ge\frac12$ for
+arbitrarily large $u$, and $|S(u)|$ is unbounded. But $0\le\int F_u\dd\mu\le\int F_1\dd\mu<\infty$ for $u\ge1$, because
+$g_u\le g_1$ on $\RR$. This contradiction proves RH. Then $\int F\dd\mu=\int F\dd\muz$ for all $F\in\Gc$. Two even
+positive measures $\mu_1,\mu_2$ with $\int(1+t^2)^{-1}\dd\mu_i<\infty$ that agree on $\Gc$ are equal: for an even
+$\varphi\in C_c(\RR)$ and $g_\sigma(t)=\sigma^{-1}e^{-\pi t^2/\sigma^2}$, Fubini gives
+$\int\varphi*g_\sigma\dd\mu_i=\frac12\int\varphi(a)\int(g_\sigma(t-a)+g_\sigma(t+a))\dd\mu_i(t)\dd a$, which is the same for
+$i=1,2$; let $\sigma\to0$ by dominated convergence. Hence $\mu=\muz$.
+
+(c) Assume \condU. If \condE\ holds, some $(\mu,\nu)\in\Kad$ exists, and $(\mu,\nu)=\pz$ by \condU; then (b) gives RH. If
+RH holds, then $\pz\in\Kad$ by (a), and $\Kad=\{\pz\}$ by \condU. Conversely, assume the two implications. Under RH,
+$\Kad=\{\pz\}$. Under $\neg$RH, the first implication gives $\neg$\condE, so $\Kad=\emptyset$. Either way \condU\ holds. The
+last assertion follows from (a), the first implication, and Theorem~\ref{thm:duality}(a).
+
+(d) If $\kstar>0$, Proposition~\ref{prop:floor} gives an admissible pair with $\mu\ge\kstar\dd t$; such a $\mu$ is not
+purely atomic, so the pair is not $\pz$, and \condU\ fails. The consequences follow from (c) and
+Theorem~\ref{thm:duality}(a).
+\end{proof}
+
+\subsubsection{Homogeneous directions and two-sided rigidity}\label{app:proofs-rigidity}
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:homdir}}]
+(a) follows from Lemma~\ref{lem:apriori}. (b) An even $F$ with $\hF\in C_c^\infty(\RR)$ is entire and decays rapidly in
+every horizontal strip, so $F\in\Tc$; for it $\int F\dd\Delta\mu=\langle\widehat{\Delta\mu},\hF\rangle$ and
+$\frac1\pi\int\hF\dd\Delta\nu=\frac1{2\pi}\langle(\Delta\nu)^{\mathrm s},\hF\rangle$. Both distributions are even, so
+$\Spec_\Delta=0$ on these $F$ is the stated identity tested on even, hence on all, test functions; and
+$\widehat{\Delta\mu}$ is tempered. Conversely, assume the identity and let $F\in\Tc_\delta$. Fix an even $\chi\in C_c^\infty(\RR)$ with
+$0\le\chi\le1$ and $\chi=1$ near $0$, and for $0<\eps\le1\le k$ let $F_{\eps,k}:=(Fe^{-\pi\eps^2t^2})*k\check\chi(k\,\cdot)$, whose transform
+$(\hF*\gamma_\eps)\chi(\cdot/k)$, with $\gamma_\eps(\xi)=\eps^{-1}e^{-\pi\xi^2/\eps^2}$, lies in $C_c^\infty$. By Lemma~\ref{lem:testclass}(a),
+$|F_{\eps,k}(t)|\le C(1+|t|)^{-2}$ and $|\widehat{F_{\eps,k}}(\xi)|\le Ce^{-\pi(1+2\delta)|\xi|}$ uniformly, and $F_{\eps,k}\to F$,
+$\widehat{F_{\eps,k}}\to\hF$ pointwise as $k\to\infty$ and then $\eps\to0$. Dominated convergence and the growth bounds give
+$\Spec_\Delta(F)=\lim_\eps\lim_k\Spec_\Delta(F_{\eps,k})=0$. (c) $(\Delta\nu)^{\mathrm s}$ vanishes on
+$(-\xin2,\xin2)$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:rigidity}}]
+We use the \emph{low-pass balance}: if $\varphi\ge0$ is even with $\widehat\varphi\in C_c^\infty((-\xin2,\xin2))$, then
+$\int\varphi\dd(\Delta\mu)_+=\int\varphi\dd(\Delta\mu)_-$, because $\Spec_\Delta(\varphi)=\int\varphi\dd\Delta\mu=0$. Fix an even
+$\chi_0\in C_c^\infty((-\frac{\xin2}2,\frac{\xin2}2))$ with $\chi_0\ge0$, $\chi_0\not\equiv0$, and let $\varphi_0:=(\check\chi_0)^2$.
+Then $\varphi_0\ge0$ is even, $\widehat{\varphi_0}=\chi_0*\chi_0$ is supported in $(-\xin2,\xin2)$, and $\varphi_0\ge\eta>0$ on
+some $[-r,r]$. The function $\Phi:=\sum_{k\in\ZZ}\varphi_0(\cdot-2rk)$ is even, bounded and $\ge\eta$ on $\RR$, and each
+symmetric partial sum is admissible in the low-pass balance. By monotone convergence,
+\begin{equation}\label{eq:lowpass}
+\eta\,(\Delta\mu)_+(\RR)\le\int\Phi\dd(\Delta\mu)_+=\int\Phi\dd(\Delta\mu)_-\le\|\Phi\|_\infty(\Delta\mu)_-(\RR).
+\end{equation}
+
+(a) As $\Delta\mu\ge0$ off $Z$, $(\Delta\mu)_-$ is carried by $Z$ and has finite mass; by \eqref{eq:lowpass}, $\Delta\mu$ is a finite
+measure. So $\widehat{\Delta\mu}$ is a bounded continuous function and, by Lemma~\ref{lem:homdir}(b), $(\Delta\nu)^{\mathrm s}$ is
+absolutely continuous; on $[\xin2,\infty)$ it equals $\Delta\nu$. The negative part of $\Delta\nu$ is then absolutely continuous and
+carried by a null set, hence zero. So $\widehat{\Delta\mu}\le0$ everywhere. The finite measure $m:=-\Delta\mu$ has $\widehat m\ge0$,
+and Wiener's formula $m(\{x\})=\lim_{T\to\infty}\frac1{2T}\int_{-T}^{T}\widehat m(\xi)e^{2\pi i\xi x}\dd\xi$ (dominated convergence
+applied to $\frac1{2T}\int_{-T}^Te^{2\pi i\xi(x-t)}\dd\xi$; cf.\ \cite[I.7.13]{Kat04} for the circle) gives $|m(\{x\})|\le m(\{0\})$. Since $0\notin Z$, $m(\{0\})=-(\Delta\mu)_+(\{0\})\le0$; hence
+$m(\{0\})=0$ and $m$ has no atoms. As $(\Delta\mu)_-$ is purely atomic and singular to $(\Delta\mu)_+$, every atom of $(\Delta\mu)_-$
+is an atom of $m$; so $(\Delta\mu)_-=0$. Now \eqref{eq:lowpass} gives $\Delta\mu=0$, and then $(\Delta\nu)^{\mathrm s}=0$, i.e.\ $\Delta\nu=0$.
+
+(b) Let $w:=\frac1{2\pi}((\Delta\nu)_-)^{\mathrm s}$, a finite even positive measure, and $\check w(t):=\int e^{2\pi i\xi t}\dd w(\xi)$, a
+bounded continuous positive-definite function. By Lemma~\ref{lem:homdir}(b), $(\Delta\nu)^{\mathrm s}$ is tempered, hence so is
+the positive measure $((\Delta\nu)_+)^{\mathrm s}$. The tempered real measure $P:=\check w\dd t-\Delta\mu$ has
+$\widehat P=w-\widehat{\Delta\mu}=\frac1{2\pi}((\Delta\nu)_+)^{\mathrm s}\ge0$, so $P$ is positive definite (Bochner--Schwartz
+\cite[Ch.~II, \S3]{GV64}). For a positive-definite Radon measure, $|P(\{x\})|\le P(\{0\})$: let
+$h\ge0$ be smooth with support in $[-\frac12,\frac12]$ and $\int h^2=1$, $g_\eps:=\eps^{-1/2}h(\cdot/\eps)$, and
+$k_\eps(t):=\int g_\eps(s)g_\eps(s-t)\dd s$, so that $0\le k_\eps\le1=k_\eps(0)$ and $\supp k_\eps\subseteq[-\eps,\eps]$. The Hermitian
+form $(f,g)\mapsto\langle P,f*\tilde g\rangle$, $\tilde g(t)=\overline{g(-t)}$, is positive semidefinite, and the Cauchy--Schwarz
+inequality applied to $g_\eps(\cdot-x)$ and $g_\eps$ gives $|\langle P,k_\eps(\cdot-x)\rangle|\le\langle P,k_\eps\rangle$; let
+$\eps\to0$ by dominated convergence. Since $\check w\dd t$ has no atoms and $0\notin Z$, $P(\{0\})=-\Delta\mu(\{0\})\le0$, so
+$P(\{0\})=0$ and $P$, hence $\Delta\mu$, has no atoms. But $(\Delta\mu)_-$ is carried by the countable set $Z$, hence purely atomic, and
+singular to $(\Delta\mu)_+$; so $(\Delta\mu)_-=0$, and \eqref{eq:lowpass} gives $\Delta\mu=0$ and then $\Delta\nu=0$.
+
+(c) Let $(\Delta\mu)_-=\sum_{i=1}^Nc_i\delta_{z_i}$ with $c_i>0$ and distinct $z_i$. By \eqref{eq:lowpass}, $(\Delta\mu)_+$ is finite, so
+$\widehat{\Delta\mu}$ is continuous and vanishes on $(-\xin2,\xin2)$. For $\chi\in C_c^\infty((-\frac{\xin2}2,\frac{\xin2}2))$,
+\[
+\int|\check\chi|^2\dd(\Delta\mu)_+-\int|\check\chi|^2\dd(\Delta\mu)_-=\iint\chi(a)\overline{\chi(b)}\,\widehat{\Delta\mu}(b-a)\dd a\dd b=0 .
+\]
+For any $x\notin\{z_1,\dots,z_N\}$, the map $\chi\mapsto(\check\chi(z_1),\dots,\check\chi(z_N),\check\chi(x))$ is onto $\CC^{N+1}$, since a
+non-trivial linear relation would make a finite sum of distinct exponentials vanish on an interval. Choosing $\check\chi(z_i)=0$
+for all $i$ and $\check\chi(x)=1$ gives $(\Delta\mu)_+(\{x\})=0$; choosing only $\check\chi(z_i)=0$ shows that $(\Delta\mu)_+$ is carried by
+the countable set $\check\chi^{-1}(0)\cap\RR$. Hence $(\Delta\mu)_+$ is carried by $\{z_1,\dots,z_N\}$, where it vanishes by mutual
+singularity. Thus $\Delta\mu=-\sum c_i\delta_{z_i}$ and $\widehat{\Delta\mu}(\xi)=-\sum c_ie^{-2\pi iz_i\xi}$ vanishes on an interval, so
+all $c_i=0$. Then $\Delta\mu=0$ and $\Delta\nu=0$.
+\end{proof}
+
+\subsubsection{Structure of pairs with extra atoms}\label{app:proofs-structure}
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:structure}}]
+Since $U_m$ vanishes on $\Zz$, $\widehat{U_m}(\frac{\log m'}{4\pi})=\delta_{mm'}$ and \eqref{eq:W-BRS} holds, testing on $U_m$ gives
+\[
+\sum_{e\in E}a_eU_m(e)+\frac1\pi\,\nu\big(\{\tfrac{\log m}{4\pi}\}\big)=\frac1\pi\Lambda(\sqrt m)m^{-1/4}.
+\]
+Multiply by $\pi m^{1/4}$. By \eqref{eq:Um} and $\GR(\frac12+it)\zeta(\frac12+it)=-2\Xi(t)/(\frac14+t^2)$,
+$\pi m^{1/4}a_eU_m(e)=-\frac{a_e\Xi(e)}{2(\frac14+e^2)}\sum_{d^2\mid m}\boldsymbol\mu(d)\alpha_{m/d^2}(s_e)$. The atoms at $\pm e$ give equal
+terms, because $a_{-e}=a_e$, $\Xi$ is even and $\alpha_N(s_{-e})=\alpha_N(\overline{s_e})=\alpha_N(s_e)$; so
+$\pi m^{1/4}\sum_ea_eU_m(e)=-\sum_{d^2\mid m}\boldsymbol\mu(d)c_{m/d^2}(E)$. Hence
+\[
+\ell_m=\Lambda(\sqrt m)\one_\square(m)+\sum_{d^2\mid m}\boldsymbol\mu(d)\,c_{m/d^2}(E).
+\]
+M\"obius inversion over squares ($f_m=\sum_{d^2\mid m}\boldsymbol\mu(d)g_{m/d^2}$ for all $m$ if and only if
+$g_N=\sum_{k^2\mid N}f_{N/k^2}$ for all $N$) and $\sum_{k^2\mid N}\Lambda(\sqrt{N/k^2})\one_\square(N/k^2)=\sum_{k\mid M}\Lambda(M/k)=\log M$ for
+$N=M^2$ give \eqref{eq:CN}. If $\nu$ lives on $[\xin2,\infty)$ then $\ell_1=\ell_2=\ell_3=0$, and
+\eqref{eq:CN} at $N\le3$ gives $c_N=0$. Testing on $V_{\rho,j}$, whose transform vanishes on $\BRS$, and using \eqref{eq:W-BRS}
+gives the three identities for $w_\gamma$ and $\sum_ea_eV_{\rho,j}(e)$, exactly as in the proof of Proposition~\ref{thm:support}. If
+$a=0$, that proof gives $(\mu,\nu)=\pz$; conversely $\muz(E)=0$. Trivially $a=0$ implies $c\equiv0$; if $c\equiv0$ then
+$\tilde\varrho_e=0$ for all $e$ by Lemma~\ref{lem:cusp0} in Appendix~\ref{app:cusp}, and $\tilde\varrho_e=0$ forces $a_e=0$ since $\Xi(e)\ne0$ for
+$e\notin\Zz$. Finally, if $(\mu,\nu)\in\Kad$ then $\ell_m\ge0$, so $C_N\ge0$.
+\end{proof}
+
+\subsubsection{Cusp expansions}\label{app:cusp}
+We use $\vartheta(-1/\tau)=(\tau/i)^{1/2}\vartheta(\tau)$, $\vartheta(\tau+2)=\vartheta(\tau)$, and the fact that $\vartheta$ has no zeros in $\mathbb H$
+(see \cite[\S3.2]{BRS}); principal branches are used throughout, and $(\tau/i)^\alpha>0$ for $\tau\in i(0,\infty)$. The cusps $\frac23$ and $\frac43$
+are reduced to $\infty$ by explicit words in $S$ and $T^{\pm2}$, and the modular integrals are transported along these words by the
+following twisted action.
+Let $\chi:\Gamma_\vartheta\to\{\pm1\}$ be the character with $\chi(S)=-1$ and $\chi(T^2)=1$; it is well defined because, in
+$\mathrm{PSL}_2(\RR)$, $S$ and $T^2$ generate $\Gamma_\vartheta$ with the single relation $S^2=1$ \cite[\S3.1]{BRS} (as matrices, $S^2=-I$; the
+action below depends only on the M\"obius maps). For $f:\mathbb H\to\CC$ and $W\in\Gamma_\vartheta$ put
+\[
+(f|W)(\tau):=\chi(W)\,\frac{\vartheta(\tau)}{\vartheta(W\tau)}\,f(W\tau),
+\]
+a right action: $(f|g)|h=f|(gh)$. As $\vartheta(\tau)/\vartheta(-1/\tau)=(\tau/i)^{-1/2}$, the functional equations
+\eqref{eq:BRS-FE} and periodicity read $f-f|S=\mathfrak p$ and $f|T^2=f$, for $(f,\mathfrak p)=(\mathsf F(\cdot,s),\mathfrak p_s)$. If $W=g_m\cdots g_1$ with $g_k\in\{S,T^{\pm2}\}$ and $w_k:=g_k\cdots g_1$ ($w_0=1$), then telescoping
+$f|w_{k-1}-f|w_k=(f-f|g_k)|w_{k-1}$ gives
+\begin{equation}\label{eq:unroll}
+f=f|W+\sum_{k:\,g_k=S}\mathfrak p|w_{k-1}.
+\end{equation}
+For the cusp $\frac23$ we use $W=ST^2ST^2S=\uqpmat{-2}{1}{3}{-2}$, which maps $\frac23$ to $\infty$, with $S$ in positions $k=1,3,5$ and
+$w_2=T^2S$, $w_4=T^2ST^2S=\uqpmat{3}{-2}{2}{-1}$. For $\tau=\frac23+iv$ one finds $T^2S\tau=2-1/\tau\to\frac12$, $w_4\tau=9iv/(1+6iv)$ and
+$W\tau=-\frac23+\frac i{9v}$; moreover $\chi(W)=-1$, $\chi(T^2S)=-1$, $\chi(w_4)=1$,
+\begin{equation}\label{eq:jfactors}
+\frac{\vartheta(\tau)}{\vartheta(T^2S\tau)}=(\tau/i)^{-1/2},\qquad
+\frac{\vartheta(\tau)}{\vartheta(w_4\tau)}=(\tau/i)^{-1/2}\big((2-1/\tau)/i\big)^{-1/2},
+\end{equation}
+and both are analytic near $\tau=\frac23$, the second with value $(\frac32)^{1/2}e^{i\pi/4}\cdot\sqrt2\,e^{i\pi/4}=i\sqrt3$ there.
+
+\begin{lemma}[Expansion at the cusp $0$]\label{lem:cusp0}
+For $s\in\CC$ and $0<v\le1$, $\mathsf F(iv,s)=-\alpha_0(s)\vartheta(iv)+v^{-s}+v^{s-1/2}+O_s(v^{-1/2}e^{-\pi/v})$. Consequently, if $E_+\subset[0,\infty)$
+is finite, $\tilde\varrho_e\in\RR$, and $\sum_{e\in E_+}\tilde\varrho_e\alpha_N(s_e)=0$ for every $N\ge1$, then $\tilde\varrho_e=0$ for all $e$.
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:unroll} with $W=S$, $\mathsf F(iv)=-\frac{\vartheta(iv)}{\vartheta(i/v)}\mathsf F(i/v)+\mathfrak p_s(iv)$, and $\mathfrak p_s(iv)=v^{-s}+v^{s-1/2}$. Since
+the $\alpha_N(s)$ grow polynomially, $\mathsf F(i/v)/\vartheta(i/v)=\alpha_0(s)+O(e^{-\pi/v})$, and $|\vartheta(iv)|\le Cv^{-1/2}$. For the consequence,
+$0=\sum_e\tilde\varrho_e(\mathsf F(iv,s_e)-\alpha_0(s_e))$; with $A:=\sum_e\tilde\varrho_e\alpha_0(s_e)$ and $\vartheta(iv)=v^{-1/2}(1+O(e^{-\pi/v}))$ this reads
+\[
+\sum_{e\in E_+,\,e>0}\tilde\varrho_e\big(v^{-s_e}+v^{-\overline{s_e}}\big)+2\tilde\varrho_0v^{-1/4}-A\,v^{-1/2}-A=O(v^{-1/2}e^{-\pi/v}),
+\]
+because $s_e-\frac12=-\overline{s_e}$ (with $\tilde\varrho_0:=0$ if $0\notin E_+$). Multiplying by $v^{1/2}$ and letting $v\to0$ gives $A=0$. Then
+$v^{1/4}$ times the left side is $\sum_{e>0}\tilde\varrho_e\cdot2\cos(\frac e2\log v)+2\tilde\varrho_0+o(1)$; an almost periodic function of
+$u=\log(1/v)$ with distinct frequencies that tends to $0$ has zero Bohr mean of its square, so all coefficients vanish.
+\end{proof}
+
+\begin{lemma}[The class $2\bmod3$]\label{lem:cusp-class2}
+Let $\Re s=\frac14$. As $v\to0^+$,
+\begin{multline*}
+\tfrac13\Big[\mathsf F(iv,s)+\omega\,\mathsf F(\tfrac23+iv,s)+\bar\omega\,\mathsf F(\tfrac43+iv,s)\Big]\\
+=\tfrac13\big(1-3\cdot9^{-s}\big)v^{-s}+\tfrac13\big(1-3\cdot9^{s-1/2}\big)v^{s-1/2}+c(s)+O_s(v^{3/4}),
+\end{multline*}
+with a constant $c(s)$. Consequently, if $E_+\subset[0,\infty)$ is finite, $\tilde\varrho_e\in\RR$ and $c_N:=\sum_{e\in E_+}\tilde\varrho_e\alpha_N(s_e)$, then
+\[
+\Theta_E^{(2)}(v):=\sum_{N\equiv2\,(3)}c_Ne^{-\pi Nv}=\sum_{e\in E_+,\,e>0}\big(B_ev^{-s_e}+\overline{B_e}v^{-\overline{s_e}}\big)+B_0v^{-1/4}+C+O(v^{3/4}),
+\]
+with $B_e=\frac{\tilde\varrho_e}3(1-3\cdot9^{-s_e})$ for $e>0$, $B_0=\frac{2\tilde\varrho_0}3(1-\sqrt3)$ (and $B_0=0$ if $0\notin E_+$), and a real constant $C$. In
+particular $\Theta_E^{(2)}(v)=O(v^{-1/4})$.
+\end{lemma}
+
+\begin{proof}
+At $\tau=\frac23+iv$, \eqref{eq:unroll} gives $\mathsf F(\tau)=(\mathsf F|W)(\tau)+\mathfrak p_s(\tau)+(\mathfrak p_s|T^2S)(\tau)+(\mathfrak p_s|w_4)(\tau)$. First,
+$(\mathsf F|W)(\tau)=-\vartheta(\tau)\mathsf F(W\tau)/\vartheta(W\tau)=-\alpha_0(s)\vartheta(\tau)+O(v^{-1/2}e^{-\pi/(9v)})$, as $\Im W\tau=1/(9v)$. Second,
+$\mathfrak p_s$ is analytic near $\frac23$, and $(\mathfrak p_s|T^2S)(\tau)=-(\tau/i)^{-1/2}\mathfrak p_s(2-1/\tau)$ is analytic near $\frac23$ because
+$2-1/\tau\to\frac12$; together they give $c_{2/3}(s)+O(v)$. Third, by \eqref{eq:jfactors} and $w_4\tau/i=9v/(1+6iv)$, which has positive real
+part,
+\begin{multline*}
+(\mathfrak p_s|w_4)(\tau)=\big(i\sqrt3+O(v)\big)\Big[(9v)^{-s}(1+6iv)^{s}+(9v)^{s-1/2}(1+6iv)^{1/2-s}\Big]\\
+=i\sqrt3\,9^{-s}v^{-s}+i\sqrt3\,9^{s-1/2}v^{s-1/2}+O(v^{3/4}).
+\end{multline*}
+Since the $\alpha_N(s)$ are real, $\mathsf F(-\bar\tau,s)=\overline{\mathsf F(\tau,s)}$, so $\mathsf F(\frac43+iv)=\overline{\mathsf F(\frac23+iv)}$; with
+$\overline{9^{-s}}=9^{s-1/2}$ this gives coefficients $-i\sqrt3\,9^{-s}$ and $-i\sqrt3\,9^{s-1/2}$ at $\frac43$. Combining with
+Lemma~\ref{lem:cusp0} at $0$: the theta terms give $-\alpha_0(s)\cdot\frac13\sum_{j=0}^2e^{-4\pi ij/3}\vartheta(\frac{2j}3+iv)=-\alpha_0(s)\sum_{n^2\equiv2\,(3)}e^{-\pi n^2v}=0$,
+exactly; and since $\omega-\bar\omega=i\sqrt3$, the coefficient of $v^{-s}$ is $\frac13(1+i\sqrt3\,9^{-s}(\omega-\bar\omega))=\frac13(1-3\cdot9^{-s})$, and similarly
+for $v^{s-1/2}$. For the consequence, the constants $\alpha_0(s_e)$ subtracted in $\Theta_E=\sum_e\tilde\varrho_e(\mathsf F(\cdot,s_e)-\alpha_0(s_e))$ cancel because
+$1+\omega+\bar\omega=0$; for $e>0$, $v^{s_e-1/2}=v^{-\overline{s_e}}$ and $\frac13(1-3\cdot9^{s_e-1/2})=\overline{\frac13(1-3\cdot9^{-s_e})}$; and for $e=0$ both
+exponents equal $-\frac14$ and $9^{-1/4}=3^{-1/2}$.
+\end{proof}
+
+\begin{lemma}[Landau step]\label{lem:class2-landau}
+Let $E_+\subset[0,\infty)$ be finite, $\tilde\varrho_e\in\RR$ with $\tilde\varrho_0\ge0$ if $0\in E_+$, and $c_N:=\sum_{e\in E_+}\tilde\varrho_e\alpha_N(s_e)$. If $c_N\ge0$
+for every $N\equiv2\pmod 3$, then $\tilde\varrho_e=0$ for every $e\in E_+$.
+\end{lemma}
+
+\begin{proof}
+The Dirichlet series $D(w):=\sum_{N\equiv2\,(3)}c_NN^{-w}$ has non-negative coefficients of polynomial growth, so it converges in some
+half-plane; let $\sigma_c\in[-\infty,\infty)$ be its abscissa of convergence, which equals its abscissa of absolute convergence. (Polynomial
+growth alone does not exclude $\sigma_c=-\infty$, for instance if only finitely many $c_N$ are non-zero.) As $\Theta_E^{(2)}(v)=O(e^{-2\pi v})$
+for $v\ge1$, Lemma~\ref{lem:cusp-class2} gives, for $\Re w>\max(\sigma_c,\frac14)$,
+\[
+\pi^{-w}\Gamma(w)D(w)=\int_0^\infty\Theta_E^{(2)}(v)v^{w-1}\dd v=\sum_{e>0}\Big(\frac{B_e}{w-s_e}+\frac{\overline{B_e}}{w-\overline{s_e}}\Big)+\frac{B_0}{w-\frac14}+\frac Cw+H(w),
+\]
+with $H$ analytic in $\Re w>-\frac34$. Call $\widetilde D(w)$ the right side multiplied by $\pi^w\Gamma(w)^{-1}$: it is meromorphic in $\Re w>-\frac34$, with
+poles at most at the non-real points $s_e,\overline{s_e}$ and at $\frac14$ (the pole of $C/w$ is cancelled by the zero of $1/\Gamma$), and, by analytic
+continuation, $D=\widetilde D$ on $\Re w>\max(\sigma_c,-\frac34)$ away from these points. Since the points $s_e$ are distinct and
+$\pi^{s_e}\Gamma(s_e)^{-1}\ne0$, $\widetilde D$ has a pole at $s_e$ and $\overline{s_e}$ exactly when $B_e\ne0$ ($e>0$), and at $\frac14$ exactly when $B_0\ne0$.
+Suppose that some $B_e\ne0$. Then $\widetilde D$ has a pole on the line $\Re w=\frac14$; as $D$ is analytic in $\Re w>\sigma_c$ and equals $\widetilde D$
+there, $\sigma_c\ge\frac14$, and in particular $\sigma_c$ is finite. By Landau's theorem \cite[Theorem~1.7]{MV07}, $D$ is singular at the real
+point $\sigma_c$. As $\widetilde D$ is analytic on the real half-line $(\frac14,\infty)$, $\sigma_c=\frac14$ and $D$ is singular at $\frac14$; so $B_0\ne0$,
+hence $\tilde\varrho_0>0$ and $B_0<0$. But then, for real $\sigma\downarrow\frac14$, $0\le D(\sigma)=\widetilde D(\sigma)=\pi^{1/4}\Gamma(\frac14)^{-1}B_0(\sigma-\frac14)^{-1}+O(1)\to-\infty$,
+a contradiction. Hence $B_e=0$ for all $e$; as $|3\cdot9^{-s_e}|=\sqrt3\ne1$ and $1-\sqrt3\ne0$, every $\tilde\varrho_e=0$.
+\end{proof}
+
+\subsection{Proofs for Section~\ref{sec:family}}
+
+\subsubsection{The Bessel form}\label{app:proofs-bessel}
+\begin{proof}[Proof of Proposition~\textup{\ref{thm:bessel}}]
+\emph{Mellin step.} For $\Re s>1$ and $a>0$, the substitution $\lambda=(t/a)^2$ and
+$\int_0^\infty K_0(t)t^{s-1}\dd t=2^{s-2}\Gamma(s/2)^2$ \cite[10.43.19]{DLMF} give
+$\int_0^\infty K_0(a\sqrt\lambda)\lambda^{s/2-1}\dd\lambda=\frac12(a/2)^{-s}\Gamma(s/2)^2$. With $a=2\pi N$ and
+$\sum_Nd(N)N^{-s}=\zeta(s)^2$ (Tonelli), we get
+$\int_0^\infty W(\lambda)\lambda^{s/2-1}\dd\lambda=\frac12\GR(s)^2\zeta(s)^2$, where
+$W(\lambda):=\sum_Nd(N)K_0(2\pi N\sqrt\lambda)$. Put $\lambda=e^{2u}$, $s=\sigma+\frac12$ and
+\[
+g(u):=e^{u/2}W(e^{2u})=e^{u/2}\textstyle\sum_Nd(N)K_0(2\pi Ne^u).
+\]
+Then
+\begin{equation}\label{eq:mellin-g}
+\int_\RR g(u)e^{u\sigma}\dd u=\tfrac14\,\GR(\sigma+\tfrac12)^2\zeta(\sigma+\tfrac12)^2\qquad(\Re\sigma>\tfrac12).
+\end{equation}
+
+\emph{Regularisation.} The right side of~\eqref{eq:mellin-g} is meromorphic in $\sigma$, with double
+poles only at $\sigma=\pm\frac12$: the double poles of $\Gamma(s/2)^2$ at $s=-2k$ ($k\ge1$) are
+cancelled by the double zeros of $\zeta(s)^2$ at the trivial zeros. It decays faster than any power on
+vertical lines (Stirling), so Mellin inversion and a shift of the contour to $\Re\sigma=-M$ give, as
+$u\to-\infty$,
+$g(u)=(\alpha u+\beta)e^{-u/2}+(\alpha'u+\beta')e^{u/2}+O_M(e^{-M\lvert u\rvert})$ for every $M$, with the
+same expansion for derivatives; as $u\to+\infty$, $g$ and its derivatives decay like
+$\exp(-2\pi e^u)$. Since $(\partial_u^2-\frac14)e^{\pm u/2}=0$ and
+$(\partial_u^2-\frac14)(ue^{\pm u/2})=\pm e^{\pm u/2}$, the function
+$\Phi_2:=(\partial_u^2-\frac14)^2g$ decays faster than any exponential at both ends.
+
+\emph{Identification.} For $\Re\sigma>\frac12$, integrating by parts four times (the boundary terms vanish)
+gives $\int\Phi_2(u)e^{u\sigma}\dd u=(\sigma^2-\frac14)^2\cdot\frac14\GR(\sigma+\frac12)^2\zeta(\sigma+\frac12)^2$,
+which is $\Xi(-i\sigma)^2$, because $\frac12s(s-1)=\frac12(\sigma^2-\frac14)$ for $s=\sigma+\frac12$. Both sides are
+entire in $\sigma$, so equality holds for all $\sigma$; at $\sigma=it$ we obtain
+$\Xi(t)^2=\int\Phi_2(u)e^{iut}\dd u$, hence $\Psi(\xi)=2\pi\Phi_2(2\pi\xi)$ by Fourier inversion.
+
+\emph{Operator form.} With $u=2\pi\xi$ we have $e^u=x$ and $\partial_u=\theta$. Since
+$\theta(\sqrt x f)=\sqrt x(\theta+\frac12)f$, we get $(\theta^2-\frac14)(\sqrt x f)=\sqrt x\,\theta(\theta+1)f$, so
+$\Phi_2=\sqrt x\,\theta^2(\theta+1)^2\sum_Nd(N)K_0(2\pi Nx)=\sqrt x\sum_Nd(N)\Wnull(2\pi Nx)$. Here
+$\theta$ commutes with dilations, and the differentiated series converge uniformly on compact sets
+because $K_0,K_1$ decay exponentially. Evenness and reality of $\Psi$ follow from those of $\Xi^2$.
+
+\emph{Asymptotics.} As $z\to\infty$, $\Wnull(z)=z^4K_0(z)(1+O(1/z))$ and
+$K_0(z)\sim(\pi/2z)^{1/2}e^{-z}$, so the $N=1$ term at $x=n$ is $\pi(2\pi)^4n^4e^{-2\pi n}(1+O(1/n))$,
+and the terms $N\ge2$ are $O(n^{4}e^{-4\pi n})$.
+
+\emph{Gamma-only analogue.} Replace $W$ by $K_0(2\pi\sqrt\lambda)$, so that the right side
+of~\eqref{eq:mellin-g} becomes $\frac14\GR(\sigma+\frac12)^2$. Now
+$g_1(u)=e^{u/2}K_0(2\pi e^u)=(\alpha u+\beta)e^{u/2}+O(u\,e^{5u/2})$ as $u\to-\infty$, so
+$(\partial_u^2-\frac14)^2g_1=O(\lvert u\rvert e^{5u/2})$, and its Laplace transform is analytic for
+$\Re\sigma>-\frac52$. There it equals $(\sigma^2-\frac14)^2\frac14\GR(\sigma+\frac12)^2$, which is analytic for
+$\Re\sigma>-\frac52$ (the double pole at $\sigma=-\frac12$ is cancelled by $(\sigma+\frac12)^2$). At
+$\sigma=it$ this is $\Xiinf(t)^2$, and the rest of the argument is unchanged. Finally,
+$\Xiinf(t)^2=O(\lvert t\rvert^4e^{-\pi\lvert t\rvert/2})$, so $\Psione$ is analytic in
+$\lvert\Im\xi\rvert<\frac14$, that is, for $\lvert\arg x\rvert<\pi/2$, and so is $\sqrt x\,\Wnull(2\pi x)$.
+\end{proof}
+
+\subsubsection{An integral representation}\label{app:proofs-hermite}
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:abel}}]
+The polynomial $e^y\theta^me^{-y}$ has degree $m$ and leading coefficient $(-1)^m$, and $\deg_\theta\mathcal Q_P=2\deg P+4$ with leading
+coefficient $(-1)^{\deg P}[u^{\deg P}]P$; this gives the degree and the leading coefficient. As $\mathcal Q_P(\theta)$ has the factor $\theta$
+and $\theta=y\frac{d}{dy}$, $Q_P(0)=0$. By $(P(t^2)F)^\wedge=P(-\theta^2)\FT F$ and $\theta^2(\sqrt xf)=\sqrt x(\theta+\frac12)^2f$,
+Proposition~\ref{thm:bessel} gives the transform. For the integral, start from $K_0(z)=\int_1^\infty e^{-zw}(w^2-1)^{-1/2}\dd w$
+\cite[10.32.8]{DLMF}. For fixed $w$, $\theta_z$ acts on $e^{-zw}$ as $\theta_y$ acts on $e^{-y}$ at $y=zw$, so
+$\mathcal Q_P(\theta)e^{-zw}=Q_P(zw)e^{-zw}$; differentiation under the integral sign is legitimate for $z>0$, and
+$P(-(\theta+\frac12)^2)\Wnull=\mathcal Q_P(\theta)K_0$ by \eqref{eq:W0}. Substituting $y=zw$ gives the formula for $g_P$.
+\end{proof}
+
+\subsubsection{Robust compactness and Theorem D}\label{app:proofs-M}
+
+Write $\Sigma_b:=\{t:\lvert\Im t\rvert<b\}$.
+
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:robust}}]
+\emph{Montel.} By (i) the family is uniformly bounded on compact subsets of $\Sigma_{1/2+\delta}$, hence normal; a
+subsequence converges locally uniformly to an analytic $H_\infty$, which is even, real on $\RR$ and satisfies
+$\lvert H_\infty(t)\rvert\le Ce^{a\lvert\Re t\rvert}$ on $\Sigma_{1/2+\delta}$ \cite[VII.2.9]{Con73}.
+\emph{Domination.} By~\eqref{eq:XB} with $b=\frac12+\delta$ and (i),
+$\lvert F_J(t)\rvert\le m(\Re t):=C\,C_b^2(1+\lvert\Re t\rvert)^6e^{-(\pi/2-a)\lvert\Re t\rvert}$ on the closed strip, and
+the same bound holds for $F_\infty$ on the open strip; $(1+\lvert T\rvert)^km(T)$ is integrable for every $k$.
+\emph{Convergence.} On $\RR$, $F_J\to F_\infty$ pointwise along the subsequence, so by dominated convergence
+$\int\lvert T\rvert^k\lvert F_J-F_\infty\rvert\dd T\to0$, and $\FT F_J^{(k)}\to\FT F_\infty^{(k)}$ uniformly on $\RR$
+($k=0,1$). For $\delta'<\delta$, $H_\infty$ is analytic near $\lvert\Im t\rvert\le\frac12+\delta'$, and
+$(1+\lvert z\rvert)^2\lvert F_\infty(z)\rvert\le(2+\lvert\Re z\rvert)^2m(\Re z)$ is bounded there, so $F_\infty\in\Tc_{\delta'}$.
+\emph{Positivity.} By (iii), $H_\infty\ge0$ on $\RR$, so $F_\infty\ge0$. By (iv) and evenness,
+$\FT F_\infty\ge0$ for $\lvert\xi\rvert\ge\xi_2$, so $F_\infty\in\Cone$. By (v), $\FT F_\infty(\xi_n)=0$ for every
+$n\in\PP$, and Corollary~\ref{cor:zerokilling} gives $\Arch(F_\infty)=0$. Finally $\Xi(0)=\int\Phi>0$, so
+$F_\infty(0)=\Xi(0)^2>0$ and $\int F_\infty=\FT F_\infty(0)>0$. Thus $\kstar\le\Arch(F_\infty)/\int F_\infty=0$. If $F=\Xi^2H\in\Cone$,
+then $\Arch(F)\ge0$ by Corollary~\ref{cor:zerokilling}, since $\FT F\ge0$ at the prime powers.
+\end{proof}
+
+
+We use the notation of Section~\ref{ssec:thmM}: $(P_J)_{J\in\Jset}$ is the exact family, $H_J(t)=P_J(t^2)$,
+$F_J=\Xi^2H_J$. Assume \hyp{N} and \hyp{G$_a$} throughout; by Montel's theorem
+\cite[VII.2.9]{Con73} every infinite subset of $\Jset$ contains a subsequence along which $H_J$ converges locally uniformly
+on $\Sigma_{1/2+\delta}$, and every such limit $H_\infty$ satisfies $H_\infty(0)=1$, so $H_\infty\not\equiv0$.
+
+\emph{Equivalent forms of \hyp{Z$_\infty$}.} The following are equivalent:
+(i) \hyp{Z$_\infty$};
+(ii) no limit $H_\infty$ as above, along any infinite subset of $\Jset$, has a real zero;
+(iii) for every $T>0$, $\liminf_{J\in\Jset}\min_{\lvert t\rvert\le T}H_J(t)>0$.
+(i)$\Rightarrow$(iii): suppose (iii) fails for some $T$. Then there are $J_k\to\infty$ in $\Jset$ and $t_k\in[-T,T]$ with
+$\limsup_kH_{J_k}(t_k)\le0$. If $H_{J_k}(t_k)\le0$ for infinitely many $k$, the intermediate value theorem (with
+$H_{J_k}(0)=1$) gives real zeros $s_k\in[-T,T]$ of $H_{J_k}$, and a limit point of $(s_k)$ contradicts (i). Otherwise
+$H_{J_k}(t_k)\to0$ along a subsequence; passing to a further subsequence, $t_k\to t^*$ and $H_{J_k}\to H_\infty$ locally
+uniformly, so $H_\infty(t^*)=0$, and by Hurwitz's theorem \cite[VII.2.5]{Con73} $t^*$ is a limit of zeros of $H_{J_k}$,
+again contradicting (i).
+(iii)$\Rightarrow$(ii): if $H_\infty$ is the limit along $J_k\to\infty$, then for $\lvert t\rvert\le T$,
+$H_\infty(t)=\lim_kH_{J_k}(t)\ge\liminf_{\Jset}\min_{\lvert s\rvert\le T}H_J(s)>0$.
+(ii)$\Rightarrow$(i): if zeros $z_k$ of $H_{J_k}$, $J_k\to\infty$, converge to $t^*\in\RR$, take a convergent subsequence
+$H_{J_k}\to H_\infty$; then $\lvert H_\infty(t^*)\rvert\le\lvert H_\infty(t^*)-H_\infty(z_k)\rvert+\lvert H_\infty(z_k)-H_{J_k}(z_k)\rvert\to0$.
+Finally, a uniform lower bound $\lvert\Im t\rvert\ge\eta$ for the zeros of $H_J$ ($J\ge J_0$) implies (i), since then no zero lies in $\Sigma_\eta$.
+
+\emph{Norm convergence.} Along a convergent subsequence, $\lVert F_J-F_\infty\rVert_{\delta'}\to0$ for every $\delta'<\delta$. Indeed,
+with $m$ as in the proof of Lemma~\ref{lem:robust}, on $\{\lvert\Im z\rvert\le\frac12+\delta',\ \lvert\Re z\rvert\ge R\}$ we have
+$(1+\lvert z\rvert)^2\lvert F_J-F_\infty\rvert\le2(2+\lvert\Re z\rvert)^2m(\Re z)$, which is small for large $R$ uniformly in $J$, while on
+the compact part $\lvert\Re z\rvert\le R$ of the strip the convergence is uniform. Since $\Arch$ is $\lVert\cdot\rVert_{\delta'}$-continuous
+on $\Tc_{\delta'}$ (Lemma~\ref{lem:testclass}), $\Arch(F_J)\to\Arch(F_\infty)$ along the subsequence.
+
+\emph{What \hyp{N} and \hyp{G$_a$} give alone.} The proof of Lemma~\ref{lem:robust} without hypotheses (iii) and (iv) shows:
+every limit $F_\infty=\Xi^2H_\infty$ lies in $\Tc$, has $H_\infty\in\Hc$, $H_\infty(0)=1$, $\FT F_\infty(\xi_n)=\FT F'_\infty(\xi_n)=0$
+for every $n\in\PP$, and $\Arch(F_\infty)=0$ (Corollary~\ref{cor:zerokilling}). So a proof of \hyp{G$_a$} would produce an exact
+solution of the infinite interpolation problem; what Theorem~\ref{thm:criterion} adds is the positivity of this particular limit,
+which is the content of \hyp{Z$_\infty$} and \hyp{Mg}.
+
+\emph{Further remarks.} (a) In \hyp{N} it suffices that the linear system $M_Jp=-b_J$ be solvable for infinitely many
+$J$, choosing any solution; invertibility is used nowhere else, although the family is then not canonical.
+(b) Different subsequences may have different limits; under \hyp{Z$_\infty$} and \hyp{Mg} all of them have the zero sets
+$\Zz$ and $\xiPP$, and convex combinations of limits are again exact magic functions.
+(c) The strict inequality $a<\pi/2$ in \hyp{G$_a$} is essential: for $a=\pi/2$ the majorant $m$ is not integrable, $F_\infty$
+need not lie in $\Tc$, and neither the explicit formula nor complementary slackness is available. Uniformity of $C$ and $a$
+in $J$ is equally essential, since every single polynomial satisfies the bound with some constant.
+
+\subsubsection{Coefficient bounds}\label{app:proofs-zeroside}
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:coeff}}]
+(1) All terms of $H_J(t)=\sum_kp_kt^{2k}$ are $\ge0$, and $p_0=1$. (2) $\lvert H_J(t)\rvert\le\sum_kp_k\lvert t\rvert^{2k}\le
+C\cosh(a\lvert t\rvert)$, and $\lvert t\rvert\le\lvert\Re t\rvert+b$ on $\lvert\Im t\rvert\le b$. (3) Montel on $\CC$, and Cauchy's formula
+for the coefficients. (4) The first claim is clear. For the second, if $p_{k-1}=0<p_k$ for some $k$ the bound is
+trivial; otherwise $p_0,\dots,p_d>0$ and $p_k=0$ for $k>d$. Put $r:=\min_{k\le d}p_{k-1}/p_k$ and $c_k:=p_kr^k$
+($k\le d$), a non-increasing positive sequence. For $\lvert z\rvert<1$,
+$(1-z)\sum_kc_kz^k=c_0-\sum_{k\ge1}(c_{k-1}-c_k)z^k-c_dz^{d+1}$, and the subtracted terms have modulus
+$<c_0$; so $P_J(rz)\ne0$ (this is the Enestr\"om--Kakeya bound).
+\end{proof}
+

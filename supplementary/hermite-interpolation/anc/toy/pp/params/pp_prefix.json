@@ -1,0 +1,10 @@
+{
+ "statement": "Proposition (prime powers dominate the PT-tight progression), finite part: for K = 1..K_max, 2 pi n_K > y*_K = (21/20)(8K-5) and 2 pi (n_1 + ... + n_K) >= c K(4K-1), with n_K the K-th prime power",
+ "K_max": 217000,
+ "sieve_limit": 3100000,
+ "pi_lower": "314159265358979/100000000000000",
+ "pi_upper": "314159265358980/100000000000000",
+ "y_star_factor": "21/20",
+ "prefix_constant": "12366/10000",
+ "ranges_needed_by_the_tail_argument": {"domination": 89, "prefix_sums": 158}
+}

@@ -1,0 +1,159 @@
+%======================================================================
+\section{Introduction}\label{sec:intro}
+%======================================================================
+
+%----------------------------------------------------------------------
+\subsection{The interpolation problem}\label{ssec:intro-problem}
+%----------------------------------------------------------------------
+
+The companion paper \cite{PaperI} studies all positive solutions of Weil's explicit formula with the archimedean data of
+the Riemann zeta function: pairs of positive measures, one on the zero side and one on the prime side beyond
+$\log2/2\pi$, that satisfy the formula on a natural test class. By linear-programming duality such pairs exist if and only
+if a slack $\kstar$ is non-negative, and $\kstar$ is the optimal degree-one conductor bound of the
+Odlyzko--Poitou--Serre method in logarithmic form. It is conjectured there that every such solution, if one exists, is
+$\zeta$'s own pair (Conjecture~U), and that $\kstar\le0$ (Conjecture~S). A self-contained summary of the setting, with the results of
+\cite{PaperI} that we use, is in Section~\ref{sec:setting}.
+
+The main tool of \cite{PaperI} is a family of zero-killing functions. Every function $\Xi(t)^2H(t)$, with $H$ analytic on a
+strip containing $\lvert\Im t\rvert\le\frac12$, vanishes at every non-trivial zero of $\zeta$, on or off the critical line; following
+\cite{PaperI} we call such functions \emph{zero-killing}. For them the explicit formula has no zero side. The exact member
+$F_J=\Xi^2P_J(t^2)$ is defined by asking that its Fourier transform $\FT F_J$ vanish to second order at the first $J$ prime
+powers, with $P_J(0)=1$ (Fact~\ref{prop:E}); it is the error of Hermite interpolation of the kernel $\Psi=\widehat{\Xi^2}$ at
+the nodes $y_j=2\pi n_j$. The same family certifies $\kstar\le1.1508391\cdot10^{-906}$ at $J=100$ in \cite{PaperI}, and a
+subsequential limit of it would be an exact magic function: by the criterion of \cite[Theorem~D]{PaperI} (Fact~\ref{thm:M} below), four
+hypotheses on the family, \hyp{N}, \hyp{G$_a$}, \hyp{Z$_\infty$} and \hyp{Mg}, imply both conjectures. These hypotheses are open;
+only their finite-$J$ instances are certified, at finitely many $J$.
+
+This paper studies the interpolation problem behind the family, for an arbitrary kernel and for three kernels in
+particular: the true kernel $\Psi$, its archimedean part $\Psione=\widehat{\Xiinf^{\,2}}$, and the kernel $e^{-y}$. The last
+gives a polynomial model (Section~\ref{sec:model}): its members are polynomials $P$ for which $Q_P:=e^yP(-\theta^2)e^{-y}$,
+$\theta=y\frac{d}{dy}$, has a double zero at every node. At leading order the true family \emph{is} such a problem
+(Proposition~\ref{prop:dictionary}), and the model has a second reading: by Proposition~\ref{prop:radial} a double zero of
+$Q_P$ at $2\pi n$ means that a radial function $f$ on $\RR^2$ and its Fourier transform both vanish on the circle
+$\lvert v\rvert=\sqrt{2n}$. Interpolation from all circles of radius $\sqrt n$ is the subject of Stoller's theorem
+\cite{Sto21}, which extends the one-dimensional interpolation formula of Radchenko and Viazovska \cite{RV19} to every
+dimension $d\ge2$; the general question for derivatives up to order $k$ at the radii $\sqrt{kn}$ is
+\cite[Open Problem~7.1]{CKMRV22}. Here the nodes are the prime powers only, a sparse subset, and the question is not
+uniqueness but \emph{positivity} of the interpolant.
+
+\emph{Thesis.} For nested double-node Hermite interpolation at the prime powers, positivity of the interpolant beyond the
+nodes reduces to one likelihood-ratio law per level. In the model this law is certified at every level up to $160$, and
+for the true kernel the hypotheses of the criterion of \cite{PaperI} reduce to explicit step laws of the same kind.
+
+%----------------------------------------------------------------------
+\subsection{Results}\label{ssec:intro-results}
+%----------------------------------------------------------------------
+
+\emph{The calculus} (Sections~\ref{sec:nested} and~\ref{sec:chain}). For a base kernel $\varphi$ with linearly independent
+iterates $(-\theta^2)^k\varphi$ we set up nested families of Hermite interpolants on chains of points with multiplicity, and
+prove the identities that govern them: a Christoffel identity, which adds one point
+(Lemma~\ref{lem:christoffel}); a ladder identity for moving a node (Lemma~\ref{thm:ladder}); an insertion calculus
+(Proposition~\ref{prop:insertion}), which computes the response of the coefficient $p_1$ to a new node as a ratio of
+Wronskians; and a half-step calculus (Proposition~\ref{thm:halfstep}), in which the two-point interaction of the
+$p_1$-problem is a divided difference of one function with respect to another. These are kernel-free and apply verbatim
+to all three kernels. Two tail bounds follow (Proposition~\ref{prop:tail-general} and Theorem~\ref{thm:Tprime}).
+
+\emph{The model} (Sections~\ref{sec:model}--\ref{sec:W}). The top of the cofactor $R=Q/\prod_j(y-y_j)^2$ sees the node set only
+through the sum of the nodes (Lemma~\ref{lem:trace}), which is where the arithmetic of the prime powers enters. Along a
+chain $z_1,z_2,\ldots$ let $\pf^{(K)}$ be the monic cofactor at level $K$ and $\pg^{(K)}$ the cofactor of the chain
+augmented by the point $0$. The Christoffel identity, read on coefficients, gives the following criterion.
+
+\begin{restate}{Theorem~\ref{thm:A}}
+Suppose that, for every level $K<K_0$, the ratios $g_k/f_k$ of the coefficients of $\pg^{(K)}$ and $\pf^{(K)}$ are
+non-decreasing in $k$ \textup{(}the likelihood-ratio law $(\mathrm{I1}')_K$\textup{)} and $\pg^{(K)}(z_{K+1})>0$. Then every
+cofactor up to level $K_0$ has positive coefficients; for a doubled chain this gives, for every $J$ with $2J\le K_0$,
+non-singularity, $p_{2J}>0$, positivity of the front $Q_J>0$ off the nodes, and a strict step law.
+\end{restate}
+
+Along the prime powers the law is verified by computer.
+
+\begin{restate}{Theorem~\ref{thm:PP80}}
+For the nodes $y_j=2\pi n_j$ and every $J\le80$, the model solution exists, its cofactor $R_J$ has positive
+coefficients, and in particular $Q_J>0$ on $(0,\infty)$ off the nodes; the step law and positivity of the half-step
+cofactor hold as well, and the likelihood-ratio law holds at every level $K\le160$.
+\end{restate}
+
+The proof is computer-assisted, by two independent certificates in ball arithmetic. Without it, the front of the model is
+proved here only for $J\le4$ (Corollary~\ref{cor:PT-small}). An induction on the level does not close
+(Remark~\ref{rem:windowP}), and on the computed data the law is a sparse-regime law, which fails at the critical density of
+the integer nodes (Numerical observation~\ref{obs:misc}(b)). For the tail of the model we prove far-node asymptotics
+(Theorem~\ref{thm:Ftoy}), certify the tail laws on finite ranges (Propositions~\ref{prop:Fremainder}--\ref{prop:UM-cert}), and
+show that no family of open sign conditions on the five-function system that governs the tail can prove it
+(Proposition~\ref{prop:obstruction}). Finally a natural sign property (W) of the derivative weights, which would give a
+comparison principle in the node set, fails at and strictly inside the critical density
+(Proposition~\ref{prop:W-false}), although it holds on the whole class for two and three nodes
+(Propositions~\ref{thm:W-J2} and~\ref{thm:W-J3}).
+
+\emph{The true family} (Section~\ref{sec:true}). The hypotheses \hyp{G$_a$} and \hyp{Z$_\infty$} of the criterion of
+\cite{PaperI} follow from root counts and from a coefficientwise step law (Theorem~\ref{thm:IG}), and \hyp{Mg} near the front
+follows from a step law \hyp{TEL} together with a base certificate and a summability condition
+(Theorem~\ref{thm:B}). Combining them:
+
+\begin{restate}{Corollary~\ref{cor:Bprime}}
+Assume \hyp{N}$_J$ for every $J\ge J_0$, the coefficient bound \hyp{POS$_a$} for all large $J$ with some $a<\pi/2$, the base
+hypothesis \hyp{B$^+$}$_{J_0}$, the step law \hyp{TEL$_J$} for every $J>J_0$, and erosion summability \hyp{ES}. Then
+Conjectures~U and~S of \cite{PaperI} hold, and the Riemann hypothesis is equivalent to the existence of an admissible pair.
+\end{restate}
+
+None of these five hypotheses is known for all $J$. Away from the front, \hyp{Mg} reduces to a finite certificate plus the
+summability of one scalar sequence (Corollary~\ref{cor:FFprime}), and we prove the far-node asymptotics of the true kernel
+(Theorem~\ref{thm:Ftrue}): the frozen double root $(u+\frac14)^2$ of the Gamma factor acts like one extra node, so the constant
+$8J$ of the model becomes $8(J+1)$. We observe numerically that the model and the true family agree quantitatively at the front, to
+within a few hundredths in the step-law profile for $J\ge40$ (Numerical observation~\ref{obs:toy-true}); we have no transfer
+theorem between them, and a positive smoothing cannot provide one (Proposition~\ref{prop:smoothing-obstruction}).
+
+%----------------------------------------------------------------------
+\subsection{Status of the results}\label{ssec:intro-status}
+%----------------------------------------------------------------------
+
+This paper uses three kinds of statement. \emph{Proved} statements (theorem, proposition, lemma, corollary) include the
+kernel-free calculus, the criterion of Theorem~\ref{thm:A}, the far-node asymptotics for a fixed node set, the obstruction of
+Proposition~\ref{prop:obstruction}, and the conditional reductions of Section~\ref{sec:true}; the hypotheses of every
+conditional statement are named in it. \emph{Computer-assisted} statements are finite certificates, each with its script
+and parameter file (Appendices~\ref{app:certificates} and~\ref{app:anc}): the front of the model for $J\le80$, small cases,
+base data, counterexamples to (W), tail laws on finite ranges, and base data for the true family at $J=10,60,110$.
+\emph{Numerical observations} are computed but not certified; they are all in Section~\ref{sec:observations} and are never
+used in a proof. The open statements are in Section~\ref{sec:conjectures}: five conjectures, each with what it would imply,
+the evidence and what a finite prefix of the computed family can and cannot decide, and four open problems.
+
+Nothing infinite in $J$ is proved for the families themselves. No result here bears on the Riemann hypothesis beyond the
+criterion of \cite{PaperI}, and that criterion, even with all its hypotheses, gives Conjecture~U, which does not imply the
+Riemann hypothesis. The model results say nothing about the true family.
+
+%----------------------------------------------------------------------
+\subsection{Related work}\label{ssec:intro-related}
+%----------------------------------------------------------------------
+
+Christoffel's formula for orthogonal polynomials \cite[Theorem~2.5]{Sze75} is the prototype of the identity of
+Lemma~\ref{lem:christoffel}, here for a nested biorthogonal system with a test functional; the pointwise forms of
+Proposition~\ref{prop:chebyshev} are statements about Chebyshev pairs in the sense of Karlin and Studden \cite{KS66}. The
+model is built from Touchard polynomials \cite{Tou39,Com74}, and the radial reading of Proposition~\ref{prop:radial} is
+expressed through Laguerre polynomials; Laguerre--Gaussian functions with prescribed double roots are the standard ansatz
+for sign-uncertainty problems \cite{CG19}, whose extremizers have infinitely many double roots \cite{GOS17}; as the dimension grows,
+polynomials of degree sublinear in the dimension times a Gaussian do asymptotically no better than those of degree at most
+three \cite{CDG24}. Fourier interpolation from the radii $\sqrt n$ is due to Radchenko and Viazovska in dimension one \cite{RV19},
+to Stoller in every dimension $d\ge2$ \cite{Sto21}, and, with derivatives at the radii $\sqrt{2n}$ in dimensions $8$ and $24$,
+to Cohn, Kumar, Miller, Radchenko and Viazovska \cite{CKMRV22}; Feigenbaum, Grabner and Hardin \cite{FGH21} describe the Fourier
+eigenfunctions with prescribed zeros behind these magic functions, in every dimension divisible by $4$. Bondarenko, Radchenko and Seip
+\cite{BRS} interpolate at the zeros of $\zeta$ and at the points $\log m/4\pi$. Cohn and Miller \cite{CM16} study sequences of
+functions defined by interpolation conditions and conjecture that they converge to functions with the positivity and growth
+properties of a magic function; the criterion of \cite[Theorem~D]{PaperI} and Section~\ref{sec:true} pose the analogous question for
+the explicit formula of $\zeta$. The Bessel form of $\Psi$ used here is a differentiated form of the
+extended Koshliakov formula \cite{Kos29,Dix12}; its attribution is discussed in \cite{PaperI}.
+
+%----------------------------------------------------------------------
+\subsection{Organisation}\label{ssec:intro-organisation}
+%----------------------------------------------------------------------
+
+Section~\ref{sec:setting} recalls the setting of \cite{PaperI}. Sections~\ref{sec:nested} and~\ref{sec:chain} develop the
+kernel-free calculus. Sections~\ref{sec:model}--\ref{sec:W} treat the model: definition, small cases and the dictionary
+to the true kernel; the Christoffel chain and the front for $J\le80$; the tail and the obstruction; and the sign property
+(W). Section~\ref{sec:true} treats the true family. Section~\ref{sec:observations} collects the numerical observations and
+Section~\ref{sec:conjectures} the conjectures and open problems. Long proofs are in Appendix~\ref{app:proofs}, the design of
+the certificates and the tables in Appendix~\ref{app:certificates}, and the index of the ancillary files in
+Appendix~\ref{app:anc}.
+
+\emph{Conventions.} $\PP$ is the set of prime powers, $n_j$ the $j$-th prime power, $\yPP_J=(2\pi n_1,\dots,2\pi n_J)$, and
+$\theta=y\frac{d}{dy}$ is the Euler operator; $\RR_{>0}[y]$ is the set of polynomials with positive coefficients, and inequalities
+between polynomials are coefficientwise when so stated. Named conditions are written in parentheses, for example \hyp{N}; their
+definitions are indexed in Table~\ref{tab:named}.

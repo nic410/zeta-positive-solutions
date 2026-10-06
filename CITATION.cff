@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use or refer to this work, please cite the paper as below."
+title: "Positive solutions of the explicit formula for ζ(s): near-criticality and uniqueness"
+type: software
+authors:
+  - family-names: Johns
+    given-names: Nic
+repository-code: "https://github.com/nic410/zeta-positive-solutions"
+url: "https://github.com/nic410/zeta-positive-solutions"
+license:
+  - CC-BY-4.0
+  - Apache-2.0
+keywords:
+  - analytic number theory
+  - Riemann zeta function
+  - explicit formula
+  - Weil positivity
+  - conductor bounds
+  - Fourier interpolation
+  - computer-assisted proof
+abstract: >-
+  We study the positive solutions of Weil's explicit formula with the archimedean data of the Riemann zeta
+  function: pairs of positive measures, one on the zero side and one on the prime side beyond log 2/(2π). By
+  linear-programming duality such pairs exist if and only if a positivity statement involving neither zeros nor
+  primes holds; its slack κ* gives the optimal degree-one explicit-formula conductor bound q_min = exp(−2πκ*). We
+  conjecture that ζ's own pair is the only solution; this does not imply the Riemann hypothesis, but makes it
+  equivalent to existence. We prove the conjecture for pairs carried by the zeros of ζ plus finitely many points
+  and by the Bondarenko–Radchenko–Seip nodes, using positivity of the prime measure only on one residue class of
+  nodes, and of the zero measure only at the origin. Certificates of the form Ξ²(H + ε·exp(−πt²)), with H a
+  polynomial in t², vanish at every zero of ζ and show unconditionally that κ* ≤ 1.1508391·10⁻⁹⁰⁶. Uniqueness
+  would follow from asymptotic properties of a family of such functions, defined by Hermite interpolation at the
+  prime powers.
+preferred-citation:
+  type: article
+  status: preprint
+  title: "Positive solutions of the explicit formula for ζ(s): near-criticality and uniqueness"
+  authors:
+    - family-names: Johns
+      given-names: Nic
+  year: 2026
+  month: 10
+  url: "https://github.com/nic410/zeta-positive-solutions"

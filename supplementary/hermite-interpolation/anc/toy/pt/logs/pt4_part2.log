@@ -1,0 +1,83 @@
+# command : python toy/pt/verify_pt.py toy/pt/params/pt4.json II1,II2,II3,II4,II5,II6
+# date    : 2026-10-06T15:22:05Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+Theorem PT4: exact certificate (python-flint fmpz_mpoly)
+parameter file toy/pt/params/pt4.json  sha256 03bb73e2e7baab96bb2ccd5a9365a93c7cfdaa323bbb9588e2615a2df9cb2cb6
+J = 4, c = 1 + delta = 21/20, pieces in this run: II1,II2,II3,II4,II5,II6 (of Ia1,Iap,Ia3,Ib1,Ib2,II1,II2,II3,II4,II5,II6)
+[1] minors M_0..M_8 by Laplace expansion: terms [308386, 442018, 411362, 380578, 346146, 313314, 275138, 230786, 187762] (3.5 s)
+    Qt/A exact; N_i divisible by V^4; sigma = +1
+    G_i terms: [45612, 44323, 42743, 40601, 38301, 35296, 32248, 27180, 22604]
+    G_i total degrees: [36, 35, 34, 33, 32, 31, 30, 29, 28]
+    fingerprint sha256(G) = 73d97c1bc373af9a88f7218548f8ec56439c5ea3f51e8700dcb519a8c68b9f3c  (16.2 s)
+[2a] A(y) * sum_i G_i y^i satisfies the 8 odd Stirling-1 conditions identically: True (deg_y = 16, 0.7 s)
+[2b] D = kappa (y_1...y_J)^2 V^4 G_0 with constant kappa: True, kappa = 1 (D has 308386 terms, 1.0 s)
+[3] piece II1: variables s,t,u,f >= 0; W = 1 + s + t + u; X = ['0 + 4*s + 8*t + 12*u', '8 + 0*s + 0*t + 0*u', '8 + 12*s + 0*t + 0*u', '48*(1 + s + t + u) - (4*(0 + 4*s + 8*t + 12*u) + 3*(8 + 0*s + 0*t + 0*u) + 2*(8 + 12*s + 0*t + 0*u)) + f*(1 + s + t + u)']
+    piece lies in the closed region (all constraint numerators have nonnegative coefficients): True
+    II1 G_0: 146224 terms, all coefficients > 0: True, constant term > 0: True (24.4 s)
+    II1 G_1: 134976 terms, all coefficients > 0: True, constant term > 0: True (26.0 s)
+    II1 G_2: 124320 terms, all coefficients > 0: True, constant term > 0: True (25.8 s)
+    II1 G_3: 114240 terms, all coefficients > 0: True, constant term > 0: True (24.8 s)
+    II1 G_4: 104720 terms, all coefficients > 0: True, constant term > 0: True (23.4 s)
+    II1 G_5: 95744 terms, all coefficients > 0: True, constant term > 0: True (19.6 s)
+    II1 G_6: 87296 terms, all coefficients > 0: True, constant term > 0: True (16.6 s)
+    II1 G_7: 74400 terms, all coefficients > 0: True, constant term > 0: True (13.0 s)
+    II1 G_8: 62930 terms, all coefficients > 0: True, constant term > 0: True (8.1 s)
+[3] piece II2: variables s,t,u,f >= 0; W = 1 + s + t + u; X = ['0 + 4*s + 12*t + 4*u', '8 + 0*s + 0*t + 0*u', '8 + 12*s + 0*t + 16*u', '48*(1 + s + t + u) - (4*(0 + 4*s + 12*t + 4*u) + 3*(8 + 0*s + 0*t + 0*u) + 2*(8 + 12*s + 0*t + 16*u)) + f*(1 + s + t + u)']
+    piece lies in the closed region (all constraint numerators have nonnegative coefficients): True
+    II2 G_0: 146224 terms, all coefficients > 0: True, constant term > 0: True (32.1 s)
+    II2 G_1: 134976 terms, all coefficients > 0: True, constant term > 0: True (30.9 s)
+    II2 G_2: 124320 terms, all coefficients > 0: True, constant term > 0: True (30.2 s)
+    II2 G_3: 114240 terms, all coefficients > 0: True, constant term > 0: True (27.7 s)
+    II2 G_4: 104720 terms, all coefficients > 0: True, constant term > 0: True (25.3 s)
+    II2 G_5: 95744 terms, all coefficients > 0: True, constant term > 0: True (20.9 s)
+    II2 G_6: 87296 terms, all coefficients > 0: True, constant term > 0: True (17.4 s)
+    II2 G_7: 74400 terms, all coefficients > 0: True, constant term > 0: True (11.1 s)
+    II2 G_8: 62930 terms, all coefficients > 0: True, constant term > 0: True (8.2 s)
+[3] piece II3: variables s,t,u,f >= 0; W = 1 + s + t + u; X = ['0 + 0*s + 8*t + 12*u', '8 + 12*s + 0*t + 0*u', '8 + 0*s + 0*t + 0*u', '48*(1 + s + t + u) - (4*(0 + 0*s + 8*t + 12*u) + 3*(8 + 12*s + 0*t + 0*u) + 2*(8 + 0*s + 0*t + 0*u)) + f*(1 + s + t + u)']
+    piece lies in the closed region (all constraint numerators have nonnegative coefficients): True
+    II3 G_0: 146224 terms, all coefficients > 0: True, constant term > 0: True (31.0 s)
+    II3 G_1: 134976 terms, all coefficients > 0: True, constant term > 0: True (30.3 s)
+    II3 G_2: 124320 terms, all coefficients > 0: True, constant term > 0: True (30.8 s)
+    II3 G_3: 114240 terms, all coefficients > 0: True, constant term > 0: True (28.4 s)
+    II3 G_4: 104720 terms, all coefficients > 0: True, constant term > 0: True (29.9 s)
+    II3 G_5: 95744 terms, all coefficients > 0: True, constant term > 0: True (23.8 s)
+    II3 G_6: 87296 terms, all coefficients > 0: True, constant term > 0: True (19.6 s)
+    II3 G_7: 74400 terms, all coefficients > 0: True, constant term > 0: True (12.1 s)
+    II3 G_8: 62930 terms, all coefficients > 0: True, constant term > 0: True (8.9 s)
+[3] piece II4: variables s,t,u,f >= 0; W = 1 + s + t + u; X = ['0 + 0*s + 12*t + 0*u', '8 + 12*s + 0*t + 16*u', '8 + 0*s + 0*t + 0*u', '48*(1 + s + t + u) - (4*(0 + 0*s + 12*t + 0*u) + 3*(8 + 12*s + 0*t + 16*u) + 2*(8 + 0*s + 0*t + 0*u)) + f*(1 + s + t + u)']
+    piece lies in the closed region (all constraint numerators have nonnegative coefficients): True
+    II4 G_0: 146224 terms, all coefficients > 0: True, constant term > 0: True (34.8 s)
+    II4 G_1: 134976 terms, all coefficients > 0: True, constant term > 0: True (29.2 s)
+    II4 G_2: 124320 terms, all coefficients > 0: True, constant term > 0: True (28.3 s)
+    II4 G_3: 114240 terms, all coefficients > 0: True, constant term > 0: True (25.0 s)
+    II4 G_4: 104720 terms, all coefficients > 0: True, constant term > 0: True (22.7 s)
+    II4 G_5: 95744 terms, all coefficients > 0: True, constant term > 0: True (19.1 s)
+    II4 G_6: 87296 terms, all coefficients > 0: True, constant term > 0: True (15.7 s)
+    II4 G_7: 74400 terms, all coefficients > 0: True, constant term > 0: True (11.7 s)
+    II4 G_8: 62930 terms, all coefficients > 0: True, constant term > 0: True (7.8 s)
+[3] piece II5: variables s,t,u,f >= 0; W = 1 + s + t + u; X = ['0 + 0*s + 0*t + 12*u', '8 + 8*s + 16*t + 0*u', '8 + 12*s + 0*t + 0*u', '48*(1 + s + t + u) - (4*(0 + 0*s + 0*t + 12*u) + 3*(8 + 8*s + 16*t + 0*u) + 2*(8 + 12*s + 0*t + 0*u)) + f*(1 + s + t + u)']
+    piece lies in the closed region (all constraint numerators have nonnegative coefficients): True
+    II5 G_0: 146224 terms, all coefficients > 0: True, constant term > 0: True (29.4 s)
+    II5 G_1: 134976 terms, all coefficients > 0: True, constant term > 0: True (28.4 s)
+    II5 G_2: 124320 terms, all coefficients > 0: True, constant term > 0: True (27.2 s)
+    II5 G_3: 114240 terms, all coefficients > 0: True, constant term > 0: True (25.3 s)
+    II5 G_4: 104720 terms, all coefficients > 0: True, constant term > 0: True (23.4 s)
+    II5 G_5: 95744 terms, all coefficients > 0: True, constant term > 0: True (19.5 s)
+    II5 G_6: 87296 terms, all coefficients > 0: True, constant term > 0: True (18.0 s)
+    II5 G_7: 74400 terms, all coefficients > 0: True, constant term > 0: True (11.5 s)
+    II5 G_8: 62930 terms, all coefficients > 0: True, constant term > 0: True (8.0 s)
+[3] piece II6: variables s,t,u,f >= 0; W = 1 + s + t + u; X = ['0 + 0*s + 12*t + 4*u', '8 + 8*s + 0*t + 0*u', '8 + 12*s + 0*t + 16*u', '48*(1 + s + t + u) - (4*(0 + 0*s + 12*t + 4*u) + 3*(8 + 8*s + 0*t + 0*u) + 2*(8 + 12*s + 0*t + 16*u)) + f*(1 + s + t + u)']
+    piece lies in the closed region (all constraint numerators have nonnegative coefficients): True
+    II6 G_0: 146224 terms, all coefficients > 0: True, constant term > 0: True (29.9 s)
+    II6 G_1: 134976 terms, all coefficients > 0: True, constant term > 0: True (30.4 s)
+    II6 G_2: 124320 terms, all coefficients > 0: True, constant term > 0: True (27.5 s)
+    II6 G_3: 114240 terms, all coefficients > 0: True, constant term > 0: True (26.1 s)
+    II6 G_4: 104720 terms, all coefficients > 0: True, constant term > 0: True (22.7 s)
+    II6 G_5: 95744 terms, all coefficients > 0: True, constant term > 0: True (18.9 s)
+    II6 G_6: 87296 terms, all coefficients > 0: True, constant term > 0: True (15.6 s)
+    II6 G_7: 74400 terms, all coefficients > 0: True, constant term > 0: True (11.1 s)
+    II6 G_8: 62930 terms, all coefficients > 0: True, constant term > 0: True (7.8 s)
+total time 1194.0 s
+ALL CERTIFIED: J = 4, identities (a), (b) and positivity of G_0..G_8 on pieces II1,II2,II3,II4,II5,II6
+# exit code 0; wall time 1194.2 s

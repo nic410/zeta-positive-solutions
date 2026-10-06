@@ -1,0 +1,64 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{10}
+
+\bibitem{Beu37}
+Arne Beurling, \emph{Analyse de la loi asymptotique de la distribution des nombres premiers g{\'e}n{\'e}ralis{\'e}s. {I}}, Acta Math. \textbf{68} (1937), 255--291, \href{https://doi.org/10.1007/BF02546666}{doi:10.1007/BF02546666}.
+
+\bibitem{Beu51}
+\bysame, \emph{An extremal property of the {R}iemann zeta-function}, Ark. Mat. \textbf{1} (1951), no.~4, 295--300, \href{https://doi.org/10.1007/BF02591365}{doi:10.1007/BF02591365}.
+
+\bibitem{BC56}
+S.~Bochner and K.~Chandrasekharan, \emph{On {R}iemann's functional equation}, Ann. of Math. (2) \textbf{63} (1956), no.~2, 336--360, \href{https://doi.org/10.2307/1969614}{doi:10.2307/1969614}.
+
+\bibitem{BRS}
+Andriy Bondarenko, Danylo Radchenko, and Kristian Seip, \emph{Fourier interpolation with zeros of zeta and {$L$}-functions}, Constr. Approx. \textbf{57} (2023), no.~2, 405--461, arXiv:2005.02996, \href{https://doi.org/10.1007/s00365-022-09599-w}{doi:10.1007/s00365-022-09599-w}.
+
+\bibitem{Bur12}
+Jean-Fran{\c{c}}ois Burnol, \emph{Deux extensions de th{\'e}or{\`e}mes de {H}amburger (portant sur l'{\'e}quation fonctionnelle de la fonction z{\^e}ta)}, Expo. Math. \textbf{30} (2012), no.~3, 295--308, arXiv:1106.4749, \href{https://doi.org/10.1016/j.exmath.2012.03.003}{doi:10.1016/j.exmath.2012.03.003}.
+
+\bibitem{CM57}
+K.~Chandrasekharan and S.~Mandelbrojt, \emph{On {R}iemann's functional equation}, Ann. of Math. (2) \textbf{66} (1957), no.~2, 285--296, \href{https://doi.org/10.2307/1970000}{doi:10.2307/1970000}.
+
+\bibitem{DZ16}
+Harold~G. Diamond and Wen-Bin Zhang, \emph{Beurling generalized numbers}, Mathematical Surveys and Monographs, vol. 213, American Mathematical Society, Providence, RI, 2016, \href{https://doi.org/10.1090/surv/213}{doi:10.1090/surv/213}.
+
+\bibitem{DixA20}
+Anup~B. Dixit, \emph{A uniqueness property of general {D}irichlet series}, J. Number Theory \textbf{206} (2020), 123--137, Corrigendum: J. Number Theory 213 (2020), 462--463; arXiv:1905.04193, \href{https://doi.org/10.1016/j.jnt.2019.06.007}{doi:10.1016/j.jnt.2019.06.007}.
+
+\bibitem{Gon23}
+Felipe Gon{\c{c}}alves, \emph{A classification of {F}ourier summation formulas and crystalline measures}, 2023, arXiv:2312.11185.
+
+\bibitem{Ham21}
+Hans Hamburger, \emph{{\"U}ber die {R}iemannsche {F}unktionalgleichung der {$\zeta$}-{F}unktion. {E}rste {M}itteilung}, Math. Z. \textbf{10} (1921), no.~3-4, 240--254, \href{https://doi.org/10.1007/BF01211612}{doi:10.1007/BF01211612}.
+
+\bibitem{Hil12}
+Titus Hilberdink, \emph{Generalised prime systems with periodic integer counting function}, Acta Arith. \textbf{152} (2012), no.~3, 217--241, \href{https://doi.org/10.4064/aa152-3-1}{doi:10.4064/aa152-3-1}.
+
+\bibitem{PaperI}
+Nic Johns, \emph{Positive solutions of the explicit formula for {$\zeta(s)$}: near-criticality and uniqueness}, Companion paper, in preparation, 2026.
+
+\bibitem{KM58}
+J.-P. Kahane and S.~Mandelbrojt, \emph{Sur l'{\'e}quation fonctionnelle de {R}iemann et la formule sommatoire de {P}oisson}, Ann. Sci. {\'E}cole Norm. Sup. (3) \textbf{75} (1958), 57--80, \href{https://doi.org/10.24033/asens.1066}{doi:10.24033/asens.1066}.
+
+\bibitem{Lag99}
+Jeffrey~C. Lagarias, \emph{Beurling generalized integers with the {D}elone property}, Forum Math. \textbf{11} (1999), no.~3, 295, \href{https://doi.org/10.1515/form.1999.295}{doi:10.1515/form.1999.295}.
+
+\bibitem{LO15}
+Nir Lev and Alexander Olevskii, \emph{Quasicrystals and {P}oisson's summation formula}, Invent. Math. \textbf{200} (2015), no.~2, 585--606, arXiv:1312.6884, \href{https://doi.org/10.1007/s00222-014-0542-z}{doi:10.1007/s00222-014-0542-z}.
+
+\bibitem{OU20}
+Alexander Olevskii and Alexander Ulanovskii, \emph{Fourier quasicrystals with unit masses}, C. R. Math. Acad. Sci. Paris \textbf{358} (2020), no.~11-12, 1207--1211, arXiv:2009.12810, \href{https://doi.org/10.5802/crmath.142}{doi:10.5802/crmath.142}.
+
+\bibitem{Per17}
+Alberto Perelli, \emph{Converse theorems: from the {R}iemann zeta function to the {S}elberg class}, Boll. Unione Mat. Ital. \textbf{10} (2017), no.~1, 29--53, arXiv:1605.02354, \href{https://doi.org/10.1007/s40574-016-0085-x}{doi:10.1007/s40574-016-0085-x}.
+
+\bibitem{Wei52}
+Andr{\'e} Weil, \emph{Sur les ``formules explicites'' de la th{\'e}orie des nombres premiers}, Comm. S{\'e}m. Math. Univ. Lund [Medd. Lunds Univ. Mat. Sem.] \textbf{Tome suppl{\'e}mentaire} (1952), 252--265.
+
+\end{thebibliography}

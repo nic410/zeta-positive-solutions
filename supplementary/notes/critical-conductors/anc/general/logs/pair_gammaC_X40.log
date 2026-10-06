@@ -1,0 +1,20 @@
+# command : python general/verify_pair.py general/params/pair_gammaC_X40.json --gap-x 3
+# date    : 2026-10-06T20:13:38Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+parameter file : general/params/pair_gammaC_X40.json
+sha256         : f32152ae73a8e202fafd9bd56097dc0b98d68741392ee8149ee3d9262828eeae
+pair           : Gamma_R shifts [0, 1], log q = 1.0976698108720329; 300 cells, 32 bumps (half-width 0.05, order 8), tails [(1, 0.0008553374525046422), (2, 0.0), (3, 139.62439102894413)], X = e^{v_n} = [40.0000000000 +/- 5e-15]
+nu~ >= 0       : f in [0,1], w >= 0, bump supports in [log 2, oo), sum_m a_m X^-m = [0.0022030 +/- 1.46e-8] < 1: True
+nu~ support    : supp nu~ in [x0, oo) with x0 >= 3.011664
+  t = 3.931, steps = 5000, min lower bound so far [6.67e-8 +/- 2.27e-11] (11 s)
+steps on [0, 800]: 9501 mean-value steps; min lower bound for mu = [6.6723e-8 +/- 3.99e-13] (>= 6.6722e-8)
+tail t >= 800   : mu(t) >= [1.6552886 +/- 3.39e-8] (>= 1.65528)
+MU FLOOR       : mu(t) >= 6.67226e-8 for all real t
+ADMISSIBLE     : True  (mu > 0 on R, nu >= 0 on [xi_2, oo))
+GAP            : admissible at gap xi_3 (prime measure on [3, oo)): True
+CONDUCTOR      : admissible at log q = 1.0976698108720329, q = [2.99717389858988 +/- 2.36e-15]; hence q_min(data) <= 2.9971739
+CLAIM          : q_min <= 2.997174 ... implied
+summary written: general/results/pair_gammaC_X40.json
+RESULT         : CERTIFIED (19 s)
+# exit code 0; wall time 19.3 s

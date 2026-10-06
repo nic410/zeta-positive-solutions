@@ -1,0 +1,19 @@
+# command : python general/verify_pair.py general/params/pair_Qi_X10.json
+# date    : 2026-10-06T20:14:05Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+parameter file : general/params/pair_Qi_X10.json
+sha256         : 7ba4907baabea3199c95440a7f2e98d707fd4be6c4c934cf3045a2bca7932cb4
+pair           : Gamma_R shifts [0, 1], log q = log(4); 200 cells, 10 bumps (half-width 0, order 1), tails [], X = e^{v_n} = [10.0000000000 +/- 4e-15]
+nu~ >= 0       : f in [0,1], w >= 0, bump supports in [log 2, oo), sum_m a_m X^-m = 0 < 1: True
+nu~ support    : supp nu~ in [x0, oo) with x0 >= 3.088530
+steps on [0, 300]: 1277 mean-value steps; min lower bound for mu = [0.022232 +/- 4.46e-7] (>= 0.022232)
+tail t >= 300   : mu(t) >= [0.47256275 +/- 4.87e-9] (>= 0.472562)
+MU FLOOR       : mu(t) >= 0.0222324 for all real t
+ADMISSIBLE     : True  (mu > 0 on R, nu >= 0 on [xi_2, oo))
+CONDUCTOR      : admissible at log q = log(4), q = [4.00000000000000 +/- 3e-19]; hence q_min(data) <= 4.0000001
+CLAIM          : mu >= 0.0217 on [0, 300] ... implied
+CLAIM          : mu >= 0.4696 on [300, oo) ... implied
+summary written: general/results/pair_Qi_X10.json
+RESULT         : CERTIFIED (1 s)
+# exit code 0; wall time 1.5 s

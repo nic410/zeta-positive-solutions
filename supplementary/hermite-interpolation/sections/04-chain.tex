@@ -1,0 +1,282 @@
+%======================================================================
+\section{The chain and insertion calculus}\label{sec:chain}\label{ssec:chain}
+%======================================================================
+
+Throughout this section $\varphi$ is a base kernel, and chains, node sets and interpolants are as in
+Definition~\ref{def:nested}. Every statement is proved for an arbitrary nested family: the proofs use only
+the linear algebra of the data functionals and the nesting $\Asp_{K-1}\subset\Asp_K$ with
+$\dim\Asp_K/\Asp_{K-1}=1$. So they apply verbatim to the true, Gamma-only and model kernels. This
+applies to statements about interpolants and their values. Statements about the \emph{coefficients} of
+polynomial cofactors (Lemma~\ref{lem:ST} and Theorem~\ref{thm:A}) use the polynomial structure of the model and
+are not claimed for other kernels; nor are far-field statements, which depend on the kernel
+(Theorems~\ref{thm:Ftrue} and~\ref{thm:Ftoy}).
+
+If $Z$ is a regular chain of level $K$, the elements of $\Asp_K$ vanishing on $Z$ form the line spanned
+by $\Fc_Z$: such an element is $c\sigma_K+G$ with $G\in\Asp_{K-1}$, and either $c=0$, so that $G=0$ by
+regularity, or it equals $c\Fc_Z$. For $z\in Z$ of multiplicity $\mu$ and
+$\omega_0(y):=\prod_{w\in Z,\,w\ne z}(y-w)$ (product over the list) we have
+\begin{equation}\label{eq:chainvalue}
+\delta^Z_z(\Fc_Z)=\mu!\,\omega_0(z)\,f_Z(z),
+\end{equation}
+and the same formula with $\mu=0$ holds for $z\notin Z$.
+
+\begin{lemma}[Regularity propagation]\label{lem:R}
+Let $Z$ be a regular chain of level $K-1$, $z\in I$, and $\delta^Z_z$ the next data functional at $z$. If
+$\delta^Z_z(\Fc_Z)\ne0$, then $Z+z$ is regular.
+\end{lemma}
+
+\begin{proof}
+If $F\in\Asp_{K-1}$ vanishes on $Z+z$, then $F=c\Fc_Z$, and $0=\delta^Z_z(F)=c\,\delta^Z_z(\Fc_Z)$ forces $c=0$.
+\end{proof}
+
+\begin{lemma}[Christoffel identity]\label{lem:christoffel}
+Let $Z$ be a regular chain of level $K$ with $\ell_0(\Fc_Z)\ne0$.
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item The space $\mathcal S(Z):=\{F\in\Asp_{K+1}:F\text{ vanishes on }Z\}$ has dimension $2$, and
+$\mathcal S(Z)\cap\Asp_K=\operatorname{span}(\Fc_Z)$.
+\item There is a unique $G_Z\in\mathcal S(Z)\cap(\sigma_{K+1}+\Asp_K)$ with $\ell_0(G_Z)=0$. For $z\in I$ with
+$\delta^Z_z(\Fc_Z)\ne0$ (points of $Z$ allowed), $Z+z$ is regular and
+\[
+\Fc_{Z+z}=G_Z-\chi_Z(z)\,\Fc_Z,\qquad \chi_Z(z):=\delta^Z_z(G_Z)/\delta^Z_z(\Fc_Z).
+\]
+For $z\notin Z$, $\chi_Z(z)=G_Z(z)/\Fc_Z(z)$; the function $\chi_Z:=G_Z/\Fc_Z$ extends real-analytically to every
+point of $I$ at which $f_Z\ne0$, with the value $\delta^Z_z(G_Z)/\delta^Z_z(\Fc_Z)$ at points of $Z$.
+\item \emph{(Model, cofactor form.)} Let $\varphi=e^{-y}$. Every element of $\Asp_K$ is $e^{-y}$ times a polynomial of
+degree $\le2K$, so $\Fc_Z=e^{-y}\omega_Z\mathsf f_Z$ with $\mathsf f_Z$ a monic polynomial of degree $K$, and
+$\ell_0(F)=F(0)$. If $\mathsf f_Z(0)\ne0$, then $G_Z=\Fc_{Z+0}$ is the interpolant of the chain with one more point
+at $y=0$; write $\Fc_{Z+0}=e^{-y}\,y\,\omega_Z\mathsf g_Z$. If moreover $\mathsf f_Z(z)\ne0$, then
+\[
+(y-z)\,\mathsf f_{Z+z}(y)=y\,\mathsf g_Z(y)-\frac{z\,\mathsf g_Z(z)}{\mathsf f_Z(z)}\,\mathsf f_Z(y).
+\]
+\end{enumerate}
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-chain}.
+
+Part (b) is an analogue, for a nested biorthogonal system with the test functional $\ell_0$, of Christoffel's formula for
+orthogonal polynomials \cite[Theorem~2.5]{Sze75}.
+It also gives the reciprocity $f_Z(x)f_{Z+x}(y)=f_Z(y)f_{Z+y}(x)$ (Proposition~\ref{prop:chebyshev}(a)).
+
+\begin{lemma}[Ladder identity]\label{thm:ladder}
+Let $Z$ be a regular chain of level $K$, and let $x$ be a point of $Z$ of multiplicity $\mu$. Let $Z^-$ be $Z$
+with the multiplicity of $x$ lowered by one, and assume that $Z^-$ is regular, with interpolant $G:=\Fc_{Z^-}$
+and cofactor $g$, and that $g(x)\ne0$. Moving all $\mu$ copies of $x$ together and keeping the other points
+fixed,
+\[
+\partial_x\Fc_Z=-\frac{\Fc_Z^{(\mu)}(x)}{G^{(\mu-1)}(x)}\,G,\qquad
+\partial_xf_Z=\mu\,\frac{f_Z-\bigl(f_Z(x)/g(x)\bigr)g}{y-x}.
+\]
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-chain}.
+
+\begin{lemma}[Bordered determinant and chain values]\label{lem:Delta}
+Let $Z$ be a chain of level $K-1$, not necessarily regular, and $z\in I$. Let $\Phi_Z(y)$ be the determinant of the
+matrix of $\Delta(Z+z)$ with its last row replaced by $(\sigma_0(y),\dots,\sigma_{K-1}(y))$.
+\begin{enumerate}[label=(\roman*),leftmargin=2em]
+\item $\Phi_Z\in\Asp_{K-1}$ vanishes on $Z$, and its $\sigma_{K-1}$-coefficient is $\Delta(Z)$; if $Z$ is regular,
+$\Phi_Z=\Delta(Z)\Fc_Z$.
+\item $\Delta(Z+z)=\delta^Z_z(\Phi_Z)$; if $Z$ is regular, $\Delta(Z+z)=\Delta(Z)\,\delta^Z_z(\Fc_Z)$, and
+$\delta^Z_z(\Fc_Z)=\mu!\,\omega_0(z)f_Z(z)$ is the \emph{chain value} of~\eqref{eq:chainvalue}.
+\item If every prefix $(z_1,\dots,z_k)$, $k<K$, of a chain $(z_1,\dots,z_K)$ is regular, then
+$\Delta(z_1,\dots,z_K)=\prod_{k=1}^{K}\delta^{Z_{k-1}}_{z_k}\bigl(\Fc_{Z_{k-1}}\bigr)$, $Z_{k-1}:=(z_1,\dots,z_{k-1})$.
+\end{enumerate}
+In particular, let $\yv=(y_1<\dots<y_J)$, let $Z$ be the doubled chain of $(y_1,\dots,y_{J-1})$, and assume $Z$
+regular. If $\Fc_Z(y_J)\ne0$ and the half-step interpolant $\Fc_{Z+y_J}$ (double at $y_1,\dots,y_{J-1}$, simple at
+$y_J$) has a simple zero at $y_J$, then the doubled chain of $\yv$ is regular; if $Z+y_J$ is regular, the converse
+holds as well.
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-chain}.
+
+The product formula (iii) needs regular prefixes; for an arbitrary ordering it can fail.
+
+\begin{proposition}[Pointwise forms: a Chebyshev-pair criterion]\label{prop:chebyshev}
+Let $Z$ be a regular chain with $\ell_0(\Fc_Z)\ne0$, let $G_Z$ and $\chi_Z=G_Z/\Fc_Z$ be as in
+Lemma~\ref{lem:christoffel}, and assume $f_Z>0$ on $I$ (so $\chi_Z$ is real-analytic on $I$ and $Z+z$ is regular for
+every $z\in I$).
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item $f_{Z+z}(y)=f_Z(y)\,\dfrac{\chi_Z(y)-\chi_Z(z)}{y-z}$ for $y\ne z$, and $f_{Z+z}(z)=f_Z(z)\chi_Z'(z)$.
+\item The following are equivalent: (1) $f_{Z+z}>0$ on $I$ for every $z\in I$; (2) $\chi_Z'>0$ on $I$;
+(3) $\Wr(\Fc_Z,G_Z)>0$ on $I\setminus Z$, and $f_Z(y)f_{Z+y}(y)>0$ at the points $y\in Z$;
+(4) $f_Z(y)f_{Z+y}(y)>0$ for every $y\in I$. An isolated zero of $\chi_Z'$ already violates (1), so ``$\chi_Z$
+strictly increasing'' is not sufficient.
+\item For one given $z$: $f_{Z+z}>0$ on $I$ if and only if $(\chi_Z(y)-\chi_Z(z))/(y-z)>0$ for $y\in I\setminus\{z\}$
+and $\chi_Z'(z)>0$.
+\item \emph{(Pointwise half-step increment.)} Put $\tilde F:=\Fc/\ell_0(\Fc)$ and
+$\tilde f_W:=\tilde F_W/\prod_{w\in W}(1-y/w)$ for $W=Z,Z+z$. If $\chi_Z(z)\ne0$, then
+\[
+\frac{\tilde f_{Z+z}(y)}{\tilde f_Z(y)}=\frac{z\,(\chi_Z(y)-\chi_Z(z))}{\chi_Z(z)\,(y-z)}\qquad(y\in I\setminus\{z\}).
+\]
+Consequently, if $\tilde f_Z>0$ on $I$ and $\chi_Z(z)>0$, then $\tilde f_{Z+z}\ge\tilde f_Z$ on $I$ if and only if
+$\chi_Z(y)/y-\chi_Z(z)/z$ has the sign of $y-z$ for $y\in I\setminus\{z\}$; if $\chi_Z(z)<0$, the inequality
+between $\tilde f_{Z+z}$ and $\tilde f_Z$ is reversed.
+\end{enumerate}
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-chain}.
+
+So \hyp{FR} for every one-point extension of $Z$ says that $(\Fc_Z,G_Z)$ is a Chebyshev pair on $I$, and the
+pointwise half-step increment says the same for $(\Fc_Z,G_Z/y)$ \cite{KS66}. For the model on the prime powers
+$\chi_Z$ first decreases, so usable forms restrict to $y$ beyond a point below $y_1$
+(Section~\ref{sec:toy}).
+
+\begin{proposition}[Insertion calculus]\label{prop:insertion}
+Assume \hyp{N}$_{\yv}$, $\yv=(y_1<\dots<y_J)$, and use $E_m$, $\ell_k$, $\ell_1^*$, $\ell_2^*$ and $E_*$ of
+Definition~\ref{def:nested}. Put $\omega:=\prod_j(y-y_j)^2$, $\mathcal R_0:=\Fc_{\yv}/\omega$ and
+$\mathcal R_m:=\Fc_{E_m}/\omega$ ($m\ge1$), analytic on $I$.
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item \emph{(Several new nodes.)} For distinct $z_1,\dots,z_r\in I\setminus\yv$, \hyp{N} holds for
+$\yv\cup\{z_1,\dots,z_r\}$ if and only if the $2r\times2r$ matrix
+$[\mathcal R_m(z_i),\mathcal R_m'(z_i)]_{i\le r,\,1\le m\le2r}$ is non-singular. In that case
+$P_{\yv\cup\{z_i\}}=P_{\yv}+\sum_{m\le2r}a_mE_m$, where $(a_m)$ is the unique vector for which
+$\mathcal R_0+\sum_ma_m\mathcal R_m$ has a double zero at every $z_i$, and
+$p_1(\yv\cup\{z_i\})-p_1(\yv)=-\sum_ma_m\ell_{2J+m}$.
+\item \emph{(One new node.)} Let $Y\in I\setminus\yv$ and $\mathcal W:=\Wr(\Fc_{E_1},\Fc_{E_2})$. Then
+\hyp{N}$_{\yv\cup\{Y\}}$ holds if and only if $\mathcal W(Y)\ne0$, and in that case $P_{\yv\cup\{Y\}}=P_{\yv}+aE_1+bE_2$
+with $a,b$ as in Lemma~\ref{lem:nodeadd}(a), and
+\[
+\Delta_{\yv}(Y)=\frac{\Wr(\Fc_{P_{\yv}},\Fc_{E_*})(Y)}{\mathcal W(Y)},\qquad
+\Fc''_{\yv\cup\{Y\}}(Y)=\frac{\Wr(\Fc_{P_{\yv}},\Fc_{E_1},\Fc_{E_2})(Y)}{\mathcal W(Y)}.
+\]
+The weights of the new node in the $(J+1)$-node $p_1$-rule are
+$\lambda_Y=-\Fc_{E_*}'(Y)/\mathcal W(Y)$ and $\mu_Y=\Fc_{E_*}(Y)/\mathcal W(Y)$, and
+$\partial_Yp_1(\yv\cup\{Y\})=\Delta_{\yv}'(Y)=-\Fc''_{\yv\cup\{Y\}}(Y)\,\mu_Y$.
+\item $\Delta_{\yv}$, $a$ and $b$ are unchanged by any change of the variable $y$ and by multiplying every $\Fc$ by one
+non-vanishing function; $\mu_Y$ and $\Fc''$ transform as a derivative weight and as a second derivative at a double
+zero.
+\end{enumerate}
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-chain}: (a) and (b) are Cramer's rule in
+$\operatorname{span}\{E_1,\dots,E_{2r}\}$, and (c) holds because all these quantities are ratios of Wronskians.
+
+Every node is the inserted node of the configuration without it. So, under \hyp{N} for $\yv$ and
+$\yv\setminus\{y_j\}$, (b) applied to $\yv\setminus\{y_j\}$ gives $\mu_j(\yv)$ and
+$\partial p_1/\partial y_j=\Delta'_{\yv\setminus\{y_j\}}(y_j)$, consistently with Lemma~\ref{lem:dualrule}(d).
+
+The next proposition describes how the $p_1$-problem responds to one or two new points. We use window interpolants
+normalised in the $\varphi$-basis. For a chain $B$ of level $K$ and $r\ge0$ let
+\[
+D_r(B):=\det[\lambda_i(\varphi_{r+j})]_{1\le i\le K,\,0\le j<K}
+\]
+be the determinant of the data at $B$ of $(\varphi_r,\dots,\varphi_{r+K-1})$, and when $D_r(B)\ne0$ let $F_r^B$ be the
+unique element of $\varphi_{r+K}+\operatorname{span}\{\varphi_r,\dots,\varphi_{r+K-1}\}$ vanishing on $B$ (the
+\emph{window-$r$ interpolant}). For $z\in I$ write $F[z]:=\delta^B_z(F)$; this is $F(z)$ if $z\notin B$, and at a
+point of $B$ it is the ``confluent value''. Put
+\[
+S(B):=\frac{D_0(B)D_2(B)}{D_1(B)^2},\qquad q_r^B(z):=\frac{F_{r+1}^B[z]}{F_r^B[z]},\qquad
+a_B(z):=\frac{F_0^B[z]\,F_2^B[z]}{F_1^B[z]^2}.
+\]
+If $D_1(B)\ne0$ there is a unique polynomial $P_B$ of degree $\le K$ with $P_B(0)=1$ and $\Fc_{P_B}$ vanishing on
+$B$; put $p_1(B):=[u]P_B$. For the doubled chain $B$ of a node set $\yv$, $D_1(B)\ne0$ is \hyp{N}$_{\yv}$ and
+$P_B=P_{\yv}$. In the $\sigma$-normalisation of Definition~\ref{def:nested} the functions $q_r$ change sign, while
+$S(B)$ and $a_B$ do not; we use the $\varphi$-normalisation throughout.
+
+\begin{proposition}[Half-step calculus]\label{thm:halfstep}
+Let $B$ be a chain of level $K$ and $z\in I$.
+\begin{enumerate}[label=(H\arabic*),leftmargin=2.6em]
+\item If $D_r(B)D_{r+1}(B)\ne0$ and $F_r^B[z]\ne0$, then $F_r^{B+z}=F_{r+1}^B-q_r^B(z)\,F_r^B$.
+\item If $D_r(B)\ne0$, then $D_r(B+z)=D_r(B)\,F_r^B[z]$. Hence, if $D_0D_1D_2(B)\ne0$ and $F_1^B[z]\ne0$,
+$S(B+z)=S(B)\,a_B(z)$.
+\item If $D_0(B)D_1(B)\ne0$ and $F_1^B[z]\ne0$, then
+$p_1(B+z)-p_1(B)=-S(B)\,F_0^B[z]/F_1^B[z]$, that is $-S(B)/q_0^B(z)$ when $F_0^B[z]\ne0$.
+\item Let $D_0D_1D_2(B)\ne0$, and let $z\ne x$ be points of $I$ with $F_1^B[z]\ne0\ne F_1^B[x]$ and
+$q_1^B(x)\ne q_1^B(z)$. Then
+\[
+m_B(z,x):=p_1(B+z+x)-p_1(B+z)-p_1(B+x)+p_1(B)=S(B)\,\frac{a_B(x)-a_B(z)}{q_1^B(x)-q_1^B(z)}.
+\]
+\item \emph{(One base.)} Let $D_0D_1D_2(B)\ne0$, $y\in I\setminus B$, $F_1^B(y)\ne0$ and $(q_1^B)'(y)\ne0$. Put
+$h_B(y):=p_1(B+y)-p_1(B)$ and $\Delta_B(y):=p_1(B+y+y)-p_1(B)$. Then
+\[
+\Delta_B(y)-2h_B(y)=S(B)\,a_B'(y)/(q_1^B)'(y).
+\]
+Hence, if $S(B)>0$ and $(q_1^B)'(y)<0$, then $a_B'(y)\ge0$ if and only if $\Delta_B(y)\le2h_B(y)$
+(``multiplicity concavity''); if moreover $a_B(y)>0$, both are equivalent to
+$(F_0^B)'/F_0^B-2(F_1^B)'/F_1^B+(F_2^B)'/F_2^B\ge0$ at $y$.
+\item \emph{(Doubled bases.)} Let $B$ be the doubled chain of a node set $\yv$ with \hyp{N}$_{\yv}$. Then
+$S(B)=S_{\yv}$. If $z\in I\setminus\yv$, $D_0D_1D_2(B)\ne0$, $F_r^B(z)\ne0$ ($r=0,1,2$) and $F_1^{B+z}[z]\ne0$, then
+the \emph{Tur\'an ratio} is
+\[
+\operatorname{Tu}(z):=S_{\yv\cup\{z\}}/S_{\yv}=a_B(z)\,a_{B+z}(z),
+\]
+with the confluent value in the second factor. For $z\ne x$ in $I\setminus\yv$, whenever $p_1$ is defined at the
+nine chains $B+iz+jx$ ($0\le i,j\le2$),
+\[
+\Delta_{\yv\cup\{z\}}(x)-\Delta_{\yv}(x)=m_B(z,x)+m_{B+z}(z,x)+m_{B+x}(z,x)+m_{B+z+x}(z,x).
+\]
+\end{enumerate}
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-halfstep}. It uses only Cramer's rule and the fact that, when
+$D_0(B),\dots,D_m(B)$ are non-zero, the elements of $\operatorname{span}\{\varphi_0,\dots,\varphi_{K+m}\}$ that vanish on $B$ are
+exactly the combinations of $F_0^B,\dots,F_m^B$.
+
+In words: the two-point interaction of the $p_1$-problem is a divided difference of the single function $a_B$ with
+respect to the single function $q_1^B$.
+
+\begin{proposition}[Tail bound from the set-comparison law]\label{prop:tail-general}
+Let $y_1<y_2<\cdots$ be nodes in $I$, $\yv_k:=(y_1,\dots,y_k)$, and $J_1\ge1$. Assume \hyp{N} for $\yv_{J_1}$ and
+$\yv_{J_1+1}$, and, for every $k\ge J_1$ and every $n>k+1$, \hyp{N} for $\yv_k\cup\{y_n\}$ and for
+$\yv_{k+1}\cup\{y_n\}$, together with
+\[
+\hyp{SM}_k:\qquad \Delta_{\yv_{k+1}}(y_n)\le\Delta_{\yv_k}(y_n).
+\]
+Then for every $K\ge J_1$,
+$\Delta p_1^{(K)}:=p_1(\yv_{K+1})-p_1(\yv_K)=\Delta_{\yv_K}(y_{K+1})\le\Delta_{\yv_{J_1}}(y_{K+1})$, and every partial sum
+satisfies $\sum_{K=J_1}^{J}\Delta p_1^{(K)}\le\sum_{n=J_1+1}^{J+1}\Delta_{\yv_{J_1}}(y_n)$. If all $\Delta p_1^{(K)}\ge0$,
+then $\delta_{J_1}:=\sum_{K\ge J_1}\Delta p_1^{(K)}\le B_{J_1}:=\sum_{n>J_1}\Delta_{\yv_{J_1}}(y_n)$.
+(Robust form.) If instead $\Delta_{\yv_{k+1}}(y_n)\le(1+\eps_k)\Delta_{\yv_k}(y_n)$ with $\eps_k\ge0$, then
+$\Delta p_1^{(K)}\le\prod_{J_1\le k<K}(1+\eps_k)\,\Delta_{\yv_{J_1}}(y_{K+1})$; if moreover $\Delta_{\yv_{J_1}}(y_n)\ge0$ for
+$n>J_1$, the bounds above hold with the factor $\prod_{k\ge J_1}(1+\eps_k)$.
+\end{proposition}
+
+\begin{proof}
+The hypotheses give \hyp{N} for every $\yv_k$, $k\ge J_1$. Apply \hyp{SM}$_k$ with $n=K+1$ for $k=K-1,\dots,J_1$:
+$\Delta_{\yv_K}(y_{K+1})\le\Delta_{\yv_{K-1}}(y_{K+1})\le\dots\le\Delta_{\yv_{J_1}}(y_{K+1})$; then sum. In the robust form
+each step multiplies by $1+\eps_k>0$.
+\end{proof}
+
+Only the diagonal comparisons $\Delta_{\yv_K}(y_{K+1})\le\Delta_{\yv_{J_1}}(y_{K+1})$ are used; \hyp{SM} is the natural
+local sufficient condition. Without a sign hypothesis on the $\Delta p_1^{(K)}$, the proposition bounds
+$\sum_K\Delta p_1^{(K)}$ from above but not $\sum_K\lvert\Delta p_1^{(K)}\rvert$.
+
+For a node sequence $y_1<y_2<\cdots$ the \emph{half-step chain} is $B_{2K}:=$ the doubled chain of $\yv_K$ and
+$B_{2K+1}:=B_{2K}+y_{K+1}$; the next point is $z_{i+1}$, so that $B_{i+1}=B_i+z_{i+1}$ and
+$z_{2K+1}=z_{2K+2}=y_{K+1}$.
+
+\begin{theorem}[Tail bound from one-base laws]\label{thm:Tprime}
+Let $y_1<y_2<\cdots$ be nodes in $I$ with half-step chain $(B_i)$, and fix $J_1\ge1$. Assume that for every
+$i\ge2J_1$:
+\begin{itemize}[leftmargin=2em]
+\item[\hyp{CP}$_i$] $D_1(B_i)\ne0$ and $S(B_i)>0$;
+\item[\hyp{UM}$_i$] on $[z_{i+1},\infty)$, $F_1^{B_i}\ne0$ (with the confluent value at $z_{i+1}$ if $z_{i+1}\in B_i$),
+$a_{B_i}$ is non-decreasing, and $(q_1^{B_i})'<0$.
+\end{itemize}
+Then for every $K\ge J_1$
+\begin{gather*}
+\Delta p_1^{(K)}\le2h_{B_{2J_1}}(y_{K+1})=-2S(B_{2J_1})\,\frac{F_0^{B_{2J_1}}}{F_1^{B_{2J_1}}}(y_{K+1}),\\
+\delta_{J_1}:=\sum_{K\ge J_1}\Delta p_1^{(K)}\le2S(B_{2J_1})\sum_{n>J_1}\Bigl(-\frac{F_0^{B_{2J_1}}}{F_1^{B_{2J_1}}}\Bigr)(y_n).
+\end{gather*}
+\end{theorem}
+
+\begin{proof}
+\hyp{CP}$_i$ gives $D_0D_1D_2(B_i)\ne0$, and \hyp{UM}$_i$ makes $q_1^{B_i}$ strictly decreasing on
+$[z_{i+1},\infty)$. \emph{Chain monotonicity:} for $i\ge2J_1$ and $z>z_{i+1}$, (H4) at $B_i$ with the points
+$z_{i+1}$ (a confluent point when $i$ is odd) and $z$ gives
+\[
+h_{B_{i+1}}(z)-h_{B_i}(z)=m_{B_i}(z_{i+1},z)=S(B_i)\frac{a_{B_i}(z)-a_{B_i}(z_{i+1})}{q_1^{B_i}(z)-q_1^{B_i}(z_{i+1})}\le0.
+\]
+Since $z_{i+1}\le y_K<y_{K+1}$ for $i\le2K-1$, iterating from $i=2J_1$ to $2K-1$ at $z=y_{K+1}$ gives
+$h_{B_{2K}}(y_{K+1})\le h_{B_{2J_1}}(y_{K+1})$. \emph{Doubling:}
+$\Delta p_1^{(K)}=\Delta_{B_{2K}}(y_{K+1})$, and (H5) at $B_{2K}$, $y=y_{K+1}$ (the left end of the interval in
+\hyp{UM}$_{2K}$, where $a'_{B_{2K}}\ge0$) gives $\Delta_{B_{2K}}(y_{K+1})\le2h_{B_{2K}}(y_{K+1})$. Combine, use (H3),
+and sum over $K$.
+\end{proof}
+
+Compared with Proposition~\ref{prop:tail-general}, no two-point inequality is needed: one base and one half-line per
+level. The strict inequality $(q_1^{B_i})'<0$ cannot be weakened to monotonicity: by (H2),
+$D_1(B+y+y)=D_1(B)F_1^B(y)^2(q_1^B)'(y)$, so \hyp{N} fails where $(q_1^B)'$ vanishes. For the model, the laws \hyp{UM}$_i$ are
+certified at sampled levels (Proposition~\ref{prop:UM-cert}), the sign condition of \hyp{CP}$_i$ only at a few levels (see the
+evidence for Conjecture~\ref{conj:UM}), and both were computed at every level $J\le40$ (Numerical
+observation~\ref{obs:toytail-data}); for the true kernel nothing has been computed in this form.

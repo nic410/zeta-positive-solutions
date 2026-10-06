@@ -1,0 +1,33 @@
+# command : python toy/um/verify_um.py toy/um/params/um.json
+# date    : 2026-10-06T15:57:00Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+(UM+) at sampled levels along the prime-power nodes: Arb ball arithmetic
+parameter file toy/um/params/um.json  sha256 cf1301db32216348c06325299cbc31a7f0608e44af3104b1456166a9cb934b3f
+working precision 6000 bits, J = [2, 4, 8, 12, 20, 30, 40, 60]
+J= 2 PP_J           : P - (30 coeffs), F_1^3 - => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (22 coeffs): True | a(z) = [0.76691297 +/- 3.97e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+J= 2 PP_J + y_{J+1} : P + (33 coeffs), F_1^3 + => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (24 coeffs): True | a(z) = [0.74438185 +/- 2.63e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+     [J=2: 0.0 s]
+J= 4 PP_J           : P - (54 coeffs), F_1^3 - => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (38 coeffs): True | a(z) = [0.83159923 +/- 1.41e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+J= 4 PP_J + y_{J+1} : P + (57 coeffs), F_1^3 + => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (40 coeffs): True | a(z) = [0.82132067 +/- 4.17e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+     [J=4: 0.0 s]
+J= 8 PP_J           : P - (102 coeffs), F_1^3 - => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (70 coeffs): True | a(z) = [0.89906902 +/- 2.31e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+J= 8 PP_J + y_{J+1} : P + (105 coeffs), F_1^3 + => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (72 coeffs): True | a(z) = [0.89615273 +/- 2.52e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+     [J=8: 0.1 s]
+J=12 PP_J           : P - (150 coeffs), F_1^3 - => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (102 coeffs): True | a(z) = [0.94943977 +/- 1.56e-10] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+J=12 PP_J + y_{J+1} : P + (153 coeffs), F_1^3 + => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (104 coeffs): True | a(z) = [0.94881978 +/- 2.60e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+     [J=12: 0.3 s]
+J=20 PP_J           : P - (246 coeffs), F_1^3 - => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (166 coeffs): True | a(z) = [0.97593046 +/- 1.62e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+J=20 PP_J + y_{J+1} : P + (249 coeffs), F_1^3 + => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (168 coeffs): True | a(z) = [0.97578986 +/- 4.42e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+     [J=20: 1.1 s]
+J=30 PP_J           : P - (366 coeffs), F_1^3 - => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (246 coeffs): True | a(z) = [0.98828706 +/- 8.79e-10] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+J=30 PP_J + y_{J+1} : P + (369 coeffs), F_1^3 + => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (248 coeffs): True | a(z) = [0.98825379 +/- 2.12e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+     [J=30: 3.2 s]
+J=40 PP_J           : P - (486 coeffs), F_1^3 - => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (326 coeffs): True | a(z) = [0.99280611 +/- 2.16e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+J=40 PP_J + y_{J+1} : P + (489 coeffs), F_1^3 + => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (328 coeffs): True | a(z) = [0.99279348 +/- 3.91e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+     [J=40: 7.1 s]
+J=60 PP_J           : P - (726 coeffs), F_1^3 - => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (486 coeffs): True | a(z) = [0.99610764 +/- 3.34e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+J=60 PP_J + y_{J+1} : P + (729 coeffs), F_1^3 + => a' > 4/y^2: True | Wr(F_1,F_2) < 0 (488 coeffs): True | a(z) = [0.99610387 +/- 4.23e-9] > 0: True (<= 1 - 4/z: True)  => CERTIFIED
+     [J=60: 26.1 s]
+ALL CERTIFIED: (UM+) and a(y_{J+1}) > 0 at both chain levels for J = 2,4,8,12,20,30,40,60
+# exit code 0; wall time 38.1 s

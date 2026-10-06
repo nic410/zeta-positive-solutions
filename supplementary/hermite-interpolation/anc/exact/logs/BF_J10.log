@@ -1,0 +1,10 @@
+# command : python exact/verify_bf.py exact/out/P10_ball.txt --x0 16.45 --control 16.44 --prec 1000
+# date    : 2026-10-06T15:43:36Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+P-enclosure exact/out/P10_ball.txt (sha256 4e55d361d6d2c05f15565bd3c94d56b9f5e0715acecda9fd362410181bdc48d3): J = 10, 21 coefficients, max log10 relative radius -222
+Q_P: degree 44, leading coefficient > 0: True
+  x_0 = 16.45: Taylor coefficients of Q_P(2 pi x_0 + v) certified > 0: 45/45; negative: []; undetermined: []
+  x_0 = 16.44 (negative control): Taylor coefficients of Q_P(2 pi x_0 + v) certified > 0: 44/45; negative: [0]; undetermined: []
+CERTIFIED: Fhat > 0 for x >= 16.45 (J = 10): True
+# exit code 0; wall time 0.1 s

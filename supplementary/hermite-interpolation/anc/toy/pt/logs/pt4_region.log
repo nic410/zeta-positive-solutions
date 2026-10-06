@@ -1,0 +1,16 @@
+# command : python toy/pt/check_pt4_region.py toy/pt/params/pt4.json
+# date    : 2026-10-06T15:58:13Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+parameter file toy/pt/params/pt4.json  sha256 03bb73e2e7baab96bb2ccd5a9365a93c7cfdaa323bbb9588e2615a2df9cb2cb6
+1. vertices of Pi< (8): [(0, 8, 8), (0, 8, 12), (0, 12, 0), (0, 16, 0), (4, 0, 12), (4, 0, 16), (8, 0, 0), (12, 0, 0)]
+2. apex (0, 8, 8) lies on the facets [((1, 0, 0), 0), ((2, 1, 0), 8), ((3, 2, 1), 24)]
+   II1: base triangle [(4, 0, 12), (8, 0, 0), (12, 0, 0)] lies in facet(s) [((0, 1, 0), 0)]; vertices of Pi<: True
+   II2: base triangle [(4, 0, 12), (12, 0, 0), (4, 0, 16)] lies in facet(s) [((0, 1, 0), 0)]; vertices of Pi<: True
+   II3: base triangle [(0, 12, 0), (8, 0, 0), (12, 0, 0)] lies in facet(s) [((0, 0, 1), 0)]; vertices of Pi<: True
+   II4: base triangle [(0, 12, 0), (12, 0, 0), (0, 16, 0)] lies in facet(s) [((0, 0, 1), 0)]; vertices of Pi<: True
+   II5: base triangle [(0, 8, 12), (0, 16, 0), (12, 0, 0)] lies in facet(s) [((4, 3, 2), 48)]; vertices of Pi<: True
+   II6: base triangle [(0, 8, 12), (12, 0, 0), (4, 0, 16)] lies in facet(s) [((4, 3, 2), 48)]; vertices of Pi<: True
+3. volume of Pi<: six pulling tetrahedra 1024/3; integral of the E-length over (A, B) 1024/3; equal: True
+ALL CHECKS PASSED
+# exit code 0; wall time 0.0 s

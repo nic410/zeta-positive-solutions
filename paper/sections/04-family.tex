@@ -1,0 +1,235 @@
+%======================================================================
+\section{The zero-killing family and Theorem D}\label{sec:family}
+%======================================================================
+
+Every function of the form $F=\Xi^2H$, with $H$ analytic on a strip containing $\lvert\Im t\rvert\le\frac12$, vanishes at every
+non-trivial zero of $\zeta$, on or off the critical line. We call such functions \emph{zero-killing}. For such $F$ the explicit formula loses its zero side, and $\Arch(F)$
+becomes a sum over the prime powers (Corollary~\ref{cor:zerokilling}). Section~\ref{ssec:bessel} gives the Fourier transform of $\Xi^2H$
+in closed form; Section~\ref{ssec:hermite} defines the functions $\Xi^2P_J(t^2)$ whose Fourier transforms have zeros of order at least two at the
+first $J$ prime powers; and Section~\ref{ssec:thmM} proves Theorem~\ref{thm:intro-D}.
+
+Here $\xi(s)=\frac12s(s-1)\GR(s)\zeta(s)$ with $\GR(s)=\pi^{-s/2}\Gamma(s/2)$, $\Xi(t)=\xi(\frac12+it)$ is Riemann's $\Xi$-function, and
+$\Xiinf(t):=\frac12s(s-1)\GR(s)$ at $s=\frac12+it$ is its archimedean part. We use the coordinates $x=e^{2\pi\xi}$ and $y=2\pi x$, so that
+the prime power $n$ sits at $\xi=\xi_n$, at $x=n$ and at $y=2\pi n$, and $\theta=x\,\frac{d}{dx}=y\,\frac{d}{dy}=\frac1{2\pi}\frac{d}{d\xi}$.
+For $a<\pi/2$, $\Hc_a$ is the class of even functions $H$, real on $\RR$ and analytic on some closed strip
+$\lvert\Im t\rvert\le\frac12+\delta$ ($\delta>0$), with $\lvert H(t)\rvert\le Ce^{a\lvert\Re t\rvert}$ there; $\Hc:=\bigcup_{a<\pi/2}\Hc_a$.
+
+%----------------------------------------------------------------------
+\subsection{The Bessel form}\label{ssec:bessel}
+%----------------------------------------------------------------------
+
+We use two classical facts about $\Xi$. First, Riemann's representation
+$\Xi(t)=\int_\RR\Phi(u)e^{iut}\dd u$ with
+$\Phi(u)=2\sum_{n\ge1}\bigl(2\pi^2n^4e^{9u/2}-3\pi n^2e^{5u/2}\bigr)\exp(-\pi n^2e^{2u})$, where
+$\Phi$ is even \cite[p.~305, (2)--(3) and the remark after (4)]{Pol26}. Second, Stirling's formula and the convexity bound for
+$\zeta$ give, for every $b\in(0,1]$, a constant $C_b$ with
+\begin{equation}\label{eq:XB}
+\lvert\Xi(t)\rvert\le C_b(1+\lvert\Re t\rvert)^{3}e^{-\pi\lvert\Re t\rvert/4}\qquad(\lvert\Im t\rvert\le b)
+\end{equation}
+\cite{Tit86}. (The same bound holds for $b\le\frac52$; only $b<1$ is used.) By~\eqref{eq:XB}, $\Xi^2H\in\Tc_\delta$ whenever $H\in\Hc_a$ is analytic near
+$\lvert\Im t\rvert\le\frac12+\delta$ (the decay $e^{-(\pi/2-a)\lvert\Re t\rvert}$ absorbs any power of $1+\lvert z\rvert$);
+in particular $\Xi^2P(t^2)\in\Tc_\delta$ for every polynomial $P$ and every $\delta\in(0,\frac12)$.
+
+\begin{lemma}[Positivity of the kernel]\label{lem:Psi-pos}
+$\Psi(\xi)=\widehat{\Xi^2}(\xi)>0$ for every $\xi\in\RR$.
+\end{lemma}
+
+\begin{proof}
+For $u\ge0$ every term of the series for $\Phi$ is positive, because $2\pi n^2e^{2u}\ge2\pi>3$; as
+$\Phi$ is even, $\Phi>0$ on $\RR$ (see \cite[Theorem~A(i)]{CNV86}, which credits P\'olya \cite{Pol27}). Hence
+$\widehat\Xi(\xi)=2\pi\Phi(2\pi\xi)>0$, and $\Psi=\widehat\Xi*\widehat\Xi>0$.
+\end{proof}
+
+Write $K_0,K_1$ for the modified Bessel functions and
+\begin{equation}\label{eq:W0}
+\Wnull(z):=z^2\bigl[(z^2+9)K_0(z)-6zK_1(z)\bigr]=\theta^2(\theta+1)^2K_0(z),\qquad \theta=z\tfrac{d}{dz}.
+\end{equation}
+The second expression follows from $\theta K_0=-zK_1$ and $\theta(zK_1)=-z^2K_0$: on the basis
+$e_0=K_0$, $e_1=zK_1$ one has $(\theta+1)^2e_0=(1+z^2)e_0-2e_1$, then
+$\theta(\theta+1)^2e_0=4z^2e_0-(1+z^2)e_1$, and finally
+$\theta^2(\theta+1)^2e_0=z^2(z^2+9)e_0-6z^2e_1$.
+
+\begin{proposition}[Bessel form of $\Psi$]\label{thm:bessel}
+For every real $\xi$, with $x=e^{2\pi\xi}$,
+\[
+\Psi(\xi)=\int_\RR\Xi(t)^2e^{-2\pi i\xi t}\dd t=2\pi\sqrt x\sum_{N\ge1}d(N)\,\Wnull(2\pi Nx),
+\]
+the series converging absolutely and uniformly on compact sets, together with all its
+$\xi$-derivatives. In particular $\Psi$ is even and real, and
+$\Psi(\xi_n)=(C_\infty+o(1))\,n^4e^{-2\pi n}$ as $n\to\infty$, with
+$C_\infty=\pi(2\pi)^4=(2\pi)^{9/2}(\pi/2)^{1/2}=4896.3\ldots$.
+The Gamma-only analogue
+$\Psione(\xi):=\widehat{\Xiinf^{\,2}}(\xi)=2\pi\sqrt x\,\Wnull(2\pi x)$ also holds, and extends to complex
+$x$ with $\lvert\arg x\rvert<\pi/2$.
+\end{proposition}
+
+Here $\Xiinf$ is not real on $\RR$, so $\Psione$ is real but not even, and $\Xiinf^{\,2}P(t^2)$ is not a test function; $\Psione$ enters only
+through Lemma~\ref{lem:abel}. The proof is in Appendix~\ref{app:proofs-bessel}. One has
+$\int_0^\infty\sum_Nd(N)K_0(2\pi N\sqrt\lambda)\,\lambda^{s/2-1}\dd\lambda=\frac12\GR(s)^2\zeta(s)^2$; in the variable $u$ with $\lambda=e^{2u}$, the operator $(\partial_u^2-\frac14)^2$ removes the double poles
+at $s=0$ and $s=1$, and Fourier inversion identifies the result with $\Xi^2$.
+
+\begin{remark}[Attribution]
+Proposition~\ref{thm:bessel} is a differentiated form of the extended Koshliakov formula. Koshliakov's
+formula for $\sum_Nd(N)K_0(2\pi Nx)$ \cite{Kos29} had been found earlier by Ramanujan
+\cite[Ch.~3]{AB13}; its extended form, with an integral of $\Xi^2$, is due to Dixit \cite{Dix10}, and in
+\cite[Theorem~1.4]{Dix12} it expresses $\sqrt x\sum_Nd(N)K_0(2\pi Nx)$, up to an explicit polar term, as a
+cosine transform of $\Xi(t/2)^2/(1+t^2)^2$. The operator $(\theta^2-\frac14)^2$ removes both the polar
+term and the factor $(t^2+\frac14)^{-2}$. For more general Koshliakov-kernel identities of this type see
+\cite[Theorem~1.2]{DRRZ16}. We include the proof (Appendix~\ref{app:proofs-bessel}) because the
+normalisation matters for the certificates of Section~\ref{sec:certified}.
+\end{remark}
+
+\begin{corollary}[The explicit formula for zero-killing functions]\label{cor:zerokilling}
+Let $F=\Xi^2H$ with $H$ analytic on $\lvert\Im t\rvert\le\frac12+\delta$, and assume $F\in\Tc$ (for
+instance $H\in\Hc$, or $H$ a polynomial in $t^2$). Then
+\[
+\Arch(F)=\frac1\pi\sum_{n\in\PP}\Lambda(n)n^{-1/2}\FT F(\xi_n).
+\]
+In particular, if $\FT F$ vanishes at $\xi_{n_1},\dots,\xi_{n_J}$, then
+$\Arch(F)=\frac1\pi\sum_{n\in\PP,\,n>n_J}\Lambda(n)n^{-1/2}\FT F(\xi_n)$. No hypothesis on the zeros
+of $\zeta$ is used.
+\end{corollary}
+
+\begin{proof}
+Apply Lemma~\ref{lem:explicit-formula}. For every non-trivial zero $\rho$, on or off the line,
+$t_\rho=-i(\rho-\frac12)$ satisfies $\lvert\Im t_\rho\rvert<\frac12$ and
+$\Xi(t_\rho)=\frac12\rho(\rho-1)\GR(\rho)\zeta(\rho)=0$, so $F(t_\rho)=\Xi(t_\rho)^2H(t_\rho)=0$ and
+the zero side vanishes.
+\end{proof}
+
+%----------------------------------------------------------------------
+\subsection{The exact family}\label{ssec:hermite}
+%----------------------------------------------------------------------
+
+Let $n_1<n_2<\cdots$ be the prime powers, $\PP=\{n_j\}$, and put $m_k:=\widehat{t^{2k}\Xi^2}$; since $(P(t^2)F)^\wedge=P(-\theta^2)\FT F$,
+$m_k=(-\theta^2)^k\Psi$. All derivatives below are taken in $\xi$.
+
+\begin{proposition}[The exact family is a linear Hermite interpolation]\label{prop:E}
+Let $J\ge1$. If the matrix $M_J=[m_k(\xin{n_j});m_k'(\xin{n_j})]_{j\le J,\,1\le k\le2J}$ is non-singular, that is $J\in\Jset$, there is exactly one
+polynomial $P_J$ with $P_J(0)=1$ and $\deg P_J\le2J$ such that $\FT F_J:=\widehat{\Xi^2P_J(t^2)}$ has zeros of
+order at least two at $\xin{n_1},\dots,\xin{n_J}$. Its coefficient vector is $p^{(J)}=-M_J^{-1}b_J$, with
+$b_J=[m_0(\xin{n_j});m_0'(\xin{n_j})]$. Equivalently, $\FT F_J$ is the error of Hermite interpolation of
+$\Psi$ by $\operatorname{span}\{m_1,\dots,m_{2J}\}$ at the nodes. Each $F_J=\Xi^2H_J$, $H_J(t)=P_J(t^2)$,
+lies in $\Tc$, and $\Arch(F_J)=\frac1\pi\sum_{n\in\PP,\,n>n_J}\Lambda(n)n^{-1/2}\FT F_J(\xi_n)$.
+\end{proposition}
+
+\begin{proof}
+We have $\FT F_P=\sum_kp_km_k$ for $F_P=\Xi^2P(t^2)$, so the $2J$ conditions are the
+linear system $M_J(p_1,\dots,p_{2J})^{\mathsf T}=-b_J$. The element $-\sum_{k\ge1}p_k^{(J)}m_k$ of
+$\operatorname{span}\{m_1,\dots,m_{2J}\}$ has the data of $m_0=\Psi$, which is the second description. The rest is
+the remark before Lemma~\ref{lem:Psi-pos} and Corollary~\ref{cor:zerokilling}.
+\end{proof}
+
+Every real polynomial with $P(0)=1$ factors over $\RR$ as $\prod_j(1+r_ju+s_ju^2)$, by pairing complex
+conjugate roots and pairing the real roots arbitrarily (with one factor having $s_j=0$ if the degree is odd). The certified representatives of
+Section~\ref{sec:certified} use this parametrisation of $P_J$.
+
+\begin{lemma}[An integral representation]\label{lem:abel}
+For a polynomial $P$ put $\mathcal Q_P(\theta):=P\bigl(-(\theta+\tfrac12)^2\bigr)\theta^2(\theta+1)^2$ and
+$Q_P(y):=e^{y}\,\mathcal Q_P(\theta)\,e^{-y}$, with $\theta=y\frac{d}{dy}$. Then $Q_P$ is a polynomial in $y$ of degree $2\deg P+4$, with
+leading coefficient $(-1)^{\deg P}$ times that of $P$, and $Q_P(0)=0$. For $z>0$,
+\[
+g_P(z):=\bigl[P\bigl(-(\theta+\tfrac12)^2\bigr)\Wnull\bigr](z)=\int_z^\infty Q_P(y)e^{-y}(y^2-z^2)^{-1/2}\dd y,
+\]
+and $\widehat{\Xi^2P(t^2)}(\xi)=2\pi\sqrt x\sum_Nd(N)g_P(2\pi Nx)$.
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-hermite}. The certificates of Section~\ref{ssec:kappa} evaluate $\widehat{\Xi^2H}$ and its derivatives through Proposition~\ref{thm:bessel} and this lemma.
+
+%----------------------------------------------------------------------
+\subsection{Robust compactness and the proof of Theorem D}\label{ssec:thmM}
+%----------------------------------------------------------------------
+
+The next lemma is the compactness step behind
+every conditional theorem below. It needs no convergence of the family and no exact positivity at finite $J$.
+
+\begin{lemma}[Robust compactness]\label{lem:robust}
+Let $H_J$, $J$ in an infinite index set, be even, real on $\RR$ and analytic on $\lvert\Im t\rvert\le\frac12+\delta$,
+and put $F_J:=\Xi^2H_J$. Assume:
+\begin{enumerate}[label=(\roman*),leftmargin=2em]
+\item $\lvert H_J(t)\rvert\le Ce^{a\lvert\Re t\rvert}$ on $\lvert\Im t\rvert\le\frac12+\delta$, with $C$ and $a<\pi/2$ independent of $J$;
+\item $H_J(0)=1$;
+\item $\liminf_JH_J(t)\ge0$ for every real $t$;
+\item $\liminf_J\FT F_J(\xi)\ge0$ for every $\xi\ge\xi_2$;
+\item $\FT F_J(\xi_n)\to0$ for every prime power $n$.
+\end{enumerate}
+Then a subsequence $H_J$ converges locally uniformly on $\{\lvert\Im t\rvert<\frac12+\delta\}$ to some $H_\infty$, and
+$F_\infty:=\Xi^2H_\infty\in\Cone\cap\Tc$, with $\Arch(F_\infty)=0$ and $\FT F_\infty(0)=\int F_\infty>0$. Hence
+$\kstar\le0$; moreover $\Arch(F)\ge0$ for every $F\in\Cone$ of the form $\Xi^2H$, so the infimum of
+$\Arch(F)/\int F$ over such $F$ is $0$ and is attained at $F_\infty$.
+\end{lemma}
+
+The proof (Appendix~\ref{app:proofs-M}) combines Montel's theorem with dominated convergence: by (i) and
+\eqref{eq:XB}, $\lvert F_J(t)\rvert\le C(1+\lvert\Re t\rvert)^6e^{-(\pi/2-a)\lvert\Re t\rvert}$ on the strip, uniformly in $J$.
+
+The certified functions of Section~\ref{sec:certified} satisfy (ii)--(v) only approximately; (iv) and (v) are
+asymptotic conditions, so cushioned or rationalised representatives may be used, provided the uniform bound (i)
+holds for them. The hypotheses of Lemma~\ref{lem:robust}, for some sequence, are equivalent to the existence of an
+exact magic function of the form $\Xi^2H$ with $H\in\Hc$ and $H(0)\ne0$ (take the constant sequence $H/H(0)$), which is a priori
+stronger than \condS.
+
+For the exact family $(P_J)_{J\in\Jset}$ of Proposition~\ref{prop:E} we consider the following hypotheses.
+\begin{itemize}[leftmargin=3.2em]
+\item[\hyp{N}] $\Jset$ is infinite.
+\item[\hyp{G$_a$}] There are $\delta\in(0,\frac12)$, $a<\pi/2$ and $C$ with $\lvert H_J(t)\rvert\le Ce^{a\lvert\Re t\rvert}$ on
+$\lvert\Im t\rvert\le\frac12+\delta$ for all $J\in\Jset$.
+\item[\hyp{Z$_\infty$}] No real point is a limit of zeros of $H_{J_k}$ with $J_k\in\Jset$, $J_k\to\infty$.
+\item[\hyp{Mg}] For every $\xi\in[\xi_2,\infty)\setminus\xiPP$, $\liminf_{J\in\Jset}\FT F_J(\xi)>0$.
+\end{itemize}
+Given \hyp{G$_a$}, \hyp{Z$_\infty$} is equivalent to: for every $T>0$,
+$\liminf_{J\in\Jset}\min_{\lvert t\rvert\le T}H_J(t)>0$ (Appendix~\ref{app:proofs-M}). It holds, for instance, if there are
+$\eta>0$ and $J_0$ such that every zero of $H_J$, $J\in\Jset$, $J\ge J_0$, has $\lvert\Im t\rvert\ge\eta$. Since a bound on a strip implies
+the same bound on every narrower strip, the size of $\delta$ in \hyp{G$_a$} plays no role. Finite-$J$ instances of \hyp{N}, and of the
+coefficient bound \eqref{eq:POSa} below, which would give \hyp{G$_a$} and \hyp{Z$_\infty$}, are certified for $J\in\{10,60,61,110,111\}$
+(Proposition~\ref{thm:finiteJ}); \hyp{Mg} is a $\liminf$ in $J$ and has no finite-$J$ instance.
+
+\begin{theorem}[Theorem D]\label{thm:criterion}
+Assume \hyp{N}, \hyp{G$_a$}, \hyp{Z$_\infty$} and \hyp{Mg} for the exact family. Then some subsequential limit
+$F_\infty=\Xi^2H_\infty$, with $H_\infty\in\Hc$ and $H_\infty>0$ on $\RR$, satisfies $F_\infty\in\Cone\cap\Tc$,
+$\Arch(F_\infty)=0$, $F_\infty^{-1}(0)\cap\RR=\Zz$ and $\FT F_\infty^{-1}(0)\cap[\xi_2,\infty)=\xiPP$. Hence \condS\
+and \condU\ hold, and $\RH\Leftrightarrow\condE$; under either, $\kstar=0$ and
+$\Kad=\{\pz\}$.
+\end{theorem}
+
+\begin{proof}
+Hypotheses (i), (ii) of Lemma~\ref{lem:robust} are \hyp{G$_a$} and $P_J(0)=1$. For (v): if $n=n_j$, then
+$\FT F_J(\xi_n)=0$ for every $J\in\Jset$ with $J\ge j$. For (iv): at $\xi\in\xiPP$ this holds by (v), elsewhere by
+\hyp{Mg}. For (iii): by the equivalent form of \hyp{Z$_\infty$}, for each $T$ there is $c_T>0$ with $H_J\ge c_T$ on
+$[-T,T]$ for all large $J\in\Jset$. So Lemma~\ref{lem:robust} applies, and its limit satisfies $H_\infty\ge c_T>0$ on
+$[-T,T]$ for every $T$. Hence $F_\infty^{-1}(0)\cap\RR=\Zz$. For $\xi\in[\xi_2,\infty)\setminus\xiPP$,
+$\FT F_\infty(\xi)=\lim\FT F_J(\xi)\ge\liminf_{\Jset}\FT F_J(\xi)>0$, so the zeros of $\FT F_\infty$ on $[\xi_2,\infty)$ are
+exactly $\xiPP\subset\BRS$. Lemma~\ref{lem:robust} gives \condS, and Corollary~\ref{cor:magic}, applied to $F_\infty$, gives \condU, and
+RH under \condE; conversely RH implies \condE{} (Theorem~\ref{thm:logic}). Under either, $\kstar\ge0$ (Theorem~\ref{thm:duality}), so
+$\kstar=0$, and $\Kad=\{\pz\}$.
+\end{proof}
+
+No convergence of the family is assumed, and the proof never divides by $\Xi^2$: $H_\infty$ inherits the bound
+\hyp{G$_a$}, so $F_\infty\in\Tc$ directly. The strict inequality $a<\pi/2$ is essential for the domination. Further
+details (norm convergence, the equivalent forms of \hyp{Z$_\infty$}) are in Appendix~\ref{app:proofs-M}. In sphere packing, Cohn and Miller
+conjectured, with numerical evidence, that explicit sequences of functions converge to the magic functions in dimensions $8$ and $24$
+\cite{CM16}; Theorem~\ref{thm:criterion} asks for the same kind of convergence, for an explicit family, in the explicit formula.
+
+Hypotheses \hyp{G$_a$} and \hyp{Z$_\infty$} concern the polynomials $P_J$ alone. They follow from a bound on the coefficients.
+
+\begin{proposition}[Coefficient bounds control the zero side]\label{prop:coeff}
+Suppose that for all $J\in\Jset$ with $J\ge J_0$,
+\begin{equation}\label{eq:POSa}
+0\le p_k^{(J)}\le C\,\frac{a^{2k}}{(2k)!}\quad\text{for all }k,\quad\text{with }0\le a<\pi/2\text{ and }C\text{ independent of }J.
+\end{equation}
+Then for these $J$: (1) $H_J(t)\ge1$ for all real $t$, so \hyp{Z$_\infty$} holds; (2) $\lvert H_J(t)\rvert\le C\cosh(a\lvert t\rvert)$ for all $t\in\CC$, so \hyp{G$_a$} holds on every strip;
+(3) $\{H_J\}$ is normal on $\CC$, and every limit $H_\infty$ is entire of exponential type at most $a$, with
+$0\le[t^{2k}]H_\infty\le Ca^{2k}/(2k)!$ and $H_\infty\ge1$ on $\RR$; (4) $\lvert P_J(u)\rvert\le P_J(\lvert u\rvert)$, and every root $u$ of
+$P_J$ satisfies $\lvert u\rvert\ge\min_kp_{k-1}^{(J)}/p_k^{(J)}$ (minimum over $k$ with $p_k^{(J)}>0$).
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-zeroside}.
+
+\begin{remark}[Variants]\label{rem:variant}
+(a) In Theorem~\ref{thm:criterion}, \hyp{Z$_\infty$} may be replaced by a lower bound $H_J\ge h$ on $\RR$ for all large $J\in\Jset$, with
+$h:\RR\to(0,\infty)$; the pointwise form $\liminf_{\Jset}H_J(t)>0$ for every real $t$ suffices, and the limit then satisfies $H_\infty\ge h>0$.
+By Proposition~\ref{prop:coeff}(1), the coefficient bound \eqref{eq:POSa} for all large $J$ gives this with $h\equiv1$; so \hyp{N}, \hyp{Mg}
+and \eqref{eq:POSa} for all large $J$ imply \condS\ and \condU.
+(b) If $\kstar=0$ and some weak magic function $F^*$ has only finitely many real zeros outside $\Zz$ and satisfies $\widehat Z(F^*)\subseteq\BRS$, then
+RH holds and $\Kad=\{\pz\}$: $\kstar=0$ gives \condE\ (Theorem~\ref{thm:duality}), by Theorem~\ref{thm:crit}(c) every admissible pair is
+carried by $Z(F^*)\times\widehat Z(F^*)$, and Theorem~\ref{thm:Gfin} applies to each of them.
+\end{remark}

@@ -1,0 +1,250 @@
+%======================================================================
+\section{Setting and results from the companion paper}\label{sec:setting}
+%======================================================================
+
+This section fixes the notation and recalls the definitions and results of \cite{PaperI} that are used below.
+Statements quoted from \cite{PaperI} are called \emph{Facts}; their proofs are there and are not repeated. The only
+statement of this section that is proved here is Corollary~\ref{cor:Mvariants}.
+
+%----------------------------------------------------------------------
+\subsection{Admissible pairs and the slack}\label{ssec:setting-pairs}
+%----------------------------------------------------------------------
+
+We write $\hF(\xi)=\int_\RR F(t)e^{-2\pi i\xi t}\dd t$, $\xin n=\log n/(2\pi)$ for real $n>0$, and $\xin2=\log2/(2\pi)$
+for the \emph{gap}. $\PP$ is the set of prime powers $n>1$, $n_j$ is the $j$-th prime power, $\PP_J=\{n_1,\dots,n_J\}$,
+$\xiPP=\{\xin n:n\in\PP\}$, $\Lambda$ is von Mangoldt's function, and $\BRS:=\{\log m/(4\pi):m\ge1\}$; since
+$\xin n=\log(n^2)/(4\pi)$, $\xiPP\subset\BRS$. The archimedean data of $\zeta$ are
+\[
+\Oinf(t):=\frac1{2\pi}\Big(\Re\psi\big(\tfrac14+\tfrac{it}2\big)-\log\pi\Big),\qquad
+\Arch(F):=F\big(\tfrac i2\big)+F\big(-\tfrac i2\big)+\int_\RR F(t)\Oinf(t)\dd t,
+\]
+with $\psi=\Gamma'/\Gamma$. For $0<\delta<\frac12$, $\Tc_\delta$ is the set of even functions $F$, real on $\RR$ and analytic in a
+neighbourhood of $\{\lvert\Im z\rvert\le\frac12+\delta\}$, with $\lVert F\rVert_\delta:=\sup_{\lvert\Im z\rvert\le\frac12+\delta}(1+\lvert z\rvert)^2\lvert F(z)\rvert<\infty$,
+and $\Tc:=\bigcup_{\delta>0}\Tc_\delta$ is the \emph{test class}.
+
+\begin{fact}[Explicit formula on $\Tc$; {\cite[Lemma~2.3]{PaperI}}, {\cite{Wei52}}, {\cite[(1.1)]{BRS}}]\label{lem:explicit-formula}
+For every $F\in\Tc$,
+$\Arch(F)=\sum_\rho F(t_\rho)+\frac1\pi\sum_{n\ge2}\Lambda(n)n^{-1/2}\hF(\xin n)$, with $t_\rho:=-i(\rho-\frac12)$, where $\rho$
+runs over the non-trivial zeros of $\zeta$ with multiplicity. Both series converge absolutely; no hypothesis on the zeros
+is made.
+\end{fact}
+
+Let $\Zz=\{\gamma\in\RR:\zeta(\frac12+i\gamma)=0\}$, $\muz:=\sum_{\gamma\in\Zz}m_\gamma\delta_\gamma$ ($m_\gamma$ the
+multiplicity), $\nuz:=\sum_{n\ge2}\Lambda(n)n^{-1/2}\delta_{\xin n}$ and $\pz:=(\muz,\nuz)$.
+
+\begin{definition}[Admissible pairs, cones, slack; {\cite[Definitions~2.4 and~2.11]{PaperI}}]\label{def:admissible}
+An \emph{admissible pair} is a pair $(\mu,\nu)$ of positive Radon measures, $\mu$ even on $\RR$ and $\nu$ on $[\xin2,\infty)$,
+such that for every $F\in\Tc$ the integrals converge absolutely and $\Arch(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$. $\Kad$ is
+the set of admissible pairs. Put
+\[
+\Cone:=\{F\in\Tc:F\ge0\text{ on }\RR,\ \hF\ge0\text{ on }[\xin2,\infty)\},\qquad
+\ConeOPS:=\{F\in\Tc:F\ge0\text{ and }\hF\ge0\text{ on }\RR\},
+\]
+$\kstar:=\inf\{\Arch(F):F\in\Cone,\ \int F=1\}$ (the \emph{slack}), and consider the statements
+$\condE$: $\Kad\ne\emptyset$; $\condU$: $\Kad\subseteq\{\pz\}$; $\condS$: $\kstar\le0$. For $F$ on $\RR$ put
+$Z(F):=F^{-1}(0)\cap\RR$ and $\widehat Z(F):=\hF^{-1}(0)\cap[\xin2,\infty)$. An \emph{exact magic function} is an $F\in\Cone$ with
+$\int F>0$ and $\Arch(F)=0$.
+\end{definition}
+
+The companion paper conjectures \condU\ (Conjecture~U) and \condS\ (Conjecture~S); the slack $\kstar$ governs the optimal
+degree-one conductor bound of the explicit-formula method, $\qmin=e^{-2\pi\kstar}$.
+
+\begin{fact}[Duality, logic and complementary slackness; {\cite[Lemma~2.5, Theorems~2.7 and~2.9, Lemma~2.13]{PaperI}}]\label{fact:logic}
+\textup{(a)} \textup{(Weak duality.)} If $(\mu,\nu)\in\Kad$ and $F\in\Cone$, then $\Arch(F)\ge0$. \textup{(b)} \textup{(No duality
+gap.)} $\condE\Leftrightarrow\kstar\ge0$. \textup{(c)} RH implies $\pz\in\Kad$; $\condU$ holds if and only if both
+$[\condE\Rightarrow\RH]$ and $[\RH\Rightarrow\Kad=\{\pz\}]$ hold. So $\condU$ is the conjunction of a criterion for RH and a
+uniqueness statement under RH, and under $\condU$, $\RH\Leftrightarrow\condE\Leftrightarrow\kstar\ge0$; moreover
+$\condU\Rightarrow\condS$. \textup{(d)} \textup{(Complementary slackness.)} If
+$F\in\Cone$ and $\Arch(F)=0$, every admissible pair $(\mu,\nu)$ has $\mu$ carried by $Z(F)$ and $\nu$ by $\widehat Z(F)$.
+\end{fact}
+
+\begin{fact}[Magic-function principle; {\cite[Corollary~3.8]{PaperI}}]\label{thm:magic-unique}
+Suppose some $F\in\Cone$ satisfies $\Arch(F)=0$, has only finitely many real zeros outside $\Zz$, and has $\widehat Z(F)\subseteq\BRS$.
+Then $\Kad\subseteq\{\pz\}$, i.e.\ \condU\ holds. If \condE\ holds as well, then RH holds and $\Kad=\{\pz\}$.
+\end{fact}
+
+%----------------------------------------------------------------------
+\subsection{The zero-killing family}\label{ssec:setting-family}
+%----------------------------------------------------------------------
+
+Let $\GR(s)=\pi^{-s/2}\Gamma(s/2)$, $\Xi(t):=\xi(\frac12+it)$ with $\xi(s)=\frac12s(s-1)\GR(s)\zeta(s)$ (Riemann's $\Xi$-function), and
+$\Xiinf(t):=\frac12s(s-1)\GR(s)|_{s=1/2+it}$, its archimedean part. Every function $\Xi^2H$, with $H$ analytic on a strip
+containing $\lvert\Im t\rvert\le\frac12$, vanishes at every non-trivial zero of $\zeta$, on or off the critical line; such functions
+are called \emph{zero-killing}. Put
+\[
+\Psi:=\widehat{\Xi^2},\qquad \Psione:=\widehat{\Xiinf^{\,2}} .
+\]
+Throughout, $x=e^{2\pi\xi}$ and $y=2\pi x$, so that the prime power $n$ sits at $\xi=\xi_n$, at $x=n$ and at $y=2\pi n$, and
+$\theta=x\frac{d}{dx}=y\frac{d}{dy}=\frac1{2\pi}\frac{d}{d\xi}$. For $a<\pi/2$, $\Hc_a$ is the class of even functions $H$, real on $\RR$
+and analytic on some closed strip $\lvert\Im t\rvert\le\frac12+\delta$ ($\delta>0$), with $\lvert H(t)\rvert\le Ce^{a\lvert\Re t\rvert}$ there;
+$\Hc:=\bigcup_{a<\pi/2}\Hc_a$. Stirling's formula and the convexity bound for $\zeta$ give, for every $b\in(0,1]$, a constant
+$C_b$ with
+\begin{equation}\label{eq:XB}
+\lvert\Xi(t)\rvert\le C_b(1+\lvert\Re t\rvert)^{3}e^{-\pi\lvert\Re t\rvert/4}\qquad(\lvert\Im t\rvert\le b)
+\end{equation}
+\cite{Tit86}. (For $\lvert\Im t\rvert=b$ the exponent of $1+\lvert\Re t\rvert$ given by Stirling's formula is $\frac74+\frac b2$ once $b\ge\frac12$, up to
+the size of $\zeta$ on the line $\Re s=\frac12+b$; so the exponent $3$ is valid for $b\le1$, which is all we use, but not for every
+$b>0$.) Hence $\Xi^2H\in\Tc_\delta$ whenever $H\in\Hc_a$ is analytic near $\lvert\Im t\rvert\le\frac12+\delta$, and $\Xi^2P(t^2)\in\Tc_\delta$ for
+every polynomial $P$ and every $\delta\in(0,\frac12)$.
+
+\begin{fact}[Bessel form; {\cite[Lemma~4.1 and Proposition~4.2]{PaperI}}]\label{thm:bessel}
+Let $\Wnull(z):=z^2[(z^2+9)K_0(z)-6zK_1(z)]=\theta^2(\theta+1)^2K_0(z)$, $\theta=z\frac{d}{dz}$, with $K_0,K_1$ the modified Bessel
+functions. For every real $\xi$,
+\[
+\Psi(\xi)=2\pi\sqrt x\sum_{N\ge1}d(N)\,\Wnull(2\pi Nx),\qquad \Psione(\xi)=2\pi\sqrt x\,\Wnull(2\pi x),
+\]
+the series converging absolutely and uniformly on compact sets with all its derivatives. Moreover $\Psi>0$ on $\RR$, and
+$\Psi(\xi_n)=(C_\infty+o(1))n^4e^{-2\pi n}$ with $C_\infty=\pi(2\pi)^4$.
+\end{fact}
+
+\begin{fact}[The explicit formula for zero-killing functions; {\cite[Corollary~4.4]{PaperI}}]\label{cor:zerokilling}
+If $F=\Xi^2H\in\Tc$ with $H$ analytic on $\lvert\Im t\rvert\le\frac12+\delta$ (for instance $H\in\Hc$, or $H$ a polynomial in
+$t^2$), then $\Arch(F)=\frac1\pi\sum_{n\in\PP}\Lambda(n)n^{-1/2}\hF(\xi_n)$. No hypothesis on the zeros is used.
+\end{fact}
+
+\begin{fact}[The exact family; {\cite[Proposition~4.5]{PaperI}}]\label{prop:E}
+Let $J\ge1$ and $m_k:=\widehat{t^{2k}\Xi^2}=(-\theta^2)^k\Psi$. If the matrix
+$M_J=[m_k(\xi_{n_j});m_k'(\xi_{n_j})]_{j\le J,\,1\le k\le2J}$ is non-singular, we write $J\in\Jset$; then there is exactly one polynomial
+$P_J=1+\sum_{k=1}^{2J}p_k^{(J)}u^k$ such that $\FT F_J:=\widehat{\Xi^2P_J(t^2)}$ has double zeros at $\xi_{n_1},\dots,\xi_{n_J}$. Equivalently,
+$\FT F_J=\Psi-\Pi_J\Psi$ is the error of Hermite interpolation of $\Psi$ by $\operatorname{span}\{m_1,\dots,m_{2J}\}$ at the nodes. We
+write $H_J(t):=P_J(t^2)$ and $F_J:=\Xi^2H_J\in\Tc$; then $\Arch(F_J)=\frac1\pi\sum_{n\in\PP,\,n>n_J}\Lambda(n)n^{-1/2}\FT F_J(\xi_n)$.
+\end{fact}
+
+In the language of Section~\ref{sec:nested}, this is the true family at the node set $\yPP_J=(2\pi n_1,\dots,2\pi n_J)$.
+
+\begin{fact}[An integral representation; {\cite[Lemma~4.6]{PaperI}}]\label{lem:abel}
+For a polynomial $P$ put $\Omega_P(\theta):=P\bigl(-(\theta+\tfrac12)^2\bigr)\theta^2(\theta+1)^2$ and
+$Q^{\mathrm{Ab}}_P(y):=e^{y}\,\Omega_P(\theta)\,e^{-y}$, with $\theta=y\frac{d}{dy}$. Then $Q^{\mathrm{Ab}}_P$ is a polynomial in $y$ of degree
+$2\deg P+4$, with leading coefficient $(-1)^{\deg P}$ times that of $P$, and $Q^{\mathrm{Ab}}_P(0)=0$. For $z>0$,
+\[
+g_P(z):=\bigl[P\bigl(-(\theta+\tfrac12)^2\bigr)\Wnull\bigr](z)=\int_z^\infty Q^{\mathrm{Ab}}_P(y)e^{-y}(y^2-z^2)^{-1/2}\dd y,
+\]
+and $\widehat{\Xi^2P(t^2)}(\xi)=2\pi\sqrt x\sum_Nd(N)g_P(2\pi Nx)$.
+\end{fact}
+
+In \cite{PaperI} the polynomial $Q^{\mathrm{Ab}}_P$ is written $Q_P$; here $Q_P$ is reserved for the model
+(Section~\ref{sec:model}), and we call $Q^{\mathrm{Ab}}_P$ the \emph{Abel preimage} of $P$. With $P^{\Xi}(u):=P(u)(u+\frac14)^2$ one has
+$\Omega_P(\theta)=P^{\Xi}(-(\theta+\frac12)^2)$, since $-(\theta+\frac12)^2+\frac14=-\theta(\theta+1)$. Since $\widehat{t^{2k}f}=(-\theta^2)^k\hat f$ and
+$\theta(\sqrt x\,h)=\sqrt x\,(\theta+\frac12)h$, the same computation with $\Psione=2\pi\sqrt x\,\Wnull(2\pi x)$ in place of $\Psi$ gives
+$\widehat{\Xiinf^{\,2}P(t^2)}(\xi)=2\pi\sqrt x\,g_P(2\pi x)$.
+
+Write $S_b:=\{t:\lvert\Im t\rvert<b\}$.
+
+\begin{fact}[Robust compactness; {\cite[Lemma~4.7]{PaperI}}]\label{lem:6prime}
+Let $H_J$, $J$ in an infinite index set, be even, real on $\RR$ and analytic on $\lvert\Im t\rvert\le\frac12+\delta$, and put
+$F_J:=\Xi^2H_J$. Assume: \textup{(i)} $\lvert H_J(t)\rvert\le Ce^{a\lvert\Re t\rvert}$ on $\lvert\Im t\rvert\le\frac12+\delta$, with $C$ and
+$a<\pi/2$ independent of $J$; \textup{(ii)} $H_J(0)=1$; \textup{(iii)} $\liminf_JH_J(t)\ge0$ for every real $t$; \textup{(iv)}
+$\liminf_J\FT F_J(\xi)\ge0$ for every $\xi\ge\xi_2$; \textup{(v)} $\FT F_J(\xi_n)\to0$ for every prime power $n$. Then a
+subsequence $H_J$ converges locally uniformly on $S_{1/2+\delta}$ to some $H_\infty$, and $F_\infty:=\Xi^2H_\infty\in\Cone\cap\Tc$,
+with $\Arch(F_\infty)=0$ and $\FT F_\infty(0)=\int F_\infty>0$. Hence $\kstar\le0$; moreover $\Arch(F)\ge0$ for every $F\in\Cone$ of the
+form $\Xi^2H$, so the infimum of $\Arch(F)/\int F$ over such $F$ is $0$ and is attained at $F_\infty$.
+\end{fact}
+
+Uniqueness then comes from Fact~\ref{thm:magic-unique}: if, in addition, $H_\infty$ has finitely many real zeros and
+$\widehat Z(F_\infty)\subseteq\BRS$, then $\Kad\subseteq\{\pz\}$.
+
+For the exact family $(P_J)_{J\in\Jset}$ the companion paper considers the following hypotheses.
+\begin{itemize}[leftmargin=3.2em]
+\item[\hyp{N}] $\Jset$ is infinite.
+\item[\hyp{G$_a$}] There are $\delta\in(0,\frac12)$, $a<\pi/2$ and $C$ with $\lvert H_J(t)\rvert\le Ce^{a\lvert\Re t\rvert}$ on
+$\lvert\Im t\rvert\le\frac12+\delta$ for all $J\in\Jset$.
+\item[\hyp{Z$_\infty$}] No real point is a limit of zeros of $H_{J_k}$ with $J_k\in\Jset$, $J_k\to\infty$.
+\item[\hyp{Mg}] For every $\xi\in[\xi_2,\infty)\setminus\xiPP$, $\liminf_{J\in\Jset}\FT F_J(\xi)>0$.
+\end{itemize}
+Given \hyp{G$_a$}, \hyp{Z$_\infty$} is equivalent to: for every $T>0$, $\liminf_{J\in\Jset}\min_{\lvert t\rvert\le T}H_J(t)>0$; it is
+implied by \hyp{R$_\eta$}: there are $\eta>0$ and $J_0$ such that every zero of $H_J$, $J\in\Jset$, $J\ge J_0$, has
+$\lvert\Im t\rvert\ge\eta$ \cite{PaperI}.
+
+\begin{fact}[A criterion through the zero-killing family; {\cite[Theorem~D]{PaperI}}]\label{thm:M}
+Assume \hyp{N}, \hyp{G$_a$}, \hyp{Z$_\infty$} and \hyp{Mg} for the exact family. Then some subsequential limit
+$F_\infty=\Xi^2H_\infty$, with $H_\infty\in\Hc$ and $H_\infty>0$ on $\RR$, satisfies $F_\infty\in\Cone\cap\Tc$,
+$\Arch(F_\infty)=0$, $F_\infty^{-1}(0)\cap\RR=\Zz$ and $\FT F_\infty^{-1}(0)\cap[\xi_2,\infty)=\xiPP$. Hence \condS\ and \condU\ hold,
+and $\RH\Leftrightarrow\condE$; under either, $\kstar=0$ and $\Kad=\{\pz\}$.
+\end{fact}
+
+None of \hyp{N}, \hyp{G$_a$}, \hyp{Z$_\infty$}, \hyp{Mg} is known for all $J$, and the hypotheses of Fact~\ref{thm:M} amount to the
+existence of an exact magic function of the form $\Xi^2H$, which is strictly more than \condS. This paper reduces them further,
+to explicit step laws (Section~\ref{sec:true}); those laws are open as well. The following variants are used below; (M$^+$)
+is also in \cite{PaperI}.
+
+\begin{corollary}[Variants of the criterion]\label{cor:Mvariants}
+The conclusions of Fact~\ref{thm:M} (\condS, \condU, and $\RH\Leftrightarrow\condE$) also hold under each of the following
+replacements, all other hypotheses being unchanged.
+\begin{enumerate}[label=(M\arabic*),leftmargin=3em]
+\item[(M$^\sharp$)] \hyp{Mg} replaced by \hyp{Mg$_{\BRS}$}: $\liminf_{\Jset}\FT F_J(\xi)>0$ for
+$\xi\in[\xi_2,\infty)\setminus\BRS$, and $\liminf_{\Jset}\FT F_J\ge0$ on $\BRS\setminus\xiPP$.
+\item[(M$^+$)] \hyp{Z$_\infty$} replaced by \hyp{Z$^+$}: there is $h:\RR\to(0,\infty)$ with $H_J\ge h$ on $\RR$ for all large
+$J\in\Jset$ (the pointwise form $\liminf_{\Jset}H_J(t)>0$ for every $t$ suffices); then $H_\infty\ge h>0$.
+\item[(M$_{\mathrm{fin}}$)] \hyp{Z$_\infty$} replaced by: $\liminf_{\Jset}H_J\ge0$ on $\RR$, and either \hyp{R$_k$} there are
+$k\in\NN$, $\eta>0$ and $J_0$ such that $H_J$ ($J\ge J_0$) has at most $k$ zeros, counted with multiplicity, in
+$S_\eta$; or \hyp{R$_E$} there is a finite $E_0\subset\RR$ with $\liminf_{\Jset}\min_KH_J>0$ for every compact
+$K\subset\RR\setminus E_0$; and \hyp{Mg} replaced by \hyp{Mg$_{\BRS}$}. ($H_\infty$ may then have finitely many real zeros.)
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+In each case Fact~\ref{lem:6prime} applies as in the proof of Fact~\ref{thm:M} in \cite{PaperI}: (i) and (ii) are \hyp{G$_a$} and
+$P_J(0)=1$; (v) holds because $\FT F_J(\xi_{n_j})=0$ for every $J\in\Jset$ with $J\ge j$; (iv) holds at $\xi\in\xiPP$ by (v) and
+elsewhere by \hyp{Mg} or by \hyp{Mg$_{\BRS}$}; and (iii) holds by \hyp{Z$_\infty$} (through its equivalent form above) or by the
+hypothesis that replaces it. It remains to check the uniqueness clause. Under \hyp{Mg$_{\BRS}$}, $\FT F_\infty>0$ on $[\xi_2,\infty)\setminus\BRS$. Under \hyp{Z$^+$},
+$H_\infty(t)=\lim H_J(t)\ge h(t)>0$. Under \hyp{R$_E$}, $H_\infty>0$ on $\RR\setminus E_0$. Under \hyp{R$_k$}, $H_\infty$ has
+at most $k$ zeros in $S_\eta$: otherwise Hurwitz's theorem, applied on disjoint small discs around $k+1$ of them,
+would give more than $k$ zeros of $H_J$ in $S_\eta$ for large $J$ \cite[VII.2.5]{Con73}. In every case $H_\infty$ has finitely
+many real zeros, and Fact~\ref{thm:magic-unique} gives \condU, and RH under \condE.
+\end{proof}
+
+\begin{fact}[Coefficient bounds control the zero side; {\cite[Proposition~4.9]{PaperI}}]\label{prop:POS}
+Suppose that for all $J\in\Jset$ with $J\ge J_0$,
+\[
+\hyp{POS$_a$}\qquad 0\le p_k^{(J)}\le C\,a^{2k}/(2k)!\quad\text{for all }k,\quad\text{with }0\le a<\pi/2\text{ and }C\text{ independent of }J.
+\]
+Then for these $J$: \textup{(1)} $H_J(t)\ge1$ for all real $t$, so \hyp{Z$_\infty$} holds;
+\textup{(2)} $\lvert H_J(t)\rvert\le C\cosh(a\lvert t\rvert)$ for all $t\in\CC$, so \hyp{G$_a$} holds on every strip;
+\textup{(3)} $\{H_J\}$ is normal on $\CC$, and every limit $H_\infty$ is entire of exponential type $\le a$, with
+$0\le[t^{2k}]H_\infty\le Ca^{2k}/(2k)!$ and $H_\infty\ge1$ on $\RR$; \textup{(4)} $\lvert P_J(u)\rvert\le P_J(\lvert u\rvert)$, and
+every root $u$ of $P_J$ satisfies $\lvert u\rvert\ge\min_kp_{k-1}^{(J)}/p_k^{(J)}$ (minimum over $k$ with $p_k^{(J)}>0$).
+\end{fact}
+
+By (1), \hyp{POS$_a$} gives \hyp{Z$^+$} with $h\equiv1$, so \hyp{N}, \hyp{POS$_a$} and \hyp{Mg} imply \condS\ and \condU, by
+Corollary~\ref{cor:Mvariants}(M$^+$), as in \cite[Remark~4.10(a)]{PaperI}.
+
+\begin{fact}[Certified finite-$J$ instances; {\cite[Proposition~5.5]{PaperI}}]\label{thm:finiteJ}
+For $J\in\{10,60,61,110,111\}$ the Hermite matrix $M_J$ is non-singular, every coefficient of the exact $P_J$ is positive, and
+$\max_{1\le k\le2J}((2k)!\,p_k^{(J)})^{1/2k}\le0.71636$, that is, $0<p_k^{(J)}\le0.71636^{2k}/(2k)!$. Hence $H_J\ge1$ on $\RR$ and
+$\lvert H_J(t)\rvert\le\cosh(0.71636\lvert t\rvert)$ on $\CC$.
+\end{fact}
+
+These are computer-assisted statements. The certified enclosures of $P_J$ on which they rest (the files
+\nolinkurl{exact/out/P}$J$\nolinkurl{_ball.txt}) are also the input of the certificates of Proposition~\ref{prop:roots} (root geometry) and of
+Section~\ref{ssec:front}.
+
+These are finite-$J$ facts only: they are finite-$J$ instances of \hyp{N} and of the coefficient bounds behind \hyp{G$_a$}
+and \hyp{Z$_\infty$}, and \hyp{Mg}, a $\liminf$ condition, has no finite-$J$ instance. The companion paper states the natural
+conjecture behind Fact~\ref{thm:M}.
+
+\begin{conjecture}[Prime-power magic function; {\cite[Conjecture~6.1]{PaperI}}]\label{conj:PPmagic}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $M_J$ is non-singular for every $J\ge1$.
+\item For every $J\ge10$ all coefficients $p^{(J)}_k$, $0\le k\le2J$, are positive, and
+$a^*:=\sup_{J\ge10}\max_{1\le k\le2J}\bigl((2k)!\,p^{(J)}_k\bigr)^{1/(2k)}<\pi/2$.
+\item $P_J\to P_\infty$ coefficientwise, and $F_\infty:=\Xi^2P_\infty(t^2)$ satisfies $\FT F_\infty(\xi)>0$ for every
+$\xi\in[\xin2,\infty)\setminus\xiPP$.
+\end{enumerate}
+\end{conjecture}
+
+The conjecture implies \condS\ and \condU\ \cite[Section~6.1]{PaperI}. This paper also considers, as its own statement, the
+\emph{front statement} \hyp{FR} at every $J$: $\FT F_J>0$ on $[\xin2,\infty)\setminus\{\xi_{n_1},\dots,\xi_{n_J}\}$ and $\FT F_J''>0$ at
+$\xi_{n_1},\dots,\xi_{n_J}$. It is not part of the conjecture of \cite{PaperI}; by Theorem~\ref{thm:B} below it follows, for $J\ge J_0$,
+from the step law of Conjecture~\ref{conj:TELtrue} together with the base hypothesis \hyp{B$^+$}$_{J_0}$, which is certified only in
+part (Proposition~\ref{prop:base}).
+
+%----------------------------------------------------------------------
+\subsection{Certificates}\label{ssec:setting-cert}
+%----------------------------------------------------------------------
+
+Every computer-assisted statement of this paper is a finite computation in exact integer or rational arithmetic, or in
+Arb ball arithmetic \cite{Joh17} with outward rounding, run by a standalone script of the ancillary files
+(Appendix~\ref{app:anc}); the conventions are those of \cite{PaperI} and are recalled in Appendix~\ref{app:certificates}. In
+particular a sign is accepted only if the ball excludes $0$, and a linear system is solved only by a ball solver that
+certifies invertibility. Every such statement names its script and parameter file. Numerical observations
+(Section~\ref{sec:observations}) are never used in a proof.

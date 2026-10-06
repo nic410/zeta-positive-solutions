@@ -1,0 +1,14 @@
+{
+ "statement": "Theorem PT3 (J = 3)",
+ "J": 3,
+ "c": "21/20",
+ "region": "PT_delta, delta = 1/20: 0 < y_1 < ... < y_J and y_1 + ... + y_K >= (21/20) K (4K - 1) for every K <= J",
+ "slack_coordinates": "y_1 = c (3 + X_1), y_k = y_{k-1} + c X_k (k >= 2), c = 21/20; region = {X_1 >= 0, X_k > 0, sum_{j<=K} (K-j+1) X_j >= 4K(K-1)}",
+ "piece_semantics": "each piece: variables v >= 0, X_j = X[j](v) / W(v); y_k = c (3 W + X_1 + ... + X_k) / W",
+ "pieces": [
+  {"name": "PA", "description": "A = 8s/(1+s) + a, B = 12/(1+s) + b, E = e  (covers 3A + 2B >= 24)", "vars": ["s", "a", "b", "e"], "W": "1 + s", "X": ["8*s + a*(1 + s)", "12 + b*(1 + s)", "e*(1 + s)"]},
+  {"name": "PAp", "description": "A = 8 + a, B = b, E = e  (covers A >= 8, including the confluent face B = 0; redundant for B > 0, kept for completeness)", "vars": ["a", "b", "e"], "W": "1", "X": ["8 + a", "b", "e"]},
+  {"name": "PB1", "description": "(A, B) in the triangle [(0, 8), (4, 0), (8, 0)] with apex (0, 8) (projective barycentric s, t); E = 24 - 3A - 2B + e  (covers 2A + B >= 8, 3A + 2B < 24)", "vars": ["s", "t", "e"], "W": "1 + s + t", "X": ["0 + 4*s + 8*t", "8 + 0*s + 0*t", "24*(1 + s + t) - 3*(0 + 4*s + 8*t) - 2*(8 + 0*s + 0*t) + e*(1 + s + t)"]},
+  {"name": "PB2", "description": "(A, B) in the triangle [(0, 8), (8, 0), (0, 12)] with apex (0, 8) (projective barycentric s, t); E = 24 - 3A - 2B + e  (covers 2A + B >= 8, 3A + 2B < 24)", "vars": ["s", "t", "e"], "W": "1 + s + t", "X": ["0 + 8*s + 0*t", "8 + 0*s + 12*t", "24*(1 + s + t) - 3*(0 + 8*s + 0*t) - 2*(8 + 0*s + 12*t) + e*(1 + s + t)"]}
+ ]
+}

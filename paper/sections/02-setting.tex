@@ -1,0 +1,317 @@
+%======================================================================
+\section{Admissible pairs, duality and criticality}\label{sec:setting}
+%======================================================================
+
+This section sets up the linear problem behind Conjecture~\ref{conj:U} and proves what can be said about it with
+positivity, the explicit formula and soft analysis alone. Beyond the explicit formula, the only arithmetic used is the
+bound $O(T\log T)$ for the number of zeros up to height $T$ (Lemma~\ref{lem:explicit-formula}); the prime number theorem
+enters only in the last sentence of Lemma~\ref{lem:apriori}.
+
+\subsection{The test class and the explicit formula}
+
+We write $\hF(\xi)=\int_\RR F(t)e^{-2\pi i\xi t}\dd t$, $\xin{n}=\log n/(2\pi)$ for real $n>0$, and $\xin2=\log2/(2\pi)$
+for the \emph{gap}. The archimedean data of $\zeta$ are the density and the functional
+\begin{equation}
+\Oinf(t):=\frac1{2\pi}\Big(\Re\psi\big(\tfrac14+\tfrac{it}2\big)-\log\pi\Big),\qquad
+\Arch(F):=F\big(\tfrac i2\big)+F\big(-\tfrac i2\big)+\int_\RR F(t)\Oinf(t)\dd t,
+\end{equation}
+where $\psi=\Gamma'/\Gamma$. Since $\Re\psi(\tfrac14+\tfrac{it}2)=\log(|t|/2)+O(t^{-2})$ as $|t|\to\infty$, we have
+$|\Oinf(t)|\le C\log(2+|t|)$. The series $\psi(z)=-\gamma_E+\sum_{n\ge0}\big(\frac1{n+1}-\frac1{n+z}\big)$
+($\gamma_E$ Euler's constant) shows that $\Re\psi(a+ib)$ is an increasing function of $b^2$ for fixed $a>0$; hence
+$\Oinf$ is even, increasing in $|t|$, and
+\begin{equation}\label{eq:Oinf0}
+\Oinf(t)\ge\Oinf(0)=\frac{\psi(\frac14)-\log\pi}{2\pi}=-0.85500\ldots .
+\end{equation}
+
+\begin{definition}[Test class]\label{def:testclass}
+For $0<\delta<\frac12$ let $\Tc_\delta$ be the set of even functions $F$, real on $\RR$, analytic in a neighbourhood
+of the closed strip $\{|\Im z|\le\frac12+\delta\}$, with
+\[
+\|F\|_\delta:=\sup_{|\Im z|\le\frac12+\delta}(1+|z|)^2|F(z)|<\infty .
+\]
+Put $\Tc:=\bigcup_{\delta>0}\Tc_\delta$. Let $\Gc$ be the set of even real-valued elements of
+$\operatorname{span}_\CC\{e^{-\pi(t-a)^2/s^2+2\pi i bt}:a,b\in\RR,\ s>0\}$ (Gaussian wave packets); then
+$\Gc\subset\Tc_\delta$ for every $\delta$. An even complex-valued function whose real and imaginary parts on $\RR$
+extend to elements of $\Tc$ is paired with measures, and with $\Arch$, by linearity.
+\end{definition}
+
+The class $\Tc$ contains Gaussians times polynomials, the Poisson kernels $t\mapsto(s-\frac12)/((s-\frac12)^2+t^2)$ for real
+$s>1$, the functions $\Xi^2H$ of Section~\ref{sec:family}, and the interpolation basis of Bondarenko, Radchenko and Seip
+(Section~\ref{ssec:support}). Since $\Gc$ is not norm-dense in $\Tc_\delta$ (for $F(z)=1/(1+z^2)$ and $G\in\Gc$,
+$\|F-G\|_{\delta'}\ge1$), density arguments below use dominated convergence.
+
+\begin{lemma}[Elementary facts]\label{lem:testclass}
+Let $F\in\Tc_\delta$. Then
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $|\hF(\xi)|\le\pi\|F\|_\delta\,e^{-\pi(1+2\delta)|\xi|}$ for all $\xi\in\RR$;
+\item $F(\tfrac i2)+F(-\tfrac i2)=2\int_\RR\hF(\xi)\cosh(\pi\xi)\dd\xi$;
+\item $|\Arch(F)|\le C_\delta\|F\|_\delta$.
+\end{enumerate}
+In particular $\Arch(F)=2\int_\RR\hF(\xi)\cosh(\pi\xi)\dd\xi+\int_\RR F\,\Oinf$ for every $F\in\Tc$.
+\end{lemma}
+
+\begin{proof}
+(a) Let $\xi>0$ and $c=\frac12+\delta$. Since $F$ is analytic on a neighbourhood of the closed strip and
+$|F(z)|\le\|F\|_\delta(1+|z|)^{-2}$ there, Cauchy's theorem moves the line of integration to $\Im t=-c$:
+$\hF(\xi)=e^{-2\pi c\xi}\int_\RR F(t-ic)e^{-2\pi i\xi t}\dd t$, and
+$|\int F(t-ic)e^{-2\pi i\xi t}\dd t|\le\|F\|_\delta\int(1+t^2)^{-1}\dd t=\pi\|F\|_\delta$. For $\xi<0$ use $\Im t=+c$.
+(b) By (a), $z\mapsto\int\hF(\xi)e^{2\pi i\xi z}\dd\xi$ converges absolutely and is analytic for
+$|\Im z|<\frac12+\delta$; by Fourier inversion it equals $F$ on $\RR$, hence on the strip. Evaluate at $z=\pm\frac i2$
+and use that $\hF$ is even. (c) follows from $|F(\pm\frac i2)|\le\|F\|_\delta$ and
+$\int(1+|t|)^{-2}|\Oinf(t)|\dd t<\infty$.
+\end{proof}
+
+\begin{lemma}[Explicit formula on $\Tc$; \cite{Wei52}, {\cite[(1.1)]{BRS}}]\label{lem:explicit-formula}
+For every $F\in\Tc$,
+\begin{equation}\label{eq:EF}
+\Arch(F)=\sum_\rho F(t_\rho)+\frac1\pi\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\,\hF(\xin n),\qquad t_\rho:=-i\big(\rho-\tfrac12\big),
+\end{equation}
+where $\rho$ runs over the non-trivial zeros of $\zeta$, counted with multiplicity. Both series converge absolutely.
+No hypothesis on the zeros is made.
+\end{lemma}
+
+\begin{proof}
+Formula (1.1) of \cite{BRS} is \eqref{eq:EF} for functions $f$ analytic in $|\Im z|<\frac12+\eps$ with
+$|f(z)|\ll(1+|z|)^{-1-\eta}$ for some $\eps,\eta>0$; this class contains $\Tc$. In \cite{BRS} the archimedean
+integral carries $\psi(\frac14+\frac{it}2)$ and the prime sum carries $\frac1{2\pi}(\hF(\xin n)+\hF(-\xin n))$; for even
+$F$, real on $\RR$, these reduce to $\Re\psi$ and to $\frac1\pi\hF(\xin n)$. Absolute convergence: $|\Re t_\rho|=|\Im\rho|$,
+so $|F(t_\rho)|\le\|F\|_\delta(1+|\Im\rho|)^{-2}$, which is summable because the number of zeros with
+$|\Im\rho|\le T$ is $O(T\log T)$; and $|\hF(\xin n)|\le\pi\|F\|_\delta n^{-1/2-\delta}$ by
+Lemma~\ref{lem:testclass}(a).
+\end{proof}
+
+Write $t_\rho=\gamma-i(\beta-\frac12)$ for $\rho=\beta+i\gamma$; thus $t_\rho$ is real exactly when $\rho$ is on the
+critical line, and then $t_\rho=\gamma\in\Zz$. The multiset $\{t_\rho\}$ is invariant under $t\mapsto-t$ and
+$t\mapsto\bar t$. We write
+\[
+\muz:=\sum_{\gamma\in\Zz}m_\gamma\delta_\gamma,\qquad \nuz:=\sum_{n\ge2}\Lambda(n)n^{-1/2}\delta_{\xin n},\qquad
+\pz:=(\muz,\nuz),
+\]
+where $\Zz=\{\gamma\in\RR:\zeta(\frac12+i\gamma)=0\}$ and $m_\gamma$ is the multiplicity. Only real ordinates enter
+$\muz$; under RH, \eqref{eq:EF} reads $\Arch(F)=\int F\dd\muz+\frac1\pi\int\hF\dd\nuz$.
+
+\subsection{Admissible pairs, a priori bounds and duality}
+
+\begin{definition}[Admissible pairs, cones, slack]\label{def:admissible}
+An \emph{admissible pair} is a pair $(\mu,\nu)$ of positive Radon measures, $\mu$ even on $\RR$ and $\nu$ on
+$[\xin2,\infty)$, such that for every $F\in\Tc$ the integrals $\int F\dd\mu$ and $\int\hF\dd\nu$ converge absolutely and
+\[
+\Arch(F)=\Spec_{\mu,\nu}(F):=\int_\RR F\dd\mu+\frac1\pi\int_{[\xin2,\infty)}\hF\dd\nu .
+\]
+$\Kad$ denotes the set of admissible pairs. We put
+\[
+\Cone:=\{F\in\Tc: F\ge0\text{ on }\RR,\ \hF\ge0\text{ on }[\xin2,\infty)\},\qquad
+\ConeOPS:=\{F\in\Tc:F\ge0\text{ and }\hF\ge0\text{ on }\RR\},
+\]
+\[
+\kstar:=\inf\Big\{\Arch(F):F\in\Cone,\ \int F=1\Big\},\qquad \kOPS:=\inf\Big\{\Arch(F):F\in\ConeOPS,\ \int F=1\Big\}.
+\]
+We consider the statements
+\[
+\condE:\ \Kad\ne\emptyset,\qquad \condU:\ \Kad\subseteq\{\pz\},\qquad \condS:\ \kstar\le0 .
+\]
+For another archimedean functional $\Arch'$ (for instance $\Arch_q$ below, or the functional of another Gamma factor
+in Section~\ref{ssec:otherdata}) the same words define $\Kad(\Arch')$ and $\kstar(\Arch')$.
+\end{definition}
+
+Since $\ConeOPS\subseteq\Cone$, we have $\kstar\le\kOPS$. The pair $\pz$ uses only the real ordinates; it is admissible
+if and only if RH holds (Theorem~\ref{thm:logic}). The absolute-convergence clause in the definition is automatic once the
+identity holds on $\Gc$ (Lemma~\ref{lem:apriori} and Theorem~\ref{thm:duality}(b)).
+
+\begin{lemma}[Weak duality]\label{lem:weak-duality}
+Let $(\mu,\nu)\in\Kad$ and $F\in\Cone$. For Borel sets $I\subseteq\RR$ and $J\subseteq[\xin2,\infty)$,
+\[
+\big(\inf_I F\big)\,\mu(I)+\frac1\pi\big(\inf_J\hF\big)\,\nu(J)\le\Arch(F).
+\]
+In particular $\Arch(F)\ge0$; $\mu(I)\le\Arch(F)$ if $F\ge1$ on $I$; $\nu(J)\le\pi\Arch(F)$ if $\hF\ge1$ on $J$; and if
+$\int F=1$, no admissible $\mu$ satisfies $\mu\ge\lambda\dd t$ with $\lambda>\Arch(F)$.
+\end{lemma}
+
+\begin{proof}
+$\Arch(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$, and both integrands are non-negative where the measures live. Drop
+everything outside $I$ and $J$. For the last claim, $\Arch(F)\ge\int F\dd\mu\ge\lambda\int F=\lambda$.
+\end{proof}
+
+The certified upper bounds of Section~\ref{sec:certified} are of this form.
+
+\begin{lemma}[A priori bounds]\label{lem:apriori}
+There is an absolute constant $C$ such that every $(\mu,\nu)\in\Kad$ satisfies
+\[
+\mu([T-1,T+1])\le C\log(3+|T|)\quad(T\in\RR),\qquad \nu([X-1,X+1])\le Ce^{\pi X}\quad(X\in\RR).
+\]
+Hence $\int(1+t^2)^{-1}\dd\mu<\infty$, $\int e^{-\pi(1+\eta)\xi}\dd\nu(\xi)<\infty$ for every $\eta>0$, and
+$|\Spec_{\mu,\nu}(F)|\le C_\delta\|F\|_\delta$ on $\Tc_\delta$, with $C_\delta$ independent of $(\mu,\nu)\in\Kad$.
+The same holds, with other constants, for positive pairs representing $\Arch+\lambda\int(\cdot)$ $(\lambda\in\RR)$ on
+$\Gc$. The rate $e^{\pi X}$ is attained by $\nuz$.
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-apriori}.
+
+\begin{theorem}[Duality]\label{thm:duality}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item The following are equivalent: \textup{(i)} $\Kad\ne\emptyset$; \textup{(ii)} $\Arch(F)\ge0$ for every $F\in\Cone$;
+\textup{(iii)} $\Arch(F)\ge0$ for every $F\in\Cone\cap\Gc$; \textup{(iv)} $\kstar\ge0$.
+\item If an even positive Radon measure $\mu$ on $\RR$ and a positive Radon measure $\nu$ on $[\xin2,\infty)$ satisfy
+$\Arch(F)=\Spec_{\mu,\nu}(F)$ for every $F\in\Gc$, then $(\mu,\nu)\in\Kad$. The set $\Kad$ is convex and compact for the
+product of the vague topologies.
+\end{enumerate}
+\end{theorem}
+
+The equivalence (i)$\Leftrightarrow$(ii) says that there is no duality gap: the existence of a positive solution of the
+explicit formula with the archimedean data of $\zeta$ is equivalent to a positivity statement that mentions no primes and
+no zeros.
+
+\begin{proof}[Proof of Theorem~\textup{\ref{thm:duality}}]
+In (a), (i)$\Rightarrow$(ii) is Lemma~\ref{lem:weak-duality} and (ii)$\Rightarrow$(iii) is trivial. If $F\in\Cone$ and
+$\int F=0$ then $F\equiv0$, since $F\ge0$ is continuous; so (ii)$\Leftrightarrow$(iv) by homogeneity. The implications
+(iii)$\Rightarrow$(ii) and (ii)$\Rightarrow$(i), and part (b), are proved in Appendix~\ref{app:proofs-duality}: the
+first by approximating $F\in\Cone$ by Riemann sums of Gaussian convolutions, the second by Carath\'eodory's theorem in
+finite-dimensional subspaces, uniform bounds from Lemma~\ref{lem:apriori} and Helly's selection theorem.
+\end{proof}
+
+The proof uses only that $\Arch$ is $\|\cdot\|_\delta$-continuous on each $\Tc_\delta$ and the two families of bounds in
+the proof of Lemma~\ref{lem:apriori}. It therefore applies verbatim to $\Arch+\lambda\int(\cdot)$ for every
+$\lambda\in\RR$, and in particular to the functionals $\Arch_q$ of Proposition~\ref{prop:conductor}.
+
+\begin{proposition}[Floors]\label{prop:floor}
+$\kstar$ is finite and equals the largest $\lambda\in\RR$ for which there are an even real Radon measure $\mu$ with
+$\mu-\lambda\dd t\ge0$ and a positive Radon measure $\nu$ on $[\xin2,\infty)$ with $\Arch=\Spec_{\mu,\nu}$ on $\Tc$; the
+maximum is attained. In particular $\kstar\ge0$ if and only if some admissible $\mu$ dominates $\kstar\dd t$.
+\end{proposition}
+
+\begin{proof}
+A pair $(\mu,\nu)$ with $\mu-\lambda\dd t\ge0$ represents $\Arch$ if and only if $(\mu-\lambda\dd t,\nu)$ is admissible for
+$\Arch-\lambda\int(\cdot)$. By Theorem~\ref{thm:duality}(a) for this functional, such a pair exists if and only if
+$\Arch(F)\ge\lambda\int F$ for all $F\in\Cone$, that is, if and only if $\lambda\le\kstar$. The value $\kstar$ is
+$<\infty$ (test any Gaussian). For the lower bound let $F\in\Cone$ with $\int F=1$. Then $|\hF|\le1$, and $\hF\ge0$ for
+$|\xi|\ge\xin2$ because $\hF$ is even. By Lemma~\ref{lem:testclass}(b) and \eqref{eq:Oinf0},
+\[
+\Arch(F)\ge2\int_{-\xin2}^{\xin2}\hF(\xi)\cosh(\pi\xi)\dd\xi+\Oinf(0)\int F\ge-4\xin2\cosh(\pi\xin2)+\Oinf(0).
+\]
+Here $\pi\xin2=\frac12\log2$, so $4\xin2\cosh(\pi\xin2)=\frac{3\log2}{\sqrt2\,\pi}=0.4680387\ldots$, and
+$\Oinf(0)=-0.8550095\ldots$; hence $\kstar\ge-1.3230483\ldots\ge-1.3231$. So $\kstar$ is finite, the set of feasible $\lambda$ is $(-\infty,\kstar]$, and the maximum is
+attained at $\lambda=\kstar$. If $\kstar\ge0$, the pair obtained at $\lambda=\kstar$ is admissible; conversely an
+admissible pair gives \condE, hence $\kstar\ge0$.
+\end{proof}
+
+A certified admissible pair for a slightly larger conductor gives a much better unconditional floor
+(Proposition~\ref{prop:lowerbound}).
+
+\subsection{The logic of \texorpdfstring{\condE, \condU}{(E), (U)} and RH}
+
+\begin{theorem}[Logic]\label{thm:logic}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item RH implies $\pz\in\Kad$; hence RH implies \condE.
+\item If $(\mu,\nuz)\in\Kad$ for some $\mu$, then RH holds and $\mu=\muz$.
+\item \condU\ holds if and only if both \textup{[}\condE$\Rightarrow$RH\textup{]} and \textup{[}RH$\Rightarrow\Kad=\{\pz\}$\textup{]}
+hold. In particular \condE$\wedge$\condU$\Rightarrow$RH, and \condU\ implies RH$\Leftrightarrow$\condE$\Leftrightarrow\kstar\ge0$.
+\item \condU$\Rightarrow$\condS. Consequently \condU$\wedge$\condE$\Rightarrow\kstar=0$, and \condU$\wedge\neg$RH$\Rightarrow\Kad=\emptyset$
+and $\kstar<0$.
+\end{enumerate}
+\end{theorem}
+
+The proof is in Appendix~\ref{app:proofs-apriori}. Part (b) is the heart of it: if some zero $\rho_0=\beta_0+i\gamma_0$ were off the line,
+the Gaussians $F_u=g_u(\cdot-\gamma_0)+g_u(\cdot+\gamma_0)$, $g_u(t)=e^{-\pi ut^2}$, would make $\sum_\rho F_u(t_\rho)$ grow at least like
+$e^{\pi u(\beta_0-\frac12)^2}$ along a sequence $u\to\infty$, while $\int F_u\dd\mu$ stays bounded.
+
+\subsection{The slack, conductors and criticality}\label{ssec:criticality}
+
+For $q>0$ put $\Arch_q(F):=\Arch(F)+\frac{\log q}{2\pi}\int F$. This is the archimedean functional of the explicit
+formula for data with the Gamma factor $\GR$, one simple pole at $s=1$ and conductor $q$; $\Arch=\Arch_1$.
+
+\begin{proposition}[Conductor form]\label{prop:conductor}
+For $q>0$, $\kstar(\Arch_q)=\kstar+\frac{\log q}{2\pi}$. Hence $\Kad(\Arch_q)\ne\emptyset$ if and only if
+$q\ge\qmin:=e^{-2\pi\kstar}$. Thus $\qmin$ is the least conductor for which $\GR$, one simple pole at $s=1$ and a positive
+prime measure on $[\xin2,\infty)$ admit a positive solution of the explicit formula, and it is the best lower bound for
+the conductor that can be obtained from $\Arch_q$ with test functions in $\Cone$. Moreover \condS$\Leftrightarrow\qmin\ge1$, and
+RH$\Rightarrow\qmin\le1$.
+\end{proposition}
+
+\begin{proof}
+The conductor term is $\frac{\log q}{2\pi}$ times Lebesgue measure, and $\kstar$ is normalised by $\int F=1$; this
+gives the first identity. Theorem~\ref{thm:duality}(a) for $\Arch_q$ gives the second. A test function $F\in\Cone$ with
+$\int F=1$ certifies $\log q\ge-2\pi\Arch(F)$ for all data admitting a positive solution, and the supremum of these bounds
+over $F$ is $\log\qmin$. Finally \condS\ is $\kstar\le0$, and RH implies \condE, i.e.\ $\kstar\ge0$.
+\end{proof}
+
+The proposition is unconditional, and only $\qmin$ appears in it. The arithmetic conductor of $\zeta$ is $1$ unconditionally; what
+requires RH is that $\zeta$'s own pair, a positive solution at $q=1$, is admissible (Theorem~\ref{thm:logic}). Among $L$-functions, a
+degree-one bound with $\GR$ and a pole applies to a single object: by the classification of the degree-one elements of the Selberg class
+\cite{CG93,KP99,Sou05}, the only element with Gamma factor $\GR(s)$, conductor $1$ and a pole at $s=1$ is $\zeta$. The content of \condS\
+is that the optimum $\qmin$ of the linear programme is at least this arithmetic value; equality needs \condE\ as well, for instance RH.
+In the classical cone, Odlyzko's tables give $0.997$ for this bound \cite[Table~4, p.~134]{Odl90} and Proposition~\ref{thm:kappaOPS} gives
+at least $1-6.25\cdot10^{-40}$; in $\Cone$, Corollary~\ref{cor:qmin} gives at least $1-7.3\cdot10^{-906}$.
+
+\begin{definition}[Magic functions]
+An \emph{exact magic function} is an $F\in\Cone$ with $\int F>0$ and $\Arch(F)=0$. A \emph{weak magic function} is a
+function $F^*:\RR\to[0,\infty)$ for which there are $F_K\in\Cone$ with $\int F_K=1$ and $\Arch(F_K)\to0$, such that
+$F_K\to F^*$ and $\widehat{F_K}\to\widehat{F^*}$ pointwise on $\RR$, and $\int F^*=1$. For a function $F$ on $\RR$ with
+Fourier transform $\hF$ we write
+\[
+Z(F):=F^{-1}(0)\cap\RR,\qquad \widehat Z(F):=\hF^{-1}(0)\cap[\xin2,\infty).
+\]
+\end{definition}
+
+Weak magic functions exist only if $\kstar\le0$. A weak magic function need not belong to $\Tc$; by
+Theorem~\ref{thm:crit}(a) it is analytic in $|\Im t|<\frac12$. Every minimising sequence satisfies the moment bounds
+\eqref{eq:moments} below, so the properties listed in Theorem~\ref{thm:crit}(a) hold for every weak magic function.
+
+\begin{theorem}[Criticality and atomicity]\label{thm:crit}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item If $\kstar=0$, weak magic functions exist. Every weak magic function $F^*$ is even, has $\widehat{F^*}\in L^1(\RR)$
+with $\int|\widehat{F^*}(\xi)|\cosh(\pi\xi)\dd\xi<\infty$ (so $F^*$ extends analytically to $|\Im t|<\frac12$), satisfies
+$\widehat{F^*}\ge0$ on $|\xi|\ge\xin2$ and $\int F^*(t)\log(2+|t|)\dd t<\infty$, and has $\int F^*\dd\mu=0=\int\widehat{F^*}\dd\nu$
+for every $(\mu,\nu)\in\Kad$.
+\item Assume \condE. The following are equivalent: \textup{(i)} $\kstar=0$; \textup{(ii)} every admissible $\mu$ is purely
+atomic; \textup{(iii)} there is a discrete set $Z^*\subset\RR$ carrying every admissible $\mu$; \textup{(iv)} no admissible $\mu$
+satisfies $\mu\ge\lambda\dd t$ with $\lambda>0$.
+\item If $\kstar=0$ and $F^*$ is a weak magic function, one may take $Z^*=Z(F^*)$ in \textup{(iii)}; every zero of $F^*$ on
+$\RR$ has even order; and every admissible $\nu$ is carried by the closed set $\widehat Z(F^*)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Let $F_K\in\Cone$, $\int F_K=1$, $\Arch(F_K)\to0$. Since $|\widehat{F_K}|\le1$, $\widehat{F_K}\ge0$ for $|\xi|\ge\xin2$, and
+$\Oinf\ge\Oinf(0)$, Lemma~\ref{lem:testclass}(b) and the computation in the proof of Proposition~\ref{prop:floor} give
+\begin{equation}\label{eq:moments}
+2\int_{|\xi|\ge\xin2}\widehat{F_K}(\xi)\cosh(\pi\xi)\dd\xi+\int F_K\big(\Oinf-\Oinf(0)\big)\le\Arch(F_K)+1.3231 ,
+\end{equation}
+and both terms on the left are non-negative. As $\Oinf(t)-\Oinf(0)\ge c\log(2+|t|)-C$, the probability densities $F_K$ are
+tight with $\sup_K\int F_K\log(2+|t|)<\infty$, and $\sup_K\int|\widehat{F_K}|\cosh(\pi\xi)\dd\xi<\infty$. By Prokhorov's theorem
+a subsequence of $F_K\dd t$ converges weakly to a probability measure $m$, and $\widehat{F_K}\to\widehat m$ pointwise. The
+uniform bound with weight $\cosh(\pi\xi)$ makes $|\widehat{F_K}|$ uniformly integrable for any weight
+$\cosh((1-\eps)\pi\xi)$, so $\widehat{F_K}\to\widehat m$ in $L^1$ with these weights. Hence $m$ has the continuous density
+$F^*(t)=\int\widehat m(\xi)e^{2\pi i\xi t}\dd\xi$, $F_K\to F^*$ uniformly on $\RR$, and $\int F^*=1$; so $F^*$ is a weak
+magic function. For an arbitrary weak magic function $F^*$ with sequence $F_K$, \eqref{eq:moments} holds for $F_K$; evenness,
+$\widehat{F^*}\ge0$ on $|\xi|\ge\xin2$, $\int|\widehat{F^*}|\cosh(\pi\xi)<\infty$ and $\int F^*\log(2+|t|)<\infty$ follow by
+pointwise limits and Fatou's lemma. Moreover \eqref{eq:moments} and the pointwise convergence $\widehat{F_K}\to\widehat{F^*}$ give
+$\widehat{F_K}\to\widehat{F^*}$ in $L^1(\RR)$ by Vitali's theorem, so $F_K\to(\widehat{F^*})^\vee$ uniformly on $\RR$; hence
+$F^*=(\widehat{F^*})^\vee$ everywhere, $F^*$ is continuous, and Fourier inversion gives analyticity in $|\Im t|<\frac12$. Finally, for
+$(\mu,\nu)\in\Kad$, Fatou's lemma ($F_K\ge0$ on $\RR$, $\widehat{F_K}\ge0$ on $[\xin2,\infty)$) gives
+$\int F^*\dd\mu+\frac1\pi\int\widehat{F^*}\dd\nu\le\liminf\Arch(F_K)=0$, and both terms are non-negative.
+
+(b) (i)$\Rightarrow$(iii): by (a) there is a weak magic $F^*$, and every admissible $\mu$ satisfies $\int F^*\dd\mu=0$ with
+$F^*\ge0$ continuous, so $\mu$ is carried by $Z(F^*)$. As $F^*$ is real-analytic and $F^*\not\equiv0$, $Z(F^*)$ is discrete.
+(iii)$\Rightarrow$(ii)$\Rightarrow$(iv) is clear. (iv)$\Rightarrow$(i): \condE\ gives $\kstar\ge0$; if $\kstar>0$,
+Proposition~\ref{prop:floor} gives an admissible $\mu\ge\kstar\dd t$.
+
+(c) The first claim was shown in (b). A non-negative real-analytic function has zeros of even order. Since $\widehat{F^*}$ is
+continuous and $\widehat{F^*}\ge0$ on $[\xin2,\infty)$, $\int\widehat{F^*}\dd\nu=0$ forces $\nu$ to be carried by the closed set
+$\widehat Z(F^*)$.
+\end{proof}
+
+The hypothesis \condE\ in (b) is essential: under $\neg$\condE\ the conditions (ii)--(iv) hold vacuously while $\kstar<0$.
+``Purely atomic'' does not mean ``with integer atoms''.
+
+\subsection{Complementary slackness}
+
+\begin{lemma}[Complementary slackness]\label{lem:compslack}
+If $F\in\Cone$ and $\Arch(F)=0$, then every $(\mu,\nu)\in\Kad$ has $\mu$ carried by $Z(F)$ and $\nu$ carried by $\widehat Z(F)$.
+\end{lemma}
+
+\begin{proof}
+$0=\Arch(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$, with continuous integrands that are non-negative where the measures live.
+\end{proof}
+
+No limit, no hypothesis \condE\ and no information on $\kstar$ is needed. Combined with Theorem~\ref{thm:Gfin}, this gives the
+magic-function principle (Corollary~\ref{cor:magic}).

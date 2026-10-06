@@ -1,0 +1,696 @@
+%======================================================================
+\section{The true family: zero side, front, far field and tail}\label{sec:true}\label{sec:tail}
+%======================================================================
+
+We return to the exact family $(P_J)_{J\in\Jset}$ of the true kernel (Fact~\ref{prop:E}) and to the four hypotheses
+\hyp{N}, \hyp{G$_a$}, \hyp{Z$_\infty$}, \hyp{Mg} of the criterion recalled in Fact~\ref{thm:M}. Section~\ref{ssec:zeroside}
+derives \hyp{G$_a$} and \hyp{Z$_\infty$} from root counts and from a coefficientwise step law; Section~\ref{ssec:front}
+derives \hyp{Mg} near the front $x\approx n_J$ from a step law \hyp{TEL} and a summability condition \hyp{ES};
+Sections~\ref{ssec:FF}--\ref{ssec:tailbound} treat \hyp{Mg} away from the front, where it reduces to a finite
+certificate plus the summability of the scalar increments $\Delta p_1^{(K)}$, and prove the far-node asymptotics of
+the true kernel; Section~\ref{ssec:piece1} gives exact identities for the coefficient step. Every statement of this
+section is either proved for all $J$ under explicitly named hypotheses, or a finite certificate; none of the named
+hypotheses is known for all $J$. Functions of $\xi$ are also viewed as functions of $x=e^{2\pi\xi}$, and
+$I_X:=[\xi_2,\xi_X]$.
+
+%----------------------------------------------------------------------
+\subsection{Voronoi decoupling and a Gamma-only sufficient condition}\label{ssec:voronoi}
+%----------------------------------------------------------------------
+
+The transform of $\Xi^2H$ can be written through the Gamma-only kernel alone, at shifted points. This gives a
+sufficient condition for an exact magic function in which neither the zeros nor the primes appear.
+
+\begin{theorem}[Voronoi decoupling]\label{thm:voronoi}
+Let $H\in\Hc$, analytic on $\lvert\Im t\rvert\le\frac12+\delta$, and put $G_H:=\Xiinf^{\,2}H$. Then
+$\FT G_H$ is real-valued, and for every real $\xi$
+\[
+\widehat{\Xi^2H}(\xi)=\sum_{m\ge1}d(m)m^{-1/2}\,\FT G_H(\xi+\xi_m),
+\]
+where for every $\tau\in(\frac12,\frac12+\delta]$ the $m$-th term is bounded by
+$C_\tau e^{-2\pi\tau\xi}m^{-1/2-\tau}$. Moreover
+\[
+\Arch(\Xi^2H)=\frac1{2\pi}\sum_{k\ge2}d(k)(\log k)k^{-1/2}\FT G_H(\xi_k),\qquad
+\int_\RR\Xi^2H=\sum_{k\ge1}d(k)k^{-1/2}\FT G_H(\xi_k).
+\]
+\end{theorem}
+
+The proof (Appendix~\ref{app:proofs-voronoi}) moves the contour to $\Im w=-\tau$, where the series
+$\Xi(w)^2=\Xiinf(w)^2\sum_md(m)m^{-1/2-iw}$ converges absolutely, integrates termwise, and moves each term back
+to $\RR$.
+
+\begin{remark}\label{rem:wmean}
+By Theorem~\ref{thm:voronoi}, $\Arch(\Xi^2H)/\int\Xi^2H$ is the average of $(\log k)/2\pi$ over $k\ge1$
+with weights $d(k)k^{-1/2}\FT G_H(\xi_k)$. It is a mean in the strict sense when these weights are
+non-negative, for instance under hypothesis (a) of Proposition~\ref{prop:gamma-only}. The primes have
+disappeared: they are absorbed into the Dirichlet series $\zeta^2=\sum d(m)m^{-s}$, and only the
+Gamma factor and the integers remain. The mechanism (shift to $\Re s>1$, expand, shift back) is the
+classical one behind Koshliakov-type transformations; Theorem~\ref{thm:voronoi} packages it for the
+class $\Xi^2\Hc$. For a related identity, the map $\mathcal E$ of Connes and Consani, see \cite{CC21}.
+\end{remark}
+
+\begin{proposition}[A Gamma-only sufficient condition]\label{prop:gamma-only}
+Let $H\in\Hc$ with $H\ge0$ on $\RR$, and suppose that
+(a) $\FT G_H\ge0$ on $[\xi_2,\infty)$ (resp.\ on $[0,\infty)$);
+(b) $\FT G_H(\xi_k)=0$ for every integer $k\ge2$; and
+(c) $\FT G_H(0)>0$.
+Then $\Xi^2H\in\Cone$ (resp.\ $\ConeOPS$), $\Arch(\Xi^2H)=0$, $\int\Xi^2H=\FT G_H(0)>0$, and
+$\kstar\le0$. If moreover (d) $H$ has finitely many real zeros and (e) $\FT G_H$ has finitely many
+zeros in $[\xi_2,\infty)\setminus\{\xi_k:k\ge2\}$, then $\widehat{\Xi^2H}$ vanishes on
+$[\xi_2,\infty)$ only at the points $\xi_k$, $k\ge2$, which lie in $\BRS$, and
+$\Kad\subseteq\{\pz\}$; if in addition \condE{} holds, then RH holds.
+\end{proposition}
+
+\begin{proof}
+For $\xi\ge\xi_2$ (resp.\ $\xi\ge0$) every argument $\xi+\xi_m$ in Theorem~\ref{thm:voronoi} is
+$\ge\xi_2$ (resp.\ $\ge0$), so $\widehat{\Xi^2H}(\xi)\ge0$ by (a); evenness gives the same for
+$\xi\le-\xi_2$ (resp.\ $\xi\le0$). Since $\Xi^2H\ge0$, we get $\Xi^2H\in\Cone$ (resp.\ $\ConeOPS$).
+By (b) every term of the formula for $\Arch$ in Theorem~\ref{thm:voronoi} vanishes, and only $k=1$
+survives in $\int\Xi^2H$. Hence $\kstar\le\Arch(\Xi^2H)/\int\Xi^2H=0$.
+For the second part, let $\xi\ge\xi_2$ with $\widehat{\Xi^2H}(\xi)=0$. All terms of the Voronoi series
+are non-negative, so $\FT G_H(\xi+\xi_m)=0$ for every $m\ge1$. By (e), for all large $m$ the point
+$\xi+\xi_m$ lies beyond the finitely many exceptional zeros, so $xm\in\ZZ$ for all large $m$, where
+$x=e^{2\pi\xi}$. Hence $x=x(m+1)-xm\in\ZZ$, and $\xi=\xi_k$ with $k=x\ge2$. These points lie in
+$\BRS$, since $\xi_k=\log(k^2)/4\pi$. The real zeros of $\Xi^2H$ are $\Zz$ together with the finitely
+many real zeros of $H$. Fact~\ref{thm:magic-unique} applies to $F=\Xi^2H$ and gives
+$\Kad\subseteq\{\pz\}$, and RH under \condE.
+\end{proof}
+
+\begin{remark}\label{rem:gamma-only}
+Proposition~\ref{prop:gamma-only} asks for zeros of $\FT G_H$ at \emph{all} integers $k\ge2$, including
+$6,10,12,\dots$. The near-extremal functions that certify the bound on $\kstar$ in \cite{PaperI} do not vanish there, so the
+condition is sufficient but not necessary. More generally, by Theorem~\ref{thm:voronoi} the infimum of
+$\Arch(\Xi^2H)/\int\Xi^2H$ over $H\ge0$ with $\FT G_H\ge0$ on $[\xi_2,\infty)$ is an upper bound for
+$\kstar$ that involves only the Gamma factor, the functions $K_0,K_1$ and the integers.
+\end{remark}
+
+%----------------------------------------------------------------------
+\subsection{The zero side}\label{ssec:zeroside}
+%----------------------------------------------------------------------
+
+Hypotheses \hyp{G$_a$} and \hyp{Z$_\infty$} concern the polynomials $P_J$ alone. They follow from a coefficient bound, or
+from information on the roots $u_j$ of $P_J$ (so $P_J(u)=\prod_j(1-u/u_j)$, since $P_J(0)=1$).
+
+\begin{lemma}[Left-half-plane roots are harmless]\label{lem:rootL}
+If $\Re u\le0$, then $\lvert1-t^2/u\rvert\ge1$ for every real $t$; if $\Re u>0$, then $\lvert1-t^2/u\rvert\ge\lvert\sin\arg u\rvert$. Hence, if
+$P_J$ has real coefficients, $\lvert H_J(t)\rvert\ge\prod\sin^2(\arg u_j)$ on $\RR$, the product running over the pairs
+$\{u_j,\bar u_j\}$ of roots with $\Re u_j>0$ and $\Im u_j\ne0$, each pair counted once, provided $P_J$ has no root in
+$(0,\infty)$. In that case $H_J$ is real and has no zero on $\RR$, and $H_J(0)=1$, so the bound holds for $H_J=\lvert H_J\rvert$
+itself. (If $P_J$ has a simple root $u_0>0$, then $H_J$ changes sign at $\sqrt{u_0}$, and no positive lower bound holds.)
+In particular, if for $J\ge J_0$ the polynomial $P_J$ has no root in $(0,\infty)$ and at most $K$ root pairs in $\Re u>0$, all
+with $\lvert\arg u\rvert\ge\theta_0>0$, then $H_J\ge(\sin\theta_0)^{2K}$ on $\RR$, which is \hyp{Z$^+$} with a constant $h$.
+\end{lemma}
+
+\begin{proof}
+If $\Re u\le0$ then $\Re(1/u)\le0$ and $\Re(1-t^2/u)\ge1$. If $\Re u>0$ then
+$\lvert u-t^2\rvert\ge\lvert\Im u\rvert=\lvert u\rvert\lvert\sin\arg u\rvert$. For a conjugate pair,
+$\lvert1-t^2/u\rvert\lvert1-t^2/\bar u\rvert=\lvert1-t^2/u\rvert^2$. Multiplying over all roots bounds $\lvert H_J(t)\rvert$ from below.
+If $P_J$ has no root in $(0,\infty)$, then $H_J(t)=P_J(t^2)\ne0$ for real $t$, so $H_J$ has constant sign on $\RR$, and
+$H_J(0)=P_J(0)=1>0$.
+\end{proof}
+
+\begin{lemma}[Root counting gives growth]\label{lem:rootG}
+Let $P(u)=\prod_{j\le d}(1-u/u_j)$, $H(t)=P(t^2)$ and $N(r):=\#\{j:\lvert u_j\rvert\le r^2\}$. If $N(r)\le Ar+n_0$ for all
+$r>0$ and $N(r)=0$ for $r<r_0$, then $\lvert H(t)\rvert\le(1+\lvert t\rvert^2/r_0^2)^{n_0}e^{\pi A\lvert t\rvert}$ for all $t\in\CC$.
+Hence \hyp{G$_a$} holds on every strip, for every $a>\pi A$, if the counting bound holds uniformly in $J$ with $A<\frac12$,
+and either $n_0=0$ or there is in addition a uniform root-free disc $\lvert u\rvert<r_0^2$.
+\end{lemma}
+
+\begin{proof}
+$\lvert1-t^2/u_j\rvert\le1+\rho^2/\lvert u_j\rvert$ with $\rho=\lvert t\rvert$, and integration by parts gives
+$\sum_j\log(1+\rho^2/\lvert u_j\rvert)=\int_0^\infty N(r)\,\frac{2\rho^2}{r(r^2+\rho^2)}\dd r\le\pi A\rho+n_0\log(1+\rho^2/r_0^2)$.
+\end{proof}
+
+\begin{lemma}[Strip bounds from a sector]\label{lem:rootSR}
+Let $P$, $H$ be as in Lemma~\ref{lem:rootG}, with real coefficients, every root satisfying
+$\lvert\arg u_j\rvert\ge\theta_0\in(0,\pi/2]$, and put $\beta:=\sum_j1/\lvert u_j\rvert$.
+(a) For real $T,\eta$: $\log\lvert H(T+i\eta)\rvert\le\log\lvert H(T)\rvert+(2\lvert T\rvert\lvert\eta\rvert+\eta^2)\,\beta/\sin\theta_0$.
+So a real-line bound with exponent $a$, together with a uniform sector and a uniform bound on $\beta$, gives \hyp{G$_{a'}$}
+on $\lvert\Im t\rvert\le\frac12+\delta$ with $a'=a+(1+2\delta)\beta/\sin\theta_0$.
+(b) If moreover $\lvert u_j\rvert\ge r_0^2$ for all $j$, every zero $t$ of $H$ has $\lvert\Im t\rvert\ge r_0\sin(\theta_0/2)$; so a uniform
+sector and disc give \hyp{R$_\eta$}.
+\end{lemma}
+
+\begin{proof}
+(a) $\lvert u_j-(T+i\eta)^2\rvert\le\lvert u_j-T^2\rvert+2\lvert T\rvert\lvert\eta\rvert+\eta^2$ and
+$\lvert u_j-T^2\rvert\ge\operatorname{dist}(u_j,[0,\infty))\ge\lvert u_j\rvert\sin\theta_0$; use $\log(1+s)\le s$. (b) The zeros are
+$t=\pm u_j^{1/2}$, with $\lvert\arg t\rvert\in[\theta_0/2,\pi-\theta_0/2]$.
+\end{proof}
+
+\begin{proposition}[Limits under linear root counting]\label{prop:Z}
+Assume \hyp{N} and, uniformly in $J\in\Jset$, the counting bound $N_J(r)\le Ar+n_0$ with $A<\frac12$ (with a uniform
+root-free disc $\lvert u\rvert<r_0^2$ if $n_0>0$). Then $\{P_J\}$ is locally bounded on $\CC$, and every subsequence has a
+further subsequence with $P_J\to P_\infty$ locally uniformly, where $P_\infty$ is entire of order $\le\frac12$,
+$P_\infty(0)=1$, and $P_\infty(u)=\prod_k(1-u/u_k^\infty)$; the $u_k^\infty$ are exactly the limits of bounded sequences of
+roots of $P_J$. Hence \hyp{Z$_\infty$} holds along this subsequence if and only if $P_\infty$ has no zero in $(0,\infty)$,
+and in that case $H_\infty(t)=P_\infty(t^2)\ge\prod_{\Re u_k^\infty>0}\sin^2(\arg u_k^\infty)$ on $\RR$.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:rootG} with $t^2=u$, $\lvert P_J(u)\rvert\le(1+\lvert u\rvert/r_0^2)^{n_0}e^{\pi A\lvert u\rvert^{1/2}}$, so Montel applies
+on $\CC$. The limit has order $\le\frac12$, hence genus $0$, and Hadamard's theorem gives the product; by Hurwitz's
+theorem its zeros are the limits of roots of $P_J$ \cite[VII.2.5]{Con73}. The last statement is Lemma~\ref{lem:rootL} for $P_\infty$.
+\end{proof}
+
+The roots of the exact members are certified at three values of $J$.
+
+\begin{proposition}[Certified root geometry]\label{prop:roots}
+Let $J\in\{60,110,111\}$, and write $P_J(u)=\prod_j(1-u/u_j)$. Then $P_J$ has exactly three pairs of conjugate roots in $\Re u>0$; for
+these six roots, $\lvert\arg u\rvert$ lies in $[1.0351074,1.4522567]$ for $J=60$, in $[1.0351421,1.4522859]$ for $J=110$ and in
+$[1.0351423,1.4522861]$ for $J=111$, so in $[1.0351,1.4523]$ in all three cases, and $P_J$ has no root in $(0,\infty)$. Every root satisfies $\lvert\arg u\rvert\ge1.0351$ and
+$\lvert u\rvert\ge108.25$; $\sum_j1/\lvert u_j\rvert\le0.0581684$; every zero of $H_J(t)=P_J(t^2)$ satisfies $\lvert\Im t\rvert\ge9.6386$; and
+$N_J(r):=\#\{j:\lvert u_j\rvert\le r^2\}\le0.41658\,r$ for all $r>0$.
+\end{proposition}
+
+\begin{proof}[Proof \textup{(computer-assisted)}]
+The script \nolinkurl{exact/verify_roots.py} reads the certified enclosure of $P_J$ (Fact~\ref{thm:finiteJ}) and isolates all
+$2J$ roots by validated disjoint balls, one root in each, valid for every polynomial in the coefficient balls, in particular for
+the exact $P_J$; it certifies the sign of $\Re u$ for every root and prints outward-rounded bounds for $\lvert\arg u\rvert$ over the roots
+with $\Re u>0$, for $\min\lvert\arg u\rvert$, $\min\lvert u\rvert$, $\sum1/\lvert u\rvert$, $\min\lvert\Im t\rvert$ over the zeros of $H_J$, and
+$\sup_rN_J(r)/r$. The printed values are $\min\lvert u\rvert\ge108.25343$, $108.25821$, $108.25825$; $\sum1/\lvert u\rvert\le0.05816834$,
+$0.05815321$, $0.05815310$; $\min\lvert\Im t\rvert\ge9.6386206$, $9.6388900$, $9.6388919$; and $\sup_rN_J(r)/r\le0.41658$, $0.41623$, $0.41623$
+for $J=60,110,111$. Command, for instance: \texttt{python} \nolinkurl{exact/verify_roots.py} \nolinkurl{exact/out/P60_ball.txt}
+\nolinkurl{--prec} \nolinkurl{2000}.
+\end{proof}
+
+These root data alone give finite-$J$ instances of the hypotheses \hyp{Z$^+$}, \hyp{G$_a$} and \hyp{R$_\eta$}. At these $J$,
+$H_J\ge(\sin1.0351)^{6}$ on $\RR$ by Lemma~\ref{lem:rootL}, and $\lvert H_J(t)\rvert\le e^{0.41658\pi\lvert t\rvert}$ on $\CC$ by Lemma~\ref{lem:rootG}
+with $n_0=0$ (note $0.41658\pi<\pi/2$). For the zeros of $H_J$, Lemma~\ref{lem:rootSR}(b) gives only
+$\lvert\Im t\rvert\ge108.25^{1/2}\sin(1.0351/2)>5.14$; the distance $9.6386$ is certified directly. The coefficient bounds of
+Fact~\ref{thm:finiteJ} give more at these $J$, namely $H_J\ge1$ and $\lvert H_J(t)\rvert\le\cosh(0.71636\lvert t\rvert)$; the point of the bounds
+above is that they come from the roots alone. Uniform versions in $J$ would give \hyp{Z$_\infty$} and \hyp{G$_a$}; none is known.
+
+The next theorem reduces \hyp{POS$_a$} to a local step law. Inequalities between polynomials are coefficientwise.
+
+\begin{theorem}[Coefficient positivity from a sandwich step]\label{thm:IG}
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item \emph{(Growth.)} Let $J_0\ge1$ and suppose, for every $J\ge J_0$:
+(G1) $P_J$ has non-negative coefficients;
+(G2) $P_{J+1}\le P_J\cdot(1+c_{1,J}u+c_{2,J}u^2)$ with $c_{1,J},c_{2,J}\ge0$;
+(G3) with $d_J:=\max(c_{1,J}/2,c_{2,J}^{1/2})\le D$, the count $\#\{J\ge J_0:d_J\ge1/R\}$ is at most $A\sqrt R+B$
+($A,B\ge0$). Then $H_J(t)\le H_{J_0}(t)(1+Dt^2)^{2B}e^{2\pi A\lvert t\rvert}$ on $\RR$, and \hyp{POS$_a$} holds for every
+$a>2\pi A$ (for every $a>0$ if the count is $o(\sqrt R)$).
+\item \emph{(Positivity.)} Let $J_0\ge1$, assume \hyp{N}$_J$ for \emph{every} $J\ge J_0$, and assume that $P_{J_0}$ has
+positive coefficients. Suppose that for every $J\ge J_0$ there is a root pair $u_J,\bar u_J$ of $P_{J+1}$ with
+$\Re u_J\le0$ (a non-real conjugate pair, or a negative real double root) such that
+$P^\natural_J:=P_{J+1}/\lvert1-u/u_J\rvert^2$ satisfies \hyp{LR-step}: $p^\natural_k/p^{(J)}_k$ is positive and
+non-increasing in $k$ ($0\le k\le2J$). Then $P_J>0$ for all $J\ge J_0$, $0<P^\natural_J\le P_J$, and
+$P_{J+1}\le P_J\,\lvert1-u/u_J\rvert^2$. The same conclusions hold, without the base case, if \hyp{LR-step} is
+replaced by \hyp{SW-step}: $0<p^\natural_k\le p^{(J)}_k$ ($0\le k\le2J$). If moreover
+\hyp{CNT$_1$} $\#\{J\ge J_0:\lvert u_J\rvert\le R\}\le A\sqrt R+B$, then \hyp{POS$_a$} holds for every $a>2\pi A$; under
+$o(\sqrt R)$ it holds for every $a>0$, and every limit $H_\infty$ has exponential type $0$.
+\end{enumerate}
+Here $\lvert1-u/u_J\rvert^2$ denotes the polynomial $(1-u/u_J)(1-u/\bar u_J)=1-2\Re(1/u_J)u+\lvert u_J\rvert^{-2}u^2$.
+\end{theorem}
+
+The proof is in Appendix~\ref{app:proofs-zeroside}.
+
+\begin{corollary}[The zero side from one step law]\label{cor:POSroute}
+Assume \hyp{N}$_J$ for every $J\ge10$, that $P_{10}$ has positive coefficients, that \hyp{LR-step} or
+\hyp{SW-step} holds for every $J\ge10$, and that \hyp{CNT$_1$} holds with $A<\frac14$. Then \hyp{POS$_a$} holds with some
+$a<\pi/2$; hence, by Fact~\ref{prop:POS}, \hyp{G$_a$} holds on every strip, $H_J\ge1$ on $\RR$, and
+\hyp{Z$_\infty$} holds. Positivity of the coefficients of $P_{10}$ and \hyp{N}$_{10}$ are computer-assisted facts
+(Fact~\ref{thm:finiteJ}).
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:IG}(b) with $J_0=10$, and $(2\pi A,\pi/2)\ne\emptyset$ since $A<\frac14$.
+\end{proof}
+
+%----------------------------------------------------------------------
+\subsection{The front: a step law}\label{ssec:front}
+%----------------------------------------------------------------------
+
+Hypothesis \hyp{Mg} of Fact~\ref{thm:M} asks for positivity of $\liminf_J\FT F_J$ at every point. On a fixed
+compact range of $x$ it reduces to a summable tail of increments (Section~\ref{ssec:FF}). Near the front $x\approx n_J$,
+however, the relative decrements $(\FT F_J-\FT F_{J+1})/\FT F_J$ are close to $1$, and a statement uniform in $J$ is
+needed there. We formulate it as a step law. In this subsection $\FT F_J$ is viewed as a function of $x=e^{2\pi\xi}$,
+derivatives are taken in $x$, and $\FT F_0:=\Psi$.
+
+\begin{hypothesis}[Step law]\label{hyp:TEL}
+\hyp{TEL$_J$}: $\FT F_J(x)\ge(1-x/n_J)^2\,\FT F_{J-1}(x)$ for every $x\ge1$. Equivalently, with the bottom-normalised
+cofactor $\mathcal G_J:=\FT F_J/\prod_{j\le J}(1-x/n_j)^2$: $\mathcal G_J\ge\mathcal G_{J-1}$ on $[1,\infty)$.
+\hyp{EVEN-TEL$_J$}: $\FT F_J(x)\ge(1-x^2/n_J^2)^2\,\FT F_{J-1}(x)$ for every $x\ge1$.
+\end{hypothesis}
+
+\begin{hypothesis}[Erosion summability]\label{hyp:ES}
+\hyp{ES}: for every $x\in[1,\infty)\setminus\PP$, $\FT F_K(x)>0$ for all sufficiently large $K$, and
+$\sum_K\max(\eps_K(x),0)<\infty$, where $\eps_K(x):=\log\bigl(\FT F_{K-1}(x)/\FT F_K(x)\bigr)$ and the sum runs over
+those $K$.
+\end{hypothesis}
+
+\begin{hypothesis}[Base]\label{hyp:Bplus}
+\hyp{B$^+$}$_{J_0}$: \hyp{N}$_{J_0}$ holds; $\FT F_{J_0}(x)>0$ for every $x\in[1,\infty)\setminus\{n_1,\dots,n_{J_0}\}$, in
+particular at the later prime powers $n_K$, $K>J_0$; and $\FT F_{J_0}''>0$ at each of its nodes.
+\end{hypothesis}
+
+Parts of \hyp{B$^+$}$_{60}$ and \hyp{B$^+$}$_{10}$ are certified (Proposition~\ref{prop:base}), but not on $[1,2)$ nor on
+the short intervals $(199,199.39)$ and $(16,16.45)$; so \hyp{B$^+$}$_{J_0}$ remains a hypothesis below.
+
+\begin{theorem}[The front from the step law]\label{thm:B}
+Let $J_0\ge1$. Assume \hyp{N}$_J$ for every $J\ge J_0$, \hyp{B$^+$}$_{J_0}$, and \hyp{TEL$_J$} for every $J>J_0$. Then for every
+$J\ge J_0$ and $x\ge1$,
+\[
+\FT F_J(x)\ge\FT F_{J_0}(x)\prod_{J_0<K\le J}(1-x/n_K)^2.
+\]
+Hence:
+(i) $\FT F_J>0$ on $[1,\infty)\setminus\{n_1,\dots,n_J\}$ (the front statement \hyp{FR}, globally);
+(ii) $\FT F_J''(n_K)\ge(1-n_K/n_J)^2\FT F_{J-1}''(n_K)>0$ for $K<J$, and $\frac12\FT F_J''(n_J)\ge\FT F_{J-1}(n_J)/n_J^2>0$;
+(iii) $p^{(J)}_{2J}\ge0$, and $p^{(J)}_{2J}>0$ if and only if the doubled chain of $\yPP_J$ is regular;
+(iv) that chain is regular if the doubled chain of $\yPP_{J-1}$ is regular and the half-step interpolant (double at
+$n_1,\dots,n_{J-1}$, simple at $n_J$) has a simple zero at $n_J$.
+If \hyp{ES} holds as well, then $\liminf_J\FT F_J(x)>0$ for every $x\in[1,\infty)\setminus\PP$ (pointwise \hyp{Mg}). If
+\hyp{EVEN-TEL$_J$} holds for every $J>J_0$ in place of \hyp{TEL$_J$}, then
+$\FT F_J(x)\ge\FT F_{J_0}(x)\prod_{J_0<K\le J}(1-x^2/n_K^2)^2$, and pointwise \hyp{Mg} holds without \hyp{ES}.
+\end{theorem}
+
+\begin{proof}
+The product bound follows by induction, multiplying \hyp{TEL$_J$} by the inductive bound for $J-1$. (i) follows from
+\hyp{B$^+$}$_{J_0}$. (ii) Both $\FT F_J$ and $\FT F_{J-1}$ vanish doubly at $n_K$ ($K<J$); divide \hyp{TEL$_J$} by $(x-n_K)^2$ and
+let $x\to n_K$. Divided by $(x-n_J)^2$, \hyp{TEL$_J$} gives the second inequality, and $\FT F_{J-1}(n_J)>0$ by (i). The
+positivity of $\FT F_{J-1}''(n_K)$ follows by induction from \hyp{B$^+$}$_{J_0}$ and the second inequality.
+(iii) $\FT F_J=\sum_kp^{(J)}_k\varphi_k$ is positive near $+\infty$ by (i), and if $p^{(J)}_{2J}\ne0$ the term
+$p^{(J)}_{2J}\varphi_{2J}$ dominates there with $\varphi_{2J}>0$ (fact (e) after Definition~\ref{def:nested}); so
+$p^{(J)}_{2J}\ge0$. The equivalence is fact (d) there. (iv) is Lemma~\ref{lem:Delta}, since $\FT F_{J-1}(n_J)>0$ by (i).
+Under \hyp{ES}: for $x\notin\PP$ the values $\FT F_K(x)$ are positive for $K\ge J_0$ by (i), and
+$\log\FT F_J(x)\ge\log\FT F_{K_x}(x)-\sum_{K>K_x}\max(\eps_K(x),0)$ for $J>K_x:=\max(J_0,J(x))$, where $J(x)$ is the least $J$
+with $n_J>x$. Under \hyp{EVEN-TEL} the same induction gives the second product, which converges, as $J\to\infty$,
+to a positive number for $x\notin\PP$, because $\sum_Kn_K^{-2}<\infty$.
+\end{proof}
+
+\begin{lemma}[Positivity implies non-singularity]\label{lem:posN}
+Let $\yv$ be a node set for the true family whose doubled chain $Z$ is regular. If the top-normalised interpolant
+$\Fc_Z$, viewed as a function of $\xi$, is $\ge0$ for $\xi\ge0$ (that is $x\ge1$) and not identically zero there,
+then its $\varphi_0$-coefficient $c_0:=\ell_0(\Fc_Z)$ is positive. Hence \hyp{N}$_{\yv}$ holds and
+$p_{2J}(\yv)=1/c_0>0$.
+\end{lemma}
+
+\begin{proof}
+$\Fc_Z=\FT F$ with $F=\Xi^2P(t^2)$, where $P$ has constant term $c_0$. By Fourier inversion and evenness,
+$\Xi(0)^2c_0=F(0)=\int_\RR\FT F=2\int_0^\infty\FT F>0$. Then fact~(d) after Definition~\ref{def:nested} gives
+\hyp{N}$_{\yv}$ and $P_{\yv}\leftrightarrow\Fc_Z/c_0$, whose top coefficient is $1/c_0$.
+\end{proof}
+
+This is the true-kernel analogue of a fact about the model, where positivity of the cofactor's coefficients gives
+$p_{2J}>0$ (Section~\ref{sec:toy}); there it is a point value, here an integral.
+
+By Lemma~\ref{lem:posN}, hypothesis \hyp{N}$_J$ can be traded for regularity of the doubled chains (item (iv)) together
+with \hyp{TEL} in the top normalisation.
+
+\begin{lemma}[Positivity beyond the front from the Abel preimage]\label{lem:BF}
+Let $P$ be a polynomial and $Q^{\mathrm{Ab}}_P$ its Abel preimage (Fact~\ref{lem:abel}). If the leading coefficient
+of $Q^{\mathrm{Ab}}_P$ is positive and $Q^{\mathrm{Ab}}_P$ has no root in $(y_0,\infty)$, then
+$\widehat{\Xi^2P(t^2)}>0$ at every $x\ge y_0/2\pi$.
+\end{lemma}
+
+\begin{proof}
+$Q^{\mathrm{Ab}}_P>0$ on $(y_0,\infty)$, so $g_P(z)>0$ for $z\ge y_0$ by the integral formula of Fact~\ref{lem:abel}. In
+$\widehat{\Xi^2P(t^2)}(\xi)=2\pi\sqrt x\sum_Nd(N)g_P(2\pi Nx)$ every argument satisfies $2\pi Nx\ge2\pi x\ge y_0$.
+\end{proof}
+
+A sufficient check is that all Taylor coefficients of $Q^{\mathrm{Ab}}_P(y_0+v)$, as a polynomial in $v$, are positive
+(Lemma~\ref{lem:posc}); certified instances are in Proposition~\ref{prop:base}.
+
+We also record an exact identity for the Abel preimage of Fact~\ref{lem:abel}, the true-kernel analogue of the trace
+identity of the model (Lemma~\ref{lem:trace}).
+
+\begin{lemma}[Trace of the Abel preimage]\label{lem:Ttrace}
+For every polynomial $P$ of exact degree $2J$, the $4J+4$ roots of $Q^{\mathrm{Ab}}_P$, counted with multiplicity, sum to
+$8(J+1)^2$.
+\end{lemma}
+
+\begin{proof}
+Write $\Omega(\theta)=P(-(\theta+\frac12)^2)\theta^2(\theta+1)^2=\sum_m\omega_m\theta^m$, of degree $M=4J+4$. The term
+$p_{2J}(-(\theta+\frac12)^2)^{2J}=p_{2J}(\theta^{4J}+2J\theta^{4J-1}+\cdots)$ is the only one contributing to the top two
+coefficients of $P(-(\theta+\frac12)^2)$, and $\theta^2(\theta+1)^2=\theta^4+2\theta^3+\theta^2$, so
+$\omega_{M-1}/\omega_M=2J+2$. Since $e^y\theta^me^{-y}=T_m(-y)=(-y)^m+\binom m2(-y)^{m-1}+\cdots$, the sum of the roots of
+$Q^{\mathrm{Ab}}_P$ is $\binom M2+\omega_{M-1}/\omega_M=2(J+1)(4J+3)+2(J+1)=8(J+1)^2$.
+\end{proof}
+
+In the model the corresponding sum is $2J(4J-1)$. The computed root structure of the Abel preimages along the
+prime powers is in Numerical observation~\ref{obs:front}.
+
+\begin{proposition}[Certified base data]\label{prop:base}
+Let $d(x):=\operatorname{dist}(x,\PP)$.
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item $\FT F_{60}(x)>0$ for all $x\ge199.39$, and $\FT F_{10}(x)>0$ for all $x\ge16.45$.
+\item For $(J_1,X,\theta)=(10,16,0.786684)$, $(60,199,0.787979)$ and $(110,59,0.787979)$:
+$\FT F_{J_1}(\xi)\ge\theta\,\Psione(\xi)\min(1,d(x)^2)$ on $[\xi_2,\xi_X]$, and $\FT F_{J_1}''>0$ at every node in $[2,X]$.
+\item The ratio $\lvert\FT F_{J_1+1}-\FT F_{J_1}\rvert/(\lvert\Delta p_1^{(J_1)}\rvert\,\FT F_{J_1})$ is bounded on $[2,X]\setminus\PP$ by
+$R_1(X)$, where $R_1(31)=1.021\cdot10^9$ for $J_1=60$, and $R_1(31)=1.037\cdot10^9$, $R_1(43)=2.701\cdot10^9$,
+$R_1(47)=3.476\cdot10^9$, $R_1(53)=4.844\cdot10^9$, $R_1(59)=6.474\cdot10^9$ for $J_1=110$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof (computer-assisted)]
+All three parts use the certified enclosures of $P_J$ of Fact~\ref{thm:finiteJ} (computed in \cite{PaperI}), and hold for
+every polynomial in those enclosures, in particular for the exact $P_J$. (a) By Lemma~\ref{lem:BF}, it suffices that all
+Taylor coefficients of $Q^{\mathrm{Ab}}_P(2\pi x_0+v)$ are positive balls (Lemma~\ref{lem:posc}); \nolinkurl{exact/verify_bf.py}
+checks this at $4600$ bits for $x_0=199.39$ ($245$ coefficients) and at $1000$ bits for $x_0=16.45$ ($45$ coefficients),
+and prints negative controls at $x_0=199.35$ and $16.44$, where the check fails. (b) \nolinkurl{exact/verify_base.py}
+certifies $\FT F''>0$ at each node by a Taylor model centred at the node, with the exactly known value and slope $0$
+there, and the lower bound on each gap by Taylor models on subintervals (6313, 484 and 142 pieces for $J_1=60,110,10$).
+(c) \nolinkurl{exact/verify_r1.py} bounds the ratio on each gap by Taylor models of numerator and denominator, and on
+punctured neighbourhoods of the nodes through the limit value of Lemma~\ref{lem:increment}(c); the certified suprema are
+$1.02023\cdot10^9$ ($J_1=60$, $X=31$) and $1.03543$, $2.68925$, $3.46048$, $4.79036$, $6.45773$ ($\times10^9$) for
+$J_1=110$. Commands, for instance:
+\texttt{python} \nolinkurl{exact/verify_base.py} \nolinkurl{exact/out/P60_ball.txt} \nolinkurl{--X} \nolinkurl{199} \nolinkurl{--theta} \nolinkurl{0.787979} \nolinkurl{--prec} \nolinkurl{1800} and
+\texttt{python} \nolinkurl{exact/verify_r1.py} \nolinkurl{exact/out/P60_ball.txt} \nolinkurl{exact/out/P61_ball.txt} \nolinkurl{--target} \nolinkurl{31:1.021e9} \nolinkurl{--prec} \nolinkurl{1800}.
+\end{proof}
+
+By (a) and (b), hypothesis \hyp{B$^+$}$_{60}$ of Theorem~\ref{thm:B} holds except possibly on $[1,2)$ and on
+$(199,199.39)$, and \hyp{B$^+$}$_{10}$ except possibly on $[1,2)$ and $(16,16.45)$. These short intervals are not certified,
+so \hyp{B$^+$}$_{J_0}$ remains a hypothesis in Corollary~\ref{cor:Bprime}.
+
+The same certified enclosures of $P_{60}$, $P_{61}$, $P_{110}$ and $P_{111}$ determine the first increments of the family.
+
+\begin{proposition}[Certified increments at $J=60$ and $J=110$]\label{prop:increments}
+Write $\Delta p_1^{(J)}:=p_1^{(J+1)}-p_1^{(J)}$. Then
+$\Delta p_1^{(60)}=2.08079540774023\cdot10^{-11}\pm3.6\cdot10^{-26}$ and
+$\Delta p_1^{(110)}=2.91831836483267\cdot10^{-12}\pm2.2\cdot10^{-27}$. For $J\in\{60,110\}$ the increment
+$p_k^{(J+1)}-p_k^{(J)}$ is negative exactly for $k\in\{2,4,6,10,11\}$ and positive for every other $k\le2J$.
+\end{proposition}
+
+\begin{proof}[Proof \textup{(computer-assisted)}]
+The enclosures of Fact~\ref{thm:finiteJ} contain the exact coefficients of $P_J$ and $P_{J+1}$. The increments
+$\Delta p_1^{(J)}$ are printed by \nolinkurl{exact/verify_r1.py} (the same runs as in Proposition~\ref{prop:base}(c)), and the
+signs of all increments are certified by \nolinkurl{exact/verify_increments.py} from the enclosures at $J$ and $J+1$ (a sign
+is accepted only if the ball of the difference excludes $0$). Command, for instance:
+\texttt{python} \nolinkurl{exact/verify_increments.py} \nolinkurl{exact/out/P60_ball.txt} \nolinkurl{exact/out/P61_ball.txt}
+\nolinkurl{--expect-negative} \nolinkurl{2,4,6,10,11}.
+\end{proof}
+
+\begin{corollary}[What remains for \condS\ and \condU]\label{cor:Bprime}
+Assume \hyp{N}$_J$ for every $J\ge J_0$, \hyp{POS$_a$} for all large $J$ with some $a<\pi/2$, \hyp{B$^+$}$_{J_0}$, \hyp{TEL$_J$}
+for every $J>J_0$, and \hyp{ES}. Then (S) and (U) hold, and $\RH\Leftrightarrow\condE$.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:B}, pointwise \hyp{Mg} holds on $[1,\infty)\setminus\PP\supseteq[2,\infty)\setminus\PP$. By
+Fact~\ref{prop:POS}, \hyp{POS$_a$} gives \hyp{G$_a$} and \hyp{Z$^+$} with $h\equiv1$; and $\Jset\supseteq[J_0,\infty)$ is
+infinite. Corollary~\ref{cor:Mvariants}(M$^+$) applies.
+\end{proof}
+
+None of the five hypotheses of Corollary~\ref{cor:Bprime} is known for all $J$, and they are not all localised at the
+front: \hyp{POS$_a$} constrains every coefficient of $P_J$, \hyp{ES} concerns every $x\notin\PP$, and \hyp{N}$_J$ is a global
+non-singularity statement. Only the step law \hyp{TEL$_J$} is a statement about the front $x\approx n_J$, where the relative
+decrements are close to $1$; it is there that the problem is hardest. The certified finite-$J$ data are in
+Fact~\ref{thm:finiteJ} and Propositions~\ref{prop:base} and~\ref{prop:increments}. The base $J_0$ is free (for instance $J_0=60$), and with
+\hyp{EVEN-TEL} in place of \hyp{TEL}, \hyp{ES} can be dropped. Heuristically, \hyp{ES} should follow from the
+summability of the scalar tail $\sum_K\lvert\Delta p_1^{(K)}\rvert$ via the rank-one structure of the increments
+(Numerical observation~\ref{obs:rankone}); deriving it that way, however, requires sign control of the increments of
+the kind discussed in Section~\ref{ssec:tailbound}.
+
+\begin{remark}[EVEN-TEL and the geometric form of TEL]\label{rem:EVEN-TEL}
+(a) \hyp{EVEN-TEL$_J$} is stronger than \hyp{TEL$_J$} and, with \hyp{B$^+$}$_{J_0}$, gives pointwise \hyp{Mg} without \hyp{ES}
+(Theorem~\ref{thm:B}); on the computed data its margin shrinks (Numerical observation~\ref{obs:misc}(e)), so we do not
+conjecture it.
+(b) The following is proved, for any base kernel. Assume \hyp{N} at $J-1$ and $J$ and $\FT F_{J-1}(n_J)\ne0$, let
+$\Fc_{E_1},\Fc_{E_2}$ be the extension elements of $\yPP_{J-1}$, and put
+$\gamma(x):=(\Fc_{E_1}/\FT F_{J-1},\,\Fc_{E_2}/\FT F_{J-1})(x)\in\RR^2$ where $\FT F_{J-1}(x)\ne0$. Then, with $Y=n_J$,
+\[
+\frac{\FT F_J(x)}{\FT F_{J-1}(x)}=\frac{\det(\gamma(x)-\gamma(Y),\gamma'(Y))}{\det(-\gamma(Y),\gamma'(Y))}.
+\]
+Indeed $\FT F_J=\FT F_{J-1}+a\Fc_{E_1}+b\Fc_{E_2}$ (Lemma~\ref{lem:nodeadd}), so $\FT F_J/\FT F_{J-1}=1+(a,b)\cdot\gamma$; the
+two conditions at $Y$ say $(a,b)\cdot\gamma'(Y)=0$ and $(a,b)\cdot\gamma(Y)=-1$, and the determinant of this system is
+$\det(\gamma(Y),\gamma'(Y))=\mathcal W(Y)/\FT F_{J-1}(Y)^2\ne0$. Under \hyp{FR}$_{J-1}$ and $\FT F_{J-1}''\ne0$ at the
+nodes, $\gamma$ is a smooth curve on $[1,\infty)$ (Lemma~\ref{lem:increment}(c)), and \hyp{FR} at $J$ says that $\gamma$
+stays on the same side of its tangent line at $\gamma(Y)$ as the origin, while \hyp{TEL$_J$} says that the ratio of the
+two distances to that line is at least $(1-x/Y)^2$.
+\end{remark}
+
+\subsection{The increment identity and a reduction on compacts}\label{ssec:FF}
+
+Write $D_K:=\FT F_{K+1}-\FT F_K$ for the increments of the exact family (Lemma~\ref{lem:increment}).
+
+\begin{theorem}[Tail-inward reduction]\label{thm:T}
+Let $X>2$, let $w\ge0$ be a function on $I_X$, and let $J_1$ be such that every prime power $\le X$ is among
+$n_1,\dots,n_{J_1}$. Assume \hyp{N}$_J$ for all $J\ge J_1$ and
+(a) $\FT F_{J_1}\ge\mu w$ on $I_X$ for some $\mu>0$;
+(b) for every $K\ge J_1$ there is $\eps_K\in[0,1)$ with $D_K\ge-\eps_K\FT F_K$ on $I_X$;
+(c) $\sum_K\eps_K<\infty$.
+Then $\FT F_J\ge\mu\prod_{J_1\le K<J}(1-\eps_K)\,w\ge\mu\prod_{K\ge J_1}(1-\eps_K)\,w$ on $I_X$ for every $J\ge J_1$. With
+$w=\Psione\varrho$, where $\varrho(x):=\bigl((x-n_i)(n_{i+1}-x)/(n_{i+1}-n_i)\bigr)^2$ on each gap $(n_i,n_{i+1})$, one has
+$d^2/4\le\varrho\le d^2$ with $d=\operatorname{dist}(x,\PP)$, and the conclusion is a quantitative form of \hyp{Mg} on $[2,X]$.
+\end{theorem}
+
+\begin{proof}
+By induction, $\FT F_{K+1}=\FT F_K+D_K\ge(1-\eps_K)\FT F_K$, and $\FT F_K\ge0$ on $I_X$ by the inductive bound. On a gap of
+length $L$, $(x-n_i)(n_{i+1}-x)/L=d\,(L-d)/L$ with $(L-d)/L\in[\frac12,1]$.
+\end{proof}
+
+Theorem~\ref{thm:T} is a statement on one compact interval. Since \hyp{Mg} is pointwise, it follows on all of
+$[\xi_2,\infty)$ by exhaustion once the hypotheses of Theorem~\ref{thm:T} hold for every finite $X$, with $\mu$, $w$ and the
+starting index $J_1$ allowed to depend on $X$; one fixed $X$, such as a computed one, does not suffice. Near the front the
+relative decrements are close to $1$, which makes (b) and (c) hard to verify unless $J_1(X)$ is taken well beyond the prime
+powers up to $X$, with the base (a) at that index. A theorem uniform in the front, such as Theorem~\ref{thm:B}, is one way to
+supply these bases for every $X$ at once; it is not logically necessary. Hypothesis (b) is a pointwise inequality without
+division, so each single instance is certifiable.
+
+\begin{theorem}[Far-field reduction on compacts]\label{thm:FFred}
+Let $X$, $I_X$ and $J_1$ be as in Theorem~\ref{thm:T}, and assume \hyp{N}$_K$ for $K\ge J_1$ and:
+\begin{itemize}[leftmargin=3em]
+\item[\hyp{B}] $\FT F_{J_1}>0$ on $I_X$ off the nodes, and $\FT F_{J_1}''>0$ at the nodes in $I_X$;
+\item[\hyp{$\Phi$}] there is $R<\infty$ with $\lvert D_K\rvert\le R\,\lvert\Delta p_1^{(K)}\rvert\,\FT F_{J_1}$ on $I_X$ for all $K\ge J_1$;
+\item[\hyp{p}] $\delta:=\sum_{K\ge J_1}\lvert\Delta p_1^{(K)}\rvert<1/R$.
+\end{itemize}
+Then $\FT F_J\ge(1-R\delta)\FT F_{J_1}$ on $I_X$ for all $J\ge J_1$. Hence \hyp{Mg} holds on $[2,X]$, quantitatively with
+$\theta(X):=(1-R\delta)\min_{I_X}\FT F_{J_1}/(\Psione\min(1,d^2))>0$; the minimum exists, because at a node the quotient
+tends to $\FT F_{J_1}''/(2\Psione(dx/d\xi)^2)>0$. If \hyp{N} fails for some $K$, the same holds along $\Jset$, with
+differences taken between consecutive members.
+\end{theorem}
+
+\begin{proof}
+$\lvert\FT F_J-\FT F_{J_1}\rvert\le\sum_{J_1\le K<J}\lvert D_K\rvert\le R\delta\,\FT F_{J_1}$ pointwise on $I_X$. The statement about
+$\theta(X)$ follows from \hyp{B} and Lemma~\ref{lem:increment}(c).
+\end{proof}
+
+Writing $D_K=\Delta p_1^{(K)}\Phi_K$ with $\Phi_K:=\widehat{\Xi^2q_K}$, $q_K(t):=(P_{K+1}-P_K)(t^2)/\Delta p_1^{(K)}$
+(so $q_K(0)=0$ and $\frac12q_K''(0)=1$), hypothesis \hyp{$\Phi$} is a uniform bound on the normalised profiles $\Phi_K$, and
+\hyp{p} is a single scalar series.
+
+\begin{corollary}[Finite part plus two infinite inputs]\label{cor:FFprime}
+Let $X$, $I_X$ and $J_1$ be as in Theorem~\ref{thm:T}, assume \hyp{N}$_K$ for $K\ge J_1$, and let
+$R_1\ge\sup_{I_X\setminus\PP}\lvert D_{J_1}\rvert/(\lvert\Delta p_1^{(J_1)}\rvert\FT F_{J_1})$. Assume \hyp{B} as in
+Theorem~\ref{thm:FFred} and the two infinite hypotheses
+\begin{itemize}[leftmargin=4.5em]
+\item[\hyp{$\Phi$-mono}] $\lvert D_K\rvert/\lvert\Delta p_1^{(K)}\rvert\le(1+\eta)\lvert D_{J_1}\rvert/\lvert\Delta p_1^{(J_1)}\rvert$ on $I_X$ for all $K\ge J_1$,
+for some $\eta\ge0$;
+\item[\hyp{p}] $(1+\eta)R_1\delta<1$, where $\delta:=\sum_{K\ge J_1}\lvert\Delta p_1^{(K)}\rvert$.
+\end{itemize}
+Then $\FT F_J\ge(1-(1+\eta)R_1\delta)\FT F_{J_1}$ on $I_X$ for all $J\ge J_1$; hence \hyp{Mg} holds on $[2,X]$. By
+Proposition~\ref{prop:base}, \hyp{B} and $R_1$ are certified for the exact members with $(J_1,X)=(60,31)$,
+$R_1=1.021\cdot10^9$, and $(J_1,X)=(110,53)$, $R_1=4.844\cdot10^9$.
+\end{corollary}
+
+\begin{proof}
+\hyp{$\Phi$-mono} and the definition of $R_1$ give \hyp{$\Phi$} with $R=(1+\eta)R_1$.
+\end{proof}
+
+The hypotheses \hyp{$\Phi$-mono} and \hyp{p} concern all $K\ge J_1$ and are open; computed values are in Numerical
+observation~\ref{obs:misc}(d). Theorem~\ref{thm:TBtrue} below replaces the extrapolation used there by a conditional
+bound.
+
+\subsection{The far field}\label{ssec:farfield}
+
+Let $\kt(y):=\sqrt{2y/\pi}\,e^{y}K_0(y)$; it is increasing, with values in $(0,1)$, and
+$\kt(y)=1-1/(8y)+O(y^{-2})$ (Proposition~\ref{prop:dictionary}(a)). For a polynomial $P$ let $P^{\Xi}(u)=P(u)(u+\frac14)^2$ be
+as in Fact~\ref{lem:abel}, and let $Q_{P^\Xi}(y):=e^{y}P^{\Xi}(-\theta^2)e^{-y}$ be its transform in the model
+(Definition~\ref{def:toy}).
+
+\begin{lemma}[Moment asymptotics]\label{lem:moments}
+For each fixed polynomial $P$, as $y\to\infty$,
+\[
+\frac{e^{y}}{\pi}\,\widehat{\Xi^2P(t^2)}=\kt(y)\,Q_{P^\Xi}(y)+O\bigl(y^{2\deg P^\Xi-2}\bigr),
+\]
+where the left side is evaluated at $x=y/2\pi$; the expansion may be differentiated termwise. In particular, for
+$P=u^k$,
+\[
+\frac{e^{y}}{\pi}\,\widehat{t^{2k}\Xi^2}=(-1)^ky^{2k+4}\bigl[1-\gamma_k/y+O_k(y^{-2})\bigr],\qquad\gamma_k:=\tbinom{2k+4}{2}+\tfrac18 .
+\]
+The divisor terms $N\ge2$ contribute $O(e^{-y}\mathrm{poly}(y))$ relative to the term $N=1$, with all derivatives, and
+the same holds for the Gamma-only kernel (which is the term $N=1$). The expansion is \emph{not uniform} in $k$ (nor
+in $J$ or in the nodes): the $O_k(y^{-2})$ term is of size about $(2k+4)^4/(8y^2)$, so the expansion is in powers of
+$(2k+4)^2/y$ and is informative only for $y\gg k^2$.
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-Ftrue}.
+
+At the front of the computed family ($J=110$, $k\le222$, $y\approx3010$) one has $\gamma_k/y\approx33$, so
+Lemma~\ref{lem:moments} says nothing about individual moments there.
+
+\begin{theorem}[Far-node asymptotics for the true kernel]\label{thm:Ftrue}
+Let $\varphi$ be the true kernel $\Psi$ or the Gamma-only kernel $\Psione$, let $\yv$ be a fixed node set of size $J$ with
+\hyp{N}$_{\yv}$ and $p_{2J}(\yv)\ne0$, and let $Y\to\infty$ (in $y$-units). Then:
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item \hyp{N}$_{\yv\cup\{Y\}}$ holds for all large $Y$, and $P_{\yv\cup\{Y\}}=P_{\yv}+aE_1+bE_2$ with
+$a=2p_{2J}Y^{-2}\bigl(1+8(J+1)/Y+O(Y^{-2})\bigr)$ and $b=p_{2J}Y^{-4}\bigl(1+(16J+20)/Y+O(Y^{-2})\bigr)$;
+\item $\Delta_{\yv}(Y)=2S_{\yv}/Y^2+16(J+1)S_{\yv}/Y^3+O(Y^{-4})$;
+\item $\Fc''_{\yv\cup\{Y\}}(Y)=8\pi p_{2J}e^{-Y}Y^{4J+2}(1+O(1/Y))$ and
+$\mu_Y=S_{\yv}e^{Y}Y^{-4J-5}/(2\pi p_{2J})+O(e^{Y}Y^{-4J-6})$ ($y$-derivatives; in $\xi$-derivatives these read
+$32\pi^3p_{2J}e^{-Y}Y^{4J+4}(1+O(1/Y))$ and $S_{\yv}e^{Y}Y^{-4J-6}/(4\pi^2p_{2J})+O(e^YY^{-4J-7})$);
+\item $S_{\yv\cup\{Y\}}=S_{\yv}(1-8/Y)+O(Y^{-2})$;
+\item if $p_{2J}>0$ and $S_{\yv}>0$, then for all large $Y$: $\mu_Y>0$, $\Fc''_{\yv\cup\{Y\}}(Y)>0$ and $\Delta_{\yv}(Y)>0$. If
+$p_{2J}>0$ and $S_{\yv}<0$, then $\mu_Y<0$ and $\Delta_{\yv}(Y)<0$ for all large $Y$.
+\end{enumerate}
+The $O$-constants depend on $\yv$: these are asymptotics for a fixed node set, not uniform in $\yv$ or $J$. In the
+model the same statements hold with $16(J+1)$ replaced by $16J$ (Theorem~\ref{thm:Ftoy}).
+\end{theorem}
+
+\begin{proof}
+Put $f_0:=e^y\Fc_{P_{\yv}}/\pi$ and $f_m:=e^y\Fc_{E_m}/\pi$. Since $\Pi_{\yv}u^{2J+m}$ has degree $\le2J$,
+Lemma~\ref{lem:moments} gives $f_0=p_{2J}y^{M}(1-\gamma_{2J}/y+\cdots)$, $f_1=-y^{M+2}(1-\gamma_{2J+1}/y+\cdots)$ and
+$f_2=y^{M+4}(1-\gamma_{2J+2}/y+\cdots)$, $M=4J+4$, with differentiable expansions. The quantities $a$, $b$, $\Delta$,
+$\Fc''$, $\mu_Y$ and $S$ are given by Proposition~\ref{prop:insertion} and Proposition~\ref{thm:halfstep} as ratios of
+Wronskians, in which the common factor $\pi e^{-y}$ cancels (Proposition~\ref{prop:insertion}(c)). Expanding the
+Wronskians to two orders gives the theorem; the computation is in Appendix~\ref{app:proofs-Ftrue}. The constant
+$8(J+1)$ comes from $5a_1+c_1-6b_1=32(J+1)$ with $a_1,b_1,c_1$ the first-order coefficients of $f_0,f_1,f_2$.
+\end{proof}
+
+Heuristically, the frozen factor $(u+\frac14)^2$ in $P^\Xi$ raises every $u$-degree by two and acts like one extra node;
+this is why $8J$ in the model becomes $8(J+1)$. The sign of $S_{\yv}$ is the single far-field sign: by (e), positive
+increments, positive derivative weights and the Tur\'an defect of (d) all follow from $S_{\yv}>0$, and all fail together
+if $S_{\yv}<0$.
+
+\subsection{The tail}\label{ssec:tailbound}
+
+Let $\yv_k:=\yPP_k$ and $y_n:=2\pi n$. Proposition~\ref{prop:tail-general} bounds each $\Delta p_1^{(K)}$ from above.
+Hypothesis \hyp{p} of Corollary~\ref{cor:FFprime} needs $\sum_K\lvert\Delta p_1^{(K)}\rvert$, so this route needs a sign law as well.
+
+\begin{theorem}[Conditional tail bound]\label{thm:TBtrue}
+Let $J_1\in\{60,110\}$, and assume for the true family:
+\begin{itemize}[leftmargin=5.5em]
+\item[\hyp{N}] for $\yv_k$ ($k\ge J_1$) and for $\yv_k\cup\{2\pi n\}$, $n\in\PP$, $n>n_k$;
+\item[\hyp{SM}$_{\mathrm{true}}$] for every $k\ge J_1$: $\Delta_{\yv_{k+1}}(2\pi n)\le\Delta_{\yv_k}(2\pi n)$ for $n\in\PP$, $n>n_{k+1}$;
+\item[\hyp{W}$_{\mathrm{top}}$] $\Delta p_1^{(K)}=\Delta_{\yv_K}(2\pi n_{K+1})\ge0$ for every $K\ge J_1$.
+\end{itemize}
+Then $\delta_{J_1}:=\sum_{K\ge J_1}\lvert\Delta p_1^{(K)}\rvert=\sum_{K\ge J_1}\Delta p_1^{(K)}\le B_{J_1}:=\sum_{n\in\PP,\,n>n_{J_1}}\Delta_{\yv_{J_1}}(2\pi n)$.
+Consequently, if $B_{J_1}<1/((1+\eta)R_1)$ with $R_1$ from Proposition~\ref{prop:base}, hypothesis \hyp{p} of
+Corollary~\ref{cor:FFprime} holds on $[2,X]$, for $(J_1,X)=(110,53)$ or $(60,31)$.
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{prop:tail-general} with nodes $y_j=2\pi n_j$ gives $\sum_{K\ge J_1}\Delta p_1^{(K)}\le B_{J_1}$ (its
+hypotheses are \hyp{N} and \hyp{SM}$_{\mathrm{true}}$), and \hyp{W}$_{\mathrm{top}}$ makes every term non-negative, so
+the sum is $\delta_{J_1}$.
+\end{proof}
+
+\hyp{W}$_{\mathrm{top}}$ cannot be dropped: without it, Proposition~\ref{prop:tail-general} bounds the increments only from
+above. The three hypotheses are open for all $k$; Numerical observation~\ref{obs:SMset-true} records them along the prime
+powers in a finite range. By the robust form of Proposition~\ref{prop:tail-general}, the conclusion survives if
+\hyp{SM}$_{\mathrm{true}}$ fails by a total factor $\prod_k(1+\eps_k)$, provided the constant still fits.
+
+The constants $B_{60}$ and $B_{110}$ have been computed but not certified (Numerical observation~\ref{obs:B110}); every
+use of them is conditional. Certifying $B_{110}$ would be a finite computation once explicit remainder bounds for
+Theorem~\ref{thm:Ftrue} are available, as they are for the model in Proposition~\ref{prop:Fremainder}: enclose $P_{110}$,
+$\Pi u^{221}$ and $\Pi u^{222}$, evaluate the insertion formula in interval arithmetic at the $2218$ prime powers up to
+$20000$, and bound the remaining tail with those remainders (Section~\ref{ssec:open}).
+
+\begin{remark}[The solution pencil]\label{rem:pencil}
+Assume \hyp{Q}: there are $C$, $a_1<\pi/2$ and $\delta_0>0$ with $\lvert q_K(t)\rvert\le Ce^{a_1\lvert\Re t\rvert}$ on
+$\lvert\Im t\rvert\le\frac12+\delta_0$ for all large $K$, where $q_K:=(P_{K+1}-P_K)(t^2)/\Delta p_1^{(K)}$. Then every
+subsequential limit $q$ (which exists by Montel's theorem) satisfies $q(0)=0$, $q''(0)=2$, and $\widehat{\Xi^2q}$ has a double
+zero at every $\xi_n$, $n\in\PP$: the zero data pass to the limit by the domination argument of Fact~\ref{lem:6prime}. If
+$H_\infty$ is a subsequential limit of the exact family under \hyp{N} and \hyp{G$_a$} (such limits exist and solve the infinite
+interpolation problem \cite{PaperI}), then $H_\infty+\lambda q$ solves the same normalised problem ($H(0)=1$, double zeros of
+$\widehat{\Xi^2H}$ at every $\xi_n$) for every $\lambda\in\RR$. So the normalised solutions in $\Hc_{\max(a,a_1)}$ contain an
+affine line, the solutions of the homogeneous problem form a linear space of dimension at least $2$ (it contains $H_\infty$
+and $q$, which are independent because $q(0)=0\ne H_\infty(0)$), and, since $[t^2]q=1$, the coefficient $p_1$ is not determined
+by the limiting interpolation problem alone. Heuristically, positivity at infinity should pin $\lambda=0$; we do not use this.
+For computed evidence on \hyp{Q} see Numerical observation~\ref{obs:misc}(g).
+\end{remark}
+
+\subsection{Coefficient positivity: exact identities}\label{ssec:piece1}
+
+The zero side (Section~\ref{ssec:zeroside}) reduces to a coefficientwise sandwich $P_{J+1}\le P_J\cdot N_J$ with a quadratic
+$N_J$. Here we give exact identities for the natural choice of $N_J$, determined by the insertion. Let $\varphi$ be a base
+kernel and $\varphi^{(1)}:=-\theta^2\varphi$, $\varphi^{(2)}:=\theta^4\varphi$ its first two \emph{companions}, so that
+$\Fc^{\varphi}_{uR}=\Fc^{\varphi^{(1)}}_R$ and $\Fc^{\varphi}_{u^2R}=\Fc^{\varphi^{(2)}}_R$.
+
+\begin{proposition}[Companion identities]\label{prop:companion}
+Let $\yv$ be a node set of size $J$, assume \hyp{N}$_{\yv}$ for $\varphi$, $\varphi^{(1)}$ and $\varphi^{(2)}$, and $S_{\yv}\ne0$.
+Let $\bar P:=P_{\yv}/p_{2J}(\yv)$, and let $\bar W_i$ be the monic Hermite solution at $\yv$ for the kernel $\varphi^{(i)}$
+(the solution of Definition~\ref{def:nested} divided by its top coefficient). Then
+\[
+E_1=u\bar W_1,\qquad E_2-(\ell_2^*/\ell_1^*)E_1=u^2\bar W_2,\qquad \Pi_{\yv}(uP_{\yv})=u\,p_{2J}(\yv)(\bar P-\bar W_1),
+\]
+and $S_{\yv}=p_{2J}(\yv;\varphi)/p_{2J}(\yv;\varphi^{(1)})$. In particular $[u]\Pi_{\yv}(uP_{\yv})=1-S_{\yv}$, and if
+$p_{2J}(\yv)>0$, then $\Pi_{\yv}(uP_{\yv})$ has non-negative coefficients if and only if $\bar P\ge\bar W_1$ coefficientwise.
+\end{proposition}
+
+\begin{proof}
+$E_1=u^{2J+1}-\Pi_{\yv}u^{2J+1}$ vanishes at $u=0$, so $E_1=uV$ with $V$ monic of degree $2J$, and $\Fc^{\varphi}_{uV}=\Fc^{\varphi^{(1)}}_V$
+has zero data at $\yv$. By \hyp{N}$_{\yv}$ for $\varphi^{(1)}$ the polynomials of degree $\le2J$ with zero
+$\varphi^{(1)}$-data form a line; it contains the monic $V$, so its top coefficient is non-zero and $V=\bar W_1$. Since
+$S_{\yv}=-p_{2J}\ell_1^*\ne0$, $\ell_1^*\ne0$, and $E_2-(\ell_2^*/\ell_1^*)E_1$ has zero constant and linear terms; the same
+argument with $\varphi^{(2)}$ gives the second identity. Next, $uP_{\yv}-p_{2J}E_1$ has degree $\le2J$, no constant term, and
+the data of $uP_{\yv}$, so it equals $\Pi_{\yv}(uP_{\yv})$. Its $u$-coefficient is $p_{2J}(1/p_{2J}-1/w_{2J})$, where
+$w_{2J}=p_{2J}(\yv;\varphi^{(1)})$, and it equals $\mathcal L_{\yv}(uP_{\yv})=1-S_{\yv}$.
+\end{proof}
+
+\begin{proposition}[The sandwich deficit]\label{prop:sandwich}
+Let $\yv$ have size $J$, $Y\in I\setminus\yv$, assume \hyp{N} for $\yv$ and $\yv\cup\{Y\}$, and let
+$b:=p_{2J+2}(\yv\cup\{Y\})$ with $p_{2J}(\yv)/b>0$. Put $\hat z:=(p_{2J}(\yv)/b)^{1/4}$, $c_1:=2/\hat z^2$, $c_2:=\hat z^{-4}$ and
+$\tau:=c_1p_{2J}+c_2p_{2J-1}-p_{2J+1}(\yv\cup\{Y\})$, the coefficients $p_k$ being those of $P_{\yv}$. Then
+\[
+P_{\yv}(1+u/\hat z^2)^2-P_{\yv\cup\{Y\}}=\frac2{\hat z^2}\Pi_{\yv}(uP_{\yv})+\hat z^{-4}\Pi_{\yv}(u^2P_{\yv})+\tau E_1 .
+\]
+If moreover \hyp{N}$_{\yv}$ holds for $\varphi^{(1)}$, $\varphi^{(2)}$ and $S_{\yv}\ne0$, then, with $\lambda:=\Delta_{\yv}(Y)/S_{\yv}$,
+\[
+P_{\yv}(1+u/\hat z^2)^2-P_{\yv\cup\{Y\}}=p_{2J}(\yv)\,u\bigl[c_1\bar P+c_2u(\bar P-\bar W_2)-\lambda\bar W_1\bigr].
+\]
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:nodeadd}(a) the left side is $(c_1u+c_2u^2)P_{\yv}-aE_1-bE_2$, with $a=p_{2J+1}(\yv\cup\{Y\})$. As in the
+proof of Proposition~\ref{prop:companion}, $uP_{\yv}=p_{2J}E_1+\Pi_{\yv}(uP_{\yv})$ and
+$u^2P_{\yv}=p_{2J}E_2+p_{2J-1}E_1+\Pi_{\yv}(u^2P_{\yv})$. Since $c_2p_{2J}=b$, the $E_2$ terms cancel, and the coefficient of
+$E_1$ is $\tau$. For the second form, insert Proposition~\ref{prop:companion}: the coefficient of $u\bar W_1$ becomes
+$-b\ell_2^*/\ell_1^*-a=\Delta_{\yv}(Y)/\ell_1^*=-p_{2J}\lambda$, using $\Delta_{\yv}(Y)=-a\ell_1^*-b\ell_2^*$ and $S_{\yv}=-p_{2J}\ell_1^*$.
+\end{proof}
+
+For orientation, consider the idealised problem in which $P$ itself is interpolated: at each node $Y_j$ the data are the
+value and the derivative of $s\mapsto P(-s^2)$ at $s=Y_j$, so that the solution is $P_J(u)=\prod_{j\le J}(1+u/Y_j^2)^2$. There
+$\Pi(uP_J)=\Pi(u^2P_J)=0$, $S=1$, $\tau=0$ and $\hat z=Y_{J+1}$, and the identity reduces to $P_{J+1}=P_J(1+u/\hat z^2)^2$.
+For the true kernel and for the model the extra terms measure the departure from this idealised problem.
+
+\begin{corollary}[The sandwich step from companion comparisons]\label{cor:SW}
+(a) In the setting of the second identity of Proposition~\ref{prop:sandwich}, assume $p_{2J}(\yv)>0$, $b>0$, all coefficients
+of $P_{\yv}$ positive, $S_{\yv}>0$, $\Delta_{\yv}(Y)\ge0$, and
+\[
+\hyp{C01}\ \bar P\ge\bar W_1,\qquad \hyp{C02}\ \bar P\ge\bar W_2\ \text{(coefficientwise)},\qquad
+\hyp{Z}\ \lambda\le2/\hat z^2 .
+\]
+Then \hyp{SW$_{\hat z}$} holds: $P_{\yv\cup\{Y\}}\le P_{\yv}(1+u/\hat z^2)^2$ coefficientwise. For $\lambda\ge0$, \hyp{Z} holds
+if and only if $1+\lambda u+c_2u^2$ has non-positive discriminant.
+(b) For the true family with $Y=y_{J+1}$: if for all $J\ge J_0$ the coefficients of $P_J$ are positive, \hyp{SW$_{\hat z}$}$_J$
+holds, and $\hat z_J\ge c\,y_{J+1}$ for a fixed $c>0$, then \hyp{POS$_a$} holds for every $a>0$, and every limit $H_\infty$
+has exponential type $0$.
+\end{corollary}
+
+\begin{proof}
+(a) The bracket in Proposition~\ref{prop:sandwich} is
+$(c_1-\lambda)\bar P+\lambda(\bar P-\bar W_1)+c_2u(\bar P-\bar W_2)$, a sum of polynomials with non-negative coefficients;
+the discriminant of $1+\lambda u+c_2u^2$ is $\lambda^2-4/\hat z^4$. (b) Theorem~\ref{thm:IG}(a) with $c_{1,J}=2/\hat z_J^2$ and
+$c_{2,J}=\hat z_J^{-4}$, for which $d_J=\hat z_J^{-2}\le(4\pi c)^{-2}$. The count $\#\{J:d_J\ge1/R\}$ is at most the number
+of prime powers up to $\sqrt R/(2\pi c)$, which is $o(\sqrt R)$ because the prime powers have density zero.
+\end{proof}
+
+The hypotheses \hyp{C01}, \hyp{C02} and \hyp{Z} are open for all $J$; the data are in Numerical
+observation~\ref{obs:LRstep}. Condition \hyp{Z} is thin at the front: its first-order far-field form
+$c_1/\lambda=1+2/Y+O(Y^{-2})$ follows for fixed $\yv$ from Theorem~\ref{thm:Ftrue}(a),(b), but it is not a first-order
+statement at the actual front, where its computed margin is small (Numerical observation~\ref{obs:LRstep}).
+
+%----------------------------------------------------------------------
+\subsection{What transfers between the kernels}\label{ssec:transfer}
+%----------------------------------------------------------------------
+
+\begin{remark}[What transfers]\label{rem:transfer}
+Kernel-free, hence valid for the true kernel: the Christoffel identity and its pointwise Chebyshev-pair forms
+(Lemma~\ref{lem:christoffel}, Proposition~\ref{prop:chebyshev}), the chain calculus (Lemmas~\ref{thm:ladder},
+\ref{lem:R} and~\ref{lem:Delta}), the insertion calculus (Proposition~\ref{prop:insertion}), the half-step
+calculus (Proposition~\ref{thm:halfstep}) with Proposition~\ref{prop:screening-update} and Lemma~\ref{lem:selfsim}, the tail
+bounds (Proposition~\ref{prop:tail-general}, Theorem~\ref{thm:Tprime}), and the identities of Section~\ref{ssec:piece1}.
+Polynomial (model) only: Lemma~\ref{lem:ST}, Theorems~\ref{thm:A} and~\ref{thm:PP80}, the Descartes and Taylor
+certificates, and Propositions~\ref{thm:PT2}--\ref{thm:PT4}, \ref{thm:W-J2} and~\ref{thm:W-J3}. The far-node constants differ:
+$8J$ in the model (Theorem~\ref{thm:Ftoy}) and $8(J+1)$ for the true kernel (Theorem~\ref{thm:Ftrue}).
+\end{remark}

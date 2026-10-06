@@ -1,0 +1,19 @@
+{
+ "parameter_file": "general/params/pair_gammaC_X40.json",
+ "sha256": "f32152ae73a8e202fafd9bd56097dc0b98d68741392ee8149ee3d9262828eeae",
+ "logq": "1.0976698108720329",
+ "T": 800,
+ "steps": 9501,
+ "min_lower_bound": "[6.6723e-8 +/- 3.99e-13]",
+ "tail_lower_bound": "[1.6552886 +/- 3.39e-8]",
+ "mu_lower": "6.67226e-8",
+ "admissible": true,
+ "q_upper": "2.99717389858988",
+ "claims_checked": {
+  "conductor_upper_le": true,
+  "gap_x_3": true
+ },
+ "certified": true,
+ "support_from_ge": "3.011664",
+ "admissible_at_gap_x": "3"
+}

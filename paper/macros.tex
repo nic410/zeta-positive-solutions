@@ -1,0 +1,58 @@
+% macros.tex -- shared macros for main.tex and sections/*.tex.
+% Notation is introduced in the text (Sections 1.6, 2.1, 3 and 4); do not introduce competing symbols.
+% New local macros in a section file: use \providecommand and a section-specific prefix.
+
+% ---------------------------------------------------------------- general
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\FT}[1]{\widehat{#1}}          % Fourier transform, \int f(t)e^{-2\pi i\xi t}dt
+\newcommand{\hF}{\widehat F}
+\newcommand{\hyp}[1]{\textup{(#1)}}       % named hypothesis tag, e.g. \hyp{N}, \hyp{Mg}
+
+% ---------------------------------------------------------------- coordinates
+\newcommand{\xin}[1]{\xi_{#1}}            % \xi_n = \log n/(2\pi)
+
+% ---------------------------------------------------------------- arithmetic data
+\newcommand{\PP}{\mathrm{PP}}             % prime powers > 1; \PP_J the first J
+\newcommand{\xiPP}{\xi_{\mathrm{PP}}}     % {\xi_n : n \in PP}
+\newcommand{\BRS}{\mathcal M}             % {\log m/(4\pi) : m \ge 1}
+\newcommand{\GR}{\Gamma_{\mathbb R}}
+\newcommand{\GC}{\Gamma_{\mathbb C}}
+\newcommand{\Xiinf}{\Xi_\infty}           % archimedean part of \Xi
+\newcommand{\Zz}{Z_\zeta}                 % real zero ordinates of zeta
+\newcommand{\muz}{\mu_\zeta}
+\newcommand{\nuz}{\nu_\zeta}
+\newcommand{\pz}{p_\zeta}
+
+% ---------------------------------------------------------------- framework
+\newcommand{\Oinf}{\Omega_\infty}         % archimedean density
+\newcommand{\Arch}{\mathcal A}            % archimedean functional; \Arch_q with conductor q
+\newcommand{\Tc}{\mathcal T}              % test class; \Tc_\delta
+\newcommand{\Gc}{\mathcal G}              % Gaussian wave packets
+\newcommand{\Spec}{\mathcal R}            % right side of the explicit formula, \Spec_{\mu,\nu}(F)
+\newcommand{\Kad}{\mathcal K}             % admissible pairs
+\newcommand{\Cone}{\mathcal C}
+\newcommand{\ConeOPS}{\mathcal C_{\mathrm{OPS}}}
+\newcommand{\kstar}{\kappa^{*}}
+\newcommand{\kOPS}{\kappa^{*}_{\mathrm{OPS}}}
+\newcommand{\qmin}{q_{\min}}
+\newcommand{\condE}{\textup{(E)}}
+\newcommand{\condU}{\textup{(U)}}
+\newcommand{\condS}{\textup{(S)}}
+\newcommand{\RH}{\mathrm{RH}}
+
+% ------------------------------------------------------------- zero-killing family
+\newcommand{\Wnull}{W_0}                  % z^2[(z^2+9)K_0 - 6zK_1]
+\newcommand{\Psione}{\Psi_1}              % Gamma-only kernel
+\newcommand{\Hc}{\mathscr H}              % growth class \Hc_a
+\newcommand{\Jset}{\mathcal J}            % {J : M_J non-singular}
+\newcommand{\Frep}{F_{\mathrm{rep}}}      % certified rational representative
+

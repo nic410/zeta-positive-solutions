@@ -1,0 +1,53 @@
+# command : python toy/pt/verify_pt.py toy/pt/params/pt3.json
+# date    : 2026-10-06T15:58:08Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+Theorem PT3: exact certificate (python-flint fmpz_mpoly)
+parameter file toy/pt/params/pt3.json  sha256 2f55a0f3f7792042c1410fd58f36c2cbe5c303fb473ff366ec3b0d28fbc63813
+J = 3, c = 1 + delta = 21/20, pieces in this run: PA,PAp,PB1,PB2 (of PA,PAp,PB1,PB2)
+[1] minors M_0..M_6 by Laplace expansion: terms [4418, 6230, 5486, 4790, 4062, 3282, 2550] (0.0 s)
+    Qt/A exact; N_i divisible by V^4; sigma = -1
+    G_i terms: [1304, 1243, 1168, 1063, 954, 786, 636]
+    G_i total degrees: [21, 20, 19, 18, 17, 16, 15]
+    fingerprint sha256(G) = f337cb69b03a1739985b5e537809d0521ff2df323890d723822cbe756fe78d76  (0.0 s)
+[2a] A(y) * sum_i G_i y^i satisfies the 6 odd Stirling-1 conditions identically: True (deg_y = 12, 0.0 s)
+[2b] D = kappa (y_1...y_J)^2 V^4 G_0 with constant kappa: True, kappa = -1 (D has 4418 terms, 0.0 s)
+[3] piece PA: variables s,a,b,e >= 0; W = 1 + s; X = ['8*s + a*(1 + s)', '12 + b*(1 + s)', 'e*(1 + s)']
+    piece lies in the closed region (all constraint numerators have nonnegative coefficients): True
+    PA G_0: 38104 terms, all coefficients > 0: True, constant term > 0: True (0.4 s)
+    PA G_1: 32970 terms, all coefficients > 0: True, constant term > 0: True (0.5 s)
+    PA G_2: 28160 terms, all coefficients > 0: True, constant term > 0: True (0.4 s)
+    PA G_3: 23446 terms, all coefficients > 0: True, constant term > 0: True (0.3 s)
+    PA G_4: 19296 terms, all coefficients > 0: True, constant term > 0: True (0.2 s)
+    PA G_5: 15334 terms, all coefficients > 0: True, constant term > 0: True (0.1 s)
+    PA G_6: 12000 terms, all coefficients > 0: True, constant term > 0: True (0.1 s)
+[3] piece PAp: variables a,b,e >= 0; W = 1; X = ['8 + a', 'b', 'e']
+    piece lies in the closed region (all constraint numerators have nonnegative coefficients): True
+    PAp G_0: 1732 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PAp G_1: 1570 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PAp G_2: 1408 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PAp G_3: 1234 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PAp G_4: 1072 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PAp G_5: 902 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PAp G_6: 750 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+[3] piece PB1: variables s,t,e >= 0; W = 1 + s + t; X = ['0 + 4*s + 8*t', '8 + 0*s + 0*t', '24*(1 + s + t) - 3*(0 + 4*s + 8*t) - 2*(8 + 0*s + 0*t) + e*(1 + s + t)']
+    piece lies in the closed region (all constraint numerators have nonnegative coefficients): True
+    PB1 G_0: 3036 terms, all coefficients > 0: True, constant term > 0: True (0.1 s)
+    PB1 G_1: 2772 terms, all coefficients > 0: True, constant term > 0: True (0.1 s)
+    PB1 G_2: 2520 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PB1 G_3: 2280 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PB1 G_4: 2052 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PB1 G_5: 1683 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PB1 G_6: 1360 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+[3] piece PB2: variables s,t,e >= 0; W = 1 + s + t; X = ['0 + 8*s + 0*t', '8 + 0*s + 12*t', '24*(1 + s + t) - 3*(0 + 8*s + 0*t) - 2*(8 + 0*s + 12*t) + e*(1 + s + t)']
+    piece lies in the closed region (all constraint numerators have nonnegative coefficients): True
+    PB2 G_0: 3036 terms, all coefficients > 0: True, constant term > 0: True (0.1 s)
+    PB2 G_1: 2772 terms, all coefficients > 0: True, constant term > 0: True (0.1 s)
+    PB2 G_2: 2520 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PB2 G_3: 2280 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PB2 G_4: 2052 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PB2 G_5: 1683 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+    PB2 G_6: 1360 terms, all coefficients > 0: True, constant term > 0: True (0.0 s)
+total time 2.7 s
+ALL CERTIFIED: J = 3, identities (a), (b) and positivity of G_0..G_6 on pieces PA,PAp,PB1,PB2
+# exit code 0; wall time 2.7 s

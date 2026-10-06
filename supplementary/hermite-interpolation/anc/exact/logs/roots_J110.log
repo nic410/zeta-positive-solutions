@@ -1,0 +1,13 @@
+# command : python exact/verify_roots.py exact/out/P110_ball.txt --prec 2000
+# date    : 2026-10-06T15:43:28Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+P-enclosure exact/out/P110_ball.txt (sha256 7c8999567bc77cd1c6fb5a9e816bb0b4f212b971f26dd0f3bda3237ff51c117a): degree 220 in u = t^2
+all 220 roots isolated (validated disjoint balls, one root each)
+min |Im t| >= 9.6388900e0
+min |arg u| >= 1.0351421e0;  min |u| >= 1.0825821e2
+B = sum 1/|u| in [0.05815320851 +/- 4.01e-12];  p_1 = -sum 1/u in [0.0233460522759 +/- 2.01e-14]
+roots with Re u > 0: 6 (certified), Re u < 0: 214, undetermined: 0;  |arg u| of the Re u > 0 roots: [1.0351, 1.0351, 1.2452, 1.2452, 1.4523, 1.4523]
+|arg u| of the Re u > 0 roots: all in [1.0351421e0, 1.4522859e0] (rounded outward)
+sup_r N(r)/r <= 0.41623
+# exit code 0; wall time 3.5 s

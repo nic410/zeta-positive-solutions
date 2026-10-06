@@ -1,0 +1,236 @@
+%======================================================================
+\section{Introduction}
+%======================================================================
+
+\subsection{The linear problem behind explicit-formula conductor bounds}
+
+Weil's explicit formula \cite{Wei52} (in the form of Guinand \cite{Gui48} for $\zeta$) is a linear identity between two
+measures: one on the zeros of $\zeta$, one on the prime powers. For even test functions $F$ that are analytic and decay in a
+strip, and with $\hF(\xi)=\int F(t)e^{-2\pi i\xi t}\dd t$, it reads
+\begin{equation}\label{eq:intro-EF}
+F\big(\tfrac i2\big)+F\big(-\tfrac i2\big)+\frac1{2\pi}\int_\RR F(t)\Big(\Re\psi\big(\tfrac14+\tfrac{it}2\big)-\log\pi\Big)\dd t
+=\sum_\rho F\Big(\frac{\rho-\frac12}i\Big)+\frac1\pi\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}\,\hF\Big(\frac{\log n}{2\pi}\Big).
+\end{equation}
+The left side, which we denote by $\Arch(F)$, contains only the archimedean data of $\zeta$: the Gamma factor and the pole at
+$s=1$. Under RH every zero contributes $F(\gamma)$ with $\gamma$ real, so the right side is $\int F\dd\mu+\frac1\pi\int\hF\dd\nu$ for two
+positive measures: $\mu$ on the real ordinates of the zeros and $\nu$ on the points $\log n/(2\pi)$, $n\ge2$.
+
+Positivity of this kind drives the explicit-formula method for lower bounds of discriminants and conductors: the analytic method of
+Stark and Odlyzko, recast by Serre through the explicit formula and refined by Poitou \cite{Sta74,Odl76,Odl77,Ser75,Poi77,Poi77b} (see
+\cite[pp.~120--121]{Odl90}). A test function with $F\ge0$ on $\RR$ and $\hF\ge0$ on the relevant range makes
+the zero side and the prime side non-negative, and \eqref{eq:intro-EF} then bounds the archimedean data, in particular the
+conductor. Odlyzko asked which test functions give the best bounds \cite[Open Problem~2.2, p.~123]{Odl90}, how the prime ideals and the
+zeros share the explicit formula for minimal discriminants \cite[Open Problem~6.1 and Table~5]{Odl90}, and whether the bounds
+obtained under GRH remain valid without it \cite[Open Problem~6.3, p.~132]{Odl90}. For $n=1$ his tables of root-discriminant
+bounds, that is, for data of the type of $\zeta$, give $0.997$, both under GRH and unconditionally \cite[Table~4, p.~134]{Odl90};
+these values are based on his 1976 tables \cite{Odl76} (which print $0.996$), optimised over a one-parameter family of kernels. The true conductor is $1$.
+
+This paper studies the linear problem behind these bounds for the data of $\zeta$ itself, as a problem about \emph{all}
+positive solutions of \eqref{eq:intro-EF}. Its main idea is that the two questions it raises, how sharp the optimal
+conductor bound is and how many positive solutions there are, are linked by complementary slackness: an extremal test function for
+the conductor bound pins down the support of every positive solution (Lemma~\ref{lem:compslack}). Whether, conversely, uniqueness
+forces such an extremal function is open (Problem~\ref{op:strict-compl}).
+
+\subsection{Admissible pairs, the slack, and Conjectures U and S}\label{ssec:intro-pairs}
+
+An \emph{admissible pair} (Definition~\ref{def:admissible}) is a pair $(\mu,\nu)$ of positive measures, $\mu$ even on $\RR$ and
+$\nu$ on $[\xin2,\infty)$, where $\xin2=\log2/(2\pi)$, such that $\Arch(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$ for every $F$ in a natural
+test class $\Tc$ (Definition~\ref{def:testclass}). Nothing is assumed about where $\mu$ and $\nu$ live, beyond the gap
+$(-\xin2,\xin2)$ in the prime measure, and nothing about integrality. We write $\Kad$ for the set of admissible pairs and $\pz=(\muz,\nuz)$
+for the pair of $\zeta$: $\muz$ counts the real zero ordinates with multiplicity and $\nuz=\sum_n\Lambda(n)n^{-1/2}\delta_{\log n/2\pi}$. The
+pair $\pz$ is admissible if and only if RH holds. We consider three statements:
+\[
+\condE:\ \Kad\ne\emptyset,\qquad \condU:\ \Kad\subseteq\{\pz\},\qquad \condS:\ \kstar\le0,
+\]
+where the \emph{slack} $\kstar$ is the infimum of $\Arch(F)$ over the cone $\Cone$ of $F\in\Tc$ with $F\ge0$ on $\RR$, $\hF\ge0$ on
+$[\xin2,\infty)$ and $\int F=1$. In the language of conductors, $\qmin=e^{-2\pi\kstar}$ is the least conductor for which the Gamma
+factor $\GR$, one simple pole and a positive prime measure on $[\xin2,\infty)$ admit a positive solution of the explicit formula, and
+it is the fully optimised degree-one conductor bound (Proposition~\ref{prop:conductor}).
+
+\begin{lconj}{U}\label{conj:U}
+Every admissible pair, if there is one, is $\zeta$'s pair: $\Kad\subseteq\{\pz\}$.
+\end{lconj}
+
+\begin{lconj}{S}\label{conj:S}
+$\kstar\le0$. Equivalently, $\qmin\ge1$; equivalently, no admissible pair has a zero measure $\mu\ge\lambda\dd t$ with $\lambda>0$.
+\end{lconj}
+
+The logic of these statements is (Theorem~\ref{thm:logic})
+\[
+\mathrm{RH}\Rightarrow\condE,\qquad \condU\Rightarrow\condS,\qquad
+\condU\iff\big[\condE\Rightarrow\mathrm{RH}\big]\wedge\big[\mathrm{RH}\Rightarrow\Kad=\{\pz\}\big].
+\]
+So \condU\ is the conjunction of a prime-free criterion for RH and a uniqueness statement under RH. It does \emph{not} imply
+RH: it is consistent with $\neg$RH$\wedge\neg$\condE, and under \condU\ alone we only get RH$\Leftrightarrow$\condE. For the field $\QQ$,
+every GRH-type conductor bound given by a test function in $\Cone$ holds without RH exactly when $\Arch\ge0$ on $\Cone$, that is,
+under \condE; so \condE\ is the statement that all such bounds of Odlyzko's Open Problem~6.3 hold for $\QQ$, and the first half
+of \condU\ is a converse to it. (The tabulated value $0.997<1$ holds for $\QQ$ trivially.) Under RH, \condS\ is equivalent to
+$\kstar=0$, that is, to the statement that $\zeta$'s data are exactly critical: they cannot be tightened at all without losing
+every positive solution.
+
+\subsection{Main results}
+
+We write $\BRS=\{\log m/(4\pi):m\ge1\}$; it contains the prime-power nodes $\log n/(2\pi)=\log(n^2)/(4\pi)$.
+
+\begin{lthm}{A}[Duality and criticality]\label{thm:intro-A}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\Kad\ne\emptyset$ if and only if $\Arch(F)\ge0$ for every $F\in\Cone$, if and only if $\kstar\ge0$; and $\qmin=e^{-2\pi\kstar}$.
+\item Assume \condE. Then $\kstar=0$ if and only if every admissible $\mu$ is purely atomic, if and only if all admissible $\mu$ are
+carried by one discrete set.
+\end{enumerate}
+\end{lthm}
+
+These are Theorem~\ref{thm:duality}, Proposition~\ref{prop:conductor} and Theorem~\ref{thm:crit}; the logic displayed in
+Section~\ref{ssec:intro-pairs} is Theorem~\ref{thm:logic}. In (b) the common discrete set is the real zero set of a \emph{weak magic
+function}, a limit of near-optimal test functions. Abstract sign and gap conditions alone do not force rigidity
+(Section~\ref{ssec:barrier}); the arithmetic input is the Fourier interpolation basis of Bondarenko, Radchenko and Seip \cite{BRS}, which
+is attached to the zeros of $\zeta$ and the points $\BRS$ and does not assume RH.
+
+\begin{lthm}{B}[Uniqueness near $\zeta$'s support]\label{thm:intro-B}
+Let $E\subset\RR\setminus\Zz$ be finite. If $(\mu,\nu)\in\Kad$, $\mu$ is carried by $\Zz\cup E$, and $\nu$ is carried by $\BRS$, then RH holds and
+$(\mu,\nu)=\pz$.
+\end{lthm}
+
+This follows from Theorem~\ref{thm:Gfin} applied to $E\cup(-E)$. That theorem uses positivity of $\nu$ only at the nodes $\log m/(4\pi)$
+with $m\equiv2\pmod3$, a progression that contains none of $\zeta$'s own prime-power nodes, and positivity of $\mu$ only at $0$.
+
+\begin{introcor}[Magic-function principle]
+If some $F\in\Cone$ with $\Arch(F)=0$ has only finitely many real zeros outside $\Zz$, and the zeros of $\hF$ in $[\xin2,\infty)$ lie in
+$\BRS$, then \condU\ holds; if moreover \condE\ holds, then RH holds and $\Kad=\{\pz\}$.
+\end{introcor}
+
+This is Corollary~\ref{cor:magic}: by complementary slackness (Lemma~\ref{lem:compslack}), every admissible pair is carried by the
+real zeros of $F$ and the zeros of $\hF$ in $[\xin2,\infty)$, and Theorem~\ref{thm:intro-B} applies. It is the chain that links the
+two halves of the paper: near-extremal certificates for the conductor problem, whose limit is an exact magic function with only
+finitely many real zeros outside $\Zz$ and with the zeros of its transform in $[\xin2,\infty)$ inside $\BRS$, would prove \condU\ through
+complementary slackness and Theorem~\ref{thm:intro-B}. Theorem~\ref{thm:intro-D} below states this for an explicit family.
+
+\begin{lthm}{C}[Near-criticality]\label{thm:intro-C}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\kstar\le1.1508391\cdot10^{-906}$. Hence $\qmin\ge1-7.3\cdot10^{-906}$; in the classical cone $\ConeOPS$,
+$\kOPS\le9.9462\cdot10^{-41}$.
+\item $\kstar\ge-2.7112\cdot10^{-3}$.
+\end{enumerate}
+\end{lthm}
+
+These are Theorem~\ref{thm:kappa}, Corollary~\ref{cor:qmin}, Proposition~\ref{thm:kappaOPS} and Proposition~\ref{prop:lowerbound}; they are
+computer-assisted and unconditional. Together they give, unconditionally, $1-7.3\cdot10^{-906}\le\qmin<1.017182$; only under
+\condE, for instance under RH, is $\kstar\ge0$, that is, $\qmin\le1$. So Theorem~\ref{thm:intro-C} sharpens the conductor bound that the
+explicit-formula method can give for $\zeta$'s data; the arithmetic conductor of $\zeta$ is $1$ in any case. The certificate in (a) is a
+zero-killing function $\Xi^2(H+\eps e^{-\pi t^2})$, where $\Xi$ is Riemann's $\Xi$-function and $H>0$ is a polynomial in $t^2$. It vanishes
+at every zero of $\zeta$, on or off the line, so $\Arch$ of it is a sum over prime powers alone. For the exact interpolant $P_J$ of
+Section~\ref{ssec:hermite}, the transform of $\Xi^2P_J(t^2)$ has zeros of order at least two at the first $J$ prime powers, so that sum
+would start at the $(J+1)$-st prime power. The certificate uses a rational approximation $H$ of $P_J(t^2)$ and a small positive cushion,
+which leave small contributions at the first $J$ prime powers; the proof bounds these contributions and the tail rigorously
+(Section~\ref{ssec:kappa}). The exponent $906$ is a computational budget ($J=100$); the evidence for \condS\ is the ladder of
+Table~\ref{tab:kappa-ladder}, in which the certified bounds keep improving from $J=20$ to $J=100$. A certificate of the classical
+(Gaussian--Laguerre) kind shows that every admissible pair, whether or not RH holds, puts mass at most $2.4\cdot10^{-13}$ into each gap
+between the first six positive zero ordinates of $\zeta$, shrunk by $0.1$ at both ends, and at most $3.8\cdot10^{-8}$ into listed windows between low prime powers
+(Proposition~\ref{prop:lowheight}). With the same gap $\xi_2$, and also at their own natural gaps, the archimedean data of $\QQ(\sqrt5)$ and
+$\QQ(\sqrt{-3})$ have positive slack (Proposition~\ref{thm:notcritical}); this indicates that near-criticality is a property of $\zeta$'s data
+rather than of the method.
+
+\begin{lthm}{D}[A criterion through the zero-killing family]\label{thm:intro-D}
+If the exact Hermite family $F_J=\Xi^2P_J(t^2)$ of Section~\ref{ssec:hermite} satisfies the asymptotic hypotheses of
+Theorem~\ref{thm:criterion}, then \condS\ and \condU\ hold, and RH$\Leftrightarrow$\condE.
+\end{lthm}
+
+Here $P_J$ is the polynomial with $P_J(0)=1$ and degree at most $2J$ for which the transform of $F_J$ has zeros of order at least two at the first $J$
+prime powers; the certificates of Theorem~\ref{thm:intro-C}(a) are rational approximations of these functions.
+
+\subsection{What is claimed and what is not}\label{ssec:claims}
+
+Theorems~\ref{thm:intro-A} and~\ref{thm:intro-B} and the Corollary are proved; Theorem~\ref{thm:intro-C} is computer-assisted and
+unconditional; Theorem~\ref{thm:intro-D} is proved, and its hypotheses are open. This list is the single place where the limits of the
+results are stated.
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\item Nothing here proves RH, \condE, \condS\ or \condU, and Conjecture~\ref{conj:U} itself does not imply RH
+(Section~\ref{ssec:intro-pairs}).
+\item Only one side of criticality is certified. The inequality $\kstar\ge0$, equivalently $\qmin\le1$, is \condE; we know it only under
+RH, and unconditionally we know only $\kstar\ge-2.7112\cdot10^{-3}$, that is, $\qmin<1.017182$. We never claim $\kstar=0$.
+\item The hypotheses of Theorem~\ref{thm:intro-D} concern infinitely many $J$, or a limit in $J$, and are open. Only finite-$J$ instances
+are certified (Proposition~\ref{thm:finiteJ}); convergence of the family is neither assumed nor proved.
+\item Uniqueness is proved only near $\zeta$'s support: Theorem~\ref{thm:intro-B} allows finitely many extra zeros, but no prime mass off
+$\BRS$.
+\item The comparison with $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$ concerns two examples, at $\zeta$'s gap and at their natural gaps; it is not a
+statement about $L$-functions in general (Remark~\ref{rem:gap}).
+\end{enumerate}
+
+\subsection{Related work}
+
+\emph{Explicit formulas and positivity.} The explicit formula goes back to Riemann, von Mangoldt, Guinand \cite{Gui48,Gui49} and Weil
+\cite{Wei52,Wei72}. Weil's criterion characterises RH by positivity of a \emph{quadratic} form on test functions of the type $f*\tilde f$
+\cite{Wei52,Bom00}; our cone $\Cone$ is defined instead by pointwise positivity of $F$ and $\hF$, and the problem is a linear programme. The
+archimedean part of Weil's form is positive on test functions supported in $[2^{-1/2},2^{1/2}]$ whose Fourier transform vanishes at
+$\pm\frac i2$; this was proved by Yoshida \cite{Yos92}, and Connes and Consani \cite{CC21a} gave an operator-theoretic strengthening. Connes and
+Consani \cite{CC23} exhibited very small eigenvalues of Weil's form on test functions supported in a window $[-L,L]$, and Zhu \cite{Zhu26}
+certifies two-sided bounds for them; from the prime side of the explicit formula alone he shows that the normalised smallest eigenvalue
+for $L=2$ is at most $3.2\cdot10^{-283}$, a quadratic analogue of Theorem~\ref{thm:intro-C}. Connes \cite{Con26} extremises a restriction
+of Weil's form built from the primes $p\le13$ to approximate the first $50$ zeros. None of these works makes a statement about positive
+solutions of the explicit formula. Weil's Hermitian form and the explicit formula are also the tools of recent work on a different
+question, the proportion of simple zeros on the critical line \cite{AF26,Lam26}; the proof in \cite{AF26} was found by an AI model. The problem that defines $\kstar$ involves only the archimedean data and the gap, and so does the Gaussian--Laguerre
+certificate of Proposition~\ref{thm:kappaOPS}. The certificates of Theorem~\ref{thm:intro-C}(a), in contrast, are built from arithmetic
+input: the factor $\Xi^2$, which vanishes at the zeros of $\zeta$, and Hermite interpolation at the prime powers.
+
+\emph{Fourier summation formulas.} Admissible pairs are pairs of positive measures in Fourier duality with fixed archimedean data.
+Dyson suggested that a classification of one-dimensional quasicrystals might lead to a proof of RH \cite{Dys09}; such pairs of
+sequences go back to Guinand's theory of concordance \cite{Gui59}. Gon\c{c}alves \cite{Gon23} classified Fourier summation formulas,
+with $\zeta$'s explicit formula in his class, and his Theorem~5 classifies non-negative crystalline measures with uniformly discrete
+support; Gon\c{c}alves and
+Vedana \cite{GV25} and Vedana \cite{Ved26} completed the classification on the line and extended it to a strip. These classifications
+concern formulas whose summation side is a countable sum of point masses, whereas an admissible pair may have an arbitrary positive prime
+measure; so they are related frameworks, which apply directly only to admissible pairs with a discrete prime measure (for instance one
+carried by $\BRS$, as in Theorem~\ref{thm:intro-B}). None of these works imposes positivity on both sides with fixed archimedean data.
+
+\emph{Conductor bounds and characterisations of $\zeta$.} The method for discriminants is due to Stark and Odlyzko, with the explicit
+formula introduced by Serre and refinements by Poitou \cite{Sta74,Odl76,Ser75,Poi77,Poi77b}; Odlyzko treated Artin conductors \cite{Odl77}
+and Mestre conductors of varieties \cite{Mes86}; see \cite{Odl90,DyD80}. In Odlyzko's own setting, the classical cone, Proposition~\ref{thm:kappaOPS} raises the
+tabulated $0.997$ to at least $1-6.25\cdot10^{-40}$; Theorem~\ref{thm:intro-C}(a) relaxes the positivity of $\hF$ to $[\xin2,\infty)$ and gives
+at least $1-7.3\cdot10^{-906}$. Both address \cite[Open Problem~2.2]{Odl90} in degree one for the data of $\zeta$. In the literature we
+searched we found no optimisation of this bound beyond Odlyzko's one-parameter family, and no claim that its optimum is $1$. A related
+extremal problem concerns the lowest zero: among Dedekind zeta functions, $\zeta$ has the highest lowest zero \cite[p.~132]{Odl90};
+Miller \cite{Mil02} proved the analogue under GRH for entire $L$-functions of real archimedean type by positivity in the explicit
+formula, and Bober et al.\ \cite{Bob15} showed that it fails beyond real archimedean type.
+Hamburger's theorem \cite{Ham21,Ham21b} (see \cite{Per17,Bur12}) and its extensions \cite{Boc58,Kno94,Kno00}, the classification of the
+degree-one Selberg class \cite{Sel92,CG93,KP99,Sou05}, and the theorems of Beurling \cite{Beu51} and A.~B.~Dixit \cite{DixA20}
+characterise $\zeta$ among Dirichlet series, or impose positivity on Dirichlet coefficients. Conjecture~\ref{conj:U} starts instead from
+the explicit formula, with arbitrary positive measures on both sides. The closest antecedent we found is Booker's converse theorem for
+positive $L$-data \cite[Definition~1.3, Theorem~1.7]{Boo15}; Theorem~\ref{thm:intro-B} is complementary to it, not a generalisation
+(Section~\ref{ssec:Gfin}).
+
+\emph{Interpolation, linear programming and magic functions.} Bondarenko, Radchenko and Seip \cite{BRS} constructed a Fourier
+interpolation basis for the zeros of $\zeta$ and the points $\BRS$, after Radchenko and Viazovska \cite{RV19}; Proposition~\ref{thm:support}
+is the uniqueness statement implicit in \cite[\S4.4]{BRS}. The linear programming bounds of Cohn and Elkies \cite{CE03} and the magic
+functions of \cite{Via17,CKMRV17,CKMRV22} are the model for our use of ``magic function'', as is the uniqueness of the Leech lattice
+\cite{CK09}. In that setting near-sharpness is familiar, and our results have direct analogues there: Theorem~\ref{thm:intro-C} corresponds to
+the certificate of Cohn and Kumar that the linear programming bound in dimension $24$ is sharp up to a factor $1+1.65\cdot10^{-30}$
+\cite{CK09}; the explicit admissible pairs of Propositions~\ref{prop:lowerbound} and~\ref{thm:notcritical} correspond to the dual
+certificates with which Cohn and Triantafillou proved non-sharpness in other dimensions \cite{CT22}; and Theorem~\ref{thm:intro-D} with
+Conjecture~\ref{conj:family} corresponds to the sequences that Cohn and Miller conjectured to converge to magic functions \cite{CM16}. The cone $\Cone$ is a sign-uncertainty cone \cite{BCK10,CG19,CIR24}, and Bourgain, Clozel and Kahane already related such
+problems to zeta functions and discriminant bounds \cite[\S4]{BCK10}. Linear programmes over trace and crossing formulas, with near-sharp
+bounds attained by special arithmetic objects, appear in the bootstrap \cite{HMR19,KMP24}. Fourier optimisation with the explicit formula
+is usually done under GRH \cite{CMS19,CGdL}; our problem is unconditional on the archimedean side and asks about all positive solutions. A
+test function whose transform contains $\zeta$ as a factor kills every non-trivial zero, and Guinand's formula then gives an identity over
+prime powers alone \cite{RR22}; our certificates use $\Xi^2$ for this purpose, with a cofactor chosen by Hermite interpolation.
+
+\emph{What is new.} As far as our literature search shows, the following are new: the linear programme over all positive solutions of
+the explicit formula with $\zeta$'s data, with Conjecture~\ref{conj:U}, its logic and the link between criticality and atomicity
+(Theorem~\ref{thm:intro-A}(b)); Theorem~\ref{thm:intro-B} and the Corollary; the zero-killing certificates $\Xi^2H$, which evaluate the dual
+objective through $\zeta$'s own explicit formula (Theorem~\ref{thm:intro-C}(a)); the criterion of Theorem~\ref{thm:intro-D}; and the
+certified non-criticality of the data of $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$ at their natural gaps. Proposition~\ref{thm:support} is essentially contained in
+\cite[\S4.4]{BRS} with \cite[Corollary~1.1]{BRS}, and the duality theory of Section~\ref{sec:setting} is standard conic linear programming.
+
+\subsection{Organisation, notation and companion manuscripts}
+
+Section~\ref{sec:setting} sets up admissible pairs and proves duality, the logic and criticality. Section~\ref{sec:uniqueness} proves the
+uniqueness results, Section~\ref{sec:family} introduces the zero-killing family and proves Theorem~\ref{thm:intro-D},
+Section~\ref{sec:certified} contains the certified bounds, and Section~\ref{sec:conjectures} the conjectures and open problems.
+Appendix~\ref{app:certification} describes the certification methods, Appendix~\ref{app:proofs} contains the long proofs, and
+Appendix~\ref{app:anc} indexes the ancillary files. A companion manuscript \cite{N1} studies the family of Section~\ref{sec:family} in
+detail, and three notes treat extra prime-side atoms \cite{N2}, the critical conductors of other Gamma factors \cite{N3}, and pairs with
+integer zero weights \cite{N4}; nothing here depends on them.
+
+We use $\hF(\xi)=\int F(t)e^{-2\pi i\xi t}\dd t$, $\xin n=\log n/(2\pi)$ for real $n>0$, and the multiplicative coordinate $x=e^{2\pi\xi}$, so
+that the prime-power node $\xin n$ corresponds to $x=n$ and the gap $[\xin2,\infty)$ to $x\ge2$. $\PP=\{n_1<n_2<\cdots\}$ is the set of prime
+powers and $\xiPP=\{\xin n:n\in\PP\}$; $\Zz$ is the set of real $\gamma$ with $\zeta(\frac12+i\gamma)=0$; $\GR(s)=\pi^{-s/2}\Gamma(s/2)$; and
+$\psi=\Gamma'/\Gamma$ is the digamma function.

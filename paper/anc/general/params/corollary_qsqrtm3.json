@@ -1,0 +1,18 @@
+{
+ "object": "corollary",
+ "description": "Gamma_C critical-point bracket and the slack of Q(sqrt -3): Lambda(s) = 3^{s/2} Gamma_C(s) zeta_{Q(sqrt -3)}(s), Gamma_C(s) = 2(2 pi)^{-s} Gamma(s) = Gamma_R(s) Gamma_R(s+1), i.e. Gamma-data shifts (0, 1), conductor 3, one pole.",
+ "gamma_shifts": [
+  "0",
+  "1"
+ ],
+ "dual": "params/gammaC_K64_s9.json",
+ "primal": "params/pair_gammaC_X40.json",
+ "field": "Q(sqrt -3)",
+ "field_conductor": "3",
+ "claims": {
+  "qmin_ge": "2.981236704765",
+  "qmin_le": "2.997174",
+  "kappa_field_ge": "1.5e-4",
+  "kappa_field_le": "9.99e-4"
+ }
+}

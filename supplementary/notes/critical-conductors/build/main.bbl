@@ -1,0 +1,34 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{1}
+
+\bibitem{CG19}
+Henry Cohn and Felipe Gon{\c{c}}alves, \emph{An optimal uncertainty principle in twelve dimensions via modular forms}, Invent. Math. \textbf{217} (2019), no.~3, 799--831, arXiv:1712.04438, \href{https://doi.org/10.1007/s00222-019-00875-4}{doi:10.1007/s00222-019-00875-4}.
+
+\bibitem{CT22}
+Henry Cohn and Nicholas Triantafillou, \emph{Dual linear programming bounds for sphere packing via modular forms}, Math. Comp. \textbf{91} (2022), no.~333, 491--508, arXiv:1909.04772, \href{https://doi.org/10.1090/mcom/3662}{doi:10.1090/mcom/3662}.
+
+\bibitem{DyD80}
+Francisco Diaz~y Diaz, \emph{Tables minorant la racine {$n$}-i{\`e}me du discriminant d'un corps de degr{\'e} {$n$}}, Publications Math{\'e}matiques d'Orsay 80.06, Universit{\'e} de Paris-Sud, D{\'e}partement de Math{\'e}matique, Orsay, 1980, 59 pp.
+
+\bibitem{PaperI}
+Nic Johns, \emph{Positive solutions of the explicit formula for {$\zeta(s)$}: near-criticality and uniqueness}, Companion paper, in preparation, 2026.
+
+\bibitem{Mil02}
+Stephen~D. Miller, \emph{The highest lowest zero and other applications of positivity}, Duke Math. J. \textbf{112} (2002), no.~1, 83--116, arXiv:math/0112196, \href{https://doi.org/10.1215/S0012-9074-02-11213-7}{doi:10.1215/S0012-9074-02-11213-7}.
+
+\bibitem{Odl76}
+A.~M. Odlyzko, \emph{Discriminant bounds}, Unpublished tables, dated 29 November 1976; available at \url{https://www-users.cse.umn.edu/~odlyzko/unpublished/index.html}, 1976.
+
+\bibitem{Odl90}
+\bysame, \emph{Bounds for discriminants and related estimates for class numbers, regulators and zeros of zeta functions: a survey of recent results}, S{\'e}m. Th{\'e}or. Nombres Bordeaux (2) \textbf{2} (1990), no.~1, 119--141, \href{https://doi.org/10.5802/jtnb.22}{doi:10.5802/jtnb.22}.
+
+\bibitem{Poi77}
+Georges Poitou, \emph{Sur les petits discriminants}, S{\'e}minaire {D}elange--{P}isot--{P}oitou, 18e ann{\'e}e: 1976/77, {T}h{\'e}orie des nombres, {F}asc. 1, Secr{\'e}tariat Math., Paris, 1977, pp.~Exp. No. 6, 1--17.
+
+\end{thebibliography}

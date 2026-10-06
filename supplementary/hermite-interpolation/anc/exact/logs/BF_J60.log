@@ -1,0 +1,11 @@
+# command : python exact/verify_bf.py exact/out/P60_ball.txt --x0 199.4 --x0 199.39 --control 199.35 --prec 4600
+# date    : 2026-10-06T15:43:35Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+P-enclosure exact/out/P60_ball.txt (sha256 fdfbfe57bfe9945f640291b6f1e1b7e74e4d5afb04278961d5737f26db6cda4b): J = 60, 121 coefficients, max log10 relative radius -473
+Q_P: degree 244, leading coefficient > 0: True
+  x_0 = 199.4: Taylor coefficients of Q_P(2 pi x_0 + v) certified > 0: 245/245; negative: []; undetermined: []
+  x_0 = 199.39: Taylor coefficients of Q_P(2 pi x_0 + v) certified > 0: 245/245; negative: []; undetermined: []
+  x_0 = 199.35 (negative control): Taylor coefficients of Q_P(2 pi x_0 + v) certified > 0: 244/245; negative: [0]; undetermined: []
+CERTIFIED: Fhat > 0 for x >= 199.39 (J = 60): True
+# exit code 0; wall time 0.3 s

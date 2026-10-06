@@ -1,0 +1,18 @@
+{
+ "object": "corollary",
+ "description": "Gamma_R^2 critical-point bracket and the slack of Q(sqrt 5): Lambda(s) = 5^{s/2} Gamma_R(s)^2 zeta_{Q(sqrt 5)}(s), i.e. Gamma-data Gamma_R(s)^2, conductor 5, one pole.",
+ "gamma_shifts": [
+  "0",
+  "0"
+ ],
+ "dual": "params/gammaR2_K80_s7.json",
+ "primal": "params/pair_gammaR2_X240.json",
+ "field": "Q(sqrt 5)",
+ "field_conductor": "5",
+ "claims": {
+  "qmin_ge": "4.98485094226764",
+  "qmin_le": "4.9994844",
+  "kappa_field_ge": "1.64e-5",
+  "kappa_field_le": "4.83e-4"
+ }
+}

@@ -1,0 +1,262 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{10}
+
+\bibitem{AF26}
+Levent Alp{\"o}ge and Ralph Furman, \emph{More than two thirds of the zeta zeros are simple and on the critical line}, 2026, arXiv:2608.13637.
+
+\bibitem{AB13}
+George~E. Andrews and Bruce~C. Berndt, \emph{Ramanujan's lost notebook. {P}art {IV}}, Springer, New York, 2013, \href{https://doi.org/10.1007/978-1-4614-4081-9}{doi:10.1007/978-1-4614-4081-9}.
+
+\bibitem{Beu51}
+Arne Beurling, \emph{An extremal property of the {R}iemann zeta-function}, Ark. Mat. \textbf{1} (1951), no.~4, 295--300, \href{https://doi.org/10.1007/BF02591365}{doi:10.1007/BF02591365}.
+
+\bibitem{Bob15}
+Jonathan Bober, J.~Brian Conrey, David~W. Farmer, Akio Fujii, Sally Koutsoliotas, Stefan Lemurell, Michael Rubinstein, and Hiroyuki Yoshida, \emph{The highest lowest zero of general {$L$}-functions}, J. Number Theory \textbf{147} (2015), 364--373, \href{https://doi.org/10.1016/j.jnt.2014.07.023}{doi:10.1016/j.jnt.2014.07.023}.
+
+\bibitem{Boc51}
+S.~Bochner, \emph{Some properties of modular relations}, Ann. of Math. (2) \textbf{53} (1951), 332--363, \href{https://doi.org/10.2307/1969546}{doi:10.2307/1969546}.
+
+\bibitem{Boc58}
+\bysame, \emph{On {R}iemann's functional equation with multiple {G}amma factors}, Ann. of Math. (2) \textbf{67} (1958), no.~1, 29--41, \href{https://doi.org/10.2307/1969923}{doi:10.2307/1969923}.
+
+\bibitem{Bom00}
+Enrico Bombieri, \emph{Remarks on {W}eil's quadratic functional in the theory of prime numbers. {I}}, Atti Accad. Naz. Lincei Cl. Sci. Fis. Mat. Natur. Rend. Lincei (9) Mat. Appl. \textbf{11} (2000), no.~3, 183--233.
+
+\bibitem{BRS}
+Andriy Bondarenko, Danylo Radchenko, and Kristian Seip, \emph{Fourier interpolation with zeros of zeta and {$L$}-functions}, Constr. Approx. \textbf{57} (2023), no.~2, 405--461, arXiv:2005.02996, \href{https://doi.org/10.1007/s00365-022-09599-w}{doi:10.1007/s00365-022-09599-w}.
+
+\bibitem{Boo15}
+Andrew~R. Booker, \emph{{$L$}-functions as distributions}, Math. Ann. \textbf{363} (2015), no.~1-2, 423--454, arXiv:1308.3067, \href{https://doi.org/10.1007/s00208-015-1178-z}{doi:10.1007/s00208-015-1178-z}.
+
+\bibitem{BCK10}
+Jean Bourgain, Laurent Clozel, and Jean-Pierre Kahane, \emph{Principe d'{H}eisenberg et fonctions positives}, Ann. Inst. Fourier (Grenoble) \textbf{60} (2010), no.~4, 1215--1232, arXiv:0811.4360, \href{https://doi.org/10.5802/aif.2552}{doi:10.5802/aif.2552}.
+
+\bibitem{Bur12}
+Jean-Fran{\c{c}}ois Burnol, \emph{Deux extensions de th{\'e}or{\`e}mes de {H}amburger (portant sur l'{\'e}quation fonctionnelle de la fonction z{\^e}ta)}, Expo. Math. \textbf{30} (2012), no.~3, 295--308, arXiv:1106.4749, \href{https://doi.org/10.1016/j.exmath.2012.03.003}{doi:10.1016/j.exmath.2012.03.003}.
+
+\bibitem{CIR24}
+Emanuel Carneiro, Tolibjon Ismoilov, and Antonio~Pedro Ramos, \emph{Sign uncertainty and de {B}ranges spaces}, 2024, arXiv:2408.01186.
+
+\bibitem{CMS19}
+Emanuel Carneiro, Micah~B. Milinovich, and Kannan Soundararajan, \emph{Fourier optimization and prime gaps}, Comment. Math. Helv. \textbf{94} (2019), no.~3, 533--568, arXiv:1708.04122, \href{https://doi.org/10.4171/CMH/467}{doi:10.4171/CMH/467}.
+
+\bibitem{CGdL}
+Andr{\'e}s Chirre, Felipe Gon{\c{c}}alves, and David de~Laat, \emph{Pair correlation estimates for the zeros of the zeta function via semidefinite programming}, Adv. Math. \textbf{361} (2020), 106926, arXiv:1810.08843, \href{https://doi.org/10.1016/j.aim.2019.106926}{doi:10.1016/j.aim.2019.106926}.
+
+\bibitem{CE03}
+Henry Cohn and Noam Elkies, \emph{New upper bounds on sphere packings {I}}, Ann. of Math. (2) \textbf{157} (2003), no.~2, 689--714, arXiv:math/0110009, \href{https://doi.org/10.4007/annals.2003.157.689}{doi:10.4007/annals.2003.157.689}.
+
+\bibitem{CG19}
+Henry Cohn and Felipe Gon{\c{c}}alves, \emph{An optimal uncertainty principle in twelve dimensions via modular forms}, Invent. Math. \textbf{217} (2019), no.~3, 799--831, arXiv:1712.04438, \href{https://doi.org/10.1007/s00222-019-00875-4}{doi:10.1007/s00222-019-00875-4}.
+
+\bibitem{CK09}
+Henry Cohn and Abhinav Kumar, \emph{Optimality and uniqueness of the {L}eech lattice among lattices}, Ann. of Math. (2) \textbf{170} (2009), no.~3, 1003--1050, arXiv:math/0403263, \href{https://doi.org/10.4007/annals.2009.170.1003}{doi:10.4007/annals.2009.170.1003}.
+
+\bibitem{CKMRV17}
+Henry Cohn, Abhinav Kumar, Stephen~D. Miller, Danylo Radchenko, and Maryna Viazovska, \emph{The sphere packing problem in dimension 24}, Ann. of Math. (2) \textbf{185} (2017), no.~3, 1017--1033, arXiv:1603.06518, \href{https://doi.org/10.4007/annals.2017.185.3.8}{doi:10.4007/annals.2017.185.3.8}.
+
+\bibitem{CKMRV22}
+\bysame, \emph{Universal optimality of the {$E_8$} and {L}eech lattices and interpolation formulas}, Ann. of Math. (2) \textbf{196} (2022), no.~3, 983--1082, arXiv:1902.05438, \href{https://doi.org/10.4007/annals.2022.196.3.3}{doi:10.4007/annals.2022.196.3.3}.
+
+\bibitem{CM16}
+Henry Cohn and Stephen~D. Miller, \emph{Some properties of optimal functions for sphere packing in dimensions 8 and 24}, 2016, arXiv:1603.04759.
+
+\bibitem{CT22}
+Henry Cohn and Nicholas Triantafillou, \emph{Dual linear programming bounds for sphere packing via modular forms}, Math. Comp. \textbf{91} (2022), no.~333, 491--508, \href{https://doi.org/10.1090/mcom/3662}{doi:10.1090/mcom/3662}.
+
+\bibitem{Con26}
+Alain Connes, \emph{The {R}iemann {H}ypothesis: past, present and a letter through time}, 2026, arXiv:2602.04022.
+
+\bibitem{CC21a}
+Alain Connes and Caterina Consani, \emph{Weil positivity and trace formula, the archimedean place}, Selecta Math. (N.S.) \textbf{27} (2021), no.~4, Paper No. 77, 70 pp., arXiv:2006.13771, \href{https://doi.org/10.1007/s00029-021-00689-4}{doi:10.1007/s00029-021-00689-4}.
+
+\bibitem{CC23}
+\bysame, \emph{Spectral triples and {$\zeta$}-cycles}, Enseign. Math. \textbf{69} (2023), 93--148, \href{https://doi.org/10.4171/LEM/1049}{doi:10.4171/LEM/1049}.
+
+\bibitem{CG93}
+J.~B. Conrey and A.~Ghosh, \emph{On the {S}elberg class of {D}irichlet series: small degrees}, Duke Math. J. \textbf{72} (1993), no.~3, 673--693, \href{https://doi.org/10.1215/S0012-7094-93-07225-0}{doi:10.1215/S0012-7094-93-07225-0}.
+
+\bibitem{Con73}
+John~B. Conway, \emph{Functions of one complex variable}, Graduate Texts in Mathematics, vol.~11, Springer-Verlag, New York--Heidelberg, 1973, \href{https://doi.org/10.1007/978-1-4615-9972-2}{doi:10.1007/978-1-4615-9972-2}.
+
+\bibitem{CNV86}
+George Csordas, Timothy~S. Norfolk, and Richard~S. Varga, \emph{The {R}iemann hypothesis and the {T}ur{\'a}n inequalities}, Trans. Amer. Math. Soc. \textbf{296} (1986), no.~2, 521--541, \href{https://doi.org/10.1090/S0002-9947-1986-0846596-4}{doi:10.1090/S0002-9947-1986-0846596-4}.
+
+\bibitem{DyD80}
+Francisco Diaz~y Diaz, \emph{Tables minorant la racine {$n$}-i{\`e}me du discriminant d'un corps de degr{\'e} {$n$}}, Publications Math{\'e}matiques d'Orsay 80.06, Universit{\'e} de Paris-Sud, D{\'e}partement de Math{\'e}matique, Orsay, 1980, 59 pp.
+
+\bibitem{DixA20}
+Anup~B. Dixit, \emph{A uniqueness property of general {D}irichlet series}, J. Number Theory \textbf{206} (2020), 123--137, Corrigendum: J. Number Theory 213 (2020), 462--463; arXiv:1905.04193, \href{https://doi.org/10.1016/j.jnt.2019.06.007}{doi:10.1016/j.jnt.2019.06.007}.
+
+\bibitem{Dix10}
+Atul Dixit, \emph{Series transformations and integrals involving the {R}iemann {$\Xi$}-function}, J. Math. Anal. Appl. \textbf{368} (2010), no.~1, 358--373, \href{https://doi.org/10.1016/j.jmaa.2010.03.047}{doi:10.1016/j.jmaa.2010.03.047}.
+
+\bibitem{Dix12}
+\bysame, \emph{Character analogues of {R}amanujan-type integrals involving the {R}iemann {$\Xi$}-function}, Pacific J. Math. \textbf{255} (2012), no.~2, 317--348, arXiv:1102.2680, \href{https://doi.org/10.2140/pjm.2012.255.317}{doi:10.2140/pjm.2012.255.317}.
+
+\bibitem{DRRZ16}
+Atul Dixit, Nicolas Robles, Arindam Roy, and Alexandru Zaharescu, \emph{Koshliakov kernel and identities involving the {R}iemann zeta function}, J. Math. Anal. Appl. \textbf{435} (2016), no.~2, 1107--1128, arXiv:1505.01552, \href{https://doi.org/10.1016/j.jmaa.2015.11.007}{doi:10.1016/j.jmaa.2015.11.007}.
+
+\bibitem{DLMF}
+\emph{{\it NIST Digital Library of Mathematical Functions}}, \url{https://dlmf.nist.gov/}, Release 1.2.8 of 2026-09-15, 2026, F.~W.~J. Olver, A.~B. {Olde Daalhuis}, D.~W. Lozier, B.~I. Schneider, R.~F. Boisvert, C.~W. Clark, B.~R. Miller, B.~V. Saunders, H.~S. Cohl, and M.~A. McClain, eds.
+
+\bibitem{Dys09}
+Freeman Dyson, \emph{Birds and frogs}, Notices Amer. Math. Soc. \textbf{56} (2009), no.~2, 212--223.
+
+\bibitem{GV64}
+I.~M. Gel'fand and N.~Ya. Vilenkin, \emph{Generalized functions. {V}ol. 4: {A}pplications of harmonic analysis}, Academic Press, New York--London, 1964, Translated from the Russian by Amiel Feinstein.
+
+\bibitem{Gon23}
+Felipe Gon{\c{c}}alves, \emph{A classification of {F}ourier summation formulas and crystalline measures}, 2023, arXiv:2312.11185.
+
+\bibitem{GV25}
+Felipe Gon{\c{c}}alves and Guilherme Vedana, \emph{A complete classification of {F}ourier summation formulas on the real line}, 2025, arXiv:2504.02741.
+
+\bibitem{Gui48}
+A.~P. Guinand, \emph{A summation formula in the theory of prime numbers}, Proc. London Math. Soc. (2) \textbf{50} (1948), 107--119, \href{https://doi.org/10.1112/plms/s2-50.2.107}{doi:10.1112/plms/s2-50.2.107}.
+
+\bibitem{Gui49}
+\bysame, \emph{Fourier reciprocities and the {R}iemann zeta-function}, Proc. London Math. Soc. (2) \textbf{51} (1949), 401--414, \href{https://doi.org/10.1112/plms/s2-51.6.401}{doi:10.1112/plms/s2-51.6.401}.
+
+\bibitem{Gui59}
+\bysame, \emph{Concordance and the harmonic analysis of sequences}, Acta Math. \textbf{101} (1959), no.~3-4, 235--271, \href{https://doi.org/10.1007/BF02559556}{doi:10.1007/BF02559556}.
+
+\bibitem{Ham21}
+Hans Hamburger, \emph{{\"U}ber die {R}iemannsche {F}unktionalgleichung der {$\zeta$}-{F}unktion. {E}rste {M}itteilung}, Math. Z. \textbf{10} (1921), no.~3-4, 240--254, \href{https://doi.org/10.1007/BF01211612}{doi:10.1007/BF01211612}.
+
+\bibitem{Ham21b}
+\bysame, \emph{{\"U}ber die {R}iemannsche {F}unktionalgleichung der {$\zeta$}-{F}unktion. {Z}weite {M}itteilung}, Math. Z. \textbf{11} (1921), no.~3-4, 224--245, \href{https://doi.org/10.1007/BF01203626}{doi:10.1007/BF01203626}.
+
+\bibitem{HMR19}
+Thomas Hartman, Dalimil Maz{\'a}{\v{c}}, and Leonardo Rastelli, \emph{Sphere packing and quantum gravity}, J. High Energy Phys. (2019), no.~12, 048, arXiv:1905.01319, \href{https://doi.org/10.1007/JHEP12(2019)048}{doi:10.1007/JHEP12(2019)048}.
+
+\bibitem{Joh17}
+Fredrik Johansson, \emph{Arb: efficient arbitrary-precision midpoint-radius interval arithmetic}, IEEE Trans. Comput. \textbf{66} (2017), no.~8, 1281--1292, \href{https://doi.org/10.1109/TC.2017.2690633}{doi:10.1109/TC.2017.2690633}.
+
+\bibitem{N3}
+Nic Johns, \emph{Critical conductors of small archimedean data}, In preparation, 2026.
+
+\bibitem{N2}
+\bysame, \emph{Extra prime atoms in positive solutions of the explicit formula: theta-group class sums and an obstruction}, In preparation, 2026.
+
+\bibitem{N1}
+\bysame, \emph{Hermite interpolation at the prime powers: a positivity calculus, a polynomial model, and a family of test functions vanishing at the zeros of {$\zeta(s)$}}, In preparation, 2026.
+
+\bibitem{N4}
+\bysame, \emph{Integer-weight solutions of the explicit formula: a characterisation of {$\zeta$} among uniformly discrete {B}eurling systems}, In preparation, 2026.
+
+\bibitem{KP99}
+Jerzy Kaczorowski and Alberto Perelli, \emph{On the structure of the {S}elberg class, {I}: {$0\le d\le 1$}}, Acta Math. \textbf{182} (1999), no.~2, 207--241, \href{https://doi.org/10.1007/BF02392574}{doi:10.1007/BF02392574}.
+
+\bibitem{Kat04}
+Yitzhak Katznelson, \emph{An introduction to harmonic analysis}, third ed., Cambridge Mathematical Library, Cambridge University Press, Cambridge, 2004, \href{https://doi.org/10.1017/CBO9781139165372}{doi:10.1017/CBO9781139165372}.
+
+\bibitem{Kno94}
+Marvin~I. Knopp, \emph{On {D}irichlet series satisfying {R}iemann's functional equation}, Invent. Math. \textbf{117} (1994), no.~3, 361--372, \href{https://doi.org/10.1007/BF01232248}{doi:10.1007/BF01232248}.
+
+\bibitem{Kno00}
+\bysame, \emph{Hamburger's theorem on {$\zeta(s)$} and the abundance principle for {D}irichlet series with functional equations}, Number Theory (R.~P. Bambah, V.~C. Dumir, and R.~J. Hans-Gill, eds.), Trends Math., Birkh{\"a}user, Basel, 2000, pp.~201--216.
+
+\bibitem{Kos29}
+N.~S. Koshliakov, \emph{On {V}orono{\"\i}'s sum-formula}, Messenger Math. \textbf{58} (1929), 30--32.
+
+\bibitem{KMP24}
+Petr Kravchuk, Dalimil Maz{\'a}{\v{c}}, and Sridip Pal, \emph{Automorphic spectra and the conformal bootstrap}, Comm. Amer. Math. Soc. \textbf{4} (2024), no.~1, 1--63, arXiv:2111.12716, \href{https://doi.org/10.1090/cams/26}{doi:10.1090/cams/26}.
+
+\bibitem{Lag99}
+Jeffrey~C. Lagarias, \emph{Beurling generalized integers with the {D}elone property}, Forum Math. \textbf{11} (1999), no.~3, 295, \href{https://doi.org/10.1515/form.1999.295}{doi:10.1515/form.1999.295}.
+
+\bibitem{Lam26}
+Youness Lamzouri, \emph{A new proof that more than {$2/3$} of the zeros of the {R}iemann zeta function are simple and on the critical line}, 2026, arXiv:2609.02882.
+
+\bibitem{LO15}
+Nir Lev and Alexander Olevskii, \emph{Quasicrystals and {P}oisson's summation formula}, Invent. Math. \textbf{200} (2015), no.~2, 585--606, \href{https://doi.org/10.1007/s00222-014-0542-z}{doi:10.1007/s00222-014-0542-z}.
+
+\bibitem{Mes86}
+Jean-Fran{\c{c}}ois Mestre, \emph{Formules explicites et minorations de conducteurs de vari{\'e}t{\'e}s alg{\'e}briques}, Compositio Math. \textbf{58} (1986), no.~2, 209--232.
+
+\bibitem{Mil02}
+Stephen~D. Miller, \emph{The highest lowest zero and other applications of positivity}, Duke Math. J. \textbf{112} (2002), no.~1, 83--116, \href{https://doi.org/10.1215/S0012-9074-02-11213-7}{doi:10.1215/S0012-9074-02-11213-7}.
+
+\bibitem{MV07}
+Hugh~L. Montgomery and Robert~C. Vaughan, \emph{Multiplicative number theory. {I}. {C}lassical theory}, Cambridge Studies in Advanced Mathematics, vol.~97, Cambridge University Press, Cambridge, 2007, \href{https://doi.org/10.1017/CBO9780511618314}{doi:10.1017/CBO9780511618314}.
+
+\bibitem{Odl76}
+A.~M. Odlyzko, \emph{Discriminant bounds}, Unpublished tables, dated 29 November 1976; available at \url{https://www-users.cse.umn.edu/~odlyzko/unpublished/index.html}, 1976.
+
+\bibitem{Odl90}
+\bysame, \emph{Bounds for discriminants and related estimates for class numbers, regulators and zeros of zeta functions: a survey of recent results}, S{\'e}m. Th{\'e}or. Nombres Bordeaux (2) \textbf{2} (1990), no.~1, 119--141, \href{https://doi.org/10.5802/jtnb.22}{doi:10.5802/jtnb.22}.
+
+\bibitem{Odl77}
+Andrew~M. Odlyzko, \emph{On conductors and discriminants}, Algebraic Number Fields: {$L$}-functions and {G}alois Properties ({P}roc. {S}ympos., {U}niv. {D}urham, {D}urham, 1975) (Albrecht Fr{\"o}hlich, ed.), Academic Press, London, 1977, pp.~377--407.
+
+\bibitem{Per17}
+Alberto Perelli, \emph{Converse theorems: from the {R}iemann zeta function to the {S}elberg class}, Boll. Unione Mat. Ital. \textbf{10} (2017), no.~1, 29--53, arXiv:1605.02354, \href{https://doi.org/10.1007/s40574-016-0085-x}{doi:10.1007/s40574-016-0085-x}.
+
+\bibitem{Poi77b}
+Georges Poitou, \emph{Minorations de discriminants (d'apr{\`e}s {A}. {M}. {O}dlyzko)}, S{\'e}minaire {B}ourbaki, {V}ol. 1975/76, 28{\`e}me ann{\'e}e, {E}xp. {N}o. 479, Lecture Notes in Math., vol. 567, Springer, Berlin, 1977, pp.~136--153, \href{https://doi.org/10.1007/BFb0096066}{doi:10.1007/BFb0096066}.
+
+\bibitem{Poi77}
+\bysame, \emph{Sur les petits discriminants}, S{\'e}minaire {D}elange--{P}isot--{P}oitou, 18e ann{\'e}e: 1976/77, {T}h{\'e}orie des nombres, {F}asc. 1, Secr{\'e}tariat Math., Paris, 1977, pp.~Exp. No. 6, 1--17.
+
+\bibitem{Pol26}
+G.~P{\'o}lya, \emph{Bemerkung {\"u}ber die {I}ntegraldarstellung der {R}iemannschen {$\xi$}-{F}unktion}, Acta Math. \textbf{48} (1926), no.~3-4, 305--317, \href{https://doi.org/10.1007/BF02565336}{doi:10.1007/BF02565336}.
+
+\bibitem{Pol27}
+\bysame, \emph{{\"U}ber die algebraisch-funktionentheoretischen {U}ntersuchungen von {J}. {L}. {W}. {V}. {J}ensen}, Kgl. Danske Vid. Selsk. Math.-Fys. Medd. \textbf{7} (1927), no.~17, 3--33.
+
+\bibitem{RV19}
+Danylo Radchenko and Maryna Viazovska, \emph{Fourier interpolation on the real line}, Publ. Math. Inst. Hautes {\'E}tudes Sci. \textbf{129} (2019), 51--81, arXiv:1701.00265, \href{https://doi.org/10.1007/s10240-018-0101-z}{doi:10.1007/s10240-018-0101-z}.
+
+\bibitem{RR22}
+Timothy Redmond and Charles Ryavec, \emph{A prime power equation}, 2022, arXiv:2209.10522.
+
+\bibitem{Roc70}
+R.~Tyrrell Rockafellar, \emph{Convex analysis}, Princeton Mathematical Series, vol.~28, Princeton University Press, Princeton, NJ, 1970, \href{https://doi.org/10.1515/9781400873173}{doi:10.1515/9781400873173}.
+
+\bibitem{Sel92}
+Atle Selberg, \emph{Old and new conjectures and results about a class of {D}irichlet series}, Proceedings of the {A}malfi {C}onference on {A}nalytic {N}umber {T}heory ({M}aiori, 1989) (E.~Bombieri et~al., eds.), Univ. Salerno, Salerno, 1992, pp.~367--385.
+
+\bibitem{Ser75}
+Jean-Pierre Serre, \emph{Minorations de discriminants}, {\OE}uvres. {C}ollected Papers. {V}ol. {III} (1972--1984), Springer-Verlag, Berlin, 1986, No.~106; note of October 1975, pp.~240--243.
+
+\bibitem{Sou05}
+K.~Soundararajan, \emph{Degree 1 elements of the {S}elberg class}, Expo. Math. \textbf{23} (2005), no.~1, 65--70, arXiv:math/0306300, \href{https://doi.org/10.1016/j.exmath.2005.01.013}{doi:10.1016/j.exmath.2005.01.013}.
+
+\bibitem{Sta74}
+H.~M. Stark, \emph{Some effective cases of the {B}rauer--{S}iegel theorem}, Invent. Math. \textbf{23} (1974), no.~2, 135--152, \href{https://doi.org/10.1007/BF01405166}{doi:10.1007/BF01405166}.
+
+\bibitem{FLINT}
+{The FLINT team}, \emph{{FLINT}: {F}ast {L}ibrary for {N}umber {T}heory}, 2026, Version 3.6.0, \url{https://flintlib.org}.
+
+\bibitem{mpmath}
+{The mpmath development team}, \emph{mpmath: a {P}ython library for arbitrary-precision floating-point arithmetic}, 2023, Version 1.3.0, \url{https://mpmath.org/}.
+
+\bibitem{Tit86}
+E.~C. Titchmarsh, \emph{The theory of the {R}iemann zeta-function}, second ed., Clarendon Press, Oxford, 1986, Revised by D. R. Heath-Brown.
+
+\bibitem{Ved26}
+Guilherme Vedana, \emph{Classification of {F}ourier summation formulas on a horizontal strip}, 2026, arXiv:2608.10121v2.
+
+\bibitem{Via17}
+Maryna~S. Viazovska, \emph{The sphere packing problem in dimension 8}, Ann. of Math. (2) \textbf{185} (2017), no.~3, 991--1015, arXiv:1603.04246, \href{https://doi.org/10.4007/annals.2017.185.3.7}{doi:10.4007/annals.2017.185.3.7}.
+
+\bibitem{Wei52}
+Andr{\'e} Weil, \emph{Sur les ``formules explicites'' de la th{\'e}orie des nombres premiers}, Comm. S{\'e}m. Math. Univ. Lund [Medd. Lunds Univ. Mat. Sem.] \textbf{Tome suppl{\'e}mentaire} (1952), 252--265.
+
+\bibitem{Wei72}
+\bysame, \emph{Sur les formules explicites de la th{\'e}orie des nombres}, Izv. Akad. Nauk SSSR Ser. Mat. \textbf{36} (1972), 3--18.
+
+\bibitem{Yos92}
+Hiroyuki Yoshida, \emph{On {H}ermitian forms attached to zeta functions}, Zeta Functions in Geometry (N.~Kurokawa et~al., eds.), Adv. Stud. Pure Math., vol.~21, Kinokuniya, Tokyo, 1992, pp.~281--325, \href{https://doi.org/10.2969/aspm/02110281}{doi:10.2969/aspm/02110281}.
+
+\bibitem{Zhu26}
+Xuefeng Zhu, \emph{Weil positivity in compact windows: a finite reduction, certified two-sided bounds, and a {L}andau--{W}idom decay law}, 2026, arXiv:2608.24827v2.
+
+\end{thebibliography}

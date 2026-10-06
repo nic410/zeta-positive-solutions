@@ -1,0 +1,491 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[mathscr]{eucal}
+\usepackage{booktabs,enumitem,xcolor,array}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!40!black,urlcolor=blue!60!black]{hyperref}
+\hypersetup{
+  pdftitle={Critical conductors of small archimedean data},
+  pdfauthor={Nic Johns}
+}
+\setlength{\emergencystretch}{2.5em}
+
+% ---------------------------------------------------------------- macros
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\FT}[1]{\widehat{#1}}
+\newcommand{\hF}{\widehat F}
+\newcommand{\xin}[1]{\xi_{#1}}
+\newcommand{\GR}{\Gamma_{\mathbb R}}
+\newcommand{\GC}{\Gamma_{\mathbb C}}
+\newcommand{\Oinf}{\Omega_\infty}
+\newcommand{\Arch}{\mathcal A}
+\newcommand{\Tc}{\mathcal T}
+\newcommand{\Kad}{\mathcal K}
+\newcommand{\Cone}{\mathcal C}
+\newcommand{\ConeOPS}{\mathcal C_{\mathrm{OPS}}}
+\newcommand{\kstar}{\kappa^{*}}
+\newcommand{\kOPS}{\kappa^{*}_{\mathrm{OPS}}}
+\newcommand{\qmin}{q_{\min}}
+\newcommand{\Frep}{F_{\mathrm{rep}}}
+\newcommand{\pz}{p_\zeta}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Numerical observation}
+\numberwithin{equation}{section}
+
+\title[Critical conductors]{Critical conductors of small archimedean data}
+\author{Nic Johns}
+\date{October 2026}
+\subjclass[2020]{Primary 11R42; Secondary 11M26, 11R29, 90C05, 65G20}
+\keywords{Weil explicit formula, conductor bounds, discriminant bounds, linear programming, computer-assisted proof}
+
+\begin{document}
+
+\begin{abstract}
+For an archimedean type $\GR^a\GC^b$ with one simple pole, the least conductor at which the explicit formula admits a
+solution by positive measures on both sides is the optimum of the explicit-formula method of Odlyzko, Poitou and Serre for
+that type. We bracket it by computer-assisted certificates for $\GR^2$ and $\GC$, $4.98485094226764\le\qmin\le4.9994844$ and
+$2.981236704765\le\qmin\le2.997174$, and compare the computed values for seven types with the smallest discriminants of
+number fields with the same archimedean data. With the gap $\log2/2\pi$ common to all data, in every case tested the genuine
+Dedekind zeta function lies strictly above its critical conductor, while for the data of the Riemann zeta function
+$1-7.3\cdot10^{-906}\le\qmin$, and $\qmin\le1$ under the Riemann hypothesis. The two certified brackets hold for every gap up to
+$\log4.049/2\pi$, resp.\ $\log3.011/2\pi$; so the data of $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$ are not critical at their natural gaps
+$\log4/2\pi$ and $\log3/2\pi$ either. We also certify an
+admissible pair for the data of $\QQ(i)$, and that the pole weight of $\zeta$'s data, the residue of $-\zeta'/\zeta$ at $s=1$, is pinned:
+no admissible pair exists for weights $r<1-5.5794\cdot10^{-40}$ or $r>1+7.8551\cdot10^{-21}$.
+\end{abstract}
+
+\maketitle
+
+\noindent\textbf{Status.} This is a short computational note accompanying the companion paper \cite{PaperI}; it has not been
+peer-reviewed. Its theorems and propositions are computer-assisted certificates, each with its script and parameter file
+(Appendix~\ref{app:anc}), and are proved. The comparison of critical conductors with minimal discriminants
+(Section~\ref{sec:observations}), the slack as a function of the gap (Numerical observation~\ref{obs:gap-profile}) and the evidence on
+uniqueness at criticality are numerical observations: computed by finite
+linear programmes, not certified, and not used in any proof. The comparisons use the common gap $\xin2$. For $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$ the
+certified conclusions also hold at their natural gaps (Corollary~\ref{cor:natural-gaps}); for the other types the computations
+were made at the gap $\xin2$ only (Remark~\ref{rem:gap}). Whether the set of admissible pairs at a critical conductor is a single pair is open for
+every type, $\zeta$'s included (Question~\ref{conj:Ggen}).
+
+%======================================================================
+\section{Introduction}\label{sec:intro}
+%======================================================================
+
+Explicit-formula bounds for discriminants and conductors \cite{Odl76,Poi77,DyD80,Odl90} test the explicit formula of an
+$L$-function against a function $F\ge0$ whose Fourier transform is non-negative beyond the first prime. Miller \cite{Mil02} used
+the same positivity, with carefully chosen test functions, to show that $L$-functions of many archimedean types have a lower first
+zero than $\zeta$, or do not exist. For fixed archimedean data, the best bound
+that the method can give is the least conductor $\qmin$ at which the explicit formula admits a solution by positive measures
+on both sides, and by linear-programming duality it is $e^{-2\pi\kstar}$, where $\kstar$ is the slack of the data at conductor
+$1$ \cite{PaperI}. For the data of $\zeta$ (the factor $\GR$ and one simple pole) the companion paper certifies
+$\kstar\le1.1508391\cdot10^{-906}$, so that $\qmin\ge1-7.3\cdot10^{-906}$, while $\qmin\le1$ under the Riemann hypothesis; only the
+first of these two inequalities is unconditional. It also shows that the data of $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$
+are not critical, with the same gap $\xin2$ and also at their natural gaps, which are larger because the prime-ideal norms of these
+fields start at $4$ and $3$ (Fact~\ref{thm:notcritical}). Here we state the same certificates for the critical conductors at every gap
+(Corollary~\ref{cor:natural-gaps}) and discuss the role of the gap (Remark~\ref{rem:gap}).
+
+This note records the corresponding computations for other archimedean types $\GR^a\GC^b$ with one simple pole, in the spirit
+of Odlyzko's problem of determining the optimal explicit-formula bounds \cite{Odl90}. We certify brackets for the critical
+conductors of $\GR^2$ and $\GC$ (Theorem~\ref{thm:GR2} and Proposition~\ref{prop:GC}), valid for every gap up to slightly beyond the
+natural gaps of $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$ (Corollary~\ref{cor:natural-gaps}); the lower ends improve the
+corresponding degree-$2$ entries of Odlyzko's tables (Remark~\ref{rem:odlyzko}). We certify an admissible pair for the data of
+$\QQ(i)$ (Proposition~\ref{prop:Qi}) and a two-sided pin of the pole weight of $\zeta$'s data (Theorem~\ref{thm:polepin}).
+For seven types, computed critical conductors are compared with the smallest discriminants of number fields with the same
+archimedean data (Numerical observation~\ref{obs:critical-conductors}): with the gap $\xin2$, in every case the genuine field lies
+strictly above its critical conductor, and the computed critical objects are not arithmetic.
+
+%======================================================================
+\section{Setting}\label{sec:setting}
+%======================================================================
+
+We recall the definitions and results of \cite{PaperI} that are used; statements quoted from it are called Facts. We write
+$\hF(\xi)=\int_\RR F(t)e^{-2\pi i\xi t}\dd t$, $\xin n=\log n/(2\pi)$, and $\xin2=\log2/(2\pi)$ for the \emph{gap}, which is the same
+for all archimedean data below, except in Corollary~\ref{cor:natural-gaps} (Remark~\ref{rem:gap}). The test class
+$\Tc=\bigcup_{0<\delta<1/2}\Tc_\delta$ consists of the even functions $F$, real on $\RR$ and analytic in a neighbourhood of
+$\{\lvert\Im z\rvert\le\frac12+\delta\}$ for some $\delta$, with $\sup(1+\lvert z\rvert)^2\lvert F(z)\rvert<\infty$ there.
+
+For a degree $d\ge1$, shifts $\kappa=(\kappa_1,\dots,\kappa_d)$, a conductor $q>0$ and a pole weight $r>0$ put
+\begin{gather*}
+\Arch_{\kappa,q,r}(F):=r\bigl(F(\tfrac i2)+F(-\tfrac i2)\bigr)+\int_\RR F(t)\rho(t)\dd t,\\
+\rho(t):=\frac1{2\pi}\Bigl[\log q+\sum_{j\le d}\bigl(\Re\psi\bigl(\tfrac{\frac12+\kappa_j+it}{2}\bigr)-\log\pi\bigr)\Bigr],
+\end{gather*}
+with $\psi=\Gamma'/\Gamma$. The data of $\zeta$ are $d=1$, $\kappa=(0)$, $q=r=1$; $\GR^2$ has $\kappa=(0,0)$; $\GC(s)\propto\GR(s)\GR(s+1)$ has
+$\kappa=(0,1)$; in general $\GR^a\GC^b$ has $a+b$ shifts $0$ and $b$ shifts $1$. The \emph{pole weight} $r$ is the residue at $s=1$ of
+$-L'/L$ for an $L$-function $L$ with these data, that is, the coefficient of $F(\frac i2)+F(-\frac i2)$ in its explicit formula; it
+is not the residue of $L$ itself, which changes when $L$ is multiplied by a non-zero constant, while $-L'/L$ and the explicit
+formula do not. A simple pole gives $r=1$. An \emph{admissible pair} for $\Arch'=\Arch_{\kappa,q,r}$ is a
+pair $(\mu,\nu)$ of positive Radon measures, $\mu$ even on $\RR$ and $\nu$ on $[\xin2,\infty)$, such that
+$\Arch'(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$ for every $F\in\Tc$, with absolutely convergent integrals; $\Kad(\Arch')$ is the set of
+admissible pairs. Put
+\[
+\Cone:=\{F\in\Tc:F\ge0\text{ on }\RR,\ \hF\ge0\text{ on }[\xin2,\infty)\},\qquad
+\ConeOPS:=\{F\in\Tc:F\ge0\text{ and }\hF\ge0\text{ on }\RR\},
+\]
+$\kstar(\Arch'):=\inf\{\Arch'(F):F\in\Cone,\ \int F=1\}$, and $\kOPS(\Arch')$ likewise with $\ConeOPS$. Since
+$\Arch_{\kappa,q',r}=\Arch_{\kappa,q,r}+\frac{\log(q'/q)}{2\pi}\int$, feasibility is monotone in $q$, and
+$\kstar(\Arch_{\kappa,q,r})=\kstar(\Arch_{\kappa,1,r})+\frac{\log q}{2\pi}$. The \emph{critical conductor} is
+$\qmin(\kappa,r):=\inf\{q:\Kad(\Arch_{\kappa,q,r})\ne\emptyset\}$.
+
+\emph{Other gaps.} For $g>0$, replacing $[\xin2,\infty)$ by $[g,\infty)$ in these definitions defines admissible pairs \emph{at the gap $g$},
+the cone $\Cone_g$, the slack $\kstar_g$ and the critical conductor $q_{\min,g}$; for $g=\xin2$ they are the objects above. A larger gap
+allows fewer pairs and gives a larger cone, so $q_{\min,g}$ is non-decreasing and $\kstar_g$ is non-increasing in $g$.
+
+\begin{lemma}[Weak duality and the critical conductor]\label{lem:weak-duality}
+\textup{(a)} If $(\mu,\nu)$ is admissible for $\Arch'$ and $F\in\Cone$, then for Borel sets $I\subseteq\RR$ and
+$J\subseteq[\xin2,\infty)$, $(\inf_IF)\mu(I)+\frac1\pi(\inf_J\hF)\nu(J)\le\Arch'(F)$; in particular $\Arch'(F)\ge0$, and if $\int F=1$ no
+admissible $\mu$ satisfies $\mu\ge\lambda\dd t$ with $\lambda>\Arch'(F)$. \textup{(b)} An admissible pair exists if and only if
+$\kstar(\Arch')\ge0$; hence $\qmin(\kappa,r)=e^{-2\pi\kstar(\Arch_{\kappa,1,r})}$.
+\end{lemma}
+
+\begin{proof}
+For $\zeta$'s data, (a) is \cite[Lemma~2.5]{PaperI} and (b) is \cite[Theorem~2.7 and Proposition~2.10]{PaperI}. Part (a) needs one line:
+for an admissible pair and $F\in\Cone$, both integrands in $\Arch'(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$ are non-negative where the
+measures live. For (b), the proofs in \cite{PaperI} use only that the archimedean functional is $\lVert\cdot\rVert_\delta$-continuous on each
+$\Tc_\delta$ and the bounds for its values on the test functions of the proof of \cite[Lemma~2.6]{PaperI}, which follow from the growth of
+the archimedean weight. Both hold for $\Arch_{\kappa,q,r}$: its pole term $r(F(\frac i2)+F(-\frac i2))$ is $\lVert\cdot\rVert_\delta$-continuous, and
+$\rho$ is continuous with $\rho(t)=\frac d{2\pi}\log\lvert t\rvert+O(1)$, as for $\zeta$ with $d=1$. So these proofs apply verbatim; the
+conductor enters as $\frac{\log q}{2\pi}$ times Lebesgue measure, which gives the formula for $\qmin$.
+\end{proof}
+
+\begin{lemma}[Herglotz form of an admissible pair]\label{lem:herglotz}
+Let $\tilde\nu\ge0$ be a measure on $[2,\infty)$ such that $\sigma:=\tilde\nu-r\one_{[2,\infty)}(x)\dd x$ satisfies
+$\int x^{-1/2}\dd\lvert\sigma\rvert(x)<\infty$, and put $\mathcal L(s):=\int x^{-s}\dd\tilde\nu(x)$ for $\Re s>1$. Then $\mathcal L$ extends
+continuously to $\Re s\ge\frac12$, $s\ne1$, as $r2^{1-s}/(s-1)+\int x^{-s}\dd\sigma$. Let $\mu(t):=\rho(t)-\frac1\pi\Re\mathcal L(\frac12+it)$,
+and let $\nu$ be the image of $x^{-1/2}\tilde\nu$ under $x\mapsto\log x/2\pi$. Then $\Arch_{\kappa,q,r}(F)=\int F\mu\dd t+\frac1\pi\int\hF\dd\nu$
+for every $F\in\Tc$. Hence $(\mu\dd t,\nu)$ is admissible for $\Arch_{\kappa,q,r}$ if and only if $\mu\ge0$.
+\end{lemma}
+
+\begin{proof}
+For $r=1$ and the data $\GR$, $\GR^2$, $\GC$ this is \cite[Lemma~5.7]{PaperI}. Its proof shifts the contour in
+$\frac1\pi\int\hF\dd\nu=\frac1\pi\int F(w)\mathcal L(\frac12+iw)\dd w$ past the simple pole of $\mathcal L$ at $s=1$, whose residue, here $r$,
+produces the pole term $r(F(\frac i2)+F(-\frac i2))$, while the archimedean weight enters only through the definition of $\mu$. So the proof
+applies verbatim for every $r>0$ and every $\kappa$.
+\end{proof}
+
+\emph{Explicit pairs.} The pairs certified below have the following form: on $x\ge1$,
+\[
+\tilde\nu=\one_{[2,\infty)}(x)\dd x-\sum_{i<n}f_i\one_{[e^{v_i},e^{v_{i+1}}]}(x)\dd x+\sum_b(\text{bump}_b)-\sum_ma_mx^{-m}\one_{(X,\infty)}(x)\dd x,
+\]
+with $0\le f_i\le1$, cell edges $\log2=v_0<\dots<v_n$, $X=e^{v_n}$, $a_m\ge0$, and bumps
+$w_bx^{1/2}e^{-u_b/2}\phi(\log x-u_b)\dd(\log x)$ with $w_b\ge0$, where $\phi$ is the density of a rescaled Irwin--Hall
+distribution, supported on $[-\eps,\eps]$, with Fourier transform $S(t)=\operatorname{sinc}(\eps t/k)^k$ (for $\eps=0$, atoms). Then
+$\tilde\nu\ge0$ with support in $[2,\infty)$ provided $u_b-\eps\ge\log2$ for every bump and $1-\sum_ma_mx^{-m}\ge0$ on $(X,\infty)$; since
+$a_m\ge0$ the last function is increasing, so $x=X$ suffices. In Lemma~\ref{lem:herglotz} (with $r=1$), $\mu$ is explicit:
+\[
+\mu(t)=\rho(t)+\frac1\pi\sum_{j=0}^nC_je^{v_j/2}E(t,v_j)-\frac{S(t)}\pi\sum_bm_b\cos(tu_b)+\sum_m\frac{a_m}\pi X^{1/2-m}T_m(t),
+\]
+with $E(t,v)=\Re[e^{itv}/(\frac12+it)]$, $T_m(t)=\Re[e^{-itL}/(m-\frac12+it)]$, $L=\log X$, $C_0=1-f_0$, $C_j=f_{j-1}-f_j$
+($0<j<n$), $C_n=f_{n-1}$ and $m_b=w_be^{-u_b/2}$. The verifier proves $\mu\ge0$ on a finite interval $[0,T]$ by mean-value steps,
+$\mu(t)\ge\mu(t_0)-(h+d)\sup\lvert\mu'\rvert$ on $[t_0-d,t_0+h+d]$, with $\mu'$ enclosed on the whole step in ball arithmetic. Beyond
+$T$ it uses monotone majorants: $\rho$ is increasing, while $\lvert E(t,v)\rvert\le(\frac14+t^2)^{-1/2}$,
+$\lvert S(t)\rvert\le\min(1,(k/\eps t)^k)$ and $\lvert T_m(t)\rvert\le((m-\frac12)^2+t^2)^{-1/2}$ are decreasing, so for $t\ge T$, $\mu(t)$ is at
+least $\rho(T)$ minus the sum of these majorants at $T$, with the coefficients in absolute value.
+
+\emph{Gaussian--Laguerre certificates.} Let $f_k(u):=L_k^{(-1/2)}(2\pi u^2)e^{-\pi u^2}$; these are even Hermite functions, with
+$\widehat{f_k}=(-1)^kf_k$, the basis with prescribed double roots used for sign-uncertainty problems in \cite{CG19}. The dual
+certificates below are functions
+\[
+\Frep(t):=\sum_{k\le K}a_kf_k(t/s)+\eps\bigl(e^{-\pi t^2/(16s^2)}+e^{-16\pi t^2/s^2}\bigr)
+\]
+with explicit rationals $a_k$. Writing $F:=\sum_ka_kf_k(t/s)$, $X=2\pi t^2/s^2$ and $Y=2\pi s^2\xi^2$, one has $F=e^{-X/2}P(X)$ and
+$\hF=s\,e^{-Y/2}Q(Y)$ with $P,Q\in\QQ[X]$, and exact Sturm sequences decide the positivity of $P$ on $(0,\infty)$ and of $Q$ on the
+range of $Y$ in question. The two Gaussians of the repair term are positive with positive Fourier transforms, so $\Frep\ge F$
+and $\FT F_{\mathrm{rep}}\ge\hF$ pointwise; the repair term is not needed for these positivity statements, and it adds the explicit
+lower bounds $\Frep(t)\ge\eps e^{-\pi t^2/(16s^2)}$ and, where $\hF\ge0$, $\FT F_{\mathrm{rep}}(\xi)\ge\frac{\eps s}4e^{-\pi s^2\xi^2/16}$.
+$\Arch'(\Frep)$ is one rigorous ball-arithmetic integral of $\Frep$ against the digamma weight on a finite interval, plus an
+explicit tail bound.
+
+\begin{fact}[Results of \cite{PaperI} on $\zeta$, $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$]\label{thm:notcritical}
+\textup{(a)} For $\zeta$'s data, $-2.7112\cdot10^{-3}\le\kstar\le1.1508391\cdot10^{-906}$ \textup{(}\cite[Theorem~C]{PaperI}\textup{)}; and
+$\kstar\le\kOPS\le9.9462\cdot10^{-41}$, certified by a Gaussian--Laguerre certificate with $K=128$, $s=13$, $\eps=10^{-56}$ whose
+transform is positive on all of $\RR$ \textup{(}\cite[Proposition~5.3]{PaperI}\textup{)}. \textup{(b)} For the archimedean data of $\QQ(\sqrt5)$
+\textup{(}$\GR^2$, $q=5$, $r=1$\textup{)} and every gap $g\in(0,\xin{4.04915}]$, in particular for $\xin2$ and for the natural gap $\xin4$ of the
+field, $1.64\cdot10^{-5}\le\kstar_g\le4.83\cdot10^{-4}$; for the data of $\QQ(\sqrt{-3})$ \textup{(}$\GC$, $q=3$, $r=1$\textup{)} and every gap
+$g\in(0,\xin{3.011664}]$, in particular for $\xin2$ and for the natural gap $\xin3$, $1.50\cdot10^{-4}\le\kstar_g\le9.99\cdot10^{-4}$. In both cases
+some admissible pair has zero measure bounded below by a positive multiple of $\dd t$, and the set of admissible pairs is not a
+singleton \textup{(}\cite[Proposition~5.9]{PaperI}\textup{)}.
+\end{fact}
+
+The proof of (b) in \cite{PaperI} combines the lower bound of Theorem~\ref{thm:GR2} below (resp.\ Proposition~\ref{prop:GC}), read at
+$q=5$ (resp.\ $q=3$), with the explicit pair of the same statement. Corollary~\ref{cor:natural-gaps} below states the same certificates
+in terms of the critical conductors $q_{\min,g}$.
+
+%======================================================================
+\section{Brackets for two critical conductors}\label{sec:brackets}
+%======================================================================
+
+\begin{theorem}[A non-arithmetic critical point, bracketed]\label{thm:GR2}
+For the data $\GR^2$ with one simple pole \textup{(}$\kappa=(0,0)$, $r=1$\textup{)},
+\[
+4.98485094226764\le\qmin\le4.9994844 .
+\]
+More precisely: an explicit Gaussian--Laguerre certificate $\Frep\in\Cone$ with $K=80$ and $s=7$ has
+$\Arch_{(0,0),1,1}(\Frep)/\int\Frep\le-0.25566705789831547$, so no admissible pair exists for $q<4.98485094226764$; and an explicit
+pair of the form above at $q_0=e^{1.6093347792651136}\le4.9994844$ has $\mu\ge6.59\cdot10^{-9}$ on $[0,800]$ and $\mu\ge1.79$ on
+$[800,\infty)$.
+\end{theorem}
+
+\begin{proof}[Proof \textup{(computer-assisted)}]
+Lower bound: with the notation above, exact Sturm sequences show that $P$ has no root in $(0,\infty)$, that $Q$ has no root
+in $(Y_{\mathrm{lo}},\infty)$ for a rational $Y_{\mathrm{lo}}$ below the image of $\xin2$, and that the relevant end values and leading
+coefficients are positive; so $\Frep>0$ on $\RR$ and $\FT F_{\mathrm{rep}}>0$ on $[\xin2,\infty)$, and $\Frep\in\Cone$. In fact $Q$ has no
+root in $(0,\infty)$ and $Q(0)>0$, so $\FT F_{\mathrm{rep}}>0$ on all of $\RR$ and $\Frep\in\ConeOPS$. The functional is one
+Arb integral at $448$ bits (\texttt{python} \nolinkurl{general/verify_general.py} \nolinkurl{general/params/gammaR2_K80_s7.json}). Then
+$\Arch_{(0,0),q,1}(\Frep)<0$ for $\log q<2\pi\cdot0.25566705789831547$, and Lemma~\ref{lem:weak-duality} applies. Upper bound:
+\texttt{python} \nolinkurl{general/verify_pair.py} \nolinkurl{general/params/pair_gammaR2_X240.json} checks $\tilde\nu\ge0$ and
+$\supp\tilde\nu\subseteq[2,\infty)$ (the first edge is exactly $\log2$ in the $\log x$ variable), and proves $\mu>0$ on $[0,800]$ by
+$17\,214$ mean-value steps with $\mu'$ enclosed in Arb ($128$ bits) on each whole step, and on $[800,\infty)$ by the monotone
+majorants described in Section~\ref{sec:setting}. Lemma~\ref{lem:herglotz} gives admissibility at $q_0$, and feasibility for $q\ge q_0$
+follows by monotonicity.
+\end{proof}
+
+\begin{proposition}[The critical conductor of $\GC$]\label{prop:GC}
+For the data $\GC$ with one simple pole \textup{(}$\kappa=(0,1)$, $r=1$\textup{)}, $2.981236704765\le\qmin\le2.997174$.
+\end{proposition}
+
+\begin{proof}[Proof \textup{(computer-assisted)}]
+As for Theorem~\ref{thm:GR2}, with a Gaussian--Laguerre certificate for $\kappa=(0,1)$ ($K=64$, functions $f_k(t/9)$;
+\nolinkurl{general/params/gammaC_K64_s9.json}, which prints $\qmin\ge2.9812367047650810559$) and an explicit pair of the form above
+at $\log q_0=1.0976698108720329$ (\nolinkurl{general/params/pair_gammaC_X40.json}), whose zero density satisfies the certified floor
+$\mu\ge6.67\cdot10^{-8}$ on $\RR$. As in Theorem~\ref{thm:GR2}, the transform of the dual certificate is positive on all of $\RR$.
+\end{proof}
+
+Neither bracket uses the value of the gap in an essential way: the dual certificates have transforms positive on all of $\RR$,
+and the prime measures of the explicit pairs start well beyond $2$.
+
+\begin{corollary}[The brackets at other gaps]\label{cor:natural-gaps}
+\textup{(a)} For the data $\GR^2$ with one simple pole, $4.98485094226764\le q_{\min,g}\le4.9994844$ for every gap $g$ with
+$0<g\le\xin{4.04915}$; and the data of $\QQ(\sqrt5)$ \textup{(}$\GR^2$, $q=5$, $r=1$\textup{)} have $1.64\cdot10^{-5}\le\kstar_g\le4.83\cdot10^{-4}$
+for these $g$.
+\textup{(b)} For the data $\GC$ with one simple pole, $2.981236704765\le q_{\min,g}\le2.997174$ for every gap $g$ with
+$0<g\le\xin{3.01166}$; and the data of $\QQ(\sqrt{-3})$ \textup{(}$\GC$, $q=3$, $r=1$\textup{)} have $1.50\cdot10^{-4}\le\kstar_g\le9.99\cdot10^{-4}$
+for these $g$.
+
+\noindent In particular, at the natural gaps $\xin4$ of $\QQ(\sqrt5)$ and $\xin3$ of $\QQ(\sqrt{-3})$, some admissible pair has zero measure
+bounded below by a positive multiple of $\dd t$, and these data are not critical.
+\end{corollary}
+
+\begin{proof}[Proof \textup{(computer-assisted)}]
+At a gap $g$, weak duality takes the form of Lemma~\ref{lem:weak-duality}(a) with $\Cone_g$ in place of $\Cone$: for an admissible
+pair at the gap $g$ and $F\in\Cone_g$, both integrands in $\Arch'(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$ are non-negative on the supports
+of the measures. The identity of Lemma~\ref{lem:herglotz} does not involve the gap, so its pair is admissible at the gap $g$ if and only
+if $\mu\ge0$ and $\tilde\nu$ is carried by $[e^{2\pi g},\infty)$.
+
+(a) The dual certificate of Theorem~\ref{thm:GR2} lies in $\ConeOPS\subseteq\Cone_g$ (its log reports
+\texttt{F\_rep\^{} > 0 on R (OPS cone): True}), so no admissible pair exists at any gap for $q<4.98485094226764$, and at $q=5$ it
+gives $\kstar_g\le-0.25566705789831547+\log5/2\pi\le4.83\cdot10^{-4}$. Run with the option \nolinkurl{--gap-x} \nolinkurl{4}, the verifier
+of the explicit pair of Theorem~\ref{thm:GR2} proves, by exact comparisons of the cell edges and outward-rounded bounds for the bump
+supports, that \texttt{supp nu\textasciitilde{} in [x0, oo) with x0 >= 4.049150}, and reports \texttt{admissible at gap xi\_4 (prime
+measure on [4, oo)): True}. So the pair is admissible at every gap $g\le\xin{x_0}$, and $q_{\min,g}\le4.9994844$ there. With $\mu$
+replaced by $\mu+\frac1{2\pi}\log(5/q_0)$ the same $\tilde\nu$ gives an admissible pair for the data of $\QQ(\sqrt5)$ whose zero measure
+is at least $1.64\cdot10^{-5}\dd t$, so $\kstar_g\ge1.64\cdot10^{-5}$. The script \nolinkurl{general/corollary_slack.py} combines the two
+runs: \texttt{python} \nolinkurl{general/corollary_slack.py} \nolinkurl{general/params/corollary_qsqrt5.json} \nolinkurl{--gap-x}
+\nolinkurl{4} prints $4.984850942267643\le\qmin\le4.999484361$ and $1.6420748\cdot10^{-5}\le\kstar\le0.00048294147$, and that both hold
+for every gap $g$ with $e^{2\pi g}\le x_0$.
+
+(b) The same, with Proposition~\ref{prop:GC}: its dual certificate lies in $\ConeOPS$; the verifier of its pair, run with
+\nolinkurl{--gap-x} \nolinkurl{3}, proves $x_0\ge3.011664$ and admissibility at the gap $\xin3$; and the run of
+\nolinkurl{general/corollary_slack.py} with \nolinkurl{general/params/corollary_qsqrtm3.json} \nolinkurl{--gap-x} \nolinkurl{3} prints
+$0.00015006672\le\kstar\le0.00099854968$ for the data of $\QQ(\sqrt{-3})$.
+\end{proof}
+
+\begin{observation}[The slack as a function of the gap]\label{obs:gap-profile}
+The slack $\kstar_g$ at $g=\xin n$ was also computed by exact sums-of-squares linear programmes in the Gaussian--Laguerre basis
+($K\le80$, an interior-point solver at $640$ bits, duality gaps below $10^{-24}$; every solution with $K\ge32$ was re-checked at
+$256$ bits on fine grids, with refined local minima); these computations are not part of the ancillary files. For $\zeta$'s data
+and for those of $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$, $\kstar_g$ is constant for $0<g\le\xin{n_1}$, where $n_1$ is the first prime atom
+of the extremal pair of the linear programme, and equals there the slack $\kOPS$ of the cone $\ConeOPS$; beyond $\xin{n_1}$ it
+decreases roughly linearly in $g$, with slope between $-1.85$ and $-1.5$, and becomes negative. For $\zeta$'s data the computed values of the
+constant decay like $10^{-0.3K}$, consistent with $0$ (unconditionally only $-2.7112\cdot10^{-3}\le\kstar\le1.1508391\cdot10^{-906}$ is
+known, and $\kstar\ge0$ holds if admissible pairs exist, for instance under the Riemann hypothesis), and $n_1=2$; the slack is $-0.0470$ at $\xin{2.5}$ and $-0.0793$ at $\xin3$. For the
+data of $\QQ(\sqrt5)$ the constant is $4.8294\cdot10^{-4}$ and $n_1\approx4.3201$; the slack vanishes near $n\approx4.328$ and is
+$-0.0372$ at $\xin5$. For the data of $\QQ(\sqrt{-3})$ the constant is $9.9855\cdot10^{-4}$ and $n_1\approx3.2442$; the slack vanishes
+near $n\approx3.255$ and is $-0.0570$ at $\xin4$. Where Corollary~\ref{cor:natural-gaps} applies, every computed value with $K\ge32$ lies
+in its bracket. In these examples the extremal pair for $\zeta$'s data is arithmetic, its first prime atom being the prime $2$, while for
+the two fields the first atom falls between prime-ideal norms and the constant is positive; we draw no general conclusion from this.
+\end{observation}
+
+\begin{remark}[Comparison with Odlyzko's tables]\label{rem:odlyzko}
+If the generalised Riemann hypothesis holds for the Dedekind zeta function of a real (resp.\ imaginary) quadratic field $k$,
+then its own pair of measures (zeros on the zero side, prime ideals and their powers on the prime side, which lies beyond
+$\xin2$ because every norm is at least $2$) is admissible for the data $\GR^2$ (resp.\ $\GC$) at $q=\lvert d_k\rvert$, $r=1$, by the
+explicit formula for the Dedekind zeta function of $k$, which holds on $\Tc$ by the argument used for $\zeta$; so
+$\lvert d_k\rvert\ge\qmin$. In the normalisation of root discriminants, the lower ends of Theorem~\ref{thm:GR2} and
+Proposition~\ref{prop:GC} are $4.98485^{1/2}=2.2327$ and $2.98123^{1/2}=1.7266$, against the GRH bounds $2.225$ and $1.722$ in
+degree $2$ of \cite[Tables~4 and~3, p.~134]{Odl90} (see also \cite{Odl76,DyD80}); the minimal root discriminants are
+$5^{1/2}=2.236$ and $3^{1/2}=1.732$. Squared, the tabulated bounds are $2.225^2\approx4.95<5$ and $1.722^2\approx2.97<3$, consistent with our
+brackets. In the sense of Cohn and Triantafillou \cite{CT22}, the explicit pairs of Theorem~\ref{thm:GR2} and
+Proposition~\ref{prop:GC} are dual certificates of non-sharpness: no test function in $\Cone$ can prove a conductor bound above
+$4.9994844$, resp.\ $2.997174$, so for these data the method cannot reach the minimal discriminants $5$ and $3$.
+\end{remark}
+
+\begin{remark}[The role of the gap]\label{rem:gap}
+Except in Corollary~\ref{cor:natural-gaps}, this note uses the gap $\xin2=\log2/2\pi$, the first prime of $\QQ$, for every archimedean
+type. For the data of a number field $k\ne\QQ$ this gap need not be natural. In $\QQ(\sqrt5)$ the primes $2$ and $3$ are inert, so the
+norms of the prime ideals are $4,5,9,11,11,\dots$; in $\QQ(\sqrt{-3})$ the first norm is $3$. At the gap $\xin4$, resp.\ $\xin3$,
+positivity of $\hF$ is required only beyond that point, so the cone is larger and $\kstar$ can only decrease; and if the generalised
+Riemann hypothesis holds for $\zeta_k$, the field's own pair is admissible at that gap, so there $\kstar\ge0$. So positive slack at
+the gap $\xin2$ does not by itself give positive slack at the natural gap. For these two fields it does
+(Corollary~\ref{cor:natural-gaps}): the dual certificates have transforms positive on all of $\RR$, and the explicit pairs put no prime
+mass below $x=4.049$, resp.\ $x=3.011$. The margins are small: the critical conductor of the data $\GR^2$ with one simple pole, which
+are those of $\QQ(\sqrt5)$ up to the conductor, lies in $[4.9848,4.9995]$ at every gap up to $\xin{4.049}$, so its distance below the
+discriminant $5$ is between $10^{-4}$ and about $3\cdot10^{-3}$ in relative terms. For the other types of Numerical
+observation~\ref{obs:critical-conductors} the computations were made at the gap $\xin2$ only, and their comparison with minimal
+discriminants may depend on the gap. In general the critical conductor can depend on the gap, and so can Question~\ref{conj:Ggen}.
+\end{remark}
+
+\begin{proposition}[An admissible pair for the data of $\QQ(i)$]\label{prop:Qi}
+For the data of $\QQ(i)$ \textup{(}$\GC$, $q=4$, $r=1$\textup{)} there is an admissible pair of the form above with $\mu\ge0.0217$ on
+$[0,300]$ and $\mu\ge0.4696$ on $[300,\infty)$. Hence $\kstar\ge0.0217$ for these data, and the set of admissible pairs is not a
+singleton.
+\end{proposition}
+
+\begin{proof}[Proof \textup{(computer-assisted)}]
+As for the upper bound in Theorem~\ref{thm:GR2}: the script \nolinkurl{general/verify_pair.py} with
+\nolinkurl{general/params/pair_Qi_X10.json} checks $\tilde\nu\ge0$ with support in $[2,\infty)$ and proves the bounds for $\mu$ by
+$1277$ mean-value steps with $\mu'$ enclosed in Arb, and by monotone majorants beyond $300$; the printed floor is
+$\mu\ge0.0222324$ on $\RR$. Lemma~\ref{lem:herglotz} gives admissibility, and $\mu\ge0.0217\dd t$ gives $\kstar\ge0.0217$ by
+Lemma~\ref{lem:weak-duality}. Adding to $\tilde\nu$ a small atom $w\delta_{x_1}$, $x_1\ge2$, changes $\mu$ by
+$-(w/\pi)x_1^{-1/2}\cos(t\log x_1)$; for small $w>0$ the result is a second admissible pair.
+\end{proof}
+
+%======================================================================
+\section{The pole weight of \texorpdfstring{$\zeta$}{zeta}'s data}\label{sec:pole}
+%======================================================================
+
+\begin{theorem}[The pole weight is pinned]\label{thm:polepin}
+For $\zeta$'s data with pole weight $r$, that is $\Arch_r(F):=r(F(\frac i2)+F(-\frac i2))+\int F\Oinf$ with
+$\Oinf(t)=\frac1{2\pi}(\Re\psi(\frac14+\frac{it}2)-\log\pi)$, there is no admissible pair if $r<1-5.5794\cdot10^{-40}$ or
+$r>1+7.8550942\cdot10^{-21}$. Under the Riemann hypothesis, $r=1$ is feasible.
+\end{theorem}
+
+\begin{proof}[Proof \textup{(computer-assisted)}]
+$\Arch_r(F)=\Arch_1(F)+(r-1)D$ with $D=F(\frac i2)+F(-\frac i2)$, so one certificate $F\in\Cone$ per side suffices. For the left
+side, the $K=128$ certificate of Fact~\ref{thm:notcritical}(a) has $D>0$, and its run (\texttt{python}
+\nolinkurl{general/verify_general.py} \nolinkurl{general/params/zeta_K128_s13.json}, also in the ancillary files of \cite{PaperI}) prints
+$\Arch_1(F)/D\le5.57930810147\cdot10^{-40}$. For the right side, a certificate with $K=80$, $s=12$, $\eps=10^{-30}$, whose transform is
+positive on $[\xin2,\infty)$ but negative on part of $(0,\xin2)$, has $D<0$ and $\Arch_1(F)/\lvert D\rvert\le7.85509419726\cdot10^{-21}$
+(\texttt{python} \nolinkurl{general/verify_general.py} \nolinkurl{general/params/zeta_K80_s12_edge.json}). In both cases $\Arch_r(F)<0$ beyond the
+stated thresholds, and Lemma~\ref{lem:weak-duality} applies. Under the Riemann hypothesis, $\zeta$'s own pair $\pz$ is admissible for
+$r=1$ \cite{PaperI}.
+\end{proof}
+
+The same verifier certifies $\kOPS\le7.24651\cdot10^{-32}$ with $K=104$ (parameter file
+\nolinkurl{general/params/zeta_K104_s13.json}); this certificate also has $D>0$, with $\Arch_1(F)/D\le4.06492480958\cdot10^{-31}$, which
+gives the weaker left pin $r<1-4.0649249\cdot10^{-31}$. Like the bound $\kOPS\le9.9462\cdot10^{-41}$ for $K=128$, the bound for
+$\kOPS$ needs no gap at $\xin2$ (the transform of the certificate is positive on all of $\RR$), so it is directly comparable with
+the classical tables \cite[Table~4]{Odl90}. Only this pinning is certified; we make no claim about the shape of
+the feasible region in other directions.
+
+%======================================================================
+\section{Numerical observations}\label{sec:observations}
+%======================================================================
+
+The observations below were computed but not certified, except where a certified statement is cited; none is used in a proof.
+
+\begin{observation}[Critical conductors of other Gamma types]\label{obs:critical-conductors}
+For each Gamma type with one simple pole, the critical conductor $e^{-2\pi\kstar_0}$, where $\kstar_0$ is the slack at
+$q=1$, was computed by linear programming at finite $K$ (converged in $K$, and reproduced to $8$ digits of $\kstar_0$ by
+an independent implementation; not certified except as in Theorem~\ref{thm:GR2} and Proposition~\ref{prop:GC}). We list it
+against the smallest absolute discriminant of a number field with these archimedean data:
+$\GC$: $2.981$ / $3$; $\GR^2$: $4.985$ / $5$; $\GR\GC$: $22.6$ / $23$; $\GR^3$: $48.2$ / $49$; $\GC^2$: $114.7$ / $117$;
+$\GR^2\GC$: $267.8$ / $275$; $\GR^4$: $694.6$ / $725$. With the gap $\xin2$, in every case tested the genuine Dedekind zeta
+function lies strictly above its critical conductor. For $\GR^2$ and $\GC$ this also holds at the natural gaps of $\QQ(\sqrt5)$ and
+$\QQ(\sqrt{-3})$, and is certified (Corollary~\ref{cor:natural-gaps}); for the other five types the computations were made at the gap
+$\xin2$ only, and the comparison may depend on the gap (Remark~\ref{rem:gap}). For $\zeta$, by contrast, $1-\qmin\le7.3\cdot10^{-906}$ (Fact~\ref{thm:notcritical}(a)),
+and $\qmin\le1$ under the Riemann hypothesis.
+\end{observation}
+
+\begin{observation}[The near-critical objects are not arithmetic]\label{obs:nonarith}
+Read from the parameter files: below $x\approx17.8$ the prime measure of the explicit pair of Theorem~\ref{thm:GR2} is a sum of
+narrow bumps (half-width $0.05$ in $\log x$), the first ones centred near $x\approx4.257$, $4.277$, $8.410$, $8.591$, $11.57$ and $12.47$;
+and the prime measure of the pair of Proposition~\ref{prop:Qi} has atoms at $x\approx3.089$, $3.113$, $4.693$, $4.731$, $5.425$ and
+$5.469$, and so on. The computed critical object for the data $\GR^2$ (from the linear programmes of Numerical
+observation~\ref{obs:gap-profile}) has zeros near $6.75$, $10.44$, $12.83$ and prime atoms near $x\approx4.3201$, $9.215$, $14.41$, and
+so on. None of these positions is an integer, so none of these measures resembles the
+prime-ideal measure of a number field (respectively of $\ZZ[i]$). So the critical object for these data appears to be
+non-arithmetic; this reading is heuristic.
+\end{observation}
+
+\begin{observation}[Window masses near the critical point of $\GR^2$]\label{obs:windows}
+For the data $\GR^2$, the largest mass that an admissible pair can put in four windows, two on the prime side (the images of
+$x\in(2.05,3.95)$ and of $x\in(5,8.5)$) and two on the zero side ($(0.5,6)$ and $(7.6,9.7)$), was computed by finite linear
+programmes ($K=48$) at conductors $\log q=\log\qmin+\delta$. It decreases as $\delta\downarrow0$, from $0.314$, $1.26$,
+$0.078$ and $0.67$ at $\delta=10^{-3}$ to $0.0044$, $0.148$, $0.00085$ and $0.022$ at $\delta=10^{-5}$, while for the slack data of
+$\QQ(\sqrt5)$ the same windows carry up to $0.60$, $1.57$, $0.20$ and $0.94$. These computations are not reproduced in the
+ancillary files. They are consistent with a single admissible pair at the critical conductor, but these computations at $\delta>0$
+do not show this: that would need a convergence statement for the dual problems as $\delta\to0$, which has only been computed.
+Similarly, in three one-parameter families of Gamma factors, finite linear programmes ($K=48$) showed no visible fattening of the
+set of admissible pairs at the critical conductor; finite computations of this kind can suggest, but not show, that a critical
+fibre is a single pair.
+\end{observation}
+
+%======================================================================
+\section{A question}\label{sec:question}
+%======================================================================
+
+For other archimedean data the question of uniqueness at criticality is open even numerically.
+
+\begin{question}[Uniqueness at criticality for other Gamma factors]\label{conj:Ggen}
+Let $\gamma=\GR^a\GC^b$ be a Gamma factor, with one simple pole at $s=1$ and the gap $\xin2$, and let $q_c(\gamma)$ be its critical
+conductor, at which the slack vanishes. Is the set of admissible pairs at $q=q_c(\gamma)$ a single pair?
+\end{question}
+
+The critical conductor, and with it the question, can depend on the gap (Remark~\ref{rem:gap}). For $\zeta$'s own type the
+question concerns Conjecture~U of \cite{PaperI} only when $\kstar=0$, for instance under the Riemann hypothesis and Conjecture~S of
+\cite{PaperI}. Then $q_c=1$, admissible pairs exist, and the question asks whether there is only one; under the Riemann hypothesis,
+which makes $\zeta$'s own pair admissible, this is Conjecture~U. If $\kstar\ne0$, it concerns a conductor $q_c\ne1$ and is unrelated
+to Conjecture~U. For $\GR^2$ the critical conductor is bracketed by Theorem~\ref{thm:GR2}. A first step would be to certify, at the critical
+conductor itself or at certified conductors converging to it, upper bounds for the window masses of Numerical
+observation~\ref{obs:windows}.
+
+\section*{AI-use statement}
+This note was produced with substantial use of AI. The mathematical arguments, the numerical computations and the text were generated by instances of Claude Opus 5.5
+(Anthropic) working as coordinated agents: one set of agents developed the arguments, separate agents acted as
+independent hostile referees of each component, and the referees' requested repairs were incorporated. The numerical
+certificates were computed by AI-written scripts that are included as supplementary material and can be rerun. The
+author initiated and directed this project, designed its verification process, and reviewed the results and the
+verification record, but did not independently check every step of the written proofs. The author takes full
+responsibility for the content of this note, including any errors, and welcomes independent verification and
+corrections.
+
+\appendix
+%======================================================================
+\section{Ancillary files}\label{app:anc}
+%======================================================================
+
+Every computer-assisted statement names its script and parameter file; the scripts need Python $\ge3.10$ with python-flint
+$0.9.0$ and mpmath $1.3.0$, and are run from the top directory of the ancillary files of this note, which are
+self-contained: the scripts \nolinkurl{general/verify_general.py}, \nolinkurl{general/verify_pair.py} and
+\nolinkurl{general/corollary_slack.py}, the parameter files in \nolinkurl{general/params/}, the summaries of the runs in
+\nolinkurl{general/results/} and the logs in \nolinkurl{general/logs/}. The certificates \nolinkurl{zeta_K104_s13.json},
+\nolinkurl{zeta_K80_s12_edge.json} and \nolinkurl{pair_Qi_X10.json} are used only here; the $K=128$ certificate
+\nolinkurl{zeta_K128_s13.json} and the certificates for $\GR^2$ and $\GC$ (\nolinkurl{gammaR2_K80_s7.json},
+\nolinkurl{pair_gammaR2_X240.json}, \nolinkurl{gammaC_K64_s9.json}, \nolinkurl{pair_gammaC_X40.json}) are also shipped, as identical
+files, with the ancillary files of \cite{PaperI}. The script \nolinkurl{general/run_all.sh} repeats all of them (about
+$25$ CPU-minutes), and \texttt{sha256sum -c SHA256SUMS} checks the inputs. The ancillary files are licensed under the Apache License 2.0 (copyright 2026 Nic Johns); the text is licensed under
+CC BY 4.0.
+
+\bibliographystyle{amsplain-doi}
+\bibliography{refs}
+
+\end{document}

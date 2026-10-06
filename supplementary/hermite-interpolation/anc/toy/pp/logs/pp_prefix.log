@@ -1,0 +1,16 @@
+# command : python toy/pp/verify_pp_prefix.py toy/pp/params/pp_prefix.json
+# date    : 2026-10-06T15:58:12Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+Prime powers dominate the PT-tight progression: exact certificate
+parameter file toy/pp/params/pp_prefix.json  sha256 d528987a839b8f6a12b7015db9ee00be9c422123ae835ca1fc1a87d4ba9d7abd
+pi_lo = 314159265358979/100000000000000 < pi < pi_hi = 314159265358980/100000000000000 (certified with Arb): True
+prime powers: n_1 .. n_217000 computed (n_217000 = 2997587); sieve limit 3100000
+(D) 2 pi n_K > (21/20)(8K-5) for K = 1..217000: True
+    smallest slack 2 pi n_K - y*_K over all K <= K_max: >= 2.998667e+0 at K = 7 (n_K = 9)
+(S) 2 pi (n_1 + ... + n_K) >= 12366/10000 K(4K-1) for K = 1..217000: True
+    smallest ratio 2 pi (n_1+...+n_K)/(K(4K-1)) over all K <= K_max: at K = 9 (sum 62), in [1.23669044e+0, 1.23669045e+0]
+ranges needed by the tail argument: (D) for K <= 89, (S) for K <= 158: covered: True
+total time 0.4 s
+ALL CERTIFIED: (D) and (S) for K = 1..217000
+# exit code 0; wall time 0.4 s

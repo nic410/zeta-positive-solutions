@@ -1,0 +1,15 @@
+# command : python exact/verify_exact_member.py 61 --prec 2000 --workers 2 --ref exact/ref/P61_ref.txt --out exact/out/P61_ball.txt
+# date    : 2026-10-06T20:10:41Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+J = 61: nodes = the first 61 prime powers (2 ... 211); moments Psi^(j), j <= 245; 2000 bits; z_cut = 3512
+  moments done (52 s); min relative accuracy of m_0, m_0' at the nodes: 1983 bits
+(N)  rigorous solve of the 122 x 122 system succeeded (matrix certified non-singular): True
+     enclosure of p_0..p_122: max log10 relative radius -534
+(POS) all 123 coefficients p_k certified > 0: True
+     min_k p_k >= 3.470e-588 (at k = 122);  p_1 in [0.023346051877558437368 +/- 4.26e-22]
+     a = max_k ((2k)! p_k)^(1/2k) <= 0.716214
+     enclosure written to exact/out/P61_ball.txt (sha256 8cc7b2b9a66f643e8e40d84fd4ffd6970401342aeab87b716ec169bc91ca3dd4)
+     reference enclosure exact/ref/P61_ref.txt (sha256 532d0576df70320ebee3e286cca7b75fcae559a4eb5837f8bfaa17ff7b2f9637): max log10 rel radius -413; all p_k > 0: True; every ball overlaps the new enclosure: True
+CERTIFIED (N) and (POS) at J = 61: True   (54 s)
+# exit code 0; wall time 53.8 s

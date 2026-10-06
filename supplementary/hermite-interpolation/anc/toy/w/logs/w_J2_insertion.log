@@ -1,0 +1,17 @@
+# command : python toy/w/verify_w_insertion.py toy/w/params/w_small.json 2
+# date    : 2026-10-06T15:58:13Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+Theorem W2: exact certificate (insertion route)
+parameter file toy/w/params/w_small.json  sha256 3bd43f9891a42840b64dee0ce993a5b30aed2e4c0e2a0fb90692204edd3b7a77
+[1] built: terms A 75, Wd 78, W3d 119, detM 4 (0.0 s)
+    mu_Y = A/(Wd omega) and Q''(Y) = omega W3d/(detM Wd) equal the direct exact solve at y = (13/2, 27/2), every node: True
+[2] region (a) y_1 = 157/25 + v_1, gaps = 157/25 + v_k; inserted node = node 1: A -221 | Wd -195 | W3d +225 | detM -21  =>  mu +, Q'' +
+[2] region (a) y_1 = 157/25 + v_1, gaps = 157/25 + v_k; inserted node = node 2: A -126 | Wd -155 | W3d +165 | detM -6  =>  mu +, Q'' +
+    region (a): CERTIFIED: (N), mu_j > 0 and Q''(y_j) > 0 at every node
+[2] region (b) y_1 = 8 + v_1, gaps = 0 + v_k; inserted node = node 1: A -221 | Wd -195 | W3d +225 | detM -21  =>  mu +, Q'' +
+[2] region (b) y_1 = 8 + v_1, gaps = 0 + v_k; inserted node = node 2: A -126 | Wd -155 | W3d +165 | detM -6  =>  mu +, Q'' +
+    region (b): CERTIFIED: (N), mu_j > 0 and Q''(y_j) > 0 at every node
+total time 0.0 s
+ALL CERTIFIED: Theorem W2 on regions a,b (insertion route)
+# exit code 0; wall time 0.1 s

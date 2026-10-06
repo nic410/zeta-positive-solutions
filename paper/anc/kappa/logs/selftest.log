@@ -1,0 +1,26 @@
+# command : python kappa/selftest.py
+# date    : 2026-10-06T20:03:46Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+(a) z = 0.05               K_0, K_1 contain mpmath values: True True; log10 relative radius -320
+(a) z = 0.7                K_0, K_1 contain mpmath values: True True; log10 relative radius -320
+(a) z = 3                  K_0, K_1 contain mpmath values: True True; log10 relative radius -320
+(a) z = 6.283185307179586  K_0, K_1 contain mpmath values: True True; log10 relative radius -320
+(a) z = 20                 K_0, K_1 contain mpmath values: True True; log10 relative radius -320
+(a) z = 62.83              K_0, K_1 contain mpmath values: True True; log10 relative radius -320
+(a) z = 150                K_0, K_1 contain mpmath values: True True; log10 relative radius -320
+(a) z = 400                K_0, K_1 contain mpmath values: True True; log10 relative radius -307
+(a) z = 700                K_0, K_1 contain mpmath values: True True; log10 relative radius -307
+(a) z = 1100               K_0, K_1 contain mpmath values: True True; log10 relative radius -308
+(a) z = 2400               K_0, K_1 contain mpmath values: True True; log10 relative radius -309
+(a) z = 3000               K_0, K_1 contain mpmath values: True True; log10 relative radius -308
+(a) worst log10 relative radius at P = 1000 bits: -307
+(b) H = 1: int F (quadrature) = [2.00905988686130880796437343432 +/- 8.38e-31];  Fhat_H(0) (Bessel form) = [2.00905988686130880796437343432 +/- 8.38e-31];  |difference| <= 3.1e-44  [agree]
+(c) H = 1: A archimedean = [0.0240444194343550508370662176054 +/- 4.60e-32];  A prime side = [0.0240444194343550508370662176054 +/- 4.60e-32];  |difference| <= 2.1e-44  [agree]
+(d) H = 1: relative finite-difference mismatch of Fhat', Fhat'' at xi = 0.3: 8.3e-37, 7.8e-37  [agree]
+(b) H = 1 + r t^2 + s t^4, r = 0.0169..., s = 0.000498...: int F (quadrature) = [2.65610847722588418709534820958 +/- 4.87e-31];  Fhat_H(0) (Bessel form) = [2.65610847722588418709534820958 +/- 4.87e-31];  |difference| <= 3.3e-44  [agree]
+(c) H = 1 + r t^2 + s t^4, r = 0.0169..., s = 0.000498...: A archimedean = [0.00312924506562293350083139987765 +/- 1.59e-33];  A prime side = [0.00312924506562293350083139987765 +/- 1.59e-33];  |difference| <= 1.4e-44  [agree]
+    kappa for this one-factor H: A/Fhat(0) = [0.0011781315004465505588 +/- 2.87e-23]
+(d) H = 1 + r t^2 + s t^4, r = 0.0169..., s = 0.000498...: relative finite-difference mismatch of Fhat', Fhat'' at xi = 0.3: 6.1e-37, 5.5e-37  [agree]
+SELFTEST PASSED: True   (246 s)
+# exit code 0; wall time 246.6 s

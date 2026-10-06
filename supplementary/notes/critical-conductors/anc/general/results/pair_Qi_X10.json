@@ -1,0 +1,18 @@
+{
+ "parameter_file": "general/params/pair_Qi_X10.json",
+ "sha256": "7ba4907baabea3199c95440a7f2e98d707fd4be6c4c934cf3045a2bca7932cb4",
+ "logq": "log(4)",
+ "T": 300,
+ "steps": 1277,
+ "min_lower_bound": "[0.022232 +/- 4.46e-7]",
+ "tail_lower_bound": "[0.47256275 +/- 4.87e-9]",
+ "mu_lower": "0.0222324",
+ "admissible": true,
+ "q_upper": "4.00000000000001",
+ "claims_checked": {
+  "mu_steps_ge": true,
+  "mu_tail_ge": true
+ },
+ "certified": true,
+ "support_from_ge": "3.088530"
+}

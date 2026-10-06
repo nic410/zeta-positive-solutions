@@ -1,0 +1,276 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[mathscr]{eucal}
+\usepackage{booktabs,enumitem,xcolor,array}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!40!black,urlcolor=blue!60!black]{hyperref}
+\hypersetup{
+  pdftitle={Integer-weight solutions of the explicit formula: a characterisation of zeta among uniformly discrete Beurling systems},
+  pdfauthor={Nic Johns}
+}
+\setlength{\emergencystretch}{2.5em}
+
+% ---------------------------------------------------------------- macros
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\dd}{\,\mathrm d}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\hF}{\widehat F}
+\newcommand{\xin}[1]{\xi_{#1}}
+\newcommand{\Zz}{Z_\zeta}
+\newcommand{\muz}{\mu_\zeta}
+\newcommand{\nuz}{\nu_\zeta}
+\newcommand{\pz}{p_\zeta}
+\newcommand{\Oinf}{\Omega_\infty}
+\newcommand{\Arch}{\mathcal A}
+\newcommand{\Tc}{\mathcal T}
+\newcommand{\Spec}{\mathcal R}
+\newcommand{\Kad}{\mathcal K}
+\newcommand{\condU}{\textup{(U)}}
+\newcommand{\RH}{\mathrm{RH}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+
+\title[Integer-weight solutions of the explicit formula]{Integer-weight solutions of the explicit formula:\\
+a characterisation of $\zeta$ among uniformly discrete Beurling systems}
+\author{Nic Johns}
+\date{October 2026}
+\subjclass[2020]{Primary 11M26; Secondary 11M41, 11N80, 42A38}
+\keywords{Weil explicit formula, Hamburger's theorem, Beurling generalised integers, Fourier quasicrystals}
+
+\begin{document}
+
+\begin{abstract}
+A positive solution of Weil's explicit formula with the archimedean data of the Riemann zeta function is a pair of
+positive measures, one on the zero side and one on the prime side beyond $\log2/2\pi$, that satisfies the formula on a
+natural test class; the pair formed by the zeros and the prime powers of $\zeta$ is such a solution exactly when the
+Riemann hypothesis holds. We consider solutions whose zero measure has integer weights, as for an $L$-function. If the
+prime measure is carried by the logarithms of the integers, Hamburger's theorem shows that the solution is $\zeta$'s
+own, and the Riemann hypothesis follows. We prove the same conclusion when the prime measure generates a uniformly
+discrete multiplicative monoid, that is, a uniformly discrete Beurling system with no generalised primes below $2$.
+Such a solution comes from a generalised Dirichlet series with Riemann's functional equation; the theorem of Lev and
+Olevskii on measures with uniformly discrete support and spectrum, combined with an argument on linear recurrences in
+a number field, forces the monoid into the positive integers.
+\end{abstract}
+
+\maketitle
+
+\noindent\textbf{Status.} This note accompanies the companion paper \cite{PaperI} and has not been peer-reviewed. Its
+theorem is proved in full, and no computation is used. Part (a) is Hamburger's theorem in the language of \cite{PaperI};
+to our knowledge part (b) is new. The definitions and the results of \cite{PaperI} that are used are recalled in
+Section~\ref{sec:setting}, as Facts.
+
+%======================================================================
+\section{Introduction}\label{sec:intro}
+%======================================================================
+
+An \emph{admissible pair} \cite{PaperI} is a pair $(\mu,\nu)$ of positive measures, $\mu$ even on $\RR$ and $\nu$ on
+$[\xin2,\infty)$ with $\xin2=\log2/2\pi$, that satisfies Weil's explicit formula with the archimedean data of $\zeta$ on a
+natural test class (Section~\ref{sec:setting}). The pair $\pz$ of $\zeta$ itself, formed by the real zero ordinates with
+their multiplicities and by the measure $\sum_n\Lambda(n)n^{-1/2}\delta_{\xin n}$, is admissible if and only if the Riemann
+hypothesis holds, and \cite{PaperI} conjectures that every admissible pair, if one exists, is this pair (Conjecture~U). An admissible zero
+measure need not be atomic, and its atoms need not be integers. This note treats the case in which $\mu$ has integer
+weights, as the zero measure of an $L$-function has. For a positive measure $\nu$ on $[\xin2,\infty)$ let $\tilde\nu$ be its
+image under $\xi\mapsto e^{2\pi\xi}$, a measure on $[2,\infty)$.
+
+\begin{theorem}\label{thm:integer}
+Let $(\mu,\nu)$ be an admissible pair, and suppose that $\mu$ is purely atomic with weights in $\ZZ_{\ge0}$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \textup{(Hamburger)} If $\nu$ is carried by $\{\xin n:n\ge2\text{ an integer}\}$, then the Riemann hypothesis holds and
+$(\mu,\nu)=\pz$.
+\item If the multiplicative monoid $\mathcal N\subset[1,\infty)$ generated by $\{e^{2\pi\xi}:\xi\in\supp\nu\}$ \textup{(}the set of finite
+products of these numbers, including the empty product $1$\textup{)} is uniformly
+discrete, then the Riemann hypothesis holds and $(\mu,\nu)=\pz$.
+\end{enumerate}
+\end{theorem}
+
+The proof is in Section~\ref{sec:proof}. Testing the explicit formula on Poisson kernels shows that
+$L(s):=\int y^{1/2-s}\dd\tilde\nu(y)$ is the negative logarithmic derivative of a generalised Dirichlet series with positive
+coefficients, Riemann's functional equation and finite order. Part (a) is then Hamburger's theorem. In (b), the theorem of
+Lev and Olevskii on measures with uniformly discrete support and spectrum puts the monoid into finitely many cosets of
+a lattice, and an argument with linear recurrences in a real number field forces it into $\NN$, which reduces (b) to (a).
+
+Part (a) is Hamburger's theorem in the language of admissible pairs; positivity of $\nu$ is used only for convergence. The
+theorem of Chandrasekharan and Mandelbrojt \cite[Theorem~3]{CM57}, generalised by Kahane and Mandelbrojt
+\cite[Theorem~7]{KM58}, says that the frequencies of a general Dirichlet series with Riemann's functional equation are
+finitely generated; it assumes a gap condition on the frequencies, which \cite{KM58} weakens to conditions of density type. This is too weak for the rationality step in (b), since the powers of $1+\sqrt2$ lie in $\ZZ[\sqrt2]$; the
+lattice structure supplied by Lev and Olevskii is what is needed. Bochner and Chandrasekharan \cite{BC56} proved uniqueness
+for general Dirichlet series with Riemann's functional equation under density restrictions on the frequencies. Beurling
+\cite{Beu51} characterised $\zeta(s)$ and $(2^s-1)\zeta(s)$ among general Dirichlet series $\sum\lambda_n^{-s}$ with unit
+coefficients by the pole at $s=1$, the trivial zeros and a growth condition. A.~B.~Dixit \cite{DixA20} showed that an element
+$F$ of the extended Selberg class with non-negative coefficients and a simple pole at $s=1$ is determined, up to at most $2d_F$
+possibilities, by its degree $d_F$, conductor and residue, under an explicit inequality between the conductor and the residue.
+Hilberdink \cite{Hil12} proved rigidity results for Beurling generalised integers. Lagarias \cite{Lag99} studied Beurling
+generalised integers with the Delone property, $r\le n_{i+1}-n_i\le R$, and classified those contained in $\ZZ$: their generalised
+primes are all but finitely many primes, together with finitely many composites. Theorem~\ref{thm:integer}(b) assumes only the
+lower bound, and not that $\mathcal N\subset\ZZ$: Step~5 derives $\mathcal N\subset\NN$ from the functional equation, and Hamburger's
+theorem then leaves only $\mathcal N=\NN$, so among the semigroups classified by Lagarias the explicit formula with $\zeta$'s data
+singles out $\NN$ itself. Related classifications, of Fourier quasicrystals with unit masses \cite{OU20} and of summation formulas
+whose measure has uniformly discrete support and masses bounded below \cite[Theorem~5]{Gon23}, describe the support as the zero set
+of an entire function of a special form. These results impose positivity or
+integrality on the Dirichlet coefficients; Theorem~\ref{thm:integer} imposes integrality on the zero measure and works with the
+explicit formula. With integer atoms, the uniqueness of the admissible pair becomes a uniqueness problem for Beurling
+generalised number systems \cite{Beu37,DZ16} with no generalised primes below $2$ and Riemann's functional equation, and part
+(b) settles it for the systems whose integers are uniformly discrete. The general case is open (Section~\ref{sec:open}).
+
+%======================================================================
+\section{Setting}\label{sec:setting}
+%======================================================================
+
+We recall the definitions and results of \cite{PaperI} that are used; statements quoted from it are called Facts. We write
+$\hF(\xi)=\int_\RR F(t)e^{-2\pi i\xi t}\dd t$ and $\xin n=\log n/(2\pi)$ for real $n>0$. The archimedean data of $\zeta$ are
+\[
+\Oinf(t):=\frac1{2\pi}\Big(\Re\psi\big(\tfrac14+\tfrac{it}2\big)-\log\pi\Big),\qquad
+\Arch(F):=F\big(\tfrac i2\big)+F\big(-\tfrac i2\big)+\int_\RR F(t)\Oinf(t)\dd t,
+\]
+with $\psi=\Gamma'/\Gamma$. For $0<\delta<\frac12$, $\Tc_\delta$ is the set of even functions $F$, real on $\RR$ and analytic in a
+neighbourhood of $\{\lvert\Im z\rvert\le\frac12+\delta\}$, with $\sup_{\lvert\Im z\rvert\le\frac12+\delta}(1+\lvert z\rvert)^2\lvert F(z)\rvert<\infty$, and
+$\Tc:=\bigcup_{\delta>0}\Tc_\delta$ is the \emph{test class}. It contains the Poisson kernels $t\mapsto(s-\frac12)/((s-\frac12)^2+t^2)$
+for real $s>1$.
+
+\begin{fact}[Explicit formula on $\Tc$ {\cite{PaperI}}; {\cite{Wei52}}, {\cite[(1.1)]{BRS}}]\label{lem:explicit-formula}
+For every $F\in\Tc$, $\Arch(F)=\sum_\rho F(t_\rho)+\frac1\pi\sum_{n\ge2}\Lambda(n)n^{-1/2}\hF(\xin n)$, where $t_\rho:=-i(\rho-\frac12)$ and
+$\rho$ runs over the non-trivial zeros of $\zeta$ with multiplicity. Both series converge absolutely; no hypothesis on the
+zeros is made.
+\end{fact}
+
+Let $\Zz$ be the set of real $\gamma$ with $\zeta(\frac12+i\gamma)=0$, $m_\gamma$ the multiplicity,
+$\muz:=\sum_{\gamma\in\Zz}m_\gamma\delta_\gamma$, $\nuz:=\sum_{n\ge2}\Lambda(n)n^{-1/2}\delta_{\xin n}$ and $\pz:=(\muz,\nuz)$.
+
+\begin{definition}[Admissible pairs {\cite{PaperI}}]\label{def:admissible}
+An \emph{admissible pair} is a pair $(\mu,\nu)$ of positive Radon measures, $\mu$ even on $\RR$ and $\nu$ on $[\xin2,\infty)$, such
+that for every $F\in\Tc$ the integrals $\int F\dd\mu$ and $\int\hF\dd\nu$ converge absolutely and
+\[
+\Arch(F)=\Spec_{\mu,\nu}(F):=\int_\RR F\dd\mu+\frac1\pi\int_{[\xin2,\infty)}\hF\dd\nu .
+\]
+$\Kad$ denotes the set of admissible pairs.
+\end{definition}
+
+Under the Riemann hypothesis $\pz\in\Kad$, by Fact~\ref{lem:explicit-formula}. Conversely, if $(\mu,\nuz)\in\Kad$ for some $\mu$, then
+the Riemann hypothesis holds and $\mu=\muz$ \cite[Theorem~2.9(b)]{PaperI}. So $\pz\in\Kad$ if and only if the Riemann hypothesis holds.
+
+\begin{fact}[A priori bounds {\cite{PaperI}}]\label{lem:apriori}
+There is an absolute constant $C$ such that every $(\mu,\nu)\in\Kad$ satisfies
+\[
+\mu([T-1,T+1])\le C\log(3+\lvert T\rvert)\quad(T\in\RR),\qquad \nu([X-1,X+1])\le Ce^{\pi X}\quad(X\in\RR).
+\]
+Hence $\int(1+t^2)^{-1}\dd\mu<\infty$ and $\int e^{-\pi(1+\eta)\xi}\dd\nu(\xi)<\infty$ for every $\eta>0$.
+\end{fact}
+
+%======================================================================
+\section{Proof of Theorem~\ref{thm:integer}}\label{sec:proof}
+%======================================================================
+
+\begin{proof}
+Write $\mu=\sum_\gamma w_\gamma\delta_\gamma$ with $w_\gamma\in\ZZ_{\ge0}$ and $w_{-\gamma}=w_\gamma$.
+
+\emph{Step 1: the logarithmic derivative.} For real $s>1$ the Poisson kernel
+$P_s(t):=\frac1\pi\frac{s-1/2}{(s-1/2)^2+t^2}$ lies in $\Tc$, with $\widehat{P_s}(\xi)=e^{-2\pi(s-1/2)|\xi|}$. We have
+$P_s(\frac i2)+P_s(-\frac i2)=\frac1\pi(\frac1s+\frac1{s-1})$, and $\int P_s\Oinf=\frac1{2\pi}(\psi(\frac s2)-\log\pi)$: the function
+$t\mapsto\psi(\frac14-\frac{it}2)$ is analytic with logarithmic growth on the closed upper half-plane, so its Poisson integral at
+$t=i(s-\frac12)$ is its value there, $\psi(\frac s2)$, and similarly for $\psi(\frac14+\frac{it}2)$ in the lower half-plane. On the
+spectral side $\int P_s\dd\mu=\frac1\pi\sum_\gamma w_\gamma(s-\frac12-i\gamma)^{-1}$ (summed symmetrically), and
+$\frac1\pi\int\widehat{P_s}\dd\nu=\frac1\pi L(s)$ with $L(s):=\int y^{1/2-s}\dd\tilde\nu(y)$, which converges absolutely for $\Re s>1$ by
+Fact~\ref{lem:apriori}. By analytic continuation, for $\Re s>1$,
+\begin{equation}\label{eq:Ls}
+L(s)=\frac1s+\frac1{s-1}+\frac12\psi\big(\tfrac s2\big)-\frac12\log\pi-\sum_\gamma\frac{w_\gamma}{s-\frac12-i\gamma}.
+\end{equation}
+The right side is meromorphic on $\CC$ (as $\sum_\gamma w_\gamma(1+\gamma^2)^{-1}<\infty$), with simple poles only: residue $1$ at
+$s=1$, $0$ at $s=0$, $-1$ at $s=-2k$ $(k\ge1)$, and $-w_\gamma$ at $\frac12+i\gamma$. All residues are integers.
+
+\emph{Step 2: a generalised Dirichlet series.} Let $\Pi:=y^{1/2}(\log y)^{-1}\tilde\nu$, a positive measure on $[2,\infty)$, and
+$\mathcal Z(s):=\exp(\int y^{-s}\dd\Pi(y))$ for $\Re s>1$, so that $-\mathcal Z'/\mathcal Z=L$. Then $\mathcal Z(s)=\int y^{-s}\dd\mathsf N(y)$
+with $\mathsf N:=\sum_{k\ge0}\Pi^{*k}/k!$ (multiplicative convolution, $\Pi^{*0}=\delta_1$), a positive measure on $[1,\infty)$ with
+$\mathsf N(\{1\})=1$ whose support is the closure of the monoid generated by $\supp\tilde\nu$. Because the residues of $L$
+are integers, $\mathcal Z$ continues to a meromorphic function on $\CC$ with a simple pole at $s=1$, zeros of order $w_\gamma$ at
+$\frac12+i\gamma$, simple zeros at $s=-2k$, and no other zeros or poles.
+
+\emph{Step 3: functional equation and order.} Put $\Lambda_{\mathcal Z}(s):=\pi^{-s/2}\Gamma(\frac s2)\mathcal Z(s)$. By \eqref{eq:Ls},
+$R(s):=-\Lambda_{\mathcal Z}'/\Lambda_{\mathcal Z}(s)=\frac1s+\frac1{s-1}-\sum_\gamma w_\gamma(s-\frac12-i\gamma)^{-1}$, and $R(1-s)=-R(s)$
+because $w$ is even. Hence $\Lambda_{\mathcal Z}(1-s)=C\Lambda_{\mathcal Z}(s)$ with a constant $C$, and $C^2=1$. The function
+$E(s):=s(s-1)\Lambda_{\mathcal Z}(s)$ is entire with zeros exactly at the points $\rho_\gamma:=\frac12+i\gamma$, of orders $w_\gamma$. By
+Fact~\ref{lem:apriori}, $\sum_{|\gamma|\le T}w_\gamma=O(T\log T)$, so the genus-one canonical product $P$ over these zeros has order at
+most $1$; and $E'/E-P'/P=-\sum_\gamma w_\gamma/\rho_\gamma$ (summed symmetrically) is constant. So $E=e^{a+bs}P$ has order at most $1$,
+and $(s-1)\mathcal Z(s)=E(s)\pi^{s/2}/(2\Gamma(1+\frac s2))$ is entire of finite order.
+
+\emph{Step 4: proof of (a).} Now $\mathsf N$ is carried by the positive integers: $\mathcal Z(s)=\sum_{m\ge1}c_mm^{-s}$ with $c_1=1$,
+absolutely convergent for $\Re s>1$. Hamburger's theorem in its two-series form \cite[Satz~1]{Ham21} (see also \cite{Bur12};
+\cite[Theorem~2.1]{Per17} is the one-series form) applies to $f=\mathcal Z$ and $g=C\mathcal Z$: a Dirichlet series $f$ absolutely
+convergent for $\Re s>1$, with $(s-1)f$ entire of finite order and $\pi^{-s/2}\Gamma(\frac s2)f(s)=\pi^{-(1-s)/2}\Gamma(\frac{1-s}2)g(1-s)$ for
+a Dirichlet series $g$ absolutely convergent for $\Re s>1$, satisfies $f=g=c\zeta$. Since $c_1=1$, $\mathcal Z=\zeta$ and $C=1$. Then
+$L=-\zeta'/\zeta$, so $\nu=\nuz$, and the zeros of $\zeta$ in $0<\Re s<1$ are the points $\frac12+i\gamma$ with multiplicities
+$w_\gamma$: the Riemann hypothesis holds and $\mu=\muz$.
+
+\emph{Step 5: proof of (b).} Here $\mathsf N$ is carried by the closed set $\mathcal N$, and by positivity its support is all of
+$\mathcal N$: $\mathcal Z(s)=\sum_{n\in\mathcal N}c_nn^{-s}$ with $c_n>0$ and $c_1=1$. Let $\varrho>0$ be the residue of $\mathcal Z$ at $s=1$
+(positive, since $\mathcal Z(\sigma)>0$ for $\sigma>1$). The functional equation of Step~3 and the analytic properties established
+there are equivalent, by Mellin inversion, to the summation formula $\Theta(1/x)=C\sqrt x\,\Theta(x)$ $(x>0)$ for
+$\Theta(x):=C\varrho+2\sum_{n\in\mathcal N}c_ne^{-\pi n^2x}$ \cite[Introduction, Theorems~1--3 and Propositions~3--4]{KM58}.
+Since the Fourier transform of $e^{-\pi xt^2}$ is $x^{-1/2}e^{-\pi\xi^2/x}$, and the Gaussians $e^{-\pi xt^2}$ $(x>0)$ span a dense
+subspace of the even Schwartz functions (the derivatives in $x$ at $x=1$, limits of difference quotients in the Schwartz topology,
+are the functions $t^{2k}e^{-\pi t^2}$, whose span contains the even Hermite functions), the even tempered measure $m:=C\varrho\delta_0+\sum_{n\in\mathcal N}c_n(\delta_n+\delta_{-n})$
+satisfies $\widehat m=Cm$. Its support $\{0\}\cup\pm\mathcal N$ is uniformly discrete, and so is its spectrum. By the theorem of Lev
+and Olevskii \cite[Theorem~1]{LO15}, which holds for complex measures on $\RR$ (so the sign $C=-1$ is allowed), $\supp m$ lies in a
+finite union of cosets $\lambda_j+\alpha\ZZ$.
+
+The set $\mathcal N$ is infinite, since $\nu\ne0$ (otherwise $L\equiv0$). Hence some coset contains two elements of $\mathcal N$, and we
+may assume that every coset meets $\mathcal N$ and that $\lambda_j\in\mathcal N$. The $\QQ$-span $K$ of $\mathcal N$ is a subring of $\RR$
+(as $\mathcal N$ is multiplicative and $1\in\mathcal N$) of finite dimension over $\QQ$, so $K$ is a real number field, and $\alpha\in K$.
+Fix $n\in\mathcal N$ with $n>1$ and a $\QQ$-linear $\ell:K\to\QQ$ vanishing on $\QQ\alpha$. Then $u_k:=\ell(n^k)$ takes only the finitely
+many values $\ell(\lambda_j)$. Writing $\ell(x)=\mathrm{Tr}_{K/\QQ}(\beta x)$ and $b:=\mathrm{Tr}_{K/\QQ(n)}(\beta)$, we get
+$u_k=\sum_\sigma\sigma(b)\sigma(n)^k$, the sum over the embeddings $\sigma$ of $\QQ(n)$. A linear recurrence sequence with finitely many
+values is eventually periodic, say $u_{k+p}=u_k$ for $k\ge k_0$; as the $\sigma(n)$ are distinct and non-zero, Vandermonde's
+determinant gives $\sigma(b)(\sigma(n)^p-1)=0$ for every $\sigma$. For the identity embedding $n^p\ne1$, so $b=0$ and $u\equiv0$. This holds
+for every $\QQ$-linear $\ell$ vanishing on $\QQ\alpha$, and these forms separate the points of $K$ modulo $\QQ\alpha$. Hence
+$n^k\in\QQ\alpha$ for all $k\ge0$; $k=0$ gives $\alpha\in\QQ$ and $k=1$ gives $n\in\QQ$. Thus $\mathcal N\subset\QQ$ and all $\lambda_j\in\QQ$,
+so $\mathcal N\subset D^{-1}\ZZ$ for some $D\in\NN$. If $a/b\in\mathcal N$ in lowest terms had $b>1$, its powers would have unbounded
+denominators. So $\mathcal N\subset\NN$, and (a) applies.
+\end{proof}
+
+%======================================================================
+\section{Remarks and open problems}\label{sec:open}
+%======================================================================
+
+\begin{remark}[Atomicity at criticality]
+The slack of \cite{PaperI} is $\kappa^*:=\inf\{\Arch(F):F\in\Tc,\ F\ge0\text{ on }\RR,\ \hF\ge0\text{ on }[\xin2,\infty),\ \int F=1\}$;
+admissible pairs exist if and only if $\kappa^*\ge0$ \cite[Theorem~A]{PaperI}. If $\kappa^*=0$, every admissible zero measure is purely atomic
+\cite{PaperI}, but the weights of its atoms need not be integers; Theorem~\ref{thm:integer} needs integer weights.
+\end{remark}
+
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item\label{op:Beurling} \emph{The Beurling case.} Uniqueness of the admissible pair when $\mu$ has integer weights and the prime
+measure generates a monoid that is not uniformly discrete; Theorem~\ref{thm:integer} leaves exactly this case open.
+\item \emph{Weaker discreteness.} Is uniform discreteness of the generated monoid essential? Would discreteness of $\supp\tilde\nu$,
+together with a polynomial bound on the counting function of the monoid, suffice, for instance through the theorem of Kahane
+and Mandelbrojt \cite[Theorem~7]{KM58} and a uniqueness result for measures whose support is not uniformly discrete?
+\end{enumerate}
+
+\section*{AI-use statement}
+This note was produced with substantial use of AI. The mathematical arguments and the text were generated by instances of Claude Opus 5.5
+(Anthropic) working as coordinated agents: one set of agents developed the arguments, separate agents acted as
+independent hostile referees of each component, and the referees' requested repairs were incorporated. The
+author initiated and directed this project, designed its verification process, and reviewed the results and the
+verification record, but did not independently check every step of the written proofs. The author takes full
+responsibility for the content of this note, including any errors, and welcomes independent verification and
+corrections.
+
+\bibliographystyle{amsplain-doi}
+\bibliography{refs}
+
+\end{document}

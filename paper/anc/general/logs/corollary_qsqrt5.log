@@ -1,0 +1,23 @@
+# command : python general/corollary_slack.py general/params/corollary_qsqrt5.json --gap-x 4
+# date    : 2026-10-06T20:14:41Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+input general/params/corollary_qsqrt5.json         sha256 540d1ad652df9feff6916301136f1a5c9656cb9eed46d745f1dda3674b4afbab
+input general/params/gammaR2_K80_s7.json           sha256 79936770a00991a3c4b24ac614f8405686fdf499d6eb0040dd9976ae026a71ee
+input general/params/pair_gammaR2_X240.json        sha256 3b9f85c84efcf36f0e753e01edd442bfc3d6a1a2ead2377124b015ea2b7dfb1d
+input general/results/gammaR2_K80_s7.json          sha256 04a2de0c6141cc0a8ec66ce4a00b6595acb93e76a1d25e1e45ace87afcca2e8b
+input general/results/pair_gammaR2_X240.json       sha256 d76c8c61ccedabaa795334a7bf9c0b321d51d1f3acec9259586083745b7cd129
+data       : Gamma_R shifts ['0', '0'], one pole; field Q(sqrt 5) with conductor 5
+dual       : kappa*_0 <= -0.25566705789831547610
+primal     : admissible pair at log q0 = 1.6093347792651136 with mu >= 6.59497e-9 on R
+BRACKET    : 4.984850942267643 <= q_min <= 4.999484361
+SLACK      : 1.6420748e-5 <= kappa*(Q(sqrt 5)) <= 0.00048294147
+GAPS       : dual function in the OPS cone: True; supp nu~ of the pair in [x0, oo) with x0 >= 4.049150; so the bracket and the slack interval hold for every gap g with e^{2 pi g} <= x0
+CLAIM      : q_min >= 4.98485094226764 ... implied
+CLAIM      : q_min <= 4.9994844 ... implied
+CLAIM      : kappa*(Q(sqrt 5)) >= 1.64e-5 ... implied
+CLAIM      : kappa*(Q(sqrt 5)) <= 4.83e-4 ... implied
+CLAIM      : kappa*(Q(sqrt 5)) > 0, so these data are not critical ... implied
+CLAIM      : the bracket and the slack interval hold at the natural gap xi_4 of Q(sqrt 5) (4 <= x0) ... implied
+RESULT     : CERTIFIED
+# exit code 0; wall time 0.1 s

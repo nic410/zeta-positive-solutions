@@ -1,0 +1,238 @@
+%======================================================================
+\section{Numerical observations}\label{sec:observations}\label{ssec:tail-obs}
+%======================================================================
+
+This section collects everything in this paper that was computed but not certified. Nothing here is used in a proof;
+each item says what was computed and, where it matters, in which arithmetic and whether the computation is reproduced by
+the ancillary files. The certified statements are in Sections~\ref{sec:model}--\ref{sec:true}.
+
+\subsection{The exact family of the true kernel}\label{ssec:obs-true}
+
+\begin{observation}[The exact family for $J\le110$]\label{obs:POS}
+The following were computed in high-precision arithmetic (at most 4600 bits), not certified except where
+Fact~\ref{thm:finiteJ} and Proposition~\ref{prop:increments} say so. For every $10\le J\le110$ all coefficients $p_k^{(J)}$ are positive, and
+$a_J:=\max_k((2k)!\,p_k^{(J)})^{1/2k}$ increases with $J$, up to $0.7164$ at $J=110$ (attained near $k\approx20$--$24$); so \hyp{POS$_a$} holds
+numerically with $a=0.7164$ and $C=1$ in this range. For $3\le J\le9$ the coefficients $p^{(J)}_{2J-1}$ (and, for some
+of these $J$, $p^{(J)}_{2J-3}$) are negative, while the top coefficient $p^{(J)}_{2J}$ is positive for every computed $J$.
+For $J\ge10$, $P_J$ has exactly three root pairs in $\Re u>0$, with $\lvert\arg u\rvert$ close to $1.035$, $1.245$ and $1.452$ (certified at
+$J=60,110,111$, Proposition~\ref{prop:roots});
+$H_J\ge1=H_J(0)$ on $\RR$; and $\sup_t\log\lvert H_J(t)\rvert/\lvert t\rvert$ is about $0.7027$ at $J=110$, and the same on $\Im t=0.6$. The
+increments $p_k^{(J+1)}-p_k^{(J)}$ are $\ge0$ except for $k\in\{2,4,6,10,11\}$ (for $10\le J\le12$ also $k=12$), where
+their relative size decays roughly like $J^{-3}$, with cumulative relative effect at most $0.0114$ over
+$10\le J\le109$; this sign pattern is certified at $J=60$ and $J=110$ (Proposition~\ref{prop:increments}). The \hyp{LR-step} data are in
+Numerical observation~\ref{obs:LRstep}.
+\end{observation}
+
+\begin{observation}[Predicted constants of the exact family]\label{obs:predicted}
+The following were computed in high-precision arithmetic; they are not part of Conjecture~\ref{conj:PPmagic}, and the ranges
+and certified values are in Table~\ref{tab:app-predicted}.
+$a^*\approx0.7164$; for every $J\ge10$, $P_J$ has exactly three pairs of conjugate roots in $\Re u>0$, with $\lvert\arg u\rvert$
+tending to $1.035$, $1.245$, $1.452$, and the zeros of $H_J$ satisfy $\min|\Im t|\to9.639$; $\sup_rN_J(r)/r\le0.4166<\frac12$,
+where $N_J(r)$ counts the roots of $P_J$ with $|u|\le r^2$; $H_J\ge1=H_J(0)$ on $\RR$; $\Delta p_1^{(J)}>0$ for every $J$,
+with a local exponent $\alpha_J$ ($\Delta p_1^{(J)}\approx n_{J+1}^{-\alpha_J}$) decreasing towards $2$; and
+$\Delta p_1^{(J)}/\Delta p_1^{(J),\Gamma}\to0.50950$, where $\Delta p_1^{(J),\Gamma}$ is the same increment for the
+Gamma-only kernel $\Psione$ at the same nodes. For $3\le J\le9$ some coefficients just below the top, $p_{2J-1}$ and
+$p_{2J-3}$, are negative, while $p_{2J}>0$ for every computed $J$; this is why (b) starts at $J=10$.
+Evidence for Conjecture~\ref{conj:PPmagic} in the same computations: (a), (b) and the root geometry were computed for every $J\le110$ (floating-point table
+\nolinkurl{computed/family_J1_110.tsv} in the ancillary files); (a) and the finite-$J$ instances of (b) are certified at
+$J\in\{10,60,61,110,111\}$ (Fact~\ref{thm:finiteJ}, with $\max_k((2k)!p_k)^{1/2k}\le0.71636$), and the root
+geometry at $J\in\{60,110,111\}$ (Proposition~\ref{prop:roots}).
+For the front statement \hyp{FR} (Section~\ref{ssec:setting-family}), dense scans at $J=20,30,40,50,60$ ($x\in[2,1.15n_J+5]$, step $0.05$, and up to $x=425$ at $J=60$) found no
+sign change off the nodes; certified base data are in Proposition~\ref{prop:base}. $\Delta p_1^{(J)}>0$ was computed for
+$J\le109$ and is certified at $J=60,110$ (Proposition~\ref{prop:increments}); $\alpha_J$ decreases from $3.82$ to $2.37$ up to
+$n=443$, and the decrease is slowing down. The ratio $0.50950$ is constant to all printed digits for $J=30,\dots,99$.
+\end{observation}
+
+\begin{table}[ht]
+\centering\small
+\caption{Predicted constants of Conjecture~\ref{conj:PPmagic} for the exact family: computed behaviour, and certified
+values where available (Fact~\ref{thm:finiteJ}, Propositions~\ref{prop:roots} and~\ref{prop:increments}).}\label{tab:app-predicted}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.3\textwidth}>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.24\textwidth}@{}}
+\toprule
+Quantity & Predicted & Computed & Certified \\
+\midrule
+$a_J:=\max_k((2k)!p^{(J)}_k)^{1/2k}$ & $\to0.7164<\pi/2$ & $J\le110$ & $\le0.71636$ at $J=10,60,61,110,111$ \\
+pairs of roots of $P_J$ in $\Re u>0$ & $3$ for $J\ge10$ & $J\le110$ & $3$ at $J=60,110,111$ \\
+their $\lvert\arg u\rvert$ & $\to1.035,1.245,1.452$ & $J\le110$ & in $[1.0351,1.4523]$ \\
+$\min|\Im t|$ over zeros of $H_J$ & $\to9.639$ & $J\le110$ & $\ge9.6386$ \\
+$\sup_rN_J(r)/r$ & $\le0.4166<\frac12$ & $J\le110$ & $\le0.41658$ at $J=60,110,111$ \\
+$\min_{\RR}H_J$ & $=1=H_J(0)$ & $J\le110$ & where (POS) is certified \\
+$\Delta p_1^{(J)}$ & $>0$ for all $J$ & $J\le109$ & $\approx2.0807954\cdot10^{-11}$ ($J=60$), $\approx2.9183184\cdot10^{-12}$
+($J=110$) \\
+local exponent $\alpha_J$ & decreases to $2$ & $3.82\to2.37$, $n\le443$ & --- \\
+$\Delta p_1^{(J)}/\Delta p_1^{(J),\Gamma}$ & $\to0.50950$ & constant, $30\le J\le99$ & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{observation}[TEL along the prime powers]\label{obs:TEL}
+In midpoint arithmetic at 4600 bits (not certified), \hyp{TEL$_J$} holds for every $2\le J\le110$ on a grid of $657$
+points in $[1.5,1.35\,n_J]$ and at all nodes. Write $\tau_J(x):=\log(\FT F_J/\FT F_{J-1})(x)-2\log\lvert1-x/n_J\rvert$, so that
+\hyp{TEL$_J$} says $\tau_J\ge0$. For $x<n_J$ the ratio of the erosion $\log(\FT F_{J-1}/\FT F_J)(x)$ to the allowance
+$-2\log\lvert1-x/n_J\rvert$ is at most $0.855$, and on the newest gap $[n_{J-1},n_J]$ one has $\tau_J\ge1.556$ for
+$10\le J\le110$. An independent re-computation for $J=2,\dots,12,20,30,\dots,110$, in some cases up to $x=1000\,n_J$,
+agrees. Also $\FT F_J>0$ at large $x$ for $3\le J\le9$.
+\end{observation}
+
+\begin{observation}[Rank-one rigidity]\label{obs:rankone}
+For $J\le109$, computed with three independent codes: on every compact range of $x$, $\FT F_{J+1}-\FT F_J$ equals
+$\Delta p_1^{(J)}$ times a profile that is independent of $J$ to $5$--$6$ digits, on the prime side and, for
+$P_{J+1}-P_J$, on the zero side. For example $(\FT F_{J+1}-\FT F_J)/(\Psione\Delta p_1^{(J)})$ at $x=2.505$ equals $-31.5241$
+for every $J\ge40$. The newest cardinal functions $A_{J+1},B_{J+1}$ of Lemma~\ref{lem:increment}, restricted to a fixed
+compact, are numerically of rank one (singular-value ratio $2.4\cdot10^{-8}$); the scaled matrix $M_J$ has condition
+number about $10^{0.81n_J}$; and the influence of nodes to the right of $x$ is super-exponentially small. The cardinal
+basis is not localised (it is not diagonally dominant) in this scaling.
+\end{observation}
+
+This is the heuristic basis for expecting \hyp{ES} to follow from the summability of the scalar tail.
+
+\begin{observation}[Universality of the scalar tail]\label{obs:universality}
+With the Gamma-only kernel $\Psione$ at the same nodes, $\Delta p_1^{(J)}(\Psi)/\Delta p_1^{(J)}(\Psione)=0.50950$ for every
+$J=30,\dots,99$; and the kernel $e^{-y}$ at the same nodes gives the same sequence of local decay exponents. The decay is
+set by the node density: for integer nodes it is faster than any power, for squares the exponent approaches $2$ in the computed range, and the
+prime powers lie in between. For the true family $\Delta p_1^{(J)}>0$ for all $J\le109$, and the local exponent of its decay
+falls from $3.82$ to $2.37$ up to $n=443$, decelerating, consistently with a limit $2$. For the analogous families built
+from the data of $\QQ(\sqrt5)$, of $\QQ(\sqrt{-3})$, and of $\zeta^2$ with $\Xi^4$, $p_1^{(J)}$ shows no sign of convergence in the computed range.
+\end{observation}
+
+So the one scalar input of Corollary~\ref{cor:FFprime} appears to be a statement about interpolation by a Gamma-type
+kernel at the prime powers (heuristic).
+
+\begin{observation}[Monotone decrease and the first gap]\label{obs:monotone}
+$\FT F_{J+1}-\FT F_J<0$ at every tested point of $[2,\infty)$ off the nodes, so $\FT F_J$ decreases in $J$ there; and
+$\FT F_J''>0$ at every node, for $J\le60$. On the first gap, with $\varrho$ as in Theorem~\ref{thm:T}, the normalised
+margin $\FT F_J/(\Psione\varrho)$ is $0.96292$ at $x=2.5$ and tends to $2.4249$ as $x\to2^+$, stable in $J$ (relative
+increments about $10^{-7}$). The binding region is the front $x\approx n_J$, not the first gap.
+\end{observation}
+
+\begin{observation}[The front]\label{obs:front}
+Near $x\approx n_J$ the erosion $\log(\FT F_{J-1}/\FT F_J)$, which is stable in $J$ in the computed range, is about $0.4x$, against a fresh amplification of
+about $(9.7/\log x)\,x$. For $15\le J\le110$ the Abel preimage $Q^{\mathrm{Ab}}_{P_J}$ has exactly $2J+3$ positive roots: three
+small ones, and one pair close to each node (offsets $\le0.46$). Its cofactor
+$Q^{\mathrm{Ab}}_{P_J}/\bigl(y\prod_i(y-r_i)\bigr)$, $r_i$ the positive roots, has positive coefficients for $J=1,2$ and at
+every tested $J\ge9$ ($J=9,\dots,15,20,30,45,60$), and not for $3\le J\le8$. By Lemma~\ref{lem:Ttrace} the roots of this
+cofactor sum to $8(J+1)^2-\sum_ir_i$, so positivity of its coefficients requires $\sum_ir_i>8(J+1)^2$; in the data this
+fails exactly for $3\le J\le8$. A heuristic extrapolation suggests that $\FT F_\infty/\Psione$ may approach $0$ at mid-gaps near
+$x\sim10^7$--$10^8$, so that a fixed margin in $\Psione$-normalisation may fail even if \hyp{Mg} holds; Fact~\ref{thm:M}
+needs only pointwise \hyp{Mg}.
+\end{observation}
+
+\begin{observation}[Coefficient steps along the prime powers]\label{obs:LRstep}
+For the exact $P_J$, $10\le J\le109$ (with independent root-finding): \hyp{LR-step} of Theorem~\ref{thm:IG} holds with $u_J$
+the newest root pair for every $J$, and in fact for all but one of the left-half-plane root pairs; for the passing pairs
+$\lvert t_J\rvert\ge2.57\,n_{J+1}$, where $u_J=t_J^2$. $P_J$ is log-concave for $10\le J\le110$ (minimum ratio $1.029$,
+migrating to the top like $1+4.2/k$). \hyp{SW$_{\hat z}$} holds for every $8\le J\le109$ (and fails for $3\le J\le7$), with
+$\hat z_J\ge0.6\,y_{J+1}$. \hyp{C01} and \hyp{C02} hold for $10\le J\le109$, with the smallest relative gaps at $k=2J-1$
+(from $0.733$ to $0.00316$ and from $0.453$ to $0.00632$ as $J$ goes from $10$ to $109$); \hyp{Z} holds with
+$c_1/\lambda-1=8.3\cdot10^{-4}$ at $J=109$; and the comparison $\bar W_1\ge\bar W_2$ fails at every $J$.
+\end{observation}
+
+\begin{observation}[Insertion sign laws along the prime powers]\label{obs:SMset-true}
+\hyp{SM}$_{\mathrm{true}}$ holds along the prime powers for the sampled $K\le121$ ($K=1$--$40$, $50,60,\dots,100$, $105$,
+$108$--$121$, on grids of $x>n_{K+1}$), with relative margin about $-0.8/n_{K+1}$ at the confluent end;
+\hyp{W}$_{\mathrm{top}}$ and \hyp{N} hold for insertions at $(n_K,10^4n_K]$, $K=5,8,10,20,40,60,110$. On these grids, with
+$Y=y_{K+1}$ and $X>Y$, the two-node interaction satisfies $\Delta^2_{\yPP_K}(Y,X)\le-16S_K/(YX(Y+X))$ for $K=2,\dots,121$ and the
+Tur\'an ratio satisfies $\Tu_K\le1-8/Y$. The ratio $r_K:=Y^2\Delta p_1^{(K)}/(2S_K)$ is at least $1.279$ at every tested
+$K\le109$ (its minimum over that range, attained at $K=109$; the maximum is $3.02$, at $K=6$), and $r_{110}=1.27459$
+(Numerical observation~\ref{obs:B110}); the values decrease towards $1$ roughly like $1+0.93\cdot8(K+1)/Y$. In this
+computed range, therefore, each of the three quantities is bounded by its first-order far-field value (``the far field is
+the worst case''); since $8(K+1)/y_{K+1}\to0$ along the prime powers, this is a statement about the computed range only.
+For a fixed node set, the interaction is $-16S/(Ys(Y+s))$ to first order on cones, a constant computed symbolically for
+$J\le6$.
+\end{observation}
+
+\begin{observation}[The tail constants $B_{60}$ and $B_{110}$]\label{obs:B110}
+The insertion formula of Proposition~\ref{prop:insertion} was evaluated at every prime power
+$n\in(n_{J_1},20000]$ in 3000-bit arithmetic, and reproduced independently to $5\cdot10^{-15}$ per point. The tail
+$n>20000$ was bounded under the assumption that $Y^2\Delta_{\yv_{J_1}}(Y)/(2S_{\yv_{J_1}})$ does not exceed its value at
+$n=20000$; this step is heuristic and covers $1.3\%$ of the total. The computed values are
+$B_{110}\approx1.8672\cdot10^{-10}$ and $B_{60}\approx6.7195\cdot10^{-10}$ (with the cruder tail assumption $r\le2$,
+$B_{110}\le1.891\cdot10^{-10}$). With the certified $R_1=4.844\cdot10^9$ ($X=53$) this gives $R_1B_{110}\approx0.905$, so
+\hyp{p} would hold for $\eta<0.105$; with $R_1=1.021\cdot10^9$ ($X=31$), $R_1B_{60}\approx0.686$. Also
+$S_{\yv_{110}}\approx1.036964\cdot10^{-5}$, $S_{\yv_{60}}\approx1.332823\cdot10^{-5}$, and the ratio $Y^2\Delta/(2S)$ at the
+first tail node is $1.27459$ for $J_1=110$, against $1+8\cdot111/Y\approx1.295$ from Theorem~\ref{thm:Ftrue}.
+\end{observation}
+
+
+\subsection{The model}\label{ssec:obs-model}
+
+\begin{observation}[Further tail data of the model]\label{obs:toytail-data}
+Along the prime-power chain of the model:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item at every level $J\le40$, on $120$ log-spaced points of $[y_{J+1},1000y_{J+1}]$, the hypotheses of
+Theorem~\ref{thm:Tprime} hold;
+\item $S_K>0$ at $K\in\{20,40,60,80,100,120\}$, with $S_{20}\approx5.65\cdot10^{-3}$ and $S_{120}\approx1.99\cdot10^{-3}$;
+\item in Proposition~\ref{prop:Fremainder} the second coefficient grows roughly like $30J^2$, so the expansion parameter is
+$J/Y$;
+\item the bound of Theorem~\ref{thm:Tprime} exceeds that of Proposition~\ref{prop:tail-general} by $3.1\%$ ($J_1=5$,
+$K\le40$) and $0.42\%$ ($J_1=20$, $K\le50$).
+\end{enumerate}
+Items (a) and (b) were obtained with interval arithmetic and (c), (d) in high-precision floating point; they are not
+reproduced by the ancillary files.
+\end{observation}
+
+\begin{observation}[W on sparse sets]\label{obs:W-PP}
+\textup{(W)} holds at every node for the prime powers ($J=20,40$), the squares ($J=15$), the primes ($J=30$) and
+$n_j\approx j\log j$ ($J=30$). Along $n_j=s+(j-1)$ the first $J$ at which sign failures appear grows with the deficiency
+$s-1$: about $5$, $10$, $21$, $45$ for $s-1=0$, $0.02$, $0.05$, $0.1$. The integers from $2$ pass for every sampled
+$J\le90$, while $S_J$ decays quickly ($S_{90}\approx3.9\cdot10^{-11}$).
+\end{observation}
+
+Heuristically, (W) needs a quantitative deficiency below the critical density, which the prime powers have in abundance;
+at critical density the truncated systems become nearly degenerate and the signs of $S_J$ and of the weights are decided by
+exponentially small quantities. We do not use this reading.
+
+\subsection{The model versus the true kernel}\label{ssec:toy-true}
+
+For the TEL comparison put
+$\tau_J(x):=\log\bigl(\FT F_J/\FT F_{J-1}\bigr)(x)-2\log|1-x/n_J|$ for the true family (so that $\TEL^{\mathrm{true}}_J$ of
+Conjecture~\ref{conj:TELtrue} is $\tau_J\ge0$), the same quantity with $Q_Je^{-y}/(Q_{J-1}e^{-y})$, $y=2\pi x$, for the model,
+and $\tau_J(n_J)$ for its limit at the new node.
+
+\begin{observation}[Quantitative agreement]\label{obs:toy-true}
+On the same prime-power nodes:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \textup{(front profile of the step law)} $\tau_J(n_J)=2.009$, $1.860$, $1.705$, $1.646$ in the model and $2.208$,
+$1.917$, $1.722$, $1.655$ for the true family at $J=10,20,40,60$; at $J=60$ and $x=qn_J$, $q=\frac14,\frac12,\frac34$,
+$\tau_J=0.508$, $0.953$, $1.327$ (model) and $0.474$, $0.931$, $1.315$ (true). The two agree to within $0.03$ for
+$J\ge40$, and the difference decreases with $J$.
+\item \textup{(set-comparison profile)} In both models the far field is the worst case in the computed range: for the true kernel, with
+$z=y_{K+1}$, $\Delta^2_{\yPP_K}(z,x)\le-16S_K/(zx(z+x))$ at every grid point $x>z$ and $S_{K+1}/S_K\le1-8/z$, for
+$K=2,\dots,121$.
+\item \textup{(companion comparisons)} The minimal relative gaps in the comparisons (C01), (C02) of
+Corollary~\ref{cor:SW} for the true kernel coincide to $4$--$5$ digits with those of the model's companion rungs
+$2\to3$ and $2\to4$: $0.7325/0.7328$ and $0.4527/0.4550$ at $J=10$; $0.08764/0.08763$ and $0.1750/0.1750$ at $J=20$;
+$0.01745/0.01745$ and $0.03489/0.03489$ at $J=40$; $5.1692\cdot10^{-3}/5.1692\cdot10^{-3}$ and
+$1.034\cdot10^{-2}/1.034\cdot10^{-2}$ at $J=80$ (true/model).
+\end{enumerate}
+\end{observation}
+
+A heuristic explanation of (c): at the front $u+\frac14\approx u$, so $P^{\Xi}\approx u^2P$ and the true family behaves like
+the model two companion rungs up (Proposition~\ref{prop:dictionary}). Making this precise, with error terms, is an open
+problem (Section~\ref{ssec:open}).
+
+\subsection{Further computed data quoted in the text}\label{ssec:obs-misc}
+
+\begin{observation}[Computed data quoted in the text]\label{obs:misc}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \textup{(Remark~\ref{rem:Mss})} In random tests at $J=2,3,4$ the local law $(\mathrm{LOC})$ held in all $6331$ trials.
+\item \textup{(Remark~\ref{rem:windowP})} Along the prime powers the hierarchy of augmented cofactors
+$\pf_{Z+0+0},\pf_{Z+3\cdot0},\dots$ is not uniformly sign-regular. The law $(\mathrm{I1}')$ fails at critical density: for the
+integer nodes $2\pi(2,3,\dots)$ it first fails, at the top index, at $K=13$, while $(\mathrm{I0})$ first fails at $K=25$; and it
+fails on the progression $y^*$ at every level checked.
+\item \textup{(Proposition~\ref{prop:obstruction})} An explicit pair of systems with $d=4$, $c=10$ and $s=\pm\frac12$ exhibits both
+signs of $\Tu-1$ and of $I$, while every Wronskian stays one-signed with positive Taylor coefficients at $c$ (an exact
+computation, not reproduced in the ancillary files).
+\item \textup{(Corollary~\ref{cor:FFprime})} \hyp{$\Phi$-mono} holds for $K=59,\dots,109$ with $\eta\le10^{-4}$ (computed values, not
+bounds). With the extrapolated tail $\delta(60)\approx5.7$--$6.1\cdot10^{-10}$ one gets $R_1\delta\approx0.58$--$0.62$ on $[2,31]$,
+and with $\delta(110)\approx1.5$--$1.9\cdot10^{-10}$, $R_1\delta\approx0.73$--$0.92$ on $[2,53]$.
+\item \textup{(Remark~\ref{rem:EVEN-TEL})} \hyp{EVEN-TEL$_J$} holds on the data of Numerical observation~\ref{obs:TEL}, but its margin
+shrinks roughly like $n_J^{-0.38}$, so it may be asymptotically tight (a heuristic reading of the data).
+\item \textup{(Lemma~\ref{lem:firstorder})} The expansion in the proof of Lemma~\ref{lem:firstorder}, carried out symbolically for
+general $\kappa\in\RR^5$, gives $\partial_tI|_{t=0}=\sum_i\lambda_i\kappa_i/(2xz(x+z)^3)$ with $\lambda_0=6x^2+13xz+6z^2$,
+$\lambda_1=-10x^2-24xz-10z^2$, $\lambda_2=2x^2+10xz+2z^2$, $\lambda_3=2(x^2+z^2)$, $\lambda_4=xz$; on quadratic $\kappa$ it agrees
+with Lemma~\ref{lem:firstorder}(ii). This computation is not reproduced in the ancillary files.
+\item \textup{(Remark~\ref{rem:pencil})} The bound \hyp{Q} holds for the computed normalised increments $q_K$, $K\le109$, with
+exponent $a_1\approx1.0265$.
+\end{enumerate}
+\end{observation}

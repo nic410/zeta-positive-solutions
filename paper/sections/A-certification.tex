@@ -1,0 +1,161 @@
+%======================================================================
+\section{Certification methods}\label{app:certification}
+%======================================================================
+
+This appendix describes the arithmetic, the validated special functions and the cushion used in the certificates of
+Section~\ref{sec:certified}; the conventions are stated in Section~\ref{ssec:cert-method}.
+
+%----------------------------------------------------------------------
+\subsection{Exact and ball arithmetic}
+%----------------------------------------------------------------------
+
+\begin{remark}[Ball arithmetic and rigorous solves]
+\emph{Exact} computations use integers and rationals (FLINT \texttt{fmpz}, \texttt{fmpq} and their polynomial and matrix
+types \cite{FLINT}). \emph{Interval} computations use Arb ball arithmetic \cite{Joh17}: a real number is represented by a
+ball $[m\pm r]$ that is guaranteed to contain it, and every operation returns a ball containing all possible results.
+Both are accessed through python-flint. Constants such as $\pi$ and Euler's constant $\gamma_E$ are balls. Linear systems are solved by Arb's
+ball solver, which either returns balls containing the exact solution of every system in the input balls, and thereby certifies that
+the exact matrix is invertible, or fails. The non-rigorous library mpmath \cite{mpmath} is used only in self-tests, never in a
+certificate.
+\end{remark}
+
+Positivity of polynomials is certified by coefficient signs.
+
+\begin{lemma}[Positive-coefficient certificates]\label{lem:posc}
+\textup{(a)} \textup{(Descartes at $c$.)} If $p\in\RR[t]$ and every coefficient of $p(c+t)\in\RR[t]$ is non-negative with
+positive constant term, then $p>0$ on $[c,\infty)$. If $p$ vanishes to exact order $m$ at $c$ and the coefficients of
+$t^m,t^{m+1},\dots$ in $p(c+t)$ are positive, then $p>0$ on $(c,\infty)$.
+
+\textup{(b)} A polynomial with non-negative coefficients in $v\in[0,\infty)^m$ is non-negative there, and positive at every
+point at which some monomial with a positive coefficient is positive.
+
+With ball coefficients, ``positive'' means that the ball lies in $(0,\infty)$.
+\end{lemma}
+
+\begin{proof}
+Both statements follow from the fact that a polynomial with non-negative coefficients takes non-negative values
+on the non-negative orthant, with the indicated strictness.
+\end{proof}
+
+In Proposition~\ref{prop:lowheight} the lemma is applied, after a M\"obius map of an interval onto $[0,\infty)$, to polynomials with
+exact rational coefficients; Taylor shifts of ball polynomials, where needed, are computed by Horner's scheme at a ball containing $c$,
+which encloses the exact shifted coefficients.
+
+%----------------------------------------------------------------------
+\subsection{Validated Bessel functions}
+%----------------------------------------------------------------------
+
+All certificates built on $\Xi^2$ (Theorem~\ref{thm:kappa} and Proposition~\ref{thm:finiteJ}) evaluate $K_0$ and $K_1$ on positive real balls. We do not use the built-in Bessel
+and confluent hypergeometric functions of Arb for this purpose: at moderate $z$ their enclosures can lose about $e^{2z}$
+in relative accuracy. Instead the shipped module \nolinkurl{lib/besselk.py} uses two classical representations with
+explicit error bounds.
+
+\begin{lemma}[Validated evaluation of $K_0$ and $K_1$]\label{lem:K-validated}
+Let $z>0$ and $\nu\in\{0,1\}$.
+\textup{(a)} $K_0$ and $K_1$ are given by the convergent series \cite[10.31.2, 10.31.1]{DLMF}
+\[
+  \begin{aligned}
+  K_0(z)&=-\bigl(\log\tfrac z2+\gamma_E\bigr)I_0(z)+\sum_{k\ge1}\frac{H_k\,q^k}{(k!)^2},\\
+  K_1(z)&=\frac1z+\log\tfrac z2\,I_1(z)-\frac z4\sum_{k\ge0}\frac{(\psi(k+1)+\psi(k+2))\,q^k}{k!\,(k+1)!},
+  \end{aligned}
+\]
+with $q=z^2/4$, $I_0(z)=\sum_kq^k/(k!)^2$, $I_1(z)=\frac z2\sum_kq^k/(k!(k+1)!)$ and $H_k$ the harmonic numbers.
+\textup{(b)} For $\ell\ge\max(|\nu|-\frac12,1)$, $K_\nu(z)=\sqrt{\pi/(2z)}\,e^{-z}\bigl(\sum_{k<\ell}a_k(\nu)z^{-k}+R_\ell\bigr)$ with
+$a_k(\nu)=\prod_{j=1}^k(4\nu^2-(2j-1)^2)/(k!\,8^k)$ and $|R_\ell|\le|a_\ell(\nu)|z^{-\ell}$ \cite[10.40.2 and
+\S10.40(ii)]{DLMF}.
+\textup{(c)} $K_0'=-K_1$ and $K_1'=-K_0-K_1/z$; hence $|K_0'|=K_1$ and $|K_1'|\le K_0+K_1/z$ on $(0,\infty)$.
+\end{lemma}
+
+\begin{proof}
+(a) and (b) are the cited formulas, specialised to $\nu=0,1$; (c) follows from the recurrences for $K_\nu'$ and the
+positivity of $K_0,K_1$ on $(0,\infty)$.
+\end{proof}
+
+\emph{Implementation.} For a ball $[m\pm r]\subset(0,\infty)$ the module evaluates $K_0,K_1$ at the exact midpoint $m$ and
+adds $r$ times an upper bound for $|K_\nu'|$ on the ball, obtained from (c) and $(\log K_1)'\ge-1-1/w$. At the midpoint it
+uses (b), summed until the remainder bound falls below $2^{-P-20}$ relative, when this is possible, and otherwise (a) at
+working precision $P+2.885z+64$ bits, since the series for $K_\nu$ cancels the growing $I_\nu$-terms to a relative size
+$e^{-2z}$. The series is truncated at an index $k\ge1$ with $4q\le(k+1)^2$. From there on every ratio of consecutive terms is at
+most $\frac12$: the factor $q/(k+1)^2$ is at most $\frac14$ and decreases, and the coefficient ratios ($H_{k+1}/H_k$, and the ratios of the
+values $\psi(k+1)+\psi(k+2)$, which are positive for $k\ge1$) are at most $2$. So each tail is at most twice its first neglected term,
+hence at most the last computed term; twice the last computed term is added as a ball radius. Evaluating the series directly on a ball
+would multiply the radius by about $e^{2z}$, which the midpoint evaluation avoids.
+
+%----------------------------------------------------------------------
+\subsection{The cushion}
+%----------------------------------------------------------------------
+
+An explicit zero-killing function with rational parameters vanishes at every zero of $\zeta$ but has its zeros of order at least two at
+the prime powers only up to the rationalisation, so $\FT F$ can be very slightly negative near a node. A small multiple of
+$\Xi^2e^{-\pi t^2}$ repairs this.
+
+\begin{lemma}[The cushion]\label{lem:cushion}
+Let $\delta>0$.
+\textup{(a)} $\widehat{\Xi^2e^{-\pi t^2}}(\xi)=(\Psi*e^{-\pi(\cdot)^2})(\xi)\ge e^{-\pi(|\xi|+\delta)^2}I_\delta>0$ for every $\xi\in\RR$, where
+$I_\delta:=\int_{-\delta}^{\delta}\Psi(\eta)\dd\eta$.
+\textup{(b)} $\Arch(\Xi^2e^{-\pi t^2})=\frac1\pi\sum_{n\ge2}\Lambda(n)n^{-1/2}\widehat{\Xi^2e^{-\pi t^2}}(\xin n)>0$. Moreover
+$\Arch(\Xi^2e^{-\pi t^2})\in[0.930646274515431\pm2.3\cdot10^{-16}]$, and $I_{1/20}\ge0.09782880564$; the latter is a lower bound obtained from the
+term $N=1$ of Proposition~\ref{thm:bessel} alone, not an approximation of $I_{1/20}$.
+\textup{(c)} Let $H\in\Hc$, $H\ge0$ on $\RR$, $F_H:=\Xi^2H$ and $\eps\ge0$. If
+$\FT{F_H}(\xi)\ge-\eps\,e^{-\pi(\xi+\delta)^2}\int_{-\delta}^{\delta}\Psi$ for $\xi\ge\xin2$, then
+$\Frep:=F_H+\eps\,\Xi^2e^{-\pi t^2}\in\Cone$ and
+\[
+  \kstar\le\frac{\Arch(F_H)+\eps\Arch(\Xi^2e^{-\pi t^2})}{\int F_H+\eps\int\Xi^2e^{-\pi t^2}}\le\frac{\Arch(F_H)+\eps\Arch(\Xi^2e^{-\pi t^2})}{\int F_H}
+\]
+when the numerator is non-negative.
+\end{lemma}
+
+\begin{proof}
+(a) $\widehat{\Xi^2e^{-\pi t^2}}=\FT{\Xi^2}*\widehat{e^{-\pi t^2}}$, and $e^{-\pi t^2}$ is its own Fourier transform. Since $\Psi>0$ (Lemma~\ref{lem:Psi-pos}), restricting the convolution
+integral to $|\eta|\le\delta$, where $|\xi-\eta|\le|\xi|+\delta$, gives the bound. (b) $\Xi^2e^{-\pi t^2}\in\Tc$ vanishes at every
+non-trivial zero of $\zeta$, so Corollary~\ref{cor:zerokilling} gives the identity, and
+positivity follows from (a). The two constants are computer-assisted: $\Arch(\Xi^2e^{-\pi t^2})$ is computed from the archimedean
+side by Arb's rigorous numerical integration on $[0,8]$ plus an explicit tail bound
+(\nolinkurl{kappa/cushion_A.py}); the integral of $\Psi$ uses the term $N=1$ of Proposition~\ref{thm:bessel} with monotone
+bounds for $K_0,K_1$ on subintervals, the terms $N\ge2$ being positive (\nolinkurl{lib/cushion.py}); log
+\nolinkurl{kappa/logs/cushion.log}. The slack certificates use the upper endpoint of the Arb ball for $\Arch(\Xi^2e^{-\pi t^2})$, which is at most
+$0.930646274516$. (c) $\Frep\ge0$ on $\RR$, $\Frep\in\Tc$, and for
+$\xi\ge\xin2$ (a) gives $\FT\Frep(\xi)\ge-\eps e^{-\pi(\xi+\delta)^2}\int\Psi+\eps e^{-\pi(\xi+\delta)^2}\int\Psi=0$; so
+$\Frep\in\Cone$, and the bound is the definition of $\kstar$ applied to $\Frep$ (with $\int\Frep=\FT\Frep(0)$).
+\end{proof}
+
+The cushion is not optional: with rationalised parameters $\FT F_H$ need not be non-negative at the nodes; for
+example $\FT F_H(\xin2)\approx-1.9\cdot10^{-119}$ in the certificate for $J=20$. In the shipped certificates of
+Section~\ref{ssec:kappa} the values $|\FT F_H(\xin{n_j})|$ are at most $1.9\cdot10^{-119}$, $1.1\cdot10^{-501}$ and
+$2.4\cdot10^{-983}$ for $J=20$, $60$, $100$, while the cushion term near the nodes is larger by more than forty orders of
+magnitude (Appendix~\ref{app:anc}).
+
+%----------------------------------------------------------------------
+\subsection{The digamma weight}
+%----------------------------------------------------------------------
+
+The Gaussian--Laguerre certificates (Propositions~\ref{thm:kappaOPS}, \ref{prop:lowheight} and~\ref{thm:notcritical}) integrate against the
+digamma weight $\Omega_{\mathfrak g}$ on a finite interval and bound the rest by an explicit tail, which uses the following estimate.
+
+\begin{lemma}[The digamma function on vertical lines]\label{lem:digamma}
+For $w>0$ and $\tau>0$, $\bigl|\Re\psi(w+i\tau)-\log\sqrt{w^2+\tau^2}\bigr|\le1/\tau$. In particular, if $0<w\le5\sqrt3$ and $t\ge10$, then
+$0<\Re\psi(w+\frac{it}2)\le\log t+\frac2t$.
+\end{lemma}
+
+\begin{proof}
+Let $f(x):=(x+w)/((x+w)^2+\tau^2)=\Re\,(x+w+i\tau)^{-1}$. The series for $\psi$ in Section~\ref{sec:setting} gives
+$\Re\psi(w+i\tau)=\lim_{N\to\infty}\bigl(\log N-\sum_{n=0}^{N-1}f(n)\bigr)$, and $\int_0^Nf=\log\sqrt{(N+w)^2+\tau^2}-\log\sqrt{w^2+\tau^2}$. For each
+$n$, $|f(n)-\int_n^{n+1}f|$ is at most the total variation of $f$ on $[n,n+1]$. On $[0,\infty)$, $f>0$ increases to its maximum $1/(2\tau)$,
+attained where $x+w=\tau$ if that point lies in $[0,\infty)$, and then decreases to $0$; so its total variation there is at most $1/\tau$.
+Hence $|\sum_{n<N}f(n)-\int_0^Nf|\le1/\tau$ for every $N$, and letting $N\to\infty$ gives the first claim. For the second take $\tau=t/2\ge5$:
+then $\log\sqrt{w^2+\tau^2}\ge\log5>\frac15\ge\frac1\tau$, and $\log\sqrt{w^2+\tau^2}\le\log t$ because $w^2\le75\le\frac34t^2$.
+\end{proof}
+
+The tail estimates of \nolinkurl{general/verify_general.py} use the consequence $|\Re\psi(w+\frac{it}2)|\le\log t+2\le t$ for $t\ge10$.
+The verifier enforces $T\ge10$ and, for every Gamma shift $k_j$, $0\le k_j$ and $(\frac12+k_j)^2\le300$, checked exactly; that is,
+$w_j=\frac12(\frac12+k_j)\in[\frac14,5\sqrt3]$, where the lemma applies, and it rejects other inputs. The data used here have $k_j\in\{0,1\}$,
+that is, $w=\frac14$ and $w=\frac34$. The restriction is needed: for fixed $t$, $\Re\psi(w+\frac{it}2)$ grows like $\log w$.
+
+%----------------------------------------------------------------------
+\subsection{Provenance}
+%----------------------------------------------------------------------
+
+Every input of a certificate is an exact object (integers, rationals, or decimal strings read as exact rationals) stored in a parameter
+file; for the slack certificates the file also stores the SHA-256 of a canonical string of the parameters, which the verifier recomputes.
+The scripts check the rounding direction of every printed decimal exactly. Each shipped log was produced by a fresh run of the shipped
+script and records the command, the date, the software versions, the exit code and the wall time.

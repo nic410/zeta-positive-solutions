@@ -1,0 +1,88 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{10}
+
+\bibitem{BRS}
+Andriy Bondarenko, Danylo Radchenko, and Kristian Seip, \emph{Fourier interpolation with zeros of zeta and {$L$}-functions}, Constr. Approx. \textbf{57} (2023), no.~2, 405--461, arXiv:2005.02996, \href{https://doi.org/10.1007/s00365-022-09599-w}{doi:10.1007/s00365-022-09599-w}.
+
+\bibitem{CDG24}
+Henry Cohn, Dingding Dong, and Felipe Gon{\c{c}}alves, \emph{Sign uncertainty principles and low-degree polynomials}, Proc. Amer. Math. Soc. Ser. B \textbf{11} (2024), 224--228, arXiv:2210.01684, \href{https://doi.org/10.1090/bproc/219}{doi:10.1090/bproc/219}.
+
+\bibitem{CG19}
+Henry Cohn and Felipe Gon{\c{c}}alves, \emph{An optimal uncertainty principle in twelve dimensions via modular forms}, Invent. Math. \textbf{217} (2019), no.~3, 799--831, arXiv:1712.04438, \href{https://doi.org/10.1007/s00222-019-00875-4}{doi:10.1007/s00222-019-00875-4}.
+
+\bibitem{CKMRV22}
+Henry Cohn, Abhinav Kumar, Stephen~D. Miller, Danylo Radchenko, and Maryna Viazovska, \emph{Universal optimality of the {$E_8$} and {L}eech lattices and interpolation formulas}, Ann. of Math. (2) \textbf{196} (2022), no.~3, 983--1082, arXiv:1902.05438, \href{https://doi.org/10.4007/annals.2022.196.3.3}{doi:10.4007/annals.2022.196.3.3}.
+
+\bibitem{CM16}
+Henry Cohn and Stephen~D. Miller, \emph{Some properties of optimal functions for sphere packing in dimensions 8 and 24}, 2016, arXiv:1603.04759.
+
+\bibitem{Com74}
+Louis Comtet, \emph{Advanced combinatorics: {T}he art of finite and infinite expansions}, revised and enlarged ed., D. Reidel Publishing Co., Dordrecht, 1974, \href{https://doi.org/10.1007/978-94-010-2196-8}{doi:10.1007/978-94-010-2196-8}.
+
+\bibitem{CC21}
+Alain Connes and Caterina Consani, \emph{Spectral triples and {$\zeta$}-cycles}, Enseign. Math. \textbf{69} (2023), no.~1-2, 93--148, arXiv:2106.01715, \href{https://doi.org/10.4171/LEM/1049}{doi:10.4171/LEM/1049}.
+
+\bibitem{Con73}
+John~B. Conway, \emph{Functions of one complex variable}, Graduate Texts in Mathematics, vol.~11, Springer-Verlag, New York--Heidelberg, 1973, \href{https://doi.org/10.1007/978-1-4615-9972-2}{doi:10.1007/978-1-4615-9972-2}.
+
+\bibitem{Dix12}
+Atul Dixit, \emph{Character analogues of {R}amanujan-type integrals involving the {R}iemann {$\Xi$}-function}, Pacific J. Math. \textbf{255} (2012), no.~2, 317--348, arXiv:1102.2680, \href{https://doi.org/10.2140/pjm.2012.255.317}{doi:10.2140/pjm.2012.255.317}.
+
+\bibitem{DLMF}
+\emph{{\it NIST Digital Library of Mathematical Functions}}, \url{https://dlmf.nist.gov/}, Release 1.2.8 of 2026-09-15, 2026, F.~W.~J. Olver, A.~B. {Olde Daalhuis}, D.~W. Lozier, B.~I. Schneider, R.~F. Boisvert, C.~W. Clark, B.~R. Miller, B.~V. Saunders, H.~S. Cohl, and M.~A. McClain, eds.
+
+\bibitem{FGH21}
+Ahram~S. Feigenbaum, Peter~J. Grabner, and Douglas~P. Hardin, \emph{Eigenfunctions of the {F}ourier transform with specified zeros}, Math. Proc. Cambridge Philos. Soc. \textbf{171} (2021), no.~2, 329--367, arXiv:1907.08558, \href{https://doi.org/10.1017/S0305004120000249}{doi:10.1017/S0305004120000249}.
+
+\bibitem{Gan59}
+F.~R. Gantmacher, \emph{The theory of matrices. {V}ol. 1}, Chelsea Publishing Co., New York, 1959, Translated from the Russian by K. A. Hirsch.
+
+\bibitem{GOS17}
+Felipe Gon{\c{c}}alves, Diogo Oliveira~e Silva, and Stefan Steinerberger, \emph{Hermite polynomials, linear flows on the torus, and an uncertainty principle for roots}, J. Math. Anal. Appl. \textbf{451} (2017), no.~2, 678--711, arXiv:1602.03366, \href{https://doi.org/10.1016/j.jmaa.2017.02.030}{doi:10.1016/j.jmaa.2017.02.030}.
+
+\bibitem{Joh17}
+Fredrik Johansson, \emph{Arb: efficient arbitrary-precision midpoint-radius interval arithmetic}, IEEE Trans. Comput. \textbf{66} (2017), no.~8, 1281--1292, \href{https://doi.org/10.1109/TC.2017.2690633}{doi:10.1109/TC.2017.2690633}.
+
+\bibitem{PaperI}
+Nic Johns, \emph{Positive solutions of the explicit formula for {$\zeta(s)$}: near-criticality and uniqueness}, Companion paper, in preparation, 2026.
+
+\bibitem{KS66}
+Samuel Karlin and William~J. Studden, \emph{Tchebycheff systems: With applications in analysis and statistics}, Pure and Applied Mathematics, vol.~15, Interscience Publishers, a division of John Wiley \& Sons, New York, 1966.
+
+\bibitem{Kos29}
+N.~S. Koshliakov, \emph{On {V}orono{\"\i}'s sum-formula}, Messenger Math. \textbf{58} (1929), 30--32.
+
+\bibitem{Olv74}
+F.~W.~J. Olver, \emph{Asymptotics and special functions}, Computer Science and Applied Mathematics, Academic Press, New York--London, 1974.
+
+\bibitem{RV19}
+Danylo Radchenko and Maryna Viazovska, \emph{Fourier interpolation on the real line}, Publ. Math. Inst. Hautes {\'E}tudes Sci. \textbf{129} (2019), 51--81, arXiv:1701.00265, \href{https://doi.org/10.1007/s10240-018-0101-z}{doi:10.1007/s10240-018-0101-z}.
+
+\bibitem{RS62}
+J.~Barkley Rosser and Lowell Schoenfeld, \emph{Approximate formulas for some functions of prime numbers}, Illinois J. Math. \textbf{6} (1962), no.~1, 64--94, \href{https://doi.org/10.1215/ijm/1255631807}{doi:10.1215/ijm/1255631807}.
+
+\bibitem{Sto21}
+Martin Stoller, \emph{Fourier interpolation from spheres}, Trans. Amer. Math. Soc. \textbf{374} (2021), no.~11, 8045--8079, arXiv:2002.11627, \href{https://doi.org/10.1090/tran/8440}{doi:10.1090/tran/8440}.
+
+\bibitem{Sze75}
+G{\'a}bor Szeg{\H{o}}, \emph{Orthogonal polynomials}, fourth ed., American Mathematical Society Colloquium Publications, vol.~23, American Mathematical Society, Providence, RI, 1975.
+
+\bibitem{FLINT}
+{The FLINT team}, \emph{{FLINT}: {F}ast {L}ibrary for {N}umber {T}heory}, 2026, Version 3.6.0, \url{https://flintlib.org}.
+
+\bibitem{Tit86}
+E.~C. Titchmarsh, \emph{The theory of the {R}iemann zeta-function}, second ed., Clarendon Press, Oxford, 1986, Revised by D. R. Heath-Brown.
+
+\bibitem{Tou39}
+Jacques Touchard, \emph{Sur les cycles des substitutions}, Acta Math. \textbf{70} (1939), 243--297, \href{https://doi.org/10.1007/BF02547349}{doi:10.1007/BF02547349}.
+
+\bibitem{Wei52}
+Andr{\'e} Weil, \emph{Sur les ``formules explicites'' de la th{\'e}orie des nombres premiers}, Comm. S{\'e}m. Math. Univ. Lund [Medd. Lunds Univ. Mat. Sem.] \textbf{Tome suppl{\'e}mentaire} (1952), 252--265.
+
+\end{thebibliography}

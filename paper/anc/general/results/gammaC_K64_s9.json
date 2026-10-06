@@ -1,0 +1,46 @@
+{
+ "parameter_file": "general/params/gammaC_K64_s9.json",
+ "sha256": "e330d8b743bd835920ecaad507a195773f4c858181d97bafb9d3eca1c296021a",
+ "K": 64,
+ "s": "9",
+ "eps": "1e-30",
+ "gamma_data": {
+  "shifts": [
+   "0",
+   "1"
+  ],
+  "log_conductor": "0",
+  "pole_residue": "1"
+ },
+ "numerics": {
+  "prec_bits": 448,
+  "T": 160,
+  "rel_tol_bits": 200,
+  "abs_tol_exp10": 45
+ },
+ "positivity": {
+  "P(0)>0": true,
+  "P_roots_(0,oo)": 0,
+  "Q(0)>0": true,
+  "Q_roots_(0,oo)": 0,
+  "Q_roots_(Y_lo,oo)": 0,
+  "Q_roots_(Y_hi,oo)": 0,
+  "Q(Y_lo)>0": true,
+  "F_rep>0_on_R": true,
+  "Fhat_rep>0_on_[xi2,oo)": true,
+  "Fhat_rep>0_on_R": true
+ },
+ "A": "[-0.1738510266088776271807871 +/- 2.83e-26]",
+ "int_F": "[0.9999999999999999444888488 +/- 3.13e-26]",
+ "D": "[0.30479732450292163070 +/- 4.88e-21]",
+ "ratio": "[-0.1738510266088776368314577 +/- 1.54e-27]",
+ "tail": "[3.70e-54 +/- 2.57e-57]",
+ "kappa_upper": "-0.17385102660887763683",
+ "log_conductor_threshold_lower": "1.0923382160269872968",
+ "qmin_lower": "2.9812367047650810559",
+ "claims_checked": {
+  "kappa_upper_le": true,
+  "conductor_lower_ge": true
+ },
+ "certified": true
+}

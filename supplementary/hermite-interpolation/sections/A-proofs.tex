@@ -1,0 +1,574 @@
+%======================================================================
+\section{Proofs}\label{app:proofs}
+%======================================================================
+
+\subsection{Voronoi decoupling}\label{app:proofs-voronoi}
+\begin{proof}[Proof of Theorem~\textup{\ref{thm:voronoi}}]
+By~\eqref{eq:XB}, $\Xi^2H$ is analytic on $-\tau\le\Im w\le0$ and decays like
+$e^{-(\pi/2-a)\lvert\Re w\rvert}$ there, so
+$\widehat{\Xi^2H}(\xi)=\int_{\Im w=-\tau}\Xi(w)^2H(w)e^{-2\pi i\xi w}\dd w$. On this line
+$s=\frac12+iw$ has $\Re s=\frac12+\tau>1$, so $\Xi(w)^2=\Xiinf(w)^2\sum_md(m)m^{-1/2-iw}$ with absolute
+convergence, and Fubini gives
+$\sum_md(m)m^{-1/2}\int_{\Im w=-\tau}G_H(w)e^{-2\pi i(\xi+\xi_m)w}\dd w$. The poles of
+$\Xiinf(w)=\frac12s(s-1)\GR(s)$ lie at $s=-2k$, $k\ge1$ (the pole of $\Gamma(s/2)$ at $s=0$ is
+cancelled by $s$), that is, at $w=i(2k+\frac12)$ in the upper half-plane. So each integral may be moved
+back to $\RR$, where it equals $\FT G_H(\xi+\xi_m)$. On $\Im w=-\tau$ we have
+$\lvert e^{-2\pi i\eta w}\rvert=e^{-2\pi\tau\eta}$, which gives the bound with
+$C_\tau=\lVert G_H\rVert_{L^1(\Im w=-\tau)}$. For real $t$, $\overline{\Xiinf(t)}=\Xiinf(-t)$, so
+$\overline{G_H(t)}=G_H(-t)$ and $\FT G_H$ is real.
+For the last two identities, insert the expansion into Fact~\ref{cor:zerokilling} and into
+$\int\Xi^2H=\widehat{\Xi^2H}(0)$, and regroup by $k=nm$; the double series converge absolutely. The
+regrouping uses $\sum_{nm=k}\Lambda(n)d(m)=\sum_{e\mid k}\log e=\frac12d(k)\log k$.
+\end{proof}
+
+\subsection{Nested Hermite families}\label{app:proofs-hermite}
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:dualrule}}]
+(a) By \hyp{N}$_{\yv}$ the data map $\mathcal D_{\yv}$ is bijective on $\operatorname{span}\{u,\dots,u^{2J}\}$, so
+$G\mapsto[u]\mathcal D_{\yv}^{-1}\mathcal D_{\yv}G$ is a linear functional of the data of $G$; on
+$\operatorname{span}\{u,\dots,u^{2J}\}$ it is $[u]$, and a functional of the data is determined by its values on a
+space on which the data map is bijective. Since $P_{\yv}$ has zero data,
+$P_{\yv}-1=-\Pi_{\yv}1$, so $p_1(\yv)=-\mathcal L_{\yv}(1)$.
+(b) $D:=P_{\yv'}-P_{\yv}\in\operatorname{span}\{u,\dots,u^{2J+2}\}$ has the data of $-P_{\yv}$ at $\yv'$ (both
+polynomials have zero data at $\yv$), so $D=-\Pi_{\yv'}P_{\yv}$ and $[u]D=-\mathcal L_{\yv'}(P_{\yv})$. Only the
+weights at $y_{J+1}$ contribute.
+(c) $P_{\yv'}$ has zero data at $\yv$, so
+$0=\mathcal L_{\yv}(P_{\yv'})=-p_1(\yv)+p_1(\yv')+\sum_{k>2J}p_k(\yv')\ell_k$.
+(d) The coefficients are rational functions of the data (Cramer), with non-vanishing denominator. Move
+$y_j$ with velocity $1$ and differentiate the identities $\Fc_P(y_j)=\Fc_P'(y_j)=0$: the derivative
+$\dot P\in\operatorname{span}\{u,\dots,u^{2J}\}$ has zero data except $\Fc_{\dot P}'(y_j)=-\Fc_{\yv}''(y_j)$ (the value
+condition gives $\Fc_{\dot P}(y_j)=-\Fc'_{\yv}(y_j)=0$). Hence $\dot p_1=\mathcal L_{\yv}(\dot P)=-\mu_j\Fc_{\yv}''(y_j)$.
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:nodeadd}}]
+(a) $D:=P_{\yv\cup\{Y\}}-P_{\yv}$ lies in $\operatorname{span}\{u,\dots,u^{2J+2}\}$ and has zero data at $\yv$. By
+\hyp{N}$_{\yv}$ the data map at $\yv$ is onto from $\operatorname{span}\{u,\dots,u^{2J}\}$, so the elements of
+$\operatorname{span}\{u,\dots,u^{2J+2}\}$ with zero data at $\yv$ form a two-dimensional space, which contains
+$E_1,E_2$ (independent, of exact degrees $2J+1$, $2J+2$). So $D=aE_1+bE_2$, and $a$, $b$ are the top two
+coefficients of $P_{\yv\cup\{Y\}}$. The two conditions at $Y$ read
+$a\Fc_{E_1}+b\Fc_{E_2}=-\Fc_{P_{\yv}}$ in value and derivative, and Cramer's rule gives the formulas.
+(b) Delete column $k$ from the $(2J+2)\times(2J+3)$ data matrix at $\yv\cup\{Y\}$. The rows of $\yv$ and the
+columns $\{0,\dots,2J\}\setminus\{k\}$ form a square block with determinant $\mathfrak D_k(\yv)\ne0$; the rows
+$\delta_Y,\delta'_Y$ and the columns $2J+1,2J+2$ come last. By Schur's determinant formula for a block matrix
+\cite[Ch.~II, \S5, formula~(I), p.~46]{Gan59} the determinant is
+$\mathfrak D_k(\yv)$ times the $2\times2$ determinant of the data at $Y$ of the two reduced columns, and the reduced
+column of $u^{2J+m}$ is the data of $G_{k,m}$; this gives $\mathfrak D_k(\yv)\mathfrak W_k(Y)$. The ratio
+formula follows from $p_k=(-1)^k\mathfrak D_k/\mathfrak D_0$ at $\yv$ and at $\yv\cup\{Y\}$. The difference
+$\Pi_{\yv}u^{2J+m}-I_k(u^{2J+m})$ has zero data and lies in $\operatorname{span}\{1,\dots,u^{2J}\}$, so it is a multiple
+$cP_{\yv}$; comparing $u^k$-coefficients gives $c=\pi^{(m)}_k/p_k$. For $k=0$, $G_{0,m}=E_m$.
+(c) Divide $\Fc_{\yv}=\Fc_{\yv^-}+(\Fc_{\yv}-\Fc_{\yv^-})$ by $\prod_{j\le J}(1-y/y_j)^2$.
+(d) By (a) and (b), $p_{2J+1}(\yv\cup\{Y\})=a$, $p_{2J+2}(\yv\cup\{Y\})=b$, and
+$p_k(\yv\cup\{Y\})=p_k(\yv)\mathfrak W_k(Y)/\mathcal W(Y)$ for $1\le k\le2J$.
+\end{proof}
+
+\subsection{The chain and insertion calculus}\label{app:proofs-chain}
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:christoffel}}]
+(a) Vanishing on $Z$ imposes $K$ conditions on the $(K+2)$-dimensional space $\Asp_{K+1}$, so
+$\dim\mathcal S(Z)\ge2$; the intersection with $\Asp_K$ is $\operatorname{span}(\Fc_Z)$ by the remark above, and has
+codimension at most $1$ in $\mathcal S(Z)$. (b) By (a) some $G\in\mathcal S(Z)$ has $\sigma_{K+1}$-coefficient $1$;
+then $G_Z:=G-(\ell_0(G)/\ell_0(\Fc_Z))\Fc_Z$ has the required properties, and the difference of two such elements
+lies in $\operatorname{span}(\Fc_Z)$ and has $\ell_0=0$, hence vanishes. $Z+z$ is regular by Lemma~\ref{lem:R}. The
+right-hand side of the identity lies in $\sigma_{K+1}+\Asp_K$, vanishes on $Z$, and is annihilated by
+$\delta^Z_z$, so it is $\Fc_{Z+z}$. The extension of $\chi_Z$ follows from $\chi_Z=(G_Z/\omega_Z)/f_Z$ and
+\eqref{eq:chainvalue}. (c) For $\varphi=e^{-y}$, $\ell_0(\Fc_P)=P(0)=(e^{y}\Fc_P)(0)$, and $0\notin I$ is harmless
+because all functions involved are entire. $Z+0$ is regular by Lemma~\ref{lem:R}, since
+$\Fc_Z(0)=\omega_Z(0)\mathsf f_Z(0)\ne0$, and $\Fc_{Z+0}\in\mathcal S(Z)\cap(\sigma_{K+1}+\Asp_K)$ has
+$\ell_0(\Fc_{Z+0})=0$, so $\Fc_{Z+0}=G_Z$. Divide the identity of (b) by $e^{-y}\omega_Z$.
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\textup{\ref{thm:ladder}}]
+$\Fc_Z$ depends analytically on $x$ (Cramer's rule, $\Delta(Z)\ne0$), and its $\sigma_K$-coefficient is fixed, so
+$\partial_x\Fc_Z\in\Asp_{K-1}$. Differentiating $\Fc_Z^{(i)}(x)=0$ ($i<\mu$) in $x$ gives
+$(\partial_x\Fc_Z)^{(i)}(x)=-\Fc_Z^{(i+1)}(x)$, which is $0$ for $i<\mu-1$ and $-\Fc_Z^{(\mu)}(x)$ for $i=\mu-1$; the
+data at the other points stay zero. So $\partial_x\Fc_Z$ is an element of $\Asp_{K-1}$ vanishing on $Z^-$, hence
+equal to $cG$, and evaluating the $(\mu-1)$-st derivative at $x$ determines $c$. For the cofactor form write
+$\omega_Z=(y-x)^\mu\omega_0$; then $\Fc_Z^{(\mu)}(x)=\mu!\,\omega_0(x)f_Z(x)$,
+$G^{(\mu-1)}(x)=(\mu-1)!\,\omega_0(x)g(x)$, $\partial_x\omega_Z=-\mu\,\omega_Z/(y-x)$ and
+$G=\omega_Zg/(y-x)$; divide by $\omega_Z$.
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:Delta}}]
+(i) Applying a data functional of $Z$ to $\Phi_Z$ produces a determinant with two equal rows. The cofactor of
+$\sigma_{K-1}(y)$ in the last row is the minor on the first $K-1$ rows and columns, which is $\Delta(Z)$; if
+$Z$ is regular, $\Phi_Z/\Delta(Z)\in\sigma_{K-1}+\Asp_{K-2}$ vanishes on $Z$. (ii) The determinant is linear in the
+last row. (iii) Induction on $K$ with (ii). For the last statement apply (ii) twice:
+$\Delta(Z+y_J+y_J)=\Delta(Z)\,\Fc_Z(y_J)\,\Fc_{Z+y_J}'(y_J)$ when $Z$ and $Z+y_J$ are regular, and $Z+y_J$ is
+regular when $\Fc_Z(y_J)\ne0$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:chebyshev}}]
+(a) By Lemma~\ref{lem:christoffel}, $\Fc_{Z+z}=\Fc_Z(\chi_Z-\chi_Z(z))$; divide by $\omega_{Z+z}=\omega_Z\cdot(y-z)$.
+(b) (1)$\Rightarrow$(2): $\chi_Z'(z)=f_{Z+z}(z)/f_Z(z)>0$. (2)$\Rightarrow$(1): $\chi_Z$ is strictly increasing, so the
+difference quotient in (a) is positive, and at $y=z$ it equals $\chi_Z'(z)>0$. (2)$\Leftrightarrow$(3)$\Leftrightarrow$(4):
+$\Wr(\Fc_Z,G_Z)=\Fc_Z^2\chi_Z'=\omega_Z^2f_Z^2\chi_Z'$ and $f_Z(y)f_{Z+y}(y)=f_Z(y)^2\chi_Z'(y)$. (c) is (a) read at
+one $z$. (d) $\ell_0(\Fc_{Z+z})=\ell_0(G_Z)-\chi_Z(z)\ell_0(\Fc_Z)=-\chi_Z(z)\ell_0(\Fc_Z)$, so
+$\tilde F_{Z+z}=\tilde F_Z\,(1-\chi_Z/\chi_Z(z))$; divide by $(1-y/z)\prod_{w\in Z}(1-y/w)$. Then
+$\tilde f_{Z+z}/\tilde f_Z-1=yz\,(\chi_Z(y)/y-\chi_Z(z)/z)/(\chi_Z(z)(y-z))$, and $y,z>0$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:insertion}}]
+(a) $D:=P_{\yv\cup\{z_i\}}-P_{\yv}$ lies in $V:=\operatorname{span}\{u,\dots,u^{2J+2r}\}$ and has zero data at $\yv$. As in the
+proof of Lemma~\ref{lem:nodeadd}(a), the elements of $V$ with zero data at $\yv$ form the $2r$-dimensional space
+$\operatorname{span}\{E_1,\dots,E_{2r}\}$. Since $\omega(z_i)\ne0$, $\omega\rho$ has a double zero at $z_i$ if and only if
+$\rho$ has. So \hyp{N} for the enlarged set, which says that no non-zero element of $V$ has zero data at all nodes,
+is the non-singularity of the matrix, and $D=\sum a_mE_m$ with $\mathcal R_0+\sum a_m\mathcal R_m$ vanishing doubly at
+the $z_i$. Finally $[u]E_m=-\ell_{2J+m}$.
+(b) The case $r=1$ of (a), with $\Wr(\mathcal R_1,\mathcal R_2)=\mathcal W/\omega^2$. From $a$ and $b$,
+$\Delta_{\yv}(Y)=-a\ell_1^*-b\ell_2^*=\Wr(\Fc_{P_{\yv}},\ell_1^*\Fc_{E_2}-\ell_2^*\Fc_{E_1})(Y)/\mathcal W(Y)$. In the
+$3\times3$ Wronskian of $(\Fc_{P_{\yv}},\Fc_{E_1},\Fc_{E_2})$, add $a$ times the second and $b$ times the third
+column to the first: the first column becomes the data of $\Fc_{\yv\cup\{Y\}}$, which is $(0,0,\Fc''_{\yv\cup\{Y\}}(Y))$
+at $Y$. For the weights: the old-node part of $\mathcal L_{\yv\cup\{Y\}}$ vanishes on $E_1,E_2$, and
+$\mathcal L_{\yv\cup\{Y\}}(E_m)=[u]E_m=-\ell_{2J+m}$; solve the $2\times2$ system
+$\lambda_Y\Fc_{E_m}(Y)+\mu_Y\Fc_{E_m}'(Y)=-\ell_{2J+m}$. The last formula is Lemma~\ref{lem:dualrule}(d) for the node
+$Y$ of $\yv\cup\{Y\}$.
+(c) Under $y=y(s)$ a $2\times2$ Wronskian is multiplied by $dy/ds$, and under $\Fc\mapsto h\Fc$ by $h^2$; $a$, $b$
+and $\Delta_{\yv}$ are ratios of such Wronskians.
+\end{proof}
+
+\subsection{The half-step calculus}\label{app:proofs-halfstep}
+\begin{proof}[Proof of Proposition~\textup{\ref{thm:halfstep}}]
+\emph{Zero spaces.} If $D_0(B)\ne0$, the data map at $B$ is injective on $\operatorname{span}\{\varphi_0,\dots,\varphi_{K-1}\}$,
+so the elements of $\operatorname{span}\{\varphi_0,\dots,\varphi_{K+m}\}$ vanishing on $B$ form a space of dimension
+exactly $m+1$; if $D_0,\dots,D_m$ are non-zero it is $\operatorname{span}\{F_0^B,\dots,F_m^B\}$, since these functions are
+independent (their top terms differ). By Cramer's rule, $[F_r^B]_r=(-1)^KD_{r+1}(B)/D_r(B)$, so
+$S(B)=[F_1^B]_1/[F_0^B]_0$; and $[F_r^B]_j=0$ for $j<r$.
+
+(H2) In the matrix of $D_r(B+z)$, add to the last column (the data of $\varphi_{r+K}$) the combination of the other
+columns that turns it into the data of $F_r^B$; it becomes $(0,\dots,0,F_r^B[z])$, and the expansion along it gives
+the formula. (H1) The right side lies in $\varphi_{r+K+1}+\operatorname{span}\{\varphi_r,\dots,\varphi_{r+K}\}$, vanishes on $B$ and is
+annihilated by $\delta^B_z$; by (H2), $D_r(B+z)\ne0$, so it is the window-$r$ interpolant of $B+z$.
+
+(H3) By (H2), $D_1(B+z)\ne0$, so $P_{B+z}$ exists. $\Fc_{P_{B+z}}$ lies in the zero space
+$\operatorname{span}\{F_0^B,F_1^B\}$: $\Fc_{P_{B+z}}=\alpha F_0^B+\beta F_1^B$ with $\alpha[F_0^B]_0=1$ and
+$\alpha F_0^B[z]+\beta F_1^B[z]=0$. Hence
+$p_1(B+z)=\alpha[F_0^B]_1+\beta[F_1^B]_1=p_1(B)-S(B)F_0^B[z]/F_1^B[z]$.
+
+(H4) Write $F_r=F_r^B$. As in (H3), $\Fc_{P_{B+z+x}}=\alpha F_0+\beta F_1+\gamma F_2$ with $\alpha=1/[F_0]_0$ and
+$\beta F_1[w]+\gamma F_2[w]=-\alpha F_0[w]$ for $w=z,x$ (the functional at $x$ is the same for $B$ and $B+z$, because
+$x\ne z$). The determinant of this system is $F_1[z]F_1[x](q_1(x)-q_1(z))\ne0$, so $p_1(B+z+x)$ is defined and
+equals $p_1(B)+\beta[F_1]_1$, with $\beta=-\alpha(F_0[z]F_2[x]-F_0[x]F_2[z])/(F_1[z]F_1[x](q_1(x)-q_1(z)))$.
+Subtracting the two instances of (H3) and using $q_1=F_2/F_1$, the numerator of $m_B(z,x)/S(B)$ over the common
+denominator $F_1[z]F_1[x](q_1(x)-q_1(z))$ is
+\[
+-F_0[z]F_2[x]+F_0[x]F_2[z]+\bigl(F_0[z]F_1[x]+F_0[x]F_1[z]\bigr)\bigl(q_1(x)-q_1(z)\bigr)
+=F_1[z]F_1[x]\bigl(a(x)-a(z)\bigr).
+\]
+
+(H5) The same computation with the conditions ``value and derivative at $y$'' gives the determinant
+$F_1(y)^2(q_1^B)'(y)\ne0$ and
+$\Delta_B(y)/S(B)=-(F_0F_2'-F_0'F_2)/(F_1^2q_1')$, while $h_B(y)/S(B)=-F_0/F_1$. With
+$q_1'=(F_1F_2'-F_1'F_2)/F_1^2$ one checks
+$\bigl[-(F_0F_2'-F_0'F_2)/F_1^2+2(F_0/F_1)q_1'\bigr]=a'$, which is the identity. The equivalences follow from
+the signs, and from $a'/a=F_0'/F_0-2F_1'/F_1+F_2'/F_2$.
+
+(H6) For $B$ doubled ($K=2J$), Cramer's rule gives $p_{2J}(\yv)=D_0/D_1$, and $\Fc_{E_1}=F_1^B$ (both lie in
+$\varphi_{2J+1}+\operatorname{span}\{\varphi_1,\dots,\varphi_{2J}\}$ and vanish on $B$), so $\ell_1^*=-[F_1^B]_1=-D_2/D_1$ and
+$S_{\yv}=-p_{2J}\ell_1^*=D_0D_2/D_1^2$ by fact (c) after Definition~\ref{def:nested}. The doubled chain of
+$\yv\cup\{z\}$ is $B+z+z$ up to the order of rows, which changes every $D_r$ by the same sign; apply (H2) twice.
+The four-term formula is the telescoping of the second difference
+$p(2,2)-p(2,0)-p(0,2)+p(0,0)$, $p(i,j):=p_1(B+iz+jx)$, over the four unit squares.
+\end{proof}
+
+\subsection{The zero side}\label{app:proofs-zeroside}
+\begin{proof}[Proof of Theorem~\textup{\ref{thm:IG}}]
+(a) $1+c_1u+c_2u^2\le(1+du)^2$ coefficientwise, and multiplying a coefficientwise inequality by a polynomial with
+non-negative coefficients preserves it; so by induction and (G1), $P_J\le P_{J_0}\prod_{J_0\le j<J}(1+d_ju)^2$. At $u=t^2$,
+with $N(R):=\#\{j:d_j\ge1/R\}$ (which vanishes for $R<1/D$),
+\[
+2\sum_j\log(1+d_jt^2)=2\int_{1/D}^\infty N(R)\frac{t^2}{R(R+t^2)}\dd R\le2\pi A\lvert t\rvert+2B\log(1+Dt^2),
+\]
+using $\int_0^\infty R^{-1/2}t^2(R+t^2)^{-1}\dd R=\pi\lvert t\rvert$. Hence $H_J(t)\le C_\eps e^{a't}$ for $t>0$, with
+$a'=2\pi A+\eps$, and by (G1) $p_k^{(J)}\le C_\eps\inf_{t>0}e^{a't}t^{-2k}=C_\eps(a'e/2k)^{2k}\le C_\eps e\sqrt{2k}\,a'^{2k}/(2k)!$,
+by $n!\le e\sqrt n(n/e)^n$. As $\sqrt{2k}(a'/a)^{2k}$ is bounded for $a>a'$, \hyp{POS$_a$} follows.
+(b) Induction on $J$. If $P_J>0$, the ratios $r_k:=p^\natural_k/p^{(J)}_k$ are positive, non-increasing, and $r_0=1$, so
+$0<P^\natural_J\le P_J$. The quadratic $N_J:=\lvert1-u/u_J\rvert^2$ has non-negative coefficients because
+$\Re(1/u_J)\le0$, and positive constant and top coefficients; hence $P_{J+1}=P^\natural_JN_J$ has positive coefficients and
+$P_{J+1}\le P_JN_J$. Under \hyp{SW-step} positivity of $P_J$ is immediate. The last part is (a) with
+$c_{1,J}=-2\Re(1/u_J)$, $c_{2,J}=\lvert u_J\rvert^{-2}$, for which $d_J=1/\lvert u_J\rvert$; under \hyp{CNT$_1$} only finitely many
+$\lvert u_J\rvert$ are $\le1$, so $D$ exists.
+\end{proof}
+
+\subsection{The far-field expansion}\label{app:proofs-Ftrue}
+
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:moments}}]
+By Fact~\ref{thm:bessel} and Fact~\ref{lem:abel},
+$\widehat{\Xi^2P(t^2)}=\pi\sum_Nd(N)N^{-1/2}\mathfrak F_P(2\pi Nx)$ with
+$\mathfrak F_P:=P^{\Xi}(-\theta^2)[e^{-y}\kt]$: indeed $K_0=(\pi/2y)^{1/2}e^{-y}\kt$, and
+$\theta(y^{-1/2}h)=y^{-1/2}(\theta-\frac12)h$ turns $P(-(\theta+\frac12)^2)\theta^2(\theta+1)^2$ into $P^{\Xi}(-\theta^2)$.
+Next, $\theta(e^{-y}h)=e^{-y}(\theta-y)h$, so $e^{y}L(\theta)e^{-y}=L(\theta-y)$ for every polynomial $L$, and $\theta-y$
+satisfies $(\theta-y)(fg)=(\theta f)g+f(\theta-y)g$. Hence
+$(\theta-y)^m\kt=\sum_i\binom mi(\theta^i\kt)\,T_{m-i}(-y)$, where $T_n(-y)=e^{y}\theta^ne^{-y}$ is a polynomial of
+degree $n$. Watson's lemma applied to $e^yK_0(y)=\int_0^\infty e^{-yv}(v(v+2))^{-1/2}\dd v$ \cite{Olv74} gives
+$\kt=1-1/(8y)+O(y^{-2})$ and $\theta^i\kt=O(1/y)$ for $i\ge1$, with expansions that may be differentiated. So
+$(\theta-y)^m\kt=\kt\,T_m(-y)+O(y^{m-2})$, which gives the first formula. For $P=u^k$,
+$Q_{P^\Xi}=\tau_{k+2}+\frac12\tau_{k+1}+\frac1{16}\tau_k$ with $\tau_j=(-1)^j[y^{2j}-\binom{2j}2y^{2j-1}+\cdots]$, and
+multiplying by $\kt$ gives $\gamma_k$. For $N\ge2$, $\lvert\theta^jK_0(y)\rvert\le C_j(1+y)^je^{-y}$ ($y\ge1$) bounds the
+terms by $Cy^{C'}\sum_{N\ge2}d(N)N^{C'}e^{-(N-1)y}$ relative to $N=1$. The size of the second-order term comes from
+$\binom{m}{2}$-type coefficients with $m=2k+4$.
+\end{proof}
+
+We now prove Theorem~\ref{thm:Ftrue}.
+Fix $\yv$ of size $J$ with \hyp{N}$_{\yv}$ and $p:=p_{2J}(\yv)\ne0$, and write
+$y$ for the variable and $Y$ for the new node. Put $f_0:=e^y\Fc_{P_{\yv}}/\pi$ and $f_m:=e^y\Fc_{E_m}/\pi$ ($m\ge1$), and
+$g(k):=\gamma_k=2k^2+7k+6+\frac18$ (Lemma~\ref{lem:moments}), so that $g(k+1)-g(k)=4k+9$. With $M:=4J+4$ and $k:=2J$,
+Lemma~\ref{lem:moments} gives, with expansions that may be differentiated termwise,
+\begin{gather*}
+f_0=p\,y^M\bigl(1+\tfrac{a_1}y+O(y^{-2})\bigr),\qquad f_1=-y^{M+2}\bigl(1+\tfrac{b_1}y+\cdots\bigr),\\
+f_2=y^{M+4}\bigl(1+\tfrac{c_1}y+\cdots\bigr),\qquad f_3=-y^{M+6}\bigl(1+\tfrac{d_1}y+\cdots\bigr),
+\end{gather*}
+with $a_1=-g(k)$, $b_1=-g(k+1)$, $c_1=-g(k+2)$, $d_1=-g(k+3)$. Indeed $E_m=u^{2J+m}-\Pi_{\yv}u^{2J+m}$ and
+$\Pi_{\yv}u^{2J+m}$ has degree $\le2J$, so its contribution is $O(y^{M})$; in $f_0$ the term $p_{2J-1}u^{2J-1}$ contributes
+relatively $O(y^{-2})$. The divisor terms are relatively $O(e^{-y}\mathrm{poly}(y))$ and do not affect any of the
+expansions below.
+
+\emph{Two-term Wronskian rule.} If $f=y^m(1+f_1/y+O(y^{-2}))$ and $h=y^n(1+h_1/y+O(y^{-2}))$ with differentiable expansions,
+then $\Wr(f,h)=(n-m)y^{m+n-1}+[(n-m+1)f_1+(n-m-1)h_1]y^{m+n-2}+O(y^{m+n-3})$. Hence
+\begin{align*}
+\Wr(f_1,f_2)&=-\bigl[2y^{2M+5}+(3b_1+c_1)y^{2M+4}+\cdots\bigr],\\
+\Wr(f_0,f_2)&=p\bigl[4y^{2M+3}+(5a_1+3c_1)y^{2M+2}+\cdots\bigr],\\
+\Wr(f_0,f_1)&=-p\bigl[2y^{2M+1}+(3a_1+b_1)y^{2M}+\cdots\bigr].
+\end{align*}
+The first shows that $\mathcal W(Y)=\pi^2e^{-2Y}\Wr(f_1,f_2)(Y)\ne0$ for large $Y$, which is \hyp{N}$_{\yv\cup\{Y\}}$
+(Proposition~\ref{prop:insertion}(b)).
+
+\emph{(a) and (b).} By Lemma~\ref{lem:nodeadd}(a) and Proposition~\ref{prop:insertion}(c), $a=-\Wr(f_0,f_2)/\Wr(f_1,f_2)$
+and $b=\Wr(f_0,f_1)/\Wr(f_1,f_2)$ at $Y$. Hence
+$a=2pY^{-2}\bigl[1+(5a_1+c_1-6b_1)/(4Y)+O(Y^{-2})\bigr]$ and $b=pY^{-4}\bigl[1+(3a_1-2b_1-c_1)/(2Y)+O(Y^{-2})\bigr]$. Now
+$5a_1+c_1-6b_1=6(g(k+1)-g(k))-(g(k+2)-g(k))=6(4k+9)-(8k+22)=16k+32=32(J+1)$ and
+$3a_1-2b_1-c_1=2(4k+9)+(8k+22)=16k+40=32J+40$, which gives (a). Then
+$\Delta_{\yv}(Y)=-\ell_1^*a-\ell_2^*b$, the term $\ell_2^*b$ is $O(Y^{-4})$, and $S_{\yv}=-p\ell_1^*$, which gives (b).
+
+\emph{(c).} Let $f:=f_0+af_1+bf_2=e^y\Fc_{\yv\cup\{Y\}}/\pi$, which has a double zero at $Y$; there
+$\Fc''_{\yv\cup\{Y\}}(Y)=\pi e^{-Y}f''(Y)$. By (a),
+$f''(Y)=pY^{M-2}\bigl[M(M-1)-2(M+2)(M+1)+(M+4)(M+3)\bigr](1+O(1/Y))=8pY^{4J+2}(1+O(1/Y))$. The expansion of
+$\Delta_{\yv}$ may be differentiated, since $a$ and $b$ are ratios of Wronskians of functions with differentiable
+expansions; so $\Delta_{\yv}'(Y)=-4S_{\yv}Y^{-3}+O(Y^{-4})$, and Proposition~\ref{prop:insertion}(b) gives
+$\mu_Y=-\Delta_{\yv}'(Y)/\Fc''_{\yv\cup\{Y\}}(Y)$. The $\xi$-forms follow from $d/d\xi=2\pi y\,d/dy$ at a double zero.
+
+\emph{(d).} By Lemma~\ref{lem:nodeadd}(a), $p_{2J+2}(\yv\cup\{Y\})=b$. As in the proof of Proposition~\ref{prop:insertion},
+$\Pi_{\yv\cup\{Y\}}u^{2J+3}=\Pi_{\yv}u^{2J+3}+\alpha E_1+\beta E_2$, where $\alpha f_1+\beta f_2$ has the value and derivative of $f_3$ at $Y$;
+so $\alpha=\Wr(f_3,f_2)/\Wr(f_1,f_2)=-Y^4\bigl[1+(d_1+2c_1-3b_1)/(2Y)+O(Y^{-2})\bigr]$ and $\beta=O(Y^2)$. Here
+$d_1+2c_1-3b_1=-(g(k+3)-g(k+1))-2(g(k+2)-g(k+1))=-(16k+56)$, so $\alpha=-Y^4(1-(16J+28)/Y+O(Y^{-2}))$. Then
+$\ell_{2J+3}(\yv\cup\{Y\})=\ell_3^*-\alpha\ell_1^*-\beta\ell_2^*$, with $\ell_3^*:=\ell_{2J+3}(\yv)$, and fact~(c) after
+Definition~\ref{def:nested} gives
+\[
+S_{\yv\cup\{Y\}}=-b\bigl(\ell_3^*-\alpha\ell_1^*-\beta\ell_2^*\bigr)=-p\ell_1^*\bigl(1+\tfrac{16J+20}{Y}\bigr)\bigl(1-\tfrac{16J+28}{Y}\bigr)+O(Y^{-2})
+=S_{\yv}\bigl(1-\tfrac8Y\bigr)+O(Y^{-2}).
+\]
+
+\emph{(e).} If $p>0$ and $S_{\yv}>0$, then by (b) and (c) $\Delta_{\yv}(Y)>0$, $\Fc''_{\yv\cup\{Y\}}(Y)>0$ and $\mu_Y>0$ for large
+$Y$; if $p>0$ and $S_{\yv}<0$, then $\Delta_{\yv}(Y)<0$ and $\mu_Y<0$. In the model, $g(k)$ is replaced by $\binom{2k}{2}$, whose
+first differences are $4k+1$ instead of $4k+9$; the same computation gives $32J$ in place of $32(J+1)$
+(Theorem~\ref{thm:Ftoy}).
+
+\subsection{Proofs for the model}\label{app:proofs-toy}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:umbral}}]
+(a) Expand $e^{-y}=\sum_j(-y)^j/j!$ and use $\Eul(-y)^j=j(-y)^j$. (d) By (a),
+$F_P=\sum_mb_m\sum_{j\ge m}(-y)^j/(j-m)!=\sum_mb_m(-y)^me^{-y}$. (b) Integration by parts gives
+$\int_0^\infty y^{s-1}\Eul g\dd y=-s\int_0^\infty y^{s-1}g\dd y$ for $g=Qe^{-y}$ and $\Re s>0$, so the Mellin
+transform of $P(-\Eul^2)e^{-y}$ is $P(-s^2)\Gamma(s)$. Since $\int_0^\infty y^{s-1}y^me^{-y}\dd y=\Gamma(s)\,s(s+1)\cdots(s+m-1)$,
+the Mellin transform of $Qe^{-y}$ is $\Gamma(s)M_Q(s)$. The rising factorials form a basis of the polynomials, so
+$Q\mapsto M_Q$ is a bijection preserving degree; $M_{Q_P}(s)=P(-s^2)$ is even, and conversely an even $M_Q$ of degree
+$\le4J$ equals $P(-s^2)$ for a unique $P$ of degree $\le 2J$, whence $Q=Q_P$. (c) Since
+$s(s+1)\cdots(s+k-1)=\sum_i|s(k,i)|s^i$, evenness of $M_Q$ means
+$\sum_{k\ge 2l-1}|s(k,2l-1)|q_k=0$ for every $l$, and $|s(2l-1,2l-1)|=1$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:radial}}]
+For $0<\Re s<\frac14$ all of the following integrals converge absolutely. From
+$\int_0^\infty J_0(2\sqrt Y)Y^{s-1}\dd Y=\Gamma(s)/\Gamma(1-s)$ and Fubini, the Mellin transform of $\Hank g$ is
+$\frac{\Gamma(s)}{\Gamma(1-s)}\mathcal Mg(1-s)$, where $\mathcal Mg(s):=\int_0^\infty y^{s-1}g(y)\dd y$. With
+$\mathcal MF(s)=\Gamma(s)M_Q(s)$ (proof of Proposition~\ref{prop:umbral}) we get
+$\mathcal M[\Hank F](s)=\Gamma(s)M_Q(1-s)$; and since $-F'=(Q-Q')e^{-y}$ and $M_{Q-Q'}(s)=M_Q(s-1)$ (check on
+monomials: $s^{(m)}-ms^{(m-1)}=(s-1)^{(m)}$, with $s^{(m)}:=s(s+1)\cdots(s+m-1)$), also
+$\mathcal M[-F'](s)=\Gamma(s)M_Q(s-1)$. By
+injectivity of the Mellin transform, (ii) holds if and only if $M_Q(1-s)=M_Q(s-1)$, i.e.\ if and only if $M_Q$ is
+even, which is (i) by Proposition~\ref{prop:umbral}(b). For (iii): the same computation gives
+$\mathcal M[\Hank(y^me^{-y})](s)=\Gamma(s)(1-s)(2-s)\cdots(m-s)$, while
+$\mathcal M[m!L_m(y)e^{-y}](s)=\Gamma(s)\,m!\sum_k\binom mk\frac{(-1)^k}{k!}s(s+1)\cdots(s+k-1)=\Gamma(s)(1-s)\cdots(m-s)$
+by the Chu--Vandermonde identity; hence $\Hank F=(\Lag Q)e^{-y}$, and $-F'=(Q-Q')e^{-y}$. Finally, for radial
+$f(v)=g(|v|)$ one has $\FT f(\eta)=2\pi\int_0^\infty g(r)J_0(2\pi r|\eta|)r\dd r$, and the substitution $w=\pi r^2$
+gives $\FT f(\eta)=\Hank F(\pi|\eta|^2)$. A double zero of $Q$ at $2\pi n$ means $F(2\pi n)=F'(2\pi n)=0$, i.e.\
+$f=0$ on $\pi|v|^2=2\pi n$ and, by (ii), $\FT f=0$ on $\pi|\eta|^2=2\pi n$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:dictionary}}]
+(a) Substituting $t=1+v/z$ in $K_0(z)=\int_1^\infty e^{-zt}(t^2-1)^{-1/2}\dd t$ \cite[10.32.8]{DLMF} gives the
+integral; the integrand increases with $z$ and tends to $e^{-v}v^{-1/2}$, and $\int_0^\infty e^{-v}v^{-1/2}\dd v=\sqrt\pi$.
+The derivatives of $w\mapsto(1+w)^{-1/2}$ alternate in sign and are monotone on $[0,\infty)$, so
+$(1+w)^{-1/2}=1-\frac w2+\frac{3w^2}{8}-r(w)$ with $0\le r(w)\le\frac{5w^3}{16}$; with $w=v/(2z)$ and
+$\int_0^\infty e^{-v}v^{k-1/2}\dd v=\Gamma(k+\frac12)$ this gives the expansion.
+
+(b) With the Fourier normalisation of Section~\ref{ssec:setting-pairs}, $\FT{t^2F}=-\Eul^2\FT F$, so $\FT{\Xi^2P(t^2)}=P(-\Eul^2)\Psi$ with
+$\Eul=x\frac d{dx}$. The operator $\Eul$ commutes with dilations and $\Eul(\sqrt x\,h)=\sqrt x(\Eul+\frac12)h$, so
+$P(-\Eul^2)\Psi=2\pi\sqrt x\sum_Nd(N)g_P(2\pi Nx)$ with $g_P:=P(-(\Eul+\frac12)^2)\Eul^2(\Eul+1)^2K_0$. Write
+$K_0(z)=\sqrt{\pi/2}\,z^{-1/2}e^{-z}\kt(z)$. Since $\Eul(z^{-1/2}h)=z^{-1/2}(\Eul-\frac12)h$,
+\[
+  \begin{aligned}
+  g_P&=\sqrt{\pi/2}\;z^{-1/2}\,P(-\Eul^2)(\Eul-\tfrac12)^2(\Eul+\tfrac12)^2\bigl[e^{-z}\kt\bigr]\\
+  &=\sqrt{\pi/2}\;z^{-1/2}\,\mathfrak F_P(z),
+  \end{aligned}
+\]
+because $P(-\Eul^2)(\Eul^2-\frac14)^2=P^{\Xi}(-\Eul^2)$. Hence
+\[
+  \FT{\Xi^2P(t^2)}(\xi)=2\pi\sqrt x\sum_Nd(N)\sqrt{\pi/2}\,(2\pi Nx)^{-1/2}\mathfrak F_P(Ny),
+\]
+and $2\pi\sqrt{\pi/2}\,(2\pi)^{-1/2}=\pi$.
+
+(c) By $\int_0^\infty K_0(z)z^{s-1}\dd z=2^{s-2}\Gamma(\frac s2)^2$ \cite[10.43.19]{DLMF}, the Mellin transform of
+$e^{-z}\kt(z)=\sqrt{2/\pi}\,z^{1/2}K_0(z)$ is
+\[
+  \sqrt{2/\pi}\;2^{s-3/2}\,\Gamma\bigl(\tfrac{s+1/2}2\bigr)^2,
+\]
+and the duplication
+formula $\Gamma(s)=2^{s-1}\pi^{-1/2}\Gamma(\frac s2)\Gamma(\frac{s+1}2)$ shows that this equals $m(s)\Gamma(s)$, the
+symbol times the Mellin transform of $e^{-z}$. A Mellin multiplier commutes with $\Eul$, so
+$\mathfrak F_P=P^{\Xi}(-\Eul^2)\mathfrak m[e^{-z}]=\mathfrak m[P^{\Xi}(-\Eul^2)e^{-z}]=\mathfrak m[Q_{P^{\Xi}}e^{-z}]$.
+Log-convexity of $\Gamma$ gives $\Gamma(\frac{s+1/2}2)^2\le\Gamma(\frac s2)\Gamma(\frac{s+1}2)$, i.e.\ $m(s)\le1$, and
+Stirling's formula gives $\log m(s)=O(1/s)$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:smoothing-obstruction}}]
+(a) There is an open interval in $(z_0,\infty)$ on which $f>0$; the integrand is non-negative and positive on a set
+of positive measure. (b) Substituting $v=z(t-1)$ in Proposition~\ref{prop:dictionary}(a) gives
+$e^{-z}\kt(z)=\pi^{-1/2}z^{1/2}\int_1^\infty e^{-zt}(t-1)^{-1/2}(\frac{t+1}2)^{-1/2}\dd t=T_kg(z)$. The integrals
+converge absolutely, locally uniformly in $z>0$, for $g$ replaced by $w^{1/2}$ times any polynomial times $e^{-w}$, so
+we may differentiate under the integral sign; since $z\frac{d}{dz}f(zt)=(\Eul f)(zt)$, $T_k$ commutes with $\Eul$.
+Finally $P^{\Xi}(-\Eul^2)[w^{1/2}e^{-w}]=w^{1/2}P^{\Xi}(-(\Eul+\frac12)^2)e^{-w}=w^{1/2}Q^{\mathrm{Ab}}_P(w)e^{-w}$.
+(c) Apply (a) to $f=w^{1/2}Q^{\mathrm{Ab}}_Pe^{-w}$: since $Q^{\mathrm{Ab}}_P$ is a non-zero polynomial, $f\ge0$ on
+$(z_0,\infty)$ would force $\mathfrak F_P(z_0)>0$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:J1}}]
+With $\tau_1=y-y^2$ and $\tau_2=y^4-6y^3+7y^2-y$, the system $Q(a)=Q'(a)=0$ for $Q=1+p_1\tau_1+p_2\tau_2$ has
+determinant $\tau_1(a)\tau_2'(a)-\tau_1'(a)\tau_2(a)=-a^2D(a)$, and Cramer's rule gives $p_1,p_2$; dividing $Q$ by
+$(y-a)^2$ gives $R$. The $p_1$-rule $\lambda_1\delta_a+\mu_1\delta'_a$ is determined by
+$\lambda_1\tau_k(a)+\mu_1\tau_k'(a)=\delta_{k1}$ ($k=1,2$), which gives $\mu_1=-\tau_2(a)/(-a^2D(a))$; $Q''(a)$ is
+computed directly, and $S_{(a)}=-p_2\ell_3$ with $\ell_3=\lambda_1\tau_3(a)+\mu_1\tau_3'(a)$,
+$\tau_3=-y^6+15y^5-65y^4+90y^3-31y^2+y$ (Definition~\ref{def:nested}(iii)). Since $D'(a)=6(a-1)(a-2)$ and
+$D(1),D(2)<0$, $D$ has one real root, and $D(2.6776)<0<D(2.6777)$.
+(a) The constant coefficient of $R$ is $a^{-2}>0$. If $a>a_D$, then $D>0$ and \Rp\ holds if and only if $a>3$. If
+$a<a_D$, then $D<0$, and either $2a-1>0$ and the leading coefficient is negative, or $2a-1\le0$ and the middle
+coefficient $2(2a-1)(a-3)/(a^2D)$ is $\le0$.
+(b) $4a^3-12a^2+9a-3$ has a single real root, $2.0979\ldots<a_D$.
+(c) For $a>a_D$, $\mu_1>0$ if and only if $a^3-6a^2+7a-1>0$, whose roots are $0.1657\ldots$, $1.3433\ldots$ and
+$4.49086\ldots$; combine with (b).
+(d) The expansion is immediate from the formula. For $a>a_D$ the sign of $S_{(a)}$ is that of the degree-$7$ factor,
+which has exactly one real root in $(a_D,\infty)$ (Sturm's theorem), and changes sign between $3.2651$ and $3.2652$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:PP-dominates}}]
+Let $\pi^*(x)$ be the number of prime powers $n\le x$, $n\ge2$. Since every prime $p\ge5$ is $\equiv\pm1\pmod 6$,
+$\pi(x)\le x/3+2$ for $x\ge1$; and $\pi^*(x)=\sum_{k\ge1}\pi(x^{1/k})$, where the terms with $k>\log_2x$ vanish, so
+\[
+  \pi^*(x)\le b(x):=\frac x3+2+\sqrt x+(\log_2x)\,x^{1/3}\qquad(x\ge1).
+\]
+Each term of $b(x)/x$ is non-increasing for $x\ge e^{3/2}$. (Sharper explicit bounds, such as
+$\pi(x)<1.25506\,x/\log x$ for $x>1$ \cite[(3.6)]{RS62}, would shorten the finite range below; the elementary bound
+suffices.) (a) Put $c_0:=8.4/(2\pi)$, so that $2\pi c_0K=y^*_K+5.25$.
+At $x=120$, $b(120)<40+2+11+7\cdot5=88<120/c_0=89.75\ldots$ (using $\log_2120<7$, $120^{1/3}<5$); hence $\pi^*(x)<x/c_0$
+for all $x\ge120$. If $K\ge90$ then $x=c_0K>120$, so fewer than $K$ prime powers are $\le c_0K$, i.e.\ $n_K>c_0K$ and
+$2\pi n_K>y^*_K+5.25$. For $K\le89$ the inequality is checked directly. (b) Put $c_1:=1.575$; then
+$2\pi c_1>9.896>1.2366\cdot8$. At $x=250$, $b(250)<83.34+2+15.82+8\cdot6.3<151.6<250/c_1$, so as in (a)
+$n_j>c_1j$ for $j\ge159$, and then $2\pi n_j-1.2366(8j-5)>0$. Since
+$\sum_{j\le K}(8j-5)=K(4K-1)$, the difference $\sum_{j\le K}\bigl(2\pi n_j-1.2366(8j-5)\bigr)$ is increasing for
+$K\ge158$, and it suffices to check (b) for $K\le158$. The same argument locates the minimum of the ratio for every $K$:
+with $r:=124\pi/315=1.236694\ldots$, the ratio at $K=9$, we have $8r<9.8936<9.896<2\pi c_1$, so
+$\sum_{j\le K}\bigl(2\pi n_j-r(8j-5)\bigr)$ is also increasing for $K\ge158$, and it is non-negative for all $K$ once it is
+non-negative for $K\le158$. Both finite checks (in fact for all $K\le2.17\cdot10^5$) are
+exact integer computations with rational bounds for $\pi$
+\textup{(}ancillary file \nolinkurl{toy/pp/verify_pp_prefix.py} with \nolinkurl{toy/pp/params/pp_prefix.json}\textup{)}; they
+also locate the minima in (a) and (b).
+\end{proof}
+
+\begin{proof}[Proof of the reduction in Remark~\textup{\ref{rem:Mss}}]
+Argue by induction on $J$. Removing a node maps $\mathcal U_J$ into $\mathcal U_{J-1}$, so by induction every
+$\yv\setminus y_j$ is regular with positive cofactor. Fix $\yv\in\mathcal U_J$ and put $\yv(\tau):=y^*+\tau(\yv-y^*)$,
+$\tau\in[0,1]$, which stays in $\mathcal U_J$ and is coordinatewise non-decreasing in $\tau$. Let $S$ be the set of
+$\tau$ such that $\yv(\tau')$ is regular with $\tilde R>0$ for all $\tau'\le\tau$; $0\in S$ by $(\mathrm{AP}^+)_J$,
+and $S$ is relatively open. On $S$, $(\mathrm{LOC})$ gives
+$\frac{d}{d\tau}\tilde R(\yv(\tau))=\sum_j(y_j-y_j^*)\partial_j\tilde R\in\RR_{\ge0}[y]$, so
+$\tilde R(\yv(\tau))\ge\tilde R(y^*)$ coefficientwise. Let $\tau_1:=\sup S$, $x:=y_J(\tau)$, and let $T$ be the half-step
+cofactor of $\yv(\tau)$ (nodes $y_1,\dots,y_{J-1}$ double, $y_J$ simple), which exists by Lemma~\ref{lem:R}. By
+Lemmas~\ref{lem:R} and~\ref{lem:Delta}, $\yv(\tau_1)$ is regular as soon as $T(x)\neq0$ at $\tau_1$; and once it is
+regular, continuity gives $\tilde R(\yv(\tau_1))\ge\tilde R(y^*)>0$, so $\tau_1\in S$ and hence $\tau_1=1$. Now
+$T(x)\neq0$ on $S$ (a chain value, Lemma~\ref{lem:Delta}) and $T(x)>0$ at $\tau=0$ by $(\mathrm B)_J$, so $T(x)>0$ on $S$
+and $\kappa:=\tilde R(x)/T(x)>0$. By the ladder identity (Lemma~\ref{thm:ladder}),
+$\partial_{y_J}\tilde R=2(\tilde R-\kappa T)/(y-x)$, so $(\mathrm{LOC})$ gives $q_\tau:=(\rho_\tau-T)/(y-x)\in\RR_{\ge0}[y]$
+with $\rho_\tau:=T(x)\tilde R/\tilde R(x)$. If $T(x)\to0$ as $\tau\uparrow\tau_1$, then $\rho_\tau\to0$ coefficientwise
+(the coefficients of $\tilde R/\tilde R(x)$ lie in $(0,x^{-k}]$), and by synthetic division
+$[y^{2J-2}]q_\tau=[y^{2J-1}](\rho_\tau-T)+x[y^{2J}](\rho_\tau-T)\to-1$, since $T$ is monic of degree $2J-1$; a
+contradiction.
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:ST}}]
+Under $(\mathrm{I0})$, $f(0)>0$ and $f(z)>0$, so $Z+0$ and $Z+z$ are regular (Lemma~\ref{lem:R}) and
+\eqref{eq:christoffel-toy} applies; $\lambda=\lambda(z)>0$ since $g(z)>0$. Put $N:=\lambda f-yg=(z-y)\pf_{Z+z}$, so
+$N(z)=0$ and $N_k=\lambda f_k-g_{k-1}$ (with $f_{K+1}=f_{K+2}=0$, $g_{K+1}=1$, $g_{-1}=0$). Expanding $1/(z-y)$ at $y=0$,
+\begin{equation}\label{eq:ST-coeff}
+  [y^k]\pf_{Z+z}=z^{-k-1}\sum_{l\le k}N_lz^l .
+\end{equation}
+(i) In particular $\pf_{Z+z}(0)=\lambda f_0/z>0$, and a short computation from \eqref{eq:ST-coeff} gives, for
+$1\le k\le K+1$,
+\[
+  [y^k]\hat{\pf}_{Z+z}-[y^k]\hat{\pf}_Z=\frac{z^{-k}}{\lambda f_0}\sum_{m=0}^{k-1}w_m,\qquad w_m:=z^m(\lambda f_m-zg_m).
+\]
+For $m\le K$, $w_m=z^{m+1}f_m(\lambda/z-\varrho_m)$ has the sign of $\lambda/z-\varrho_m$, which is non-increasing
+in $m$; $w_{K+1}=-z^{K+2}<0$; and
+$\lambda/z=g(z)/f(z)=\bigl(\sum_{k\le K}\varrho_kf_kz^k+z^{K+1}\bigr)/f(z)>\varrho_0$, so $w_0>0$. Thus the signs of
+$(w_m)$ change once, from $+$ to $-$, and $\sum_{m=0}^{K+1}w_m=\lambda f(z)-zg(z)=0$. Hence every partial sum
+$\sum_{m<k}w_m$, $1\le k\le K+1$, is positive: it is $\ge w_0$ before the sign change and $\ge-w_{K+1}$ after it.
+So $\hat{\pf}_{Z+z}$ exceeds $\hat{\pf}_Z$ coefficientwise in degrees $1,\dots,K+1$, and $\pf_{Z+z}\in\RR_{>0}[y]$.
+(ii) Now $N_0=\lambda f_0>0$, $N_k=f_k(\lambda-\sigma'_{k-1})$ for $1\le k\le K$ has non-increasing sign,
+$N_{K+1}=-g_K<0$ and $N_{K+2}=-1$; so $(N_l)$ changes sign once, and the partial sums $\sum_{l\le k}N_lz^l$ rise and then
+fall to $N(z)=0$, the last one before that being $z^{K+2}>0$. By \eqref{eq:ST-coeff} all coefficients of $\pf_{Z+z}$ are
+positive. (iii) $g_1>0$ and $(\mathrm{I1}')$ give $\varrho_k>0$ for $k\ge1$, so
+$\sigma'_k=\varrho_k\cdot(f_k/f_{k+1})$ is a product of positive non-decreasing factors for $k\ge1$ (log-concavity is
+$f_{k-1}/f_k\le f_k/f_{k+1}$). If $g_0\le0$ then $\sigma'_0\le0<\sigma'_1$; if $g_0>0$ the product argument applies to
+$k=0$ as well.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\textup{\ref{thm:A}}]
+At $K=0$, $\pf^{(0)}=1$ and $\pg^{(0)}=y-1$, since the monic element of $\Asp^{\mathrm{pol}}_1$ vanishing at $0$ is
+$y^2-y=-\tau_1$; so $(\mathrm{I0})_0$ holds. If $(\mathrm{I0})_K$ holds and $K<K_0$, Lemma~\ref{lem:ST}(i) with
+$z=z_{K+1}$, $(\mathrm{I1}')_K$ and $(\mathrm{Y0})_K$ gives regularity of $Z_{K+1}$, $(\mathrm{I0})_{K+1}$ and the
+half-step increment. For a doubled chain, $\pf^{(2J)}=\tilde R_{\yle J}$. Regularity means that the space of $P$ with
+$\deg P\le2J$ and $Q_P$ vanishing doubly at $\yle J$ is spanned by one element $P^{\mathrm{top}}$ with
+$Q_{P^{\mathrm{top}}}=A\tilde R$; its value at $0$ is $Q_{P^{\mathrm{top}}}(0)=A(0)\tilde R(0)>0$, so no non-zero
+element of the space vanishes at $u=0$, which is \hyp{N}; then $P_{\yle J}=P^{\mathrm{top}}/(A(0)\tilde R(0))$,
+$p_{2J}=1/(A(0)\tilde R(0))>0$ and $R=p_{2J}\tilde R\in\RR_{>0}[y]$. Finally
+$\hat R_J-\hat R_{J-1}=(\hat{\pf}^{(2J)}-\hat{\pf}^{(2J-1)})+(\hat{\pf}^{(2J-1)}-\hat{\pf}^{(2J-2)})$ is positive in degrees
+$1,\dots,2J$ and $1,\dots,2J-1$ respectively.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\textup{\ref{thm:Ftoy}}]
+By \eqref{eq:Rtop}, for monic $f=y^n+f_1y^{n-1}+\cdots$ and $g=y^{n'}+g_1y^{n'-1}+\cdots$ one has
+$\Wr(f,g)=(n'-n)y^{n+n'-1}+[(n'-n+1)f_1+(n'-n-1)g_1]y^{n+n'-2}+\cdots$. Hence
+$\mathcal W=-[2y^{4J+5}+(3\kappa_1+\kappa_2)y^{4J+4}+\cdots]$, $\Wr(R_0,R_2)=p_{2J}[4y^{4J+3}+(5\kappa_0+3\kappa_2)y^{4J+2}+\cdots]$
+and $\Wr(R_0,R_1)=-p_{2J}[2y^{4J+1}+\cdots]$. By \eqref{eq:toy-insertion},
+$a=\frac{2p_{2J}}{Y^2}\bigl(1+\frac{5\kappa_0-6\kappa_1+\kappa_2}{4Y}+O(Y^{-2})\bigr)$ and
+$b=\frac{p_{2J}}{Y^4}(1+O(Y^{-1}))$, and $5\kappa_0-6\kappa_1+\kappa_2=-5\binom{4J}2+6\binom{4J+2}2-\binom{4J+4}2=32J$.
+Since $[u]E_m=-\ell_{2J+m}$, $\Delta_{\yv}=-a\ell_1^*-b\ell_2^*$, which gives (2). For (3),
+$Q_{\yv\cup\{Y\}}=A_{\yv}\rho_Y$ with $\rho_Y:=R_0+aR_1+bR_2$, which vanishes doubly at $Y$, so
+$Q''_{\yv\cup\{Y\}}(Y)=A_{\yv}(Y)\rho_Y''(Y)$, and
+$\rho_Y''(Y)=p_{2J}Y^{2J-2}[2J(2J-1)-2(2J+2)(2J+1)+(2J+4)(2J+3)]+O(Y^{2J-3})=8p_{2J}Y^{2J-2}+O(Y^{2J-3})$. A rational
+function may be differentiated termwise in its expansion at $\infty$, which gives $\Delta'_{\yv}$, and
+$\mu_Y=-\Delta'_{\yv}(Y)/Q''_{\yv\cup\{Y\}}(Y)$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:screening-toy}}]
+For $z>Y_{\mathcal W}(\yv)$, $p_{2J+2}(\yv\cup\{z\})=b$, and the projection of $u^{2J+3}$ for the node set
+$\yv\cup\{z\}$ is $\Pi_{\yv}u^{2J+3}+\alpha E_1+\beta E_2$, where $R_3-\alpha R_1-\beta R_2$ vanishes doubly at $z$.
+Hence $\ell_{2J+3}(\yv\cup\{z\})=\ell_3^*-\alpha\ell_1^*-\beta\ell_2^*$ (with $\ell_3^*:=\ell_{2J+3}$) and
+$S_{\yv\cup\{z\}}=-b\,(\ell_3^*-\alpha\ell_1^*-\beta\ell_2^*)$. By Cramer's rule $\alpha=\Wr(R_3,R_2)/\mathcal W$ and
+$\beta=\Wr(R_1,R_3)/\mathcal W$; by \eqref{eq:Rtop} and the Wronskian expansion,
+$\alpha=-z^4\bigl(1-\frac{3\kappa_1-2\kappa_2-\kappa_3}{2z}+O(z^{-2})\bigr)$, $\beta=O(z^2)$, and
+$b=\frac{p_{2J}}{z^4}\bigl(1+\frac{3\kappa_0-2\kappa_1-\kappa_2}{2z}+O(z^{-2})\bigr)$. So
+$S_{\yv\cup\{z\}}=-p_{2J}\ell_1^*\bigl(1+\frac{3\kappa_0-5\kappa_1+\kappa_2+\kappa_3}{2z}\bigr)+O(z^{-2})$, and
+$3\kappa_0-5\kappa_1+\kappa_2+\kappa_3=-3\binom{4J}2+5\binom{4J+2}2-\binom{4J+4}2-\binom{4J+6}2=-16$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:SMinf}}]
+By Proposition~\ref{prop:insertion}(a) with two new nodes, $P_{\yv\cup\{z,s\}}=P_{\yv}+\sum_{m\le4}a_mE_m$, where
+$\rho:=R_0+\sum_{m\le4}a_mR_m$ vanishes doubly at $z$ and $s$, and $p_1(\yv\cup\{z,s\})-p_1(\yv)=-\sum_ma_m\ell_{2J+m}$.
+Write $a_m=(-1)^mp_{2J}c_m$ and $c_0:=1$. By \eqref{eq:Rtop},
+$\rho=p_{2J}y^{2J}\sum_{m=0}^4c_m\,y^{2m}\bigl(1+\kappa_my^{-1}+O(y^{-2})\bigr)$. After the scaling $y=L\eta$, and with the
+double-zero conditions written as divided differences, this is a linear system for $(c_m)$ whose matrix is a polynomial
+in $1/L$ and equals, at $1/L=0$, a confluent Vandermonde matrix in $\eta^2$ (non-singular uniformly on compacts, the
+diagonal included). So each $c_m$ has an expansion in powers of $1/L$, uniformly with all derivatives. At leading
+order, $\sum_mc_m^{(0)}v^m=\varphi(v):=(1-v/z^2)^2(1-v/s^2)^2$ ($v=y^2$), so
+$c_1^{(0)}=-2(z^{-2}+s^{-2})$ and $c_2^{(0)}=O(L^{-4})$. At the next order, the corrections $c^{(1)}_m$ make
+$h(v):=\sum_{m\ge1}c_m^{(1)}v^m$ interpolate $v^{-1/2}\chi(v)$ at the double nodes $Z:=z^2$, $S:=s^2$, where
+$\chi(v):=\sum_m\binom{4J+2m}2\varphi_mv^m=\mathcal D\varphi$, $\mathcal D:=2\Eul_v^2+(8J-1)\Eul_v+(8J^2-2J)$,
+$\Eul_v=v\frac d{dv}$; the part $\sigma\varphi$ of $\sum_m\kappa_m\varphi_mv^m$ vanishes doubly at the nodes and contributes
+nothing. Write $h=vk$ with $\deg k\le3$; since $k$ interpolates $v^{-3/2}\chi$ and $k(\xi)/(\xi\,\omega(\xi))$, with
+$\omega(\xi):=(\xi-Z)^2(\xi-S)^2$, has residue sum $0$,
+\[
+  c^{(1)}_1=k(0)=-\omega(0)\sum_{\xi_0\in\{Z,S\}}\operatorname*{Res}_{\xi=\xi_0}\frac{\chi(\xi)}{\xi^{5/2}\,\omega(\xi)}
+  =-\sum_{\xi_0}\operatorname*{Res}_{\xi=\xi_0}\xi^{-5/2}\,\frac{\mathcal D\omega}{\omega}(\xi).
+\]
+With $\Lambda:=\omega'/\omega=\frac2{\xi-Z}+\frac2{\xi-S}$ one has
+$\frac{\mathcal D\omega}{\omega}=2\xi^2(\Lambda'+\Lambda^2)+(8J+1)\xi\Lambda+(8J^2-2J)$, and the residues give
+$c^{(1)}_1=-16J(z^{-3}+s^{-3})+16/(zs(z+s))$. Since $S_{\yv}=-p_{2J}\ell_1^*$,
+$p_1(\yv\cup\{z,s\})-p_1(\yv)=-S_{\yv}(c_1^{(0)}+c_1^{(1)})+O(L^{-4})$, which is the formula. The mixed derivative follows
+from $\partial_z\partial_s\bigl(zs(z+s)\bigr)^{-1}=2(z^2+3zs+s^2)/(z^2s^2(z+s)^3)$, the other terms depending on one
+variable only.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:screening-update}}]
+Let $B$ be the doubled chain of $\yv$; its window-$r$ interpolants are $F_r^B=Q_{V_r}e^{-y}$, which exist since
+$D_r(\yv),D_{r+1}(\yv)\neq0$. Apply Proposition~\ref{thm:halfstep}(H2) at $B$ and then at $B+z$: first
+$D_r(B+z)=D_r(B)F_r^B(z)$, then $D_r(B+z+z)=D_r(B+z)\,F_r^{B+z}[z]$, where by (H1)
+$F_r^{B+z}=F_{r+1}^B-q_r^B(z)F_r^B$ and its confluent value at $z$ (the derivative) is
+$\Wr(F_r^B,F_{r+1}^B)(z)/F_r^B(z)$. Multiplying, $D_r(B+2z)=D_r(B)\Wr(F_r^B,F_{r+1}^B)(z)$ wherever $F_r^B(z)\neq0$, and by
+continuity everywhere. Since $\Wr(F_r^B,F_{r+1}^B)=e^{-2y}\Wr_{r,r+1}$ and $B+z+z$ is the doubled chain of
+$\yv\cup\{z\}$ up to an even permutation of rows, this is the first claim; the factors $e^{-2z}$ cancel in
+$S=D_0D_2/D_1^2$.
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:selfsim}}]
+Let $d_k$ be the data column of $\tau_k$ (rows: the nodes of $\yv$, then those of $Z$, where $Z=\{x\}$ or
+$\{z,x\}$, $r:=|Z|$), and let $D_m:=\det[d_m,\dots,d_{m+2J-1}]$ on the rows of $\yv$ (this differs from $D_m(\yv)$ by
+the factor $\prod_je^{-2y_j}$). By Cramer's rule
+$p_1(\yv\cup Z)=-\det[d_0,d_2,\dots,d_{2J+2r}]/\det[d_1,\dots,d_{2J+2r}]$, $p_{2J}=D_0/D_1$ and $\ell_1^*=-D_2/D_1$, so
+$S_{\yv}=-p_{2J}\ell_1^*=D_0D_2/D_1^2$. Eliminate with the block (rows of $\yv$)$\times$(columns
+$1,\dots,2J$) in the denominator: the Schur complement is the $Z$-data of $E_1,\dots,E_{2r}$, so the denominator is
+$D_1[E_1,\dots,E_{2r}](Z)$. In the numerator eliminate with the columns $2,\dots,2J+1$ (determinant $D_2$; moving $d_0$
+past $2J$ columns costs no sign): the reduced columns are $1-\Pi^{[2]}1$ and $W_m:=u^{2J+m}-\Pi^{[2]}u^{2J+m}$
+($2\le m\le2r$), where $\Pi^{[2]}$ interpolates at $\yv$ in $\operatorname{span}(u^2,\dots,u^{2J+1})$. The elements of
+$\operatorname{span}(1,u,\dots,u^{2J+1})$ with zero data at $\yv$ form the plane spanned by $P_{\yv}$ and $E_1$; since
+$1-\Pi^{[2]}1$ lies there and has $u$-coefficient $0$, it equals $P_{\yv}+(p_1/\ell_1^*)E_1$. Moreover $W_m-E_m$ and
+$W_m-V_m$ lie in the zero-data part of lower windows, so in all the determinants we may replace $E_m$ and $W_m$ by
+$V_m$ ($m\ge2$) and $E_1$ by $V_1$. Hence
+\[
+  p_1(\yv\cup Z)=-\frac{D_2}{D_1}\Bigl(\frac{[P_{\yv},V_2,\dots,V_{2r}](Z)}{[V_1,\dots,V_{2r}](Z)}+\frac{p_1}{\ell_1^*}\Bigr)
+  =p_1(\yv)+\ell_1^*p_{2J}\,\frac{[V_0,V_2,\dots,V_{2r}](Z)}{[V_1,\dots,V_{2r}](Z)},
+\]
+and $\ell_1^*p_{2J}=-S_{\yv}$. For $r=1$ this is the formula for $\Delta_{\yv}(x)$; taking $r=2$ and subtracting the
+cases $Z=\{z\}$, $\{x\}$ gives the second.
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:firstorder}}]
+Multiplying all $v_r$ by $y^{-d}$ changes neither $\Tu$ nor $I$, so we may take $d=0$.
+(i) With $e_i=2i$ and $\varepsilon_i=(-1)^i$, a direct computation gives
+\[
+  [ij]_y=\varepsilon_i\varepsilon_j(e_j-e_i)\,y^{e_i+e_j-1}\Bigl(1+\frac ty\,\frac{(e_j-e_i+1)\kappa_i+(e_j-e_i-1)\kappa_j}{e_j-e_i}\Bigr)+O(t^2),
+\]
+and in $\Tu$ the prefactors cancel, while the first-order terms add up to $(3\kappa_0+\kappa_1+3\kappa_2+\kappa_3-6\kappa_1-2\kappa_2)/(2z)$.
+(ii) By Cramer's rule, $c(z):=-[02]_z/[12]_z$ is the coefficient $c_1$ of the unique combination $v_0+c_1v_1+c_2v_2$ with
+a double zero at $z$, and $c(z,x):=-[0234]/[1234](z,x)$ is the coefficient $c_1$ of the unique
+$v_0+\sum_{r=1}^4c_rv_r$ with double zeros at $z$ and $x$; so $I=c(z,x)-c(z)-c(x)$. In the variable $v=y^2$ we have
+$v_r=(-1)^r(v^r+t\kappa_rv^{r-1/2})$, the systems are non-singular at $t=0$, and at $t=0$ the combination is
+$\varphi_Z(v):=\prod_{\zeta\in Z}(1-v/\zeta^2)^2$ ($Z=\{z\}$ or $\{z,x\}$), so that
+$c_1|_{t=0}=2\sum_{\zeta\in Z}\zeta^{-2}$ and $I|_{t=0}=0$. Differentiating at $t=0$, the polynomial
+$h(v):=\sum_{r\ge1}(-1)^r\dot c_rv^r$ interpolates $-v^{-1/2}(\mathcal K\varphi_Z)(v)$ at the double nodes $\zeta^2$, where
+$\mathcal K:=\alpha+\beta\Eul_v+C\Eul_v^2$ and $\Eul_v=v\frac{d}{dv}$, because $\sum_r\kappa_r[v^r]\varphi_Z\,v^r=\mathcal K\varphi_Z$.
+Write $h=vk$ with $\deg k\le2|Z|-1$ and $\omega(\xi):=\prod_{\zeta}(\xi-\zeta^2)^2$; as $k(\xi)/(\xi\omega(\xi))=O(\xi^{-2})$, its
+residues sum to $0$, and since $\varphi_Z=\omega/\omega(0)$,
+\[
+  -\dot c_1=[v]h=k(0)=\sum_{\zeta}\operatorname*{Res}_{\xi=\zeta^2}\xi^{-5/2}\frac{\mathcal K\omega}{\omega}(\xi)
+  =(2\beta+C)\sum_{\zeta\in Z}\zeta^{-3}-8C\sum_{\{\zeta,\zeta'\}\subset Z}\frac1{\zeta\zeta'(\zeta+\zeta')},
+\]
+using $\frac{\mathcal K\omega}{\omega}=\alpha+(\beta+C)\xi\Lambda+C\xi^2(\Lambda'+\Lambda^2)$ with
+$\Lambda=\omega'/\omega=\sum_\zeta\frac2{\xi-\zeta^2}$. Only the pair term survives in $\dot c(z,x)-\dot c(z)-\dot c(x)$.
+\end{proof}
+
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:obstruction}}]
+(1) Each column of $W_I$ is a sum of two monomial columns, so by multilinearity
+$W_I(y)=y^{N_I-m}\,p_I(y)$ with $m=|I|$, $N_I\ge m$ and $p_I(y)=a_0y^m+a_1y^{m-1}+\dots+a_m$, where $a_0\neq0$ is the
+Wronskian constant of the monomials (a Vandermonde product of distinct exponents) and $|a_j|\le C_d|\kappa|^j$. The
+coefficient of $t^k$ in $p_I(c+t)$ is $a_0\binom mkc^{m-k}\bigl(1+\sum_{j\ge1}\frac{a_j}{a_0}c^{-j}\binom{m-j}k/\binom mk\bigr)$,
+which has the sign of $a_0$ once $\sum_j|a_j/a_0|c^{-j}<1$; multiplying by $(c+t)^{N_I-m}$ keeps the signs. (2) follows
+from Lemma~\ref{lem:firstorder} with $t=s$ and $C=1$, since $\Tu$ and $I$ are rational in $s$ and regular at $s=0$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:W-reduction}}]
+$[u]E_*=-\ell_1^*\ell_2^*+\ell_2^*\ell_1^*=0$ and $E_*(0)=0$, so $E_*\in u^2\RR[u]$; its top coefficient is $\ell_1^*$, and the
+formula for $\mu_Y$ is \eqref{eq:toy-insertion}. (a) On $\mathcal I\setminus\yv$, $A_{\yv}>0$ and $R_*$, $\mathcal W$ have no
+zeros; at a node in $\mathcal I$, $\mu_Y$ has a pole without change of sign. So the sign is constant, and as
+$Y\to\infty$, $\mu_Y\sim\ell_1^*Y^{2J+4}/(Y^{2J}\cdot(-2)Y^{4J+5})$; finally $S_{\yv}=-p_{2J}\ell_1^*$. (b) If
+$E_*=c\,u^2\tilde h(u)$, then $Q_{E_*}e^{-y}=c\,\tilde h(-\Eul^2)[\Eul^4e^{-y}]$, which vanishes doubly at the nodes.
+(c) $y_j$ is the inserted node of $\yv\setminus y_j$; apply (a) with $\mathcal I=[y_j,\infty)$ to that node set (its
+$\ell_1^*$ is non-zero since $S/p_{2J-2}\neq0$).
+\end{proof}

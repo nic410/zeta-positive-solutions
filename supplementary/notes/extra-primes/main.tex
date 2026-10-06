@@ -1,0 +1,680 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[mathscr]{eucal}
+\usepackage{booktabs,enumitem,xcolor,array}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!40!black,urlcolor=blue!60!black]{hyperref}
+\hypersetup{
+  pdftitle={Extra prime atoms in positive solutions of the explicit formula: theta-group class sums and an obstruction},
+  pdfauthor={Nic Johns}
+}
+\setlength{\emergencystretch}{2.5em}
+
+% ---------------------------------------------------------------- macros
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\hF}{\widehat F}
+\newcommand{\xin}[1]{\xi_{#1}}
+\newcommand{\BRS}{\mathcal M}
+\newcommand{\xiPP}{\xi_{\mathrm{PP}}}
+\newcommand{\PP}{\mathrm{PP}}
+\newcommand{\GR}{\Gamma_{\mathbb R}}
+\newcommand{\Zz}{Z_\zeta}
+\newcommand{\muz}{\mu_\zeta}
+\newcommand{\nuz}{\nu_\zeta}
+\newcommand{\pz}{p_\zeta}
+\newcommand{\Oinf}{\Omega_\infty}
+\newcommand{\Arch}{\mathcal A}
+\newcommand{\Tc}{\mathcal T}
+\newcommand{\Spec}{\mathcal R}
+\newcommand{\Kad}{\mathcal K}
+\newcommand{\uqpmat}[4]{\left(\begin{smallmatrix}#1&#2\\#3&#4\end{smallmatrix}\right)}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{fact}[theorem]{Fact}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Numerical observation}
+\numberwithin{equation}{section}
+
+\title[Extra prime atoms]{Extra prime atoms in positive solutions\\ of the explicit formula:
+theta-group class sums and an obstruction}
+\author{Nic Johns}
+\date{October 2026}
+\subjclass[2020]{Primary 11M26; Secondary 11F27, 42A38}
+\keywords{Weil explicit formula, Fourier interpolation, theta group, modular integrals}
+
+\begin{document}
+
+\begin{abstract}
+A companion paper studies positive solutions of Weil's explicit formula with the archimedean data of the Riemann zeta
+function, and proves that a solution whose zero measure lives on the zeros of $\zeta$ plus finitely many extra points, and
+whose prime measure lives on the interpolation nodes $\log m/4\pi$ of Bondarenko, Radchenko and Seip, is $\zeta$'s own. This
+note treats extra atoms of the prime measure off these nodes. Through theta-group class sums we show that an extra atom at a
+position $x$ with $x^2$ rational, if it is the only one of this type, is excluded whenever an explicit Gauss-sum invariant
+$\kappa_{q,b}(x)$ is positive: for some quadratic non-residue class $b\bmod q$ if there are no extra zeros, and for the class
+$2\bmod3$ if there are finitely many; that a lone extra atom, with no extra zeros, must lie in a closed, nowhere-dense set of
+positions; and that positions with $x^2$ irrational are invisible to every argument at leading order in the class sums. On the zero side,
+the same class sums give a positive-spanning property of the basis functions attached to the class $2\bmod3$.
+\end{abstract}
+
+\maketitle
+
+\noindent\textbf{Status.} This note accompanies the companion paper \cite{PaperI} and has not been peer-reviewed. It records
+partial results: every numbered statement in Sections~\ref{sec:classsums}, \ref{sec:signpatterns} and~\ref{app:proofs} is proved, but the question it
+addresses, uniqueness with finitely many extra prime-side atoms, remains open: neither a lone extra atom at an arbitrary
+position nor countably many extra zeros (Section~\ref{sec:countable}) is settled. The two numerical observations
+(Section~\ref{sec:observations}) are not certified and are not used in any proof. The results of \cite{PaperI} that are used are
+recalled in Section~\ref{sec:setting}, as Facts.
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+
+%======================================================================
+\section{Introduction}\label{sec:intro}
+%======================================================================
+
+An \emph{admissible pair} is a pair of positive measures $(\mu,\nu)$, $\mu$ on the zero side and $\nu$ on the prime side
+beyond $\xin2=\log2/2\pi$, that satisfies Weil's explicit formula with the archimedean data of $\zeta$ on a natural test class
+(Section~\ref{sec:setting}). The companion paper \cite{PaperI} conjectures that every admissible pair, if one exists, is $\zeta$'s own
+pair $\pz$, and proves this for pairs whose zero measure is carried by the real zeros of $\zeta$ together with finitely many extra
+points and whose prime measure is carried by the set $\BRS=\{\log m/4\pi:m\ge1\}$ of the interpolation theorem of Bondarenko,
+Radchenko and Seip \cite{BRS} (Fact~\ref{thm:Gfin}). Its proof tests the pair against the interpolation basis of \cite{BRS}, sums
+the resulting node identities over the class $N\equiv2\pmod3$, which contains no squares, and applies Landau's theorem to a
+Dirichlet series with non-negative coefficients.
+
+This note asks what happens when the prime measure has extra atoms off $\BRS$. An extra atom at $\eta$, with $x_\eta=e^{2\pi\eta}$,
+enters the node identities through the coefficients $B_N(x_\eta)$ of a second modular integral $G_{x_\eta}$, and the natural tools
+are its class sums over a quadratic non-residue class $b\bmod q$. We show:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item the class sums have a leading term $\kappa_{q,b}(x)v^{-1/2}$ as $v\to0^+$, with $\kappa_{q,b}(x)=0$ if $x^2\notin\QQ$ and $\kappa_{q,b}(x)$ an
+explicit combination of normalised Gauss sums if $x^2\in\QQ$ (Proposition~\ref{prop:classsum});
+\item rational-type extra atoms are constrained: if $\kappa_{q,b}(x_\eta)>0$ for some admissible class, a lone rational-type extra atom
+at $\eta$ is excluded, whatever irrational-type extras accompany it (Theorem~\ref{thm:extra-primes});
+\item the positions where $\kappa_{3,2}>0$ are dense (Lemma~\ref{lem:D}), so a lone extra atom, with no extra zeros, lies in a closed,
+nowhere-dense set of positions (Proposition~\ref{prop:C0});
+\item irrational-type extras are invisible at leading order (Proposition~\ref{prop:invisible}): no argument at leading order in the class
+sums, and so no Landau--Mellin argument of the kind used for Fact~\ref{thm:Gfin}, can exclude them.
+\end{enumerate}
+Item (iv) is the obstruction. On the zero side, the same class sums show that the values of the BRS functions $U_m$,
+$m\equiv2\pmod3$, at finitely many positive points off $\Zz$ positively span (Proposition~\ref{prop:signpattern}); this gives no
+information on extra prime atoms. Numerical observations suggest that irrational-type extras are visible at intermediate scales
+(Section~\ref{sec:observations}), and Section~\ref{sec:countable} outlines an extension of Fact~\ref{thm:Gfin} to countably many
+extra zeros. The open problems are in Section~\ref{sec:open}.
+
+%======================================================================
+\section{Setting}\label{sec:setting}
+%======================================================================
+
+We recall the definitions and results of \cite{PaperI} that are used; statements quoted from \cite{PaperI} are called Facts.
+
+\subsection{Admissible pairs}\label{ssec:pairs}
+We write $\hF(\xi)=\int_\RR F(t)e^{-2\pi i\xi t}\dd t$ and $\xin n=\log n/(2\pi)$ for real $n>0$. The archimedean functional is
+$\Arch(F):=F(\frac i2)+F(-\frac i2)+\int_\RR F\,\Oinf$, with $\Oinf(t)=\frac1{2\pi}(\Re\psi(\frac14+\frac{it}2)-\log\pi)$. The test class
+$\Tc=\bigcup_{0<\delta<1/2}\Tc_\delta$ consists of the even functions $F$, real on $\RR$ and analytic in a neighbourhood of
+$\{\lvert\Im z\rvert\le\frac12+\delta\}$ for some $\delta$, with $\sup(1+\lvert z\rvert)^2\lvert F(z)\rvert<\infty$ there.
+
+\begin{fact}[Explicit formula on $\Tc$ {\cite{PaperI}}; {\cite{Wei52}}, {\cite[(1.1)]{BRS}}]\label{lem:explicit-formula}
+For every $F\in\Tc$, $\Arch(F)=\sum_\rho F(t_\rho)+\frac1\pi\sum_{n\ge2}\Lambda(n)n^{-1/2}\hF(\xin n)$, where $t_\rho:=-i(\rho-\frac12)$ and
+$\rho$ runs over the non-trivial zeros of $\zeta$ with multiplicity. No hypothesis on the zeros is made.
+\end{fact}
+
+$\Zz$ is the set of real ordinates $\gamma$ with $\zeta(\frac12+i\gamma)=0$, $m_\gamma$ the multiplicity,
+$\muz=\sum_{\gamma\in\Zz}m_\gamma\delta_\gamma$, $\nuz=\sum_{n\ge2}\Lambda(n)n^{-1/2}\delta_{\xin n}$, and $\pz=(\muz,\nuz)$. An
+\emph{admissible pair} is a pair $(\mu,\nu)$ of positive Radon measures, $\mu$ even on $\RR$ and $\nu$ on $[\xin2,\infty)$, such
+that $\Arch(F)=\Spec_{\mu,\nu}(F):=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$ for every $F\in\Tc$, with absolutely convergent integrals; $\Kad$
+is the set of admissible pairs. We write $\BRS:=\{\log m/(4\pi):m\ge1\}$; since $\xin n=\log(n^2)/(4\pi)$, the prime-power points
+$\xiPP=\{\xin n:n\in\PP\}$ lie in $\BRS$.
+
+$\vartheta(\tau)=\sum_{n\in\ZZ}e^{\pi in^2\tau}$ is Jacobi's theta function and $\Gamma_\vartheta$ the theta group, generated by
+$S=\uqpmat{0}{-1}{1}{0}$ and $T^2=\uqpmat1201$ and viewed, as in \cite{BRS}, in $\mathrm{PSL}_2(\RR)$, so that matrices are identified up to
+sign and $S^2=1$; we write $\tau=\sigma+iv\in\mathbb H$. $\boldsymbol\mu$ is the M\"obius function,
+$\one_\square(m)=1$ if $m$ is a perfect square and $0$ otherwise, and $\Lambda(\sqrt m):=0$ if $m$ is not a square.
+
+\subsection{The interpolation basis}\label{ssec:basis}
+For $s\in\CC$ let $\mathsf F(\tau,s)=\sum_{N\ge0}\alpha_N(s)e^{\pi iN\tau}$ be the unique $2$-periodic analytic function of
+moderate growth on $\mathbb H$ satisfying
+\begin{equation}\label{eq:BRS-FE}
+\mathsf F(\tau,s)+(\tau/i)^{-1/2}\,\mathsf F(-1/\tau,s)=\mathfrak p_s(\tau):=(\tau/i)^{-s}+(\tau/i)^{s-1/2}
+\end{equation}
+(principal branches); this is $F^-_{1/2}(\tau,s)$ of \cite[Theorem~3.1]{BRS}. Its coefficients grow polynomially in $N$, are entire
+in $s$, and are real on the line $\Re s=\frac14$. Let $b_N$ $(N\ge0)$ be the even Fourier eigenfunctions with eigenvalue $+1$ of
+Radchenko and Viazovska \cite{RV19} (the functions $b_N^-$ of \cite[\S3]{BRS}, cf.\ \cite[\S3.4.1]{BRS}), so that
+$b_N(\sqrt n)=\delta_{Nn}$ for $n\ge1$, and put $B_N(x):=\sum_{k\ge1}b_N(kx)$ for $x>0$. By \cite[Theorem~1.1]{BRS}, which assumes
+neither RH nor simplicity of the zeros, there are even entire functions $U_m$ ($m\ge1$) and $V_{\rho,j}$ ($\rho$ a non-trivial zero
+with $\Im\rho>0$, $0\le j<m(\rho)$) with $U_m^{(j)}(t_\rho)=0$, $\widehat{U_m}(\log m'/4\pi)=\delta_{mm'}$,
+$V_{\rho,j}^{(j')}(t_{\rho'})=\delta_{(\rho,j),(\rho',j')}$ and $\widehat{V_{\rho,j}}(\log m/4\pi)=0$; their real and imaginary parts lie in
+$\Tc$. These are the \emph{BRS functions}. With $\Xi(t):=\xi(\frac12+it)$, $\xi(s)=\frac12s(s-1)\GR(s)\zeta(s)$ and $\GR(s)=\pi^{-s/2}\Gamma(\frac s2)$,
+explicitly \cite[\S\S4.2--4.3]{BRS}
+\begin{equation}\label{eq:Um}
+U_m(z)=\frac{m^{-1/4}}{2\pi}\,h_m\big(\tfrac12+iz\big),\qquad h_m(s)=\frac{\GR(s)\zeta(s)}2\sum_{d^2\mid m}\boldsymbol\mu(d)\,\alpha_{m/d^2}(s/2).
+\end{equation}
+and $\widehat{U_m}(\xi)=m^{-1/4}e^{\pi\xi}u_m(e^{2\pi\xi})$ with $u_m(x)=\sum_{d^2\mid m}\boldsymbol\mu(d)B_{m/d^2}(x)$. By the explicit formula,
+applied to real and imaginary parts,
+\begin{equation}\label{eq:W-BRS}
+\Arch(U_m)=\frac1\pi\Lambda(\sqrt m)\,m^{-1/4},\qquad \Arch(V_{\rho,0})=2m(\rho),\qquad \Arch(V_{\rho,j})=0\quad(j\ge1),
+\end{equation}
+where $m(\rho)$ is the multiplicity of $\rho$ and $\Lambda(\sqrt m):=0$ if $m$ is not a square \cite{PaperI}. Indeed $U_m$ vanishes at every
+$t_\rho$ and $\widehat{U_m}(\xin n)=\widehat{U_m}(\log(n^2)/4\pi)=\delta_{m,n^2}$; for $V_{\rho,j}$ the prime sum vanishes, and the zeros with
+negative imaginary part contribute as their conjugates do, by evenness.
+
+Fix a finite symmetric set $E\subset\RR\setminus\Zz$, and put $E_+:=E\cap[0,\infty)$ and $s_e:=\frac14+\frac{ie}2$. Let
+$\mathcal X\subset[\xin2,\infty)\setminus\BRS$ be finite, and write $x_\eta:=e^{2\pi\eta}$ for $\eta\in\mathcal X$; so $x_\eta\ge2$
+and $x_\eta^2\notin\NN$.
+
+\begin{lemma}[Structure of pairs with extra atoms]\label{lem:structure}
+Let $\mu$ be an even real measure carried by $\Zz\cup E$ and $\nu$ a real measure carried by $\BRS\cup\mathcal X$ such that
+$\Arch(F)=\Spec_{\mu,\nu}(F)$ for $F=U_m$ $(m\ge1)$ and $F=V_{\rho,j}$. Write $a_e:=\mu(\{e\})$, $w_\gamma:=\mu(\{\gamma\})$,
+$\beta_\eta:=\nu(\{\eta\})$, $\ell_m:=m^{1/4}\nu(\{\frac{\log m}{4\pi}\})$, $C_N:=\sum_{k^2\mid N}\ell_{N/k^2}$,
+\[
+\tilde\varrho_e:=\frac{a_e\,\Xi(e)}{\frac14+e^2}\ (e>0),\qquad \tilde\varrho_0:=2a_0\,\Xi(0),\qquad c_N(E):=\sum_{e\in E_+}\tilde\varrho_e\,\alpha_N(s_e)\in\RR .
+\]
+Then for every $N\ge1$
+\begin{equation}\label{eq:CN}
+C_N=c_N(E)+\tfrac12(\log N)\one_\square(N)-\sum_{\eta\in\mathcal X}\beta_\eta\sqrt{x_\eta}\,B_N(x_\eta).
+\end{equation}
+If $\mathcal X=\emptyset$, moreover: $c_1=c_2=c_3=0$ when $\nu$ is carried by $[\xin2,\infty)$; $w_\gamma=m_\gamma-\frac12\sum_{e\in E}a_eV_{\rho,0}(e)$
+for $\gamma>0$ and $\rho=\frac12+i\gamma$; $\frac12\sum_ea_eV_{\rho,0}(e)=m(\rho)$ for every zero $\rho$ off the line with $\Im\rho>0$;
+$\sum_ea_eV_{\rho,j}(e)=0$ for $1\le j<m(\rho)$; and $(\mu,\nu)=\pz$ if and only if $a=0$, if and only if $c(E)\equiv0$. If
+$(\mu,\nu)\in\Kad$, then $C_N\ge0$ for all $N$; in particular $c_N(E)\ge0$ for every non-square $N$ when $\mathcal X=\emptyset$.
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-structure}. The case $\mathcal X=\emptyset$, with the statements that follow ``moreover'',
+is the structure lemma of \cite{PaperI}.
+
+
+
+\begin{fact}[Finitely many extra zeros {\cite{PaperI}}]\label{thm:Gfin}
+Let $E\subset\RR\setminus\Zz$ be finite and symmetric. Let $\mu$ be an even real measure carried by $\Zz\cup E$ and $\nu$ a real
+measure carried by $\BRS$ such that $\Arch(F)=\int F\dd\mu+\frac1\pi\int\hF\dd\nu$ for every BRS function $F$ (in particular, if the
+identity holds on $\Tc$ with absolutely convergent integrals). Assume $\nu(\{\frac{\log m}{4\pi}\})\ge0$ for every $m\equiv2\pmod3$, and
+$\mu(\{0\})\ge0$ if $0\in E$. Then RH holds, $\mu=\muz$ and $\nu=\nuz$. In particular every admissible pair carried by
+$(\Zz\cup E)\times\BRS$ is $\pz$ \textup{(}\cite[Theorem~B]{PaperI}\textup{)}.
+\end{fact}
+
+\subsection{The theta function near rational points}\label{ssec:theta}
+A fraction $a/c$ in lowest terms ($c\ge1$) has one of the three \emph{types} (even, odd), (odd, even) and (odd, odd), according
+to the parities of $a$ and $c$. For $a/c\in\QQ$ in lowest terms let $g(a/c):=c^{-1}\sum_{n\bmod c}e^{\pi ian^2/c}$ if $ac$ is even, and
+$g(a/c):=0$ if $ac$ is odd.
+We use $\vartheta(-1/\tau)=(\tau/i)^{1/2}\vartheta(\tau)$, $\vartheta(\tau+2)=\vartheta(\tau)$, and the fact that $\vartheta$ has no zeros in $\mathbb H$
+(see \cite[\S3.2]{BRS}). Principal branches are used throughout; $(\tau/i)^\alpha>0$ for $\tau\in i(0,\infty)$.
+
+\begin{lemma}[$\vartheta$ near real points]\label{lem:theta-local}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item Let $r=a/c\in\QQ$ in lowest terms, $c\ge1$. For $z\in\mathbb H$ with $Y:=\Im(-1/z)\ge1$,
+$\vartheta(r+z)=g(r)(z/i)^{-1/2}+O_r(|z|^{-1/2}e^{-\pi Y/(4c^2)})$. In particular, if $z\to0$ with $|\Re z|\le M\Im z$, then
+$\vartheta(r+z)=g(r)(z/i)^{-1/2}+O(|z|^{-1/2}e^{-c'/|z|})$ for some $c'=c'(r,M)>0$.
+\item Let $r\in\RR\setminus\QQ$. If $\eps\to0^+$ and $|\delta|\le M\eps^2$, then $\vartheta(r+\delta+i\eps)=o(\eps^{-1/2})$.
+\item For $r\in\QQ\setminus\{0\}$, $g(-1/r)=|r|^{-1/2}e^{-i\pi\sgn(r)/4}\,g(r)$.
+\end{enumerate}
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-theta}.
+
+\subsection{Cusp expansions}\label{ssec:cusp}\label{app:cusp}
+Let $\chi:\Gamma_\vartheta\to\{\pm1\}$ be the character with $\chi(S)=-1$ and $\chi(T^2)=1$; it is well defined because $S$ and $T^2$ generate
+$\Gamma_\vartheta$ with the single relation $S^2=1$ \cite[\S3.1]{BRS}. For $f:\mathbb H\to\CC$ and $\gamma\in\Gamma_\vartheta$ put
+\[
+(f|\gamma)(\tau):=\chi(\gamma)\,\frac{\vartheta(\tau)}{\vartheta(\gamma\tau)}\,f(\gamma\tau),
+\]
+a right action: $(f|\gamma_1)|\gamma_2=f|(\gamma_1\gamma_2)$. As $\vartheta(\tau)/\vartheta(-1/\tau)=(\tau/i)^{-1/2}$, the functional equations
+\eqref{eq:BRS-FE} and \eqref{eq:Gx-FE} and periodicity read $f-f|S=\mathfrak p$ and $f|T^2=f$, for $(f,\mathfrak p)=(\mathsf F(\cdot,s),\mathfrak p_s)$ and
+$(G_x,\mathfrak p_x)$. If $\gamma=g_m\cdots g_1$ with $g_k\in\{S,T^{\pm2}\}$ and $w_k:=g_k\cdots g_1$ ($w_0=1$), then telescoping
+$f|w_{k-1}-f|w_k=(f-f|g_k)|w_{k-1}$ gives
+\begin{equation}\label{eq:unroll}
+f=f|\gamma+\sum_{k:\,g_k=S}\mathfrak p|w_{k-1}.
+\end{equation}
+For the cusp $\frac23$ we use $\gamma=ST^2ST^2S=\uqpmat{-2}{1}{3}{-2}$, which maps $\frac23$ to $\infty$, with $S$ in positions $k=1,3,5$ and
+$w_2=T^2S$, $w_4=T^2ST^2S=\uqpmat{3}{-2}{2}{-1}$. For $\tau=\frac23+iv$ one finds $T^2S\tau=2-1/\tau\to\frac12$, $w_4\tau=9iv/(1+6iv)$ and
+$\gamma\tau=-\frac23+\frac i{9v}$; moreover $\chi(\gamma)=-1$, $\chi(T^2S)=-1$, $\chi(w_4)=1$,
+\begin{equation}\label{eq:jfactors}
+\frac{\vartheta(\tau)}{\vartheta(T^2S\tau)}=(\tau/i)^{-1/2},\qquad
+\frac{\vartheta(\tau)}{\vartheta(w_4\tau)}=(\tau/i)^{-1/2}\big((2-1/\tau)/i\big)^{-1/2},
+\end{equation}
+and both are analytic near $\tau=\frac23$, the second with value $(\frac32)^{1/2}e^{i\pi/4}\cdot\sqrt2\,e^{i\pi/4}=i\sqrt3$ there.
+
+\begin{fact}[The class $2\bmod3$ {\cite{PaperI}}]\label{lem:cusp-class2}
+Let $\Re s=\frac14$. As $v\to0^+$,
+\begin{multline*}
+\tfrac13\Big[\mathsf F(iv,s)+\omega\,\mathsf F(\tfrac23+iv,s)+\bar\omega\,\mathsf F(\tfrac43+iv,s)\Big]\\
+=\tfrac13\big(1-3\cdot9^{-s}\big)v^{-s}+\tfrac13\big(1-3\cdot9^{s-1/2}\big)v^{s-1/2}+c(s)+O_s(v^{3/4}),
+\end{multline*}
+with a constant $c(s)$. Consequently, if $E_+\subset[0,\infty)$ is finite, $\tilde\varrho_e\in\RR$ and $c_N:=\sum_{e\in E_+}\tilde\varrho_e\alpha_N(s_e)$, then
+\[
+\Theta_E^{(2)}(v):=\sum_{N\equiv2\,(3)}c_Ne^{-\pi Nv}=\sum_{e\in E_+,\,e>0}\big(B_ev^{-s_e}+\overline{B_e}v^{-\overline{s_e}}\big)+B_0v^{-1/4}+C+O(v^{3/4}),
+\]
+with $B_e=\frac{\tilde\varrho_e}3(1-3\cdot9^{-s_e})$ for $e>0$, $B_0=\frac{2\tilde\varrho_0}3(1-\sqrt3)$ (and $B_0=0$ if $0\notin E_+$), and a real constant $C$. In
+particular $\Theta_E^{(2)}(v)=O(v^{-1/4})$.
+\end{fact}
+
+The function $\Theta_E^{(2)}$ is the class sum of the node identities of Lemma~\ref{lem:structure} with $\mathcal X=\emptyset$ over the class
+$2\bmod3$; in \cite{PaperI} its expansion and Landau's theorem give Fact~\ref{thm:Gfin}.
+
+\begin{fact}[Landau step {\cite{PaperI}}]\label{lem:class2-landau}
+Let $E_+\subset[0,\infty)$ be finite, $\tilde\varrho_e\in\RR$ with $\tilde\varrho_0\ge0$ if $0\in E_+$, and $c_N:=\sum_{e\in E_+}\tilde\varrho_e\alpha_N(s_e)$.
+If $c_N\ge0$ for every $N\equiv2\pmod 3$, then $\tilde\varrho_e=0$ for every $e\in E_+$.
+\end{fact}
+
+%======================================================================
+\section{Class sums of an extra atom}\label{sec:classsums}\label{ssec:extraprimes}
+
+We turn to admissible pairs whose prime measure has atoms off $\BRS$, keeping the notation of Lemma~\ref{lem:structure}. An
+extra atom at $\eta$ enters the node identities \eqref{eq:CN} through the numbers $B_N(x_\eta)$, and these are the Fourier
+coefficients of a second modular integral.
+
+\begin{definition}[Class sums of an extra atom]\label{def:classsum}
+For $x>0$ and $\tau\in\mathbb H$ put $G_x(\tau):=\sum_{N\ge0}B_N(x)e^{\pi iN\tau}$. This is the modular integral
+$F^-_{1/2}(\tau,\phi_x)$ of \cite[Theorem~3.1]{BRS} attached to $\phi_x(\tau):=\frac12(\vartheta(x^2\tau)-1)$ (cf.\ the proof of
+\cite[Theorem~1.1]{BRS}, where the argument of $\vartheta$ is printed as $zx$; the square is needed, since
+$B_N(\sqrt m)=\#\{k\ge1:k^2m=N\}$ for integers $m\ge1$): it is $2$-periodic, of moderate growth, and
+\begin{equation}\label{eq:Gx-FE}
+G_x(\tau)+(\tau/i)^{-1/2}G_x(-1/\tau)=\mathfrak p_x(\tau):=\tfrac12\Big[\vartheta(x^2\tau)-1+x^{-1}\vartheta(\tau/x^2)-(\tau/i)^{-1/2}\Big].
+\end{equation}
+For an odd prime $q$, a quadratic non-residue $b\bmod q$ and $v>0$ let
+\[
+T^{(x)}_{q,b}(v):=\sum_{N\equiv b\,(q)}B_N(x)e^{-\pi Nv}=\frac1q\sum_{j\bmod q}e^{-2\pi ijb/q}\,G_x\big(\tfrac{2j}q+iv\big).
+\]
+\end{definition}
+
+Recall that the number $g(r)$ of Section~\ref{ssec:theta} describes $\vartheta$ near the rational point $r$:
+$\vartheta(r+z)=g(r)(z/i)^{-1/2}+O(|z|^{-1/2}e^{-c/|z|})$ as $z\to0$ non-tangentially in $\mathbb H$ (Lemma~\ref{lem:theta-local}).
+
+\begin{proposition}[Leading term of non-residue class sums]\label{prop:classsum}
+Let $x>0$, $q$ an odd prime and $b$ a quadratic non-residue mod $q$. As $v\to0^+$,
+\[
+T^{(x)}_{q,b}(v)=\kappa_{q,b}(x)\,v^{-1/2}+o(v^{-1/2}),
+\]
+where $\kappa_{q,b}(x)=0$ if $x^2\notin\QQ$, and for $x^2\in\QQ$, $\kappa_{q,b}(x)$ is an explicit finite linear combination of values of
+$g$, the error being $O(1)$. For $(q,b)=(3,2)$, with $X:=x^2\in\QQ$ and $\omega:=e^{2\pi i/3}$,
+\[
+\kappa_{3,2}(x)=\tfrac23\Re(\omega K),\qquad K=\frac{g(\frac{2X}3)}{2x}+\frac{e^{i\pi/4}}{\sqrt6\,x}\Big[g\big(-\tfrac{3X}2\big)-g\big(\tfrac X2\big)\Big]-\frac{i\,g(-2X)}{2\sqrt3\,x}.
+\]
+For $X=m\in\NN$ this gives $\kappa_{3,2}(x)=1/(3x)$ if $m\equiv2\pmod3$ and $\kappa_{3,2}(x)=0$ otherwise.
+\end{proposition}
+
+The proof, in Appendix~\ref{app:proofs-classsum}, unrolls \eqref{eq:Gx-FE} along a reduction word at each cusp $2j/q$. The
+contribution $(B_0(x)-\frac1{2x})\vartheta(\tau)$ that a single atom would make to every class appears at each cusp with the same
+coefficient, because the multiplier of the reduction word is $-1$ at every cusp with odd denominator; it therefore cancels
+exactly in every non-residue class, since $\sum_je^{-2\pi ijb/q}\vartheta(\frac{2j}q+iv)=q\sum_{n^2\equiv b\,(q)}e^{-\pi n^2v}=0$. What remains
+samples $\vartheta$ near the points $x^2\rho$ and $\rho/x^2$ for finitely many rationals $\rho$. The case $X=m\in\NN$ is a check:
+then $B_N(\sqrt m)=\sum_k\delta_{N,k^2m}$, so $G_x=\phi_x$ and $T^{(x)}_{3,2}(v)=\sum_{3\nmid k,\ k^2m\equiv2\,(3)}e^{-\pi k^2mv}$.
+
+\begin{lemma}[Node-positive test functions suffice]\label{lem:P0}
+Let $(\mu,\nu)\in\Kad$ be carried by $(\Zz\cup E)\times(\BRS\cup\mathcal X)$ as in Lemma~\ref{lem:structure}, and let $\eta_0\in\mathcal X$.
+Suppose some $F\in\Tc$ (or the real part of an even complex $F$ whose real and imaginary parts lie in $\Tc$) vanishes at every
+$t_\rho$ and on $E$, has $\hF\ge0$ on $(\BRS\cap[\xin2,\infty))\cup\mathcal X$, $\hF=0$ on $\xiPP$, and $\hF(\eta_0)>0$. Then $\beta_{\eta_0}=0$.
+\end{lemma}
+
+\begin{proof}
+By the explicit formula (Fact~\ref{lem:explicit-formula}), $\Arch(F)=0$. On the spectral side $\int F\dd\mu=0$ and
+$\frac1\pi\int\hF\dd\nu\ge\frac1\pi\beta_{\eta_0}\hF(\eta_0)\ge0$.
+\end{proof}
+
+No positivity of $F$ on $\RR$, and none of $\hF$ off $\BRS\cup\mathcal X$, is needed. Examples are $\Xi^2H$ and non-negative
+combinations of BRS functions $U_m$ over non-square $m$.
+
+\begin{theorem}[Rational prime-side extras]\label{thm:extra-primes}
+Let $(\mu,\nu)\in\Kad$ with $\mu$ carried by $\Zz\cup E$ and $\nu$ carried by $\BRS\cup\mathcal X$, where $E$ and $\mathcal X$ are finite as
+in Lemma~\ref{lem:structure}. Let $\mathcal X_\QQ:=\{\eta\in\mathcal X:x_\eta^2\in\QQ\}$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item If $E=\emptyset$, then for every odd prime $q$ and every quadratic non-residue $b\bmod q$,
+$\sum_{\eta\in\mathcal X_\QQ}\beta_\eta\sqrt{x_\eta}\,\kappa_{q,b}(x_\eta)\le0$.
+\item For arbitrary finite $E$, the inequality holds for $(q,b)=(3,2)$.
+\end{enumerate}
+Consequently, if some non-negative combination of the $\kappa_{q,b}$ admissible in \textup{(a)} or \textup{(b)} is positive at every
+$x_\eta$, $\eta\in\mathcal X_\QQ$, then $\beta_\eta=0$ for all $\eta\in\mathcal X_\QQ$. In particular, if $\eta$ is the only rational-type extra atom and
+$\kappa_{q,b}(x_\eta)>0$ for one admissible $(q,b)$, then $\beta_\eta=0$, whatever irrational-type extras accompany it. (With
+several rational-type extras the inequalities of (a) and (b) are signed sums, and individual terms may have opposite signs.)
+\end{theorem}
+
+\begin{proof}
+A non-residue class contains no squares, so by \eqref{eq:CN} and Lemma~\ref{lem:structure},
+$0\le C_N=c_N(E)-\sum_\eta\beta_\eta\sqrt{x_\eta}B_N(x_\eta)$ for $N\equiv b\pmod q$. Multiply by $e^{-\pi Nv}$ and sum:
+\[
+0\le\sum_{N\equiv b\,(q)}c_N(E)e^{-\pi Nv}-\sum_\eta\beta_\eta\sqrt{x_\eta}\,T^{(x_\eta)}_{q,b}(v).
+\]
+The first sum vanishes if $E=\emptyset$; for $(q,b)=(3,2)$ it is $O(v^{-1/4})$ by Fact~\ref{lem:cusp-class2}. Multiply by
+$v^{1/2}$ and let $v\to0^+$; by Proposition~\ref{prop:classsum}, $v^{1/2}T^{(x_\eta)}_{q,b}(v)\to\kappa_{q,b}(x_\eta)$, which is $0$ unless
+$\eta\in\mathcal X_\QQ$. For the consequence, if $\lambda_{q,b}\ge0$ and $\sum\lambda_{q,b}\kappa_{q,b}(x_\eta)>0$ for $\eta\in\mathcal X_\QQ$, then
+$0\ge\sum_\eta\beta_\eta\sqrt{x_\eta}\sum\lambda_{q,b}\kappa_{q,b}(x_\eta)$ is a sum of non-negative terms, so each vanishes.
+\end{proof}
+
+For $E\ne\emptyset$ and $q\ge5$ the argument needs the analogue of Fact~\ref{lem:cusp-class2} for the class $b\bmod q$, which
+is not proved here (Section~\ref{sec:open}).
+
+\begin{lemma}[A closed form on a dense family]\label{lem:D}
+Let $d\equiv1\pmod{24}$ be prime, let $a\equiv5\pmod6$ be an integer with $d\nmid a$, and put $X:=a/d$, $x:=\sqrt X$. Then
+\[
+x\,\kappa_{3,2}(x)=\frac{(a/d)}{3\sqrt d},
+\]
+where $(a/d)$ is the Legendre symbol. The set of such $X$ with $(a/d)=+1$ is dense in $(0,\infty)$; hence
+$\{X\in\QQ_{>0}:\kappa_{3,2}(\sqrt X)>0\}$ is dense.
+\end{lemma}
+
+The proof (Appendix~\ref{app:proofs-lemD}) evaluates the four values of $g$ in Proposition~\ref{prop:classsum} by quadratic
+Gauss sums, and obtains the density from the P\'olya--Vinogradov inequality.
+
+\begin{proposition}[Irrational extras are invisible at leading order]\label{prop:invisible}
+If $x^2\notin\QQ$, then $T^{(x)}_{q,b}(v)=o(v^{-1/2})$ as $v\to0^+$, for every odd prime $q$ and every non-residue $b\bmod q$. Consequently
+an extra atom $\eta$ with $x_\eta^2\notin\QQ$ makes no contribution to the inequalities of Theorem~\ref{thm:extra-primes}.
+\end{proposition}
+
+\begin{proof}
+This is the irrational case of Proposition~\ref{prop:classsum}.
+\end{proof}
+
+The reading of this proposition is an obstruction: no argument at leading order in the class sums, and so no Landau--Mellin
+argument of the kind used for Fact~\ref{thm:Gfin}, can exclude irrational-type extras. Shifted prime powers $x^2=n^2\pm\delta$,
+and the spurious points of near-optimal test functions observed numerically, are of this type. Heuristically, such extras are
+visible at intermediate scales: near a good rational approximation of $x^2$ the class sum behaves like that of the rational
+point (Numerical observation~\ref{obs:routeC}).
+
+\begin{lemma}[Continuity of $G_x$ in $x$]\label{lem:Gx-cont}
+For fixed $\tau\in\mathbb H$, the map $x\mapsto G_x(\tau)$ is continuous on $(0,\infty)$.
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-Gxcont}. It uses the contour-integral construction of the modular integral in
+\cite[\S3.3]{BRS}, dominated convergence on a fundamental domain, and the transport of continuity by the cocycle relation.
+
+\begin{proposition}[Lone extras sit on a nowhere-dense set]\label{prop:C0}
+Let $\mathfrak B$ be the set of $X\in(4,\infty)\setminus\ZZ$ such that $T^{(\sqrt X)}_{q,b}(v)\le0$ for every $v>0$, every odd prime $q$ and every
+non-residue $b\bmod q$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item If $(\mu,\nu)\in\Kad$ with $\mu$ carried by $\Zz$ and $\nu$ carried by $\BRS\cup\{\eta\}$, where $\eta\notin\BRS$ and $\nu(\{\eta\})>0$, then
+$x_\eta^2\in\mathfrak B$.
+\item $\mathfrak B$ is closed relative to $(4,\infty)\setminus\ZZ$, and nowhere dense in $\RR$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Here $x_\eta\ge2$ and $x_\eta^2\notin\NN$, so $X:=x_\eta^2\in(4,\infty)\setminus\ZZ$. With $E=\emptyset$ and $\mathcal X=\{\eta\}$,
+\eqref{eq:CN} gives $0\le C_N=-\beta_\eta\sqrt{x_\eta}B_N(x_\eta)$ at every non-square $N$, so $B_N(x_\eta)\le0$ for all $N$ in every
+non-residue class, and $T^{(x_\eta)}_{q,b}(v)\le0$. (b) For fixed $v$, $q$, $b$, the map $X\mapsto T^{(\sqrt X)}_{q,b}(v)$ is a finite
+combination of values $G_{\sqrt X}(\tau)$, hence continuous by Lemma~\ref{lem:Gx-cont}; so $\mathfrak B$ is an intersection of relatively
+closed sets. If $\kappa_{q,b}(\sqrt X)>0$ for some $(q,b)$, then $X\notin\mathfrak B$ by Proposition~\ref{prop:classsum}. If the closure of
+$\mathfrak B$ contained an open interval $I$, then $I\subset[4,\infty)$ and, by relative closedness, $I\setminus\ZZ\subset\mathfrak B$; but by
+Lemma~\ref{lem:D}, $I\setminus\ZZ$ contains rationals $X$ with $\kappa_{3,2}(\sqrt X)>0$.
+\end{proof}
+
+Only $E=\emptyset$ is covered. Whether $\mathfrak B=\emptyset$ is open (Section~\ref{sec:open}).
+
+%======================================================================
+\section{Positive spanning by the BRS functions}\label{sec:signpatterns}
+%======================================================================
+
+The argument behind Fact~\ref{thm:Gfin} gives more than its statement: a positive spanning property of the values of the BRS
+functions $U_m$, $m\equiv2\pmod3$, on the zero side. It is recorded here because it comes from the same class sums; it gives
+no information on extra prime atoms (Remark~\ref{rem:signpattern-test}).
+
+\begin{proposition}[Positive spanning by the BRS functions]\label{prop:signpattern}
+Let $E\subset(0,\infty)\setminus\Zz$ be finite.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item For every real vector $a=(a_e)_{e\in E}\ne0$ there is $m\equiv2\pmod3$ with $\sum_{e\in E}a_eU_m(e)>0$. Equivalently, the vectors
+$(U_m(e))_{e\in E}$, $m\equiv2\pmod3$, positively span $\RR^E$, and finitely many of them suffice.
+\item For every real vector $a=(a_e)_{e\in E\cup\{0\}}\ne0$ with $a_0\ge0$ there is $m\equiv2\pmod3$ with $\sum_{e\in E\cup\{0\}}a_eU_m(e)>0$.
+Equivalently, the unit vector $\delta_0$ at the point $0$ lies in the interior of the convex cone in $\RR^{E\cup\{0\}}$ generated by the
+vectors $(U_m(e))_{e\in E\cup\{0\}}$, $m\equiv2\pmod3$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Let $E'$ be $E$ in (a) and $E\cup\{0\}$ in (b), and suppose that $\sum_{e\in E'}a_eU_m(e)\le0$ for every $m\equiv2\pmod3$. Put
+$s_e:=\frac14+\frac{ie}2$ and $\tilde\varrho_e:=a_e\Xi(e)/(\frac14+e^2)$ for $e\in E'$ (so $\tilde\varrho_0=4a_0\Xi(0)$), and
+$c_N:=\sum_{e\in E'}\tilde\varrho_e\alpha_N(s_e)$. At $s=\frac12+ie$ one has $\frac12s(s-1)=-\frac12(\frac14+e^2)$, so
+$\GR(s)\zeta(s)=-2\Xi(e)/(\frac14+e^2)$, and $\frac s2=s_e$. Hence \eqref{eq:Um} gives
+\[
+-2\pi m^{1/4}\sum_{e\in E'}a_eU_m(e)=\sum_{d^2\mid m}\boldsymbol\mu(d)\,c_{m/d^2}=:c^*_m,
+\]
+and $c^*_m\ge0$ for every $m\equiv2\pmod3$. By M\"obius inversion, $c_N=\sum_{k^2\mid N}c^*_{N/k^2}$. If $N\equiv2\pmod3$ and $k^2\mid N$, then
+$3\nmid k$, so $N/k^2\equiv2\pmod3$; hence $c_N\ge0$ for every $N\equiv2\pmod3$. In (b), $\tilde\varrho_0\ge0$ because $\Xi(0)>0$.
+Fact~\ref{lem:class2-landau}, applied with $E_+=E'$, gives $\tilde\varrho_e=0$ for every $e\in E'$, and $\Xi(e)\ne0$ because $e\notin\Zz$; so $a=0$.
+
+The equivalences are facts about the convex cone $K\subset\RR^n$ generated by the vectors in question and its dual cone
+$K^*=\{a:\langle a,v\rangle\ge0\text{ for all }v\in K\}$. In (a) the statement says that $K^*=\{0\}$. Then $K$ is dense, hence equal to $\RR^n$,
+because a convex set and its closure have the same interior; so each of the $2n$ vectors $\pm\delta_e$ is a finite non-negative
+combination of generators. In (b) the statement, applied to $-a$, says that $a_0>0$ for every non-zero $a\in K^*$, and this holds if and only
+if $\delta_0$ lies in the interior of $K$.
+\end{proof}
+
+\begin{remark}[Testing admissible pairs]\label{rem:signpattern-test}
+Let $(\mu,\nu)$ be an admissible pair with $\mu$ carried by $\Zz\cup E$, $E$ finite and symmetric, and $\nu$ carried by $\BRS$
+(Lemma~\ref{lem:structure} with $\mathcal X=\emptyset$), and put $a_e:=\mu(\{e\})\ge0$. Let $F=\sum_{m\equiv2\,(3)}x_mU_m$ be a finite
+combination with $x_m\ge0$. Then $\Arch(F)=0$ by \eqref{eq:W-BRS}, since no $m\equiv2\pmod3$ is a square; $F$ vanishes at every $t_\rho$;
+and $\hF$ equals $x_m$ at the node $\log m/4\pi$ and $0$ at the other nodes. So the explicit formula for the pair gives
+$\sum_{e\in E}a_eF(e)=-\frac1\pi\sum_mx_m\,\nu(\{\frac{\log m}{4\pi}\})\le0$. If $0\in E$, Proposition~\ref{prop:signpattern}(b), applied to
+$E_+\setminus\{0\}$, gives such an $F$ with $F(0)>0$ and $F=0$ on $E\setminus\{0\}$; so $a_0F(0)\le0$ and $a_0=0$. Then, for each
+$e_0\in E_+\setminus\{0\}$, part (a), applied to $E_+\setminus\{0\}$, gives such an $F$ with $F(e_0)>0$ and $F=0$ on $E\setminus\{0,\pm e_0\}$;
+so $2a_{e_0}F(e_0)\le0$ and $a_{e_0}=0$. Hence $\mu$ is carried by $\Zz$, and $(\mu,\nu)=\pz$ by Lemma~\ref{lem:structure}: for admissible
+pairs, testing with explicit functions recovers Fact~\ref{thm:Gfin}.
+
+These test functions change sign on $\RR$: $\int F=\hF(0)=0$, because the node $0=\log1/4\pi$ belongs to the square $m'=1$ and
+$\widehat{U_m}(0)=0$ for $m\ge2$. So they are not in the cone of non-negative functions with non-negative transform beyond the gap. In the
+terms of Lemma~\ref{lem:P0} they are node-positive, but nothing controls the sign of $\hF$ at a point $\eta\notin\BRS$, so they give no
+information on extra prime atoms.
+\end{remark}
+
+%======================================================================
+\section{Countably many extra zeros: an outline}\label{sec:countable}
+%======================================================================
+
+\begin{remark}[Countably many extra zeros: an outline]\label{rem:Gsum}
+We expect that the proof of Fact~\ref{thm:Gfin} extends to countable, locally finite sets $E$ with
+$\sum_{e\in E}\mu(\{e\})\,|\zeta(\frac12+ie)|\,(1+|e|)^{-1/4+\delta}<\infty$ for some $\delta>0$. A complete proof would need control, uniform
+in $e$, of the tails of $\mathsf F(\gamma\tau,s_e)$ and of the background terms $\tilde\varrho_e(\tau/i)^{s_e-1/2}$ at the regular points
+$\frac23$ and $\frac12$ of the cusp expansions; this is not carried out here. For a positive density of spurious atoms with masses of order $1$ the
+method fails at the threshold: heuristically, the background terms then have partial sums of size $\asymp T^{1/4}$, which is exactly what
+the Landau argument cannot absorb.
+\end{remark}
+
+%======================================================================
+\section{Numerical observations}\label{sec:observations}
+%======================================================================
+
+The two observations below were computed but not certified; they are not used in any proof.
+
+\begin{observation}[Rational extras]\label{obs:rational-extras}
+For each of the $126$ rationals $X=a/d\in(\frac12,12)\setminus\ZZ$ with $2\le d\le6$, some class $(q,b)$ with $q\in\{3,5,7,11,13\}$ has
+computed value $x\,\kappa_{q,b}(x)>0$; the smallest such value is $0.004278$, at $X=7/6$, $(q,b)=(13,6)$. For the $7875$ pairs of these
+values, a non-negative combination of the $17$ class vectors with $q\le13$ is positive at both points for $7872$ pairs, and for the
+remaining $3$ once the classes with $q\in\{17,19,23\}$ are added. The values for $q=3$ are exact Gauss-sum evaluations; for $q\ge5$ they
+were obtained by numerical extrapolation of $v^{1/2}T^{(x)}_{q,b}(v)$ as $v\downarrow3\cdot10^{-6}$, with no closed form and no interval
+certification. Only $X>4$ corresponds to positions in $[\xin2,\infty)$. If certified, Theorem~\ref{thm:extra-primes}(a) would exclude a lone
+rational extra atom at each such $X$ when $E=\emptyset$.
+\end{observation}
+
+\begin{observation}[Irrational extras at intermediate scales]\label{obs:routeC}
+Let $E=\emptyset$. For each of $12$ irrational-type positions (seven shifted prime powers $x^2=n^2\pm\delta$ with $n\in\{3,5,7,8,11\}$ and
+$\delta\in[0.003,0.067]$, and $x^2\in\{4+(\sqrt2-1),\,5+(\phi-1),\,9+1/e,\,16+\sqrt3/10,\,30+\sqrt7/10\}$, $\phi$ the golden ratio), the computed
+function $v^{1/4}T^{(x)}_{3,2}(v)$ reaches a positive value, between $+0.10$ and $+0.81$, somewhere in $10^{-9}\le v\le10^{-2.75}$; and for all
+$15$ pairs formed from six of these positions the corresponding linear feasibility problem has positive margin ($0.08$--$0.67$). The class
+sums were computed from the exact cocycle formula with exponentially small terms dropped and $\vartheta$ evaluated to $25$ digits; they are
+not interval-certified. If certified, Lemma~\ref{lem:structure} would exclude a lone extra atom (resp.\ these pairs) at these positions.
+\end{observation}
+
+%======================================================================
+\section{Open problems}\label{sec:open}\label{ssec:open}
+%======================================================================
+
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item \emph{Lone extra atoms.} Is the set $\mathfrak B$ of Proposition~\ref{prop:C0} empty? Theorem~\ref{thm:extra-primes} and
+Proposition~\ref{prop:C0} leave a closed, nowhere-dense set of positions, and irrational positions are invisible to the
+leading-order argument (Proposition~\ref{prop:invisible}). This seems to need theta-sum asymptotics along continued fractions and a
+Duffin--Schaeffer-type step \cite{DS41,KoMa20}. Lemma~\ref{lem:P0} gives another route: a single node-positive test function that is
+positive at the position of the atom excludes it.
+\item \emph{Extra zeros and other classes.} For $E\ne\emptyset$ and $q\ge5$, the analogue of Fact~\ref{lem:cusp-class2} for the
+non-residue classes $b\bmod q$, which would extend Theorem~\ref{thm:extra-primes}(b) to these classes.
+\item \emph{Infinitely many extra zeros} on the zero side (Section~\ref{sec:countable} is an outline only).
+\item \emph{Certification} of the computations of Numerical observations~\ref{obs:rational-extras} and~\ref{obs:routeC}.
+\end{enumerate}
+
+\section*{AI-use statement}
+This note was produced with substantial use of AI. The mathematical arguments, the numerical computations and the text were generated by instances of Claude Opus 5.5
+(Anthropic) working as coordinated agents: one set of agents developed the arguments, separate agents acted as
+independent hostile referees of each component, and the referees' requested repairs were incorporated. The
+author initiated and directed this project, designed its verification process, and reviewed the results and the
+verification record, but did not independently check every step of the written proofs. The author takes full
+responsibility for the content of this note, including any errors, and welcomes independent verification and
+corrections.
+
+\appendix
+%======================================================================
+\section{Proofs}\label{app:proofs}
+%======================================================================
+
+\subsection{Structure of pairs with extra atoms}\label{app:proofs-structure}
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:structure}}]
+Since $U_m$ vanishes on $\Zz$, $\widehat{U_m}(\frac{\log m'}{4\pi})=\delta_{mm'}$ and \eqref{eq:W-BRS} holds, testing on $U_m$ gives
+\[
+\sum_{e\in E}a_eU_m(e)+\frac1\pi\Big(\nu\big(\{\tfrac{\log m}{4\pi}\}\big)+\sum_\eta\beta_\eta\widehat{U_m}(\eta)\Big)=\frac1\pi\Lambda(\sqrt m)m^{-1/4}.
+\]
+Multiply by $\pi m^{1/4}$. By \eqref{eq:Um} and $\GR(\frac12+it)\zeta(\frac12+it)=-2\Xi(t)/(\frac14+t^2)$,
+$\pi m^{1/4}a_eU_m(e)=-\frac{a_e\Xi(e)}{2(\frac14+e^2)}\sum_{d^2\mid m}\boldsymbol\mu(d)\alpha_{m/d^2}(s_e)$. The atoms at $\pm e$ give equal
+terms, because $a_{-e}=a_e$, $\Xi$ is even and $\alpha_N(s_{-e})=\alpha_N(\overline{s_e})=\alpha_N(s_e)$; so
+$\pi m^{1/4}\sum_ea_eU_m(e)=-\sum_{d^2\mid m}\boldsymbol\mu(d)c_{m/d^2}(E)$. With $m^{1/4}\widehat{U_m}(\eta)=\sqrt{x_\eta}u_m(x_\eta)$ we get
+\[
+\ell_m=\Lambda(\sqrt m)\one_\square(m)+\sum_{d^2\mid m}\boldsymbol\mu(d)\Big(c_{m/d^2}(E)-\sum_\eta\beta_\eta\sqrt{x_\eta}B_{m/d^2}(x_\eta)\Big).
+\]
+M\"obius inversion over squares ($f_m=\sum_{d^2\mid m}\boldsymbol\mu(d)g_{m/d^2}$ for all $m$ if and only if
+$g_N=\sum_{k^2\mid N}f_{N/k^2}$ for all $N$) and $\sum_{k^2\mid N}\Lambda(\sqrt{N/k^2})\one_\square(N/k^2)=\sum_{k\mid M}\Lambda(M/k)=\log M$ for
+$N=M^2$ give \eqref{eq:CN}. Now let $\mathcal X=\emptyset$. If $\nu$ lives on $[\xin2,\infty)$ then $\ell_1=\ell_2=\ell_3=0$, and
+\eqref{eq:CN} at $N\le3$ gives $c_N=0$. The remaining statements for $\mathcal X=\emptyset$ come from testing on $V_{\rho,j}$,
+whose transform vanishes on $\BRS$, with \eqref{eq:W-BRS}, and from the uniqueness of $\zeta$'s pair on its own support; they
+are proved in \cite{PaperI}. Finally, if $(\mu,\nu)\in\Kad$ then $\ell_m\ge0$, so $C_N\ge0$.
+\end{proof}
+
+\subsection{The theta function near rational points}\label{app:proofs-theta}
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:theta-local}}]
+(a) Since $e^{\pi in^2r}$ depends only on $n\bmod 2c$, Poisson summation in each residue class gives
+\[
+\vartheta(r+z)=\sum_{\nu\bmod 2c}e^{\pi i\nu^2r}\sum_{m\in\ZZ}e^{\pi i(\nu+2cm)^2z}
+=\frac{(z/i)^{-1/2}}{2c}\sum_{\nu\bmod2c}e^{\pi i\nu^2r}\sum_{k\in\ZZ}e^{\pi ik\nu/c}e^{-\pi ik^2/(4c^2z)} .
+\]
+The term $k=0$ is $(z/i)^{-1/2}(2c)^{-1}\sum_{\nu\bmod2c}e^{\pi i\nu^2a/c}=g(r)(z/i)^{-1/2}$: if $ac$ is even, $\nu\mapsto e^{\pi i\nu^2a/c}$ has period
+$c$; if $ac$ is odd, the terms $\nu$ and $\nu+c$ cancel. The terms $k\ne0$ have modulus at most $e^{-\pi k^2Y/(4c^2)}$. In a sector
+$|\Re z|\le M\Im z$ one has $Y=\Im z/|z|^2\ge(1+M^2)^{-1/2}|z|^{-1}$.
+(b) First, $|\vartheta(r+\delta+i\eps)-\vartheta(r+i\eps)|\le\sum_n\pi n^2|\delta|e^{-\pi n^2\eps}\ll M\eps^2\eps^{-3/2}$. Next, by Weyl's
+equidistribution theorem for $n^2r/2$ \cite[Ch.~1, Theorems~2.1 and~3.2]{KN74}, $S(n):=\sum_{|k|\le n}e^{\pi ik^2r}=o(n)$. Partial summation gives
+$\vartheta(r+i\eps)=\sum_{n\ge0}S(n)\big(e^{-\pi n^2\eps}-e^{-\pi(n+1)^2\eps}\big)$; given $\eta>0$, split at $n_0$ with $|S(n)|\le\eta n$ for $n\ge n_0$ and use
+$\sum_nn(e^{-\pi n^2\eps}-e^{-\pi(n+1)^2\eps})=\sum_{n\ge1}e^{-\pi n^2\eps}\le(2\eps)^{-1/2}$.
+(c) Let $\tau=r+i\eps$, $\eps\to0^+$. Then $-1/\tau=-1/r+z'$ with $z'/i=\eps r^{-2}(1+O(\eps))$, so by (a) both sides of
+$\vartheta(-1/\tau)=(\tau/i)^{1/2}\vartheta(\tau)$ are $\eps^{-1/2}$ times a constant plus $o(\eps^{-1/2})$: the constant is $g(-1/r)|r|$ on the left
+and $(r/i)^{1/2}g(r)$ on the right. As $(r/i)^{1/2}=|r|^{1/2}e^{-i\pi\sgn(r)/4}$, the claim follows.
+\end{proof}
+
+\subsection{Class sums of an extra atom}\label{app:proofs-classsum}
+\begin{proof}[Proof of Proposition~\textup{\ref{prop:classsum}}]
+Fix $r=2j/q$ with $0\le j<q$. Reduce $r$ to $\infty$ by the following adaptation to cusps of the reduction algorithm of
+\cite[\S3.1]{BRS} (which is stated for points of $\mathbb H$): translate by an even integer into
+$[-1,1]$, then apply $S$, and repeat. On reduced fractions $a/c$ the translations preserve the parities of $a$ and $c$ and the
+denominator, and $S:a/c\mapsto-c/a$ exchanges the types (even, odd) and (odd, even) and lowers the denominator, since $|a|<c$ in
+$[-1,1]$ (the value $\pm1$, of type (odd, odd), does not occur). So the procedure ends at $0/1$ followed by a final $S$; it gives a
+word $\gamma_r=g_m\cdots g_1$ with $g_m=S$, $\gamma_r r=\infty$, and $w_{m-1}r=0$. As $r=2j/q$ and $0/1$ have type (even, odd), the number
+of $S$'s in $w_{m-1}$ is even, so $\chi(\gamma_r)=-1$ and $\chi(w_{m-1})=+1$. Every other $k$ with $g_k=S$ has $\rho_k:=w_{k-1}r\in\QQ\setminus\{0\}$.
+Let $\tau=r+iv$. Each $w_{k-1}$ is a M\"obius map, finite at $r$, so $w_{k-1}\tau=\rho_k+i\lambda_kv+O(v^2)$ with
+$\lambda_k:=w_{k-1}'(r)>0$; and $\Im\gamma_r\tau=1/(c_r^2v)$ where $c_r\ne0$ is the lower-left entry of $\gamma_r$. Apply \eqref{eq:unroll} to $G_x$.
+
+\emph{The term $G_x|\gamma_r$.} It equals $-\vartheta(\tau)G_x(\gamma_r\tau)/\vartheta(\gamma_r\tau)=-B_0(x)\vartheta(\tau)+O(v^{-1/2}e^{-\pi/(c_r^2v)})$.
+
+\emph{The term $k=m$.} Here $w:=w_{m-1}\tau\to0$ non-tangentially. Inverting both theta functions in $\mathfrak p_x(w)$,
+$\vartheta(x^2w)=x^{-1}(w/i)^{-1/2}\vartheta(-1/(x^2w))$ and $x^{-1}\vartheta(w/x^2)=(w/i)^{-1/2}\vartheta(-x^2/w)$, gives
+$\mathfrak p_x(w)=\frac1{2x}(w/i)^{-1/2}-\frac12+O(|w|^{-1/2}e^{-c/|w|})$. Since $(w/i)^{-1/2}/\vartheta(w)=1/\vartheta(-1/w)=1/\vartheta(\gamma_r\tau)$,
+\[
+(\mathfrak p_x|w_{m-1})(\tau)=\frac{\vartheta(\tau)}{\vartheta(w)}\,\mathfrak p_x(w)=\frac1{2x}\vartheta(\tau)-\frac12\,\frac{\vartheta(\tau)}{\vartheta(w_{m-1}\tau)}+O(v^{-1/2}e^{-c/v}),
+\]
+and the middle term is bounded: $\vartheta(\tau)/\vartheta(w_{m-1}\tau)$ is a product of factors $(w_{k-1}\tau/i)^{-1/2}$ over the $S$'s in $w_{m-1}$,
+evaluated at points tending to $\rho_k\ne0$.
+
+\emph{The terms $k<m$ with $g_k=S$.} Here $(\mathfrak p_x|w_{k-1})(\tau)=\chi(w_{k-1})j_k(\tau)\mathfrak p_x(w_{k-1}\tau)$, where
+$j_k(\tau):=\vartheta(\tau)/\vartheta(w_{k-1}\tau)$ is analytic near $r$ with a value $j_k\ne0$ there. In $\mathfrak p_x(w_{k-1}\tau)$ the terms $-1$
+and $(w_{k-1}\tau/i)^{-1/2}$ are bounded, while $\vartheta(x^2w_{k-1}\tau)$ and $\vartheta(w_{k-1}\tau/x^2)$ are theta values near the real points
+$x^2\rho_k$ and $\rho_k/x^2$, approached in the manner of Lemma~\ref{lem:theta-local}(a),(b). If $x^2\notin\QQ$ these points are irrational and
+the terms are $o(v^{-1/2})$. If $x^2\in\QQ$, Lemma~\ref{lem:theta-local}(a) gives
+$\vartheta(x^2w_{k-1}\tau)=g(x^2\rho_k)(x^2\lambda_kv)^{-1/2}+O(v^{1/2})$ and $\vartheta(w_{k-1}\tau/x^2)=g(\rho_k/x^2)(\lambda_kv/x^2)^{-1/2}+O(v^{1/2})$.
+
+\emph{Summation over the cusps.} The coefficient of $\vartheta(\tau)$ is $-(B_0(x)-\frac1{2x})$ at every cusp $2j/q$, and
+$\sum_{j\bmod q}e^{-2\pi ijb/q}\vartheta(\frac{2j}q+iv)=q\sum_{n^2\equiv b\,(q)}e^{-\pi n^2v}=0$ since $b$ is a non-residue. All other terms are $O(1)$,
+exponentially small, or theta values at the sampled points. Hence $T^{(x)}_{q,b}(v)=\kappa_{q,b}(x)v^{-1/2}+o(v^{-1/2})$ with $\kappa_{q,b}(x)=0$ if
+$x^2\notin\QQ$, and with an error $O(1)$ and
+\begin{equation}\label{eq:kappa-general}
+\kappa_{q,b}(x)=\frac1q\sum_{j\bmod q}e^{-2\pi ijb/q}\sum_{k<m(j),\ g_k=S}\chi(w_{k-1})\,j_k\,\frac{\lambda_k^{-1/2}}2\Big[\frac{g(x^2\rho_k)}x+g(\rho_k/x^2)\Big]
+\end{equation}
+if $x^2\in\QQ$ (all quantities depending on $j$).
+
+\emph{The case $(q,b)=(3,2)$.} For $j=0$ the word is $S$ and there is no term with $k<m$. For $j=1$ the word is $ST^2ST^2S$
+(Section~\ref{ssec:cusp}) and the terms $k<m$ are $k=1$ ($w_0=1$, $\rho=\frac23$, $\chi=1$, $j_1=1$, $\lambda=1$) and $k=3$ ($w_2=T^2S$,
+$\rho=\frac12$, $\chi=-1$, $j_3=(\frac2{3i})^{-1/2}=(\frac32)^{1/2}e^{i\pi/4}$, $\lambda=(\frac32)^2$). With $X=x^2$ their contribution is
+\[
+K:=\frac12\Big[\frac{g(\frac{2X}3)}x+g\big(\tfrac2{3X}\big)\Big]-\frac{e^{i\pi/4}}{\sqrt6}\Big[\frac{g(\frac X2)}x+g\big(\tfrac1{2X}\big)\Big].
+\]
+By Lemma~\ref{lem:theta-local}(c), $g(\frac2{3X})=(\frac{3X}2)^{-1/2}e^{i\pi/4}g(-\frac{3X}2)$ and $g(\frac1{2X})=(2X)^{-1/2}e^{i\pi/4}g(-2X)$, which turns $K$
+into the expression in Proposition~\ref{prop:classsum}. For $j=2$, $\frac43\equiv-\frac23\pmod2$ and the $B_N(x)$ are real, so
+$G_x(\frac43+iv)=\overline{G_x(\frac23+iv)}$ and the contribution is $\overline K$. With $e^{-4\pi i/3}=\omega$ and $e^{-8\pi i/3}=\bar\omega$ we get
+$\kappa_{3,2}(x)=\frac13(\omega K+\bar\omega\overline K)=\frac23\Re(\omega K)$.
+
+\emph{Integers.} If $X=m\in\NN$, then $B_N(\sqrt m)=\sum_{k\ge1}b_N(k\sqrt m)=\#\{k\ge1:k^2m=N\}$, so $G_x=\frac12(\vartheta(m\tau)-1)$ and
+$T^{(x)}_{3,2}(v)=\sum_{k\ge1,\,k^2m\equiv2\,(3)}e^{-\pi k^2mv}$, which is $\frac13x^{-1}v^{-1/2}+O(1)$ if $m\equiv2\pmod3$ and $0$ otherwise. Evaluating
+$K$ directly (for instance $m=5$: $g(\frac{10}3)=-i/\sqrt3$, $g(-\frac{15}2)=g(\frac52)=\frac{1+i}2$, $g(-10)=1$, so $K=-i/(\sqrt3x)$) gives the same values.
+\end{proof}
+
+\subsection{A closed form on a dense family}\label{app:proofs-lemD}
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:D}}]
+Let $G(c;n):=\sum_{k\bmod n}e^{2\pi ick^2/n}$. We use the standard facts on quadratic Gauss sums \cite[\S3.4]{IK04}: $G(c;n)=(c/n)G(1;n)$ for odd $n$ and $(c,n)=1$, with $G(1;n)=\sqrt n$ or $i\sqrt n$ according as
+$n\equiv1$ or $3\pmod4$; $G(c;n_1n_2)=G(cn_2;n_1)G(cn_1;n_2)$ for coprime $n_1,n_2$; and $G(c;4)=2(1+i^c)$ for odd $c$. Since $a$ is odd,
+$3\nmid a$, $d\nmid a$ and $d\ne3$, the four points $\frac{2a}{3d}$, $-\frac{2a}d$, $\frac a{2d}$, $-\frac{3a}{2d}$ are in lowest terms with
+even numerator or even denominator. Summing over $n\bmod 2c$ when the denominator $c$ is even, one finds
+\[
+g\big(\tfrac{2X}3\big)=\frac{G(a;3d)}{3d},\quad g(-2X)=\frac{G(-a;d)}d,\quad g\big(\tfrac X2\big)=\frac{G(a;4d)}{4d},\quad g\big(-\tfrac{3X}2\big)=\frac{G(-3a;4d)}{4d}.
+\]
+Now $d\equiv1\pmod{12}$ gives $(-1/d)=(3/d)=(d/3)=1$, and $a\equiv2\pmod3$ gives $(a/3)=-1$. Hence
+$G(a;3d)=G(ad;3)G(3a;d)=-i\sqrt3\,(a/d)\sqrt d$, $G(-a;d)=(a/d)\sqrt d$, and, as $i^{ad}=i^{-3ad}=i^a$,
+$G(a;4d)=G(4a;d)G(ad;4)=2(1+i^a)(a/d)\sqrt d=G(-12a;d)G(-3ad;4)=G(-3a;4d)$. So $g(-\frac{3X}2)=g(\frac X2)$,
+$g(\frac{2X}3)=-i(a/d)/\sqrt{3d}$, $g(-2X)=(a/d)/\sqrt d$, and $K=-i(a/d)/(x\sqrt{3d})$. Then $\Re(\omega K)=\frac{\sqrt3}2\cdot\frac{(a/d)}{x\sqrt{3d}}$,
+which gives the formula. For density, fix an interval $(\alpha,\alpha')\subset(0,\infty)$. For a prime $d\equiv1\pmod{24}$ there are
+$(\alpha'-\alpha)d/6+O(1)$ integers $a\equiv5\pmod6$ with $a/d\in(\alpha,\alpha')$, of which $O(1)$ are divisible by $d$; writing
+$a=6a'+5$, the sum of $(a/d)$ over them is a sum of a non-principal character over an interval of consecutive integers $a'+5\cdot\bar6$,
+hence $O(\sqrt d\log d)$ by the P\'olya--Vinogradov inequality \cite[Ch.~12]{IK04}. By Dirichlet's theorem there are arbitrarily
+large such primes $d$, and for large $d$ some of these $a$ have $(a/d)=+1$.
+\end{proof}
+
+\subsection{Continuity in \texorpdfstring{$x$}{x}}\label{app:proofs-Gxcont}
+\begin{proof}[Proof of Lemma~\textup{\ref{lem:Gx-cont}}]
+Let $\phi_x(z)=\frac12(\vartheta(x^2z)-1)$ and fix $0<a<b$. For $x\in[a,b]$ and $z\in\mathbb H$,
+$|\phi_x(z)|\le\sum_{n\ge1}e^{-\pi n^2a^2\Im z}\le(2a)^{-1}(\Im z)^{-1/2}$, and $x\mapsto\phi_x(z)$ is continuous.
+
+By \cite[Proposition~3.3]{BRS}, the function $G_x=F^-_{1/2}(\cdot,\phi_x)$ is the analytic continuation to $\mathbb H$ of the
+integral $\frac12\int_{\ell_0}\mathcal K(\tau,z)\phi_x(z)\dd z$ $(\tau\in\mathfrak F)$, where $\mathfrak F=\{|\Re\tau|<1,\ |\tau|>1\}$, $\ell_0$ is the upper unit semicircle
+from $-1$ to $1$, and $\mathcal K=\mathcal K^-_{1/2}$ is the modular kernel of \cite[\S3.3]{BRS}. For fixed $\tau$, $z\mapsto\mathcal K(\tau,z)$ is
+meromorphic in $\mathbb H$ with poles only on $\Gamma_\vartheta\tau$, and it decays like $e^{-c/\Im z}$ as $z\to\pm1$ non-tangentially. The continuation
+is described in the proof of that proposition: the same integral defines it across the vertical sides $\Re\tau=\pm1$ of $\mathfrak F$ (no
+point of $\Gamma_\vartheta\tau$ lies on $\ell_0$ for such $\tau$); and near $\ell_0$, $G_x=\frac12\int_{\ell_1}\mathcal K(\cdot,z)\phi_x(z)\dd z+\phi_x$ on the region
+between a path $\ell_1$ from $-1$ to $1$ above $\ell_0$, meeting the real axis non-tangentially, and its image under $S$. Hence every
+point $w$ of $\overline{\mathfrak F}\cap\mathbb H$ has a neighbourhood on which $G_x(w)$ is given by one of these integrals (plus $\phi_x(w)$), with
+an integrand dominated, for all $x\in[a,b]$, by $|\mathcal K(w,z)|(2a)^{-1}(\Im z)^{-1/2}$, which is integrable along the path. By dominated
+convergence, $x\mapsto G_x(w)$ is continuous on $[a,b]$ for every such $w$.
+
+For general $\tau\in\mathbb H$ choose $\gamma\in\Gamma_\vartheta$ with $\gamma\tau\in\overline{\mathfrak F}$ \cite[\S3.1]{BRS}. By \eqref{eq:unroll},
+$G_x(\tau)=\chi(\gamma)\frac{\vartheta(\tau)}{\vartheta(\gamma\tau)}G_x(\gamma\tau)+\sum_{k:\,g_k=S}(\mathfrak p_x|w_{k-1})(\tau)$. The first term is continuous in $x$ by
+the previous paragraph, and the finitely many others are values of $\mathfrak p_x$, which is continuous in $x$, at points independent of $x$,
+times factors independent of $x$.
+\end{proof}
+
+\bibliographystyle{amsplain-doi}
+\bibliography{refs}
+
+\end{document}

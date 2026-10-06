@@ -1,0 +1,29 @@
+# command : python general/verify_general.py general/params/gammaC_K64_s9.json
+# date    : 2026-10-06T20:04:22Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+parameter file : general/params/gammaC_K64_s9.json
+sha256         : e330d8b743bd835920ecaad507a195773f4c858181d97bafb9d3eca1c296021a
+object         : K = 64, s = 9, eps = 1e-30, Gamma_R shifts ['0', '1'], log N = 0, pole residue 1
+numerics       : 448-bit Arb, integral over [0, 160], rel_tol 2^-200, abs_tol 1e-45
+P, Q built     : degrees 64, 64 (0.0 s)
+Sturm(P)       : length 65 (0.9 s)
+Sturm(Q)       : length 65 (2.1 s)
+P              : P(0) > 0: True; leading coefficient > 0: True; distinct real roots in (0, oo): 0
+Q              : Q(0) > 0: True; leading coefficient > 0: True; distinct real roots in (0, oo): 0
+Q at gap edge  : Y_lo < Y_c < Y_hi rational, |Y_hi - Y_lo| <= 2^-219; roots in (Y_lo, oo): 0, in (Y_hi, oo): 0; Q(Y_lo) = [0.43940363 +/- 9.64e-11] (> 0: True)
+POSITIVITY     : F_rep > 0 on R: True | F_rep^ > 0 on [xi_2, oo) (cone): True | F_rep^ > 0 on R (OPS cone): True
+integral       : int_0^T F_rep(t) sum_j Re psi = [-0.358988257656296380642710237615 +/- 2.80e-31] (imaginary part [+/- 2.84e-43]) (187 s)
+tail bound     : [3.70e-54 +/- 2.57e-57]
+A(F_rep)       = [-0.1738510266088776271807871 +/- 2.83e-26]
+int F_rep      = [0.9999999999999999444888488 +/- 3.13e-26]
+D = 2F_rep(i/2)= [0.30479732450292163070 +/- 4.88e-21]
+A/int F_rep    = [-0.1738510266088776368314577 +/- 1.54e-27]
+---- read-off (decimal bounds rounded outward)
+SLACK          : kappa*_OPS (and kappa*) of the data <= -0.17385102660887763683
+CLAIM          : kappa*_OPS (and kappa*) <= -0.1738510266088776 ... implied
+CONDUCTOR      : no admissible pair for log q < 1.0923382160269872968, i.e. q < 2.9812367047650810559; q_min >= 2.9812367047650810559
+CLAIM          : q_min >= 2.981236704765 ... implied
+summary written: general/results/gammaC_K64_s9.json
+RESULT         : CERTIFIED (187 s)
+# exit code 0; wall time 186.8 s

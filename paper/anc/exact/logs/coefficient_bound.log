@@ -1,0 +1,10 @@
+# command : python exact/check_coefficient_bound.py --bound 0.71636 exact/out/P60_ball.txt exact/out/P61_ball.txt exact/out/P110_ball.txt exact/out/P111_ball.txt
+# date    : 2026-10-06T19:46:23Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+P-enclosure exact/out/P60_ball.txt (sha256 fdfbfe57bfe9945f640291b6f1e1b7e74e4d5afb04278961d5737f26db6cda4b): J = 60; all p_k > 0: True; max_k ((2k)! p_k)^(1/2k) <= 0.716207;  <= 0.71636: True
+P-enclosure exact/out/P61_ball.txt (sha256 8cc7b2b9a66f643e8e40d84fd4ffd6970401342aeab87b716ec169bc91ca3dd4): J = 61; all p_k > 0: True; max_k ((2k)! p_k)^(1/2k) <= 0.716214;  <= 0.71636: True
+P-enclosure exact/out/P110_ball.txt (sha256 7c8999567bc77cd1c6fb5a9e816bb0b4f212b971f26dd0f3bda3237ff51c117a): J = 110; all p_k > 0: True; max_k ((2k)! p_k)^(1/2k) <= 0.716351;  <= 0.71636: True
+P-enclosure exact/out/P111_ball.txt (sha256 25669a321f71ddef789247cd0adc0fd129c5d70f293e488bc4dab8c3f708b3f1): J = 111; all p_k > 0: True; max_k ((2k)! p_k)^(1/2k) <= 0.716352;  <= 0.71636: True
+CERTIFIED: 0 < p_k <= 0.71636^(2k)/(2k)! for every k, at J = 60, 61, 110, 111: True
+# exit code 0; wall time 0.1 s

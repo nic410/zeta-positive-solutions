@@ -1,0 +1,350 @@
+%======================================================================
+\section{A polynomial model}\label{sec:toy}\label{sec:model}
+%======================================================================
+
+In this section and the next three the Bessel kernel of the true family is replaced by $e^{-y}$. The resulting
+\emph{model} is the instance $\varphi=e^{-y}$ of Definition~\ref{def:nested}(v): a Hermite interpolation problem for
+polynomials, with the same nodes $y_j=2\pi n_j$. At leading order the true family \emph{is} such a problem
+(Proposition~\ref{prop:dictionary}), and the kernel-free calculus of Sections~\ref{sec:nested} and~\ref{sec:chain} applies to
+both. In the model, polynomial structure gives proofs that are not available for the true kernel: the front is proved for
+every $J\le 80$ (Theorem~\ref{thm:PP80}, computer-assisted), and its arithmetic input is visible exactly, through prefix
+sums of prime powers (Lemma~\ref{lem:trace}). Section~\ref{sec:model-tail} proves far-node asymptotics and an obstruction
+to proving the tail by sign regularity alone, and Section~\ref{sec:W} shows that a natural sign property of the derivative
+weights fails at the critical node density.
+
+Nothing in these sections implies a statement about the true family; the relation between the two is the subject of
+Section~\ref{ssec:dictionary} and Numerical observation~\ref{obs:toy-true}, and the quantitative agreement reported there is
+numerical.
+
+%----------------------------------------------------------------------
+\subsection{Definition, umbral form and a radial Fourier interpretation}\label{ssec:toy-def}
+%----------------------------------------------------------------------
+
+Let $T_m(x)=\sum_{i=0}^m S(m,i)x^i$ be the Touchard polynomials \cite{Tou39,Com74}, where $S(m,i)$ are the Stirling
+numbers of the second kind. Since $(x\frac{d}{dx})^m e^{x}=T_m(x)e^{x}$ and the Euler operator $\Eul=y\frac{d}{dy}$ is
+invariant under $y\mapsto -y$, we have $\Eul^{m}e^{-y}=T_m(-y)e^{-y}$, and so
+\begin{equation}\label{eq:tau}
+  (-\Eul^2)^k e^{-y}=\tau_k(y)\,e^{-y},\qquad \tau_k(y):=(-1)^kT_{2k}(-y)=(-1)^k\Bigl[y^{2k}-\tbinom{2k}{2}y^{2k-1}+\cdots\Bigr],
+\end{equation}
+because $S(m,m-1)=\binom m2$. Thus $\tau_k$ has degree $2k$, leading coefficient $(-1)^k$ and $\tau_k(0)=0$ for
+$k\ge1$; for instance $\tau_1=y-y^2$ and $\tau_2=y^4-6y^3+7y^2-y$.
+
+\begin{definition}[The model]\label{def:toy}
+\textup{(a)} For a polynomial $P(u)=\sum_{k=0}^d p_ku^k$ put
+$Q_P(y):=e^{y}P(-\Eul^2)e^{-y}=\sum_k p_k\tau_k(y)$, a polynomial of degree $2\deg P$ with $Q_P(0)=P(0)$. In the
+notation of Definition~\ref{def:nested} this is the family with base kernel $\varphi=e^{-y}$ on $I=(0,\infty)$, and
+$\Fc_P=Q_Pe^{-y}$.
+
+\textup{(b)} Let $\yv=(y_1<\dots<y_J)\subset(0,\infty)$ satisfy \hyp{N}$_{\yv}$, i.e.\ the matrix
+$[\tau_k(y_j);\tau_k'(y_j)]_{j\le J,\,1\le k\le 2J}$ is non-singular. The \emph{model solution} is the unique
+$P_{\yv}=1+\sum_{k=1}^{2J}p_k(\yv)u^k$ for which $Q_{\yv}:=Q_{P_{\yv}}$ has a double zero at every $y_j$. Put
+$A_{\yv}(y):=\prod_j(y-y_j)^2$. If $p_{2J}(\yv)\neq0$, then $\deg Q_{\yv}=4J$, and the \emph{cofactor}
+$R_{\yv}:=Q_{\yv}/A_{\yv}$ is a polynomial of degree $2J$ with leading coefficient $p_{2J}$ and
+$R_{\yv}(0)=\prod_jy_j^{-2}$; we write $\hat R_{\yv}:=R_{\yv}/R_{\yv}(0)$ and $\tilde R_{\yv}:=R_{\yv}/p_{2J}$.
+
+\textup{(c)} \Rp$_{\yv}$ means $R_{\yv}\in\RR_{>0}[y]$ (all $2J+1$ coefficients positive, in particular
+$p_{2J}>0$); the model front \FRt$_{\yv}$ means $Q_{\yv}>0$ on $(0,\infty)\setminus\{y_1,\dots,y_J\}$. Clearly
+\Rp$_{\yv}$ implies \FRt$_{\yv}$.
+
+\textup{(d)} For an increasing sequence $y_1<y_2<\cdots$ write $\yle K:=(y_1,\dots,y_K)$ and $P_K,Q_K,R_K,p^{(K)}_k$
+for its objects. \emph{$\TEL_J$} holds if $\hat R_J-\hat R_{J-1}$ has non-negative coefficients in degrees
+$1,\dots,2J-2$, and \emph{strict $\TEL_J$} if it has positive coefficients in degrees $1,\dots,2J$.
+
+\textup{(e)} \emph{$\PT_K$} is the condition $\sum_{j\le K}y_j>K(4K-1)$, and \emph{$\PT_\delta$ at $K$} is
+$\sum_{j\le K}y_j\ge(1+\delta)K(4K-1)$. The progression $y^*_K:=\frac{21}{20}(8K-5)$ has
+$\sum_{j\le K}y^*_j=1.05\,K(4K-1)$ for every $K$.
+
+\textup{(f)} On the prime powers, $y_j=2\pi n_j$, $\yPP_J=(2\pi n_1,\dots,2\pi n_J)$, and $P_J,Q_J,R_J$ denote the
+objects of $\yPP_J$.
+\end{definition}
+
+The degree, leading coefficient and constant term in (b) are read off from \eqref{eq:tau}: only $p_{2J}\tau_{2J}$
+contributes to degree $4J$, and $Q_{\yv}(0)=P_{\yv}(0)=1$.
+
+\begin{proposition}[Poisson, Mellin and umbral forms]\label{prop:umbral}
+Let $P$ be a polynomial and $F_P:=Q_Pe^{-y}$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $F_P(y)=\sum_{j\ge0}P(-j^2)\,(-y)^j/j!$.
+\item For $\Re s>0$, $\Gamma(s)^{-1}\int_0^\infty y^{s-1}F_P(y)\dd y=P(-s^2)$. Conversely, a polynomial
+$Q=\sum_mq_my^m$ of degree $\le 4J$ equals $Q_P$ for some $P$ of degree $\le 2J$ if and only if
+$M_Q(s):=\sum_mq_m\,s(s+1)\cdots(s+m-1)$ is an even polynomial.
+\item Equivalently, $Q$ is of the form $Q_P$ if and only if, for $l=1,\dots,2J$,
+$q_{2l-1}=-\sum_{k=2l}^{4J}|s(k,2l-1)|\,q_k$, where $s(k,i)$ are the Stirling numbers of the first kind. For
+$l=2J$ this reads $q_{4J-1}=-\binom{4J}{2}q_{4J}$.
+\item If $P(-j^2)=\sum_mb_m(j)_m$ with falling factorials $(j)_m$, then $Q_P(y)=\sum_mb_m(-y)^m$.
+\end{enumerate}
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+Let $\Hank g(y):=\int_0^\infty J_0(2\sqrt{yw})\,g(w)\dd w$, where $J_0$ is the Bessel function of order~$0$, and
+let $\Lag$ be the linear map $y^m\mapsto m!\,L_m(y)$ on polynomials ($L_m$ the Laguerre polynomials).
+
+\begin{proposition}[A two-dimensional radial Fourier form]\label{prop:radial}
+Let $Q$ be a polynomial with $Q(0)=1$ and $F:=Qe^{-y}$. The following are equivalent:
+\textup{(i)} $Q=Q_P$ for some polynomial $P$; \textup{(ii)} $\Hank F=-F'$; \textup{(iii)} $\Lag Q=Q-Q'$.
+For $v\in\RR^2$ put $f(v):=F(\pi|v|^2)$ and $\FT f(\eta):=\int_{\RR^2}f(v)e^{-2\pi i\langle v,\eta\rangle}\dd v$. Then
+$\FT f(\eta)=(\Hank F)(\pi|\eta|^2)$, so \textup{(i)} says $\FT f(\eta)=-F'(\pi|\eta|^2)$, and a double zero of $Q$ at
+$y=2\pi n$ is equivalent to the vanishing of both $f$ and $\FT f$ on the circle $|v|=\sqrt{2n}$.
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+So the model at the prime-power nodes asks for a radial function $f$ on $\RR^2$ with $\FT f=-F'(\pi|\cdot|^2)$ such
+that $f$ and $\FT f$ vanish on the circles $|v|=\sqrt{2n}$, $n\in\PP_J$. For \emph{all} radii $\sqrt n$, $n\ge1$, Stoller
+\cite{Sto21} proved that every Schwartz function on $\RR^d$, $d\ge2$, is determined by its restrictions, and those of its
+Fourier transform, to the spheres of these radii, extending the one-dimensional interpolation theorem of Radchenko and
+Viazovska \cite[Theorems~1 and~2]{RV19}; with derivatives at the radii $\sqrt{2n}$ the analogous statement is proved in
+dimensions $8$ and $24$ \cite[Theorem~1.7]{CKMRV22}, and the general case of derivatives of order $<k$ at the radii $\sqrt{kn}$
+is \cite[Open Problem~7.1]{CKMRV22}. Here the radii are $\sqrt{2n}$ for the prime powers $n$ only. Heuristically, all
+integers $n$ form a node set of critical density for such problems, while the prime powers are sparse; the data
+of Section~\ref{sec:W} are consistent with this picture, but we use it only as motivation. Expansions in Laguerre
+polynomials of this kind, with prescribed double roots, are also the standard ansatz for sign-uncertainty problems
+\cite{CG19}.
+
+\begin{lemma}[The $u$-coefficient as an integral]\label{lem:p1-integral}
+Let $P$ be a polynomial with $P(0)=1$ and $F=Q_Pe^{-y}$. Then $\int_0^\infty(F(y)-e^{-y})\frac{\dd y}{y}=0$ and
+$p_1=-\int_0^\infty(F(y)-e^{-y})\log y\,\frac{\dd y}{y}$.
+\end{lemma}
+
+\begin{proof}
+By Proposition~\ref{prop:umbral}(b), $\Gamma(s)(P(-s^2)-1)=\int_0^\infty(F(y)-e^{-y})y^{s-1}\dd y=:I(s)$ for
+$\Re s>0$; since $F(y)-e^{-y}=(Q_P(y)-1)e^{-y}=O(y)$ at $0$, $I$ is analytic for $\Re s>-1$. As
+$P(-s^2)-1=-p_1s^2+O(s^4)$ and $\Gamma(s)=s^{-1}+O(1)$, $I(s)=-p_1s+O(s^2)$; so $I(0)=0$ and $I'(0)=-p_1$.
+\end{proof}
+
+Thus $p_1$, the scalar that controls the tail in Section~\ref{ssec:toy-tail}, is a logarithmic moment of
+$F-e^{-y}$.
+
+%----------------------------------------------------------------------
+\subsection{Dictionary to the true kernel}\label{ssec:dictionary}
+%----------------------------------------------------------------------
+
+Recall $\kt(z)=\sqrt{2z/\pi}\,e^{z}K_0(z)$ ($z>0$) from Section~\ref{ssec:farfield}, and from Fact~\ref{thm:bessel} that
+$\Psi(\xi)=2\pi\sqrt x\sum_{N\ge1}d(N)\Wnull(2\pi Nx)$ with $\Wnull=\Eul^2(\Eul+1)^2K_0$, $x=e^{2\pi\xi}$.
+
+\begin{proposition}[Toy--true dictionary]\label{prop:dictionary}
+\textup{(a)} $\kt(z)=\pi^{-1/2}\int_0^\infty e^{-v}v^{-1/2}\bigl(1+\tfrac{v}{2z}\bigr)^{-1/2}\dd v$; hence $\kt$ is
+increasing, $0<\kt<1$, and $\kt(z)=1-\frac1{8z}+\frac9{128z^2}+O(z^{-3})$ as $z\to\infty$.
+
+\textup{(b)} For a polynomial $P$, with $P^{\Xi}(u)=P(u)(u+\frac14)^2$ as in Fact~\ref{lem:abel}, put
+\[
+  \mathfrak F_P(z):=P^{\Xi}(-\Eul^2)\bigl[e^{-z}\kt(z)\bigr].
+\]
+Then, with $y=2\pi x$,
+\begin{equation}\label{eq:dictionary}
+  \FT{\Xi^2P(t^2)}(\xi)=\pi\sum_{N\ge1}d(N)N^{-1/2}\,\mathfrak F_P(Ny).
+\end{equation}
+\textup{(c)} $\mathfrak F_P=\mathfrak m\bigl[Q_{P^{\Xi}}(z)e^{-z}\bigr]$, where $\mathfrak m$ is the Mellin multiplier
+with symbol
+\[
+  m(s)=\frac{\Gamma(\frac{s+1/2}{2})^2}{\Gamma(\frac s2)\Gamma(\frac{s+1}2)};
+\]
+for $s>0$, $0<m(s)\le1$ and $m(s)\to1$ as $s\to\infty$.
+
+In particular, if $\kt$ is replaced by $1$ and only the term $N=1$ is kept, the true transform becomes
+$\pi\,Q_{P^{\Xi}}(y)e^{-y}$: the true family at leading order is the model for the polynomial $P^{\Xi}$, which has
+a frozen double root at $u=-\frac14$.
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+The dictionary does not make the true family a perturbation of the model in any useful norm: the two are different
+interpolation problems, and a positive smoothing cannot transport positivity between them.
+
+\begin{proposition}[No transfer by positive smoothing]\label{prop:smoothing-obstruction}
+\textup{(a)} Let $k>0$ be measurable on $(1,\infty)$ and $T_kf(z):=\int_1^\infty f(zt)k(t)\frac{\dd t}{t}$ whenever
+the integral converges absolutely. If $f$ is continuous, $f\ge0$ on $[z_0,\infty)$, $f\not\equiv0$ there, and
+$T_kf(z_0)$ converges absolutely, then $T_kf(z_0)>0$.
+
+\textup{(b)} $e^{-z}\kt(z)=T_kg(z)$ with $g(w):=w^{1/2}e^{-w}$ and
+$k(t):=\pi^{-1/2}t^{1/2}(t-1)^{-1/2}\bigl(\frac{t+1}2\bigr)^{-1/2}>0$. Consequently, for every polynomial $P$,
+\[
+  \mathfrak F_P=T_k\bigl[w^{1/2}Q^{\mathrm{Ab}}_P(w)e^{-w}\bigr],
+\]
+where $Q^{\mathrm{Ab}}_P$ is the Abel preimage of Fact~\ref{lem:abel}.
+
+\textup{(c)} Hence, if $P\neq0$ and $\mathfrak F_P(z_0)=0$ for some $z_0>0$, then $Q^{\mathrm{Ab}}_P$ is negative
+somewhere on $(z_0,\infty)$.
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+By \eqref{eq:dictionary} with $N=1$, $\FT{\Xi_\infty^2P(t^2)}(\xi)=\pi\mathfrak F_P(2\pi x)$. So for the Gamma-only family,
+whose transform has double zeros at the nodes, the Abel preimage must take negative values beyond every node: the
+``dips'' of the Abel preimage are forced. For the true kernel the transform at a node $y_n=2\pi n$ equals
+$-\pi\sum_{N\ge2}d(N)N^{-1/2}\mathfrak F_P(Ny_n)$ rather than $0$, and these terms are of size $e^{-2y_n}$ up to
+polynomial factors; we do not formalise the corresponding perturbation statement. In particular, no statement of
+the form ``positivity in the model implies positivity for the true kernel'' can follow from positivity of the
+smoothing alone, and the families are different solutions of different problems (in general the true $P_J$ is not
+a model solution).
+
+%----------------------------------------------------------------------
+\subsection{The trace identity and small cases}\label{ssec:trace}
+%----------------------------------------------------------------------
+
+The node set enters the top of the cofactor only through the sum of the nodes.
+
+\begin{lemma}[Trace identities]\label{lem:trace}
+\textup{(a)} Let $\yv=(y_1,\dots,y_J)$ satisfy \hyp{N}$_{\yv}$ and $p_{2J}(\yv)\neq0$, and write
+$R_{\yv}=p_{2J}(y^{2J}+\rho_1y^{2J-1}+\cdots)$. Then $\rho_1=2\sum_{j\le J}y_j-2J(4J-1)$; equivalently, the $2J$ roots
+of $R_{\yv}$ sum to $2J(4J-1)-2\sum_jy_j$.
+
+\textup{(b)} Consequently \Rp$_{\yv}$ implies $\PT_J$, and if \Rp\ holds for every prefix $\yle K$, $K\le J$, then
+$\PT_K$ holds for every $K\le J$.
+
+\textup{(c)} \textup{(chains)} For a regular chain $Z$ of level $K$ with monic cofactor $\pf_Z$ and $0$-augmented
+cofactor $\pg_Z$ \textup{(}Definition~\ref{def:chain-laws}\textup{)}, $[y^{K-1}]\pf_Z=\Sigma Z-K(2K-1)$ and
+$[y^K]\pg_Z=\Sigma Z-(K+1)(2K+1)$, where $\Sigma Z$ is the sum of the points of $Z$ with multiplicity.
+
+\textup{(d)} \textup{(integer nodes)} For $y_j=2\pi(j+1)$, $\PT_J$ holds if and only if $J\le 12$. Hence for these
+nodes \Rp\ fails for every $J\ge13$ at which \hyp{N} holds.
+\end{lemma}
+
+\begin{proof}
+(a) By \eqref{eq:tau}, only $p_{2J}\tau_{2J}$ contributes to the coefficients of $y^{4J}$ and $y^{4J-1}$ of $Q_{\yv}$, so
+$Q_{\yv}=p_{2J}\bigl(y^{4J}-\binom{4J}2y^{4J-1}+\cdots\bigr)$, while $A_{\yv}=y^{2J}-2(\sum_jy_j)y^{2J-1}+\cdots$;
+divide, and note $\binom{4J}{2}=2J(4J-1)$. (b) Under \Rp, $p_{2J}>0$ and $p_{2J}\rho_1>0$. (c) $\omega_Z\pf_Z$ is a monic
+element of $\Asp^{\mathrm{pol}}_K=\operatorname{span}(\tau_0,\dots,\tau_K)$ of degree $2K$, hence equals
+$(-1)^K\tau_K$ plus lower $\tau$'s, i.e.\ $y^{2K}-K(2K-1)y^{2K-1}+\cdots$, and $\omega_Z=y^K-(\Sigma Z)y^{K-1}+\cdots$. The
+second identity is the first for the chain $Z+0$ of level $K+1$. (d) $\sum_{j\le J}2\pi(j+1)=\pi J(J+3)$, and
+$\pi J(J+3)>J(4J-1)$ if and only if $J<(3\pi+1)/(4-\pi)=12.14\ldots$; then apply (b).
+\end{proof}
+
+For the prime powers, $\sum_{j\le K}n_j\sim\frac12K^2\log K$, so the trace condition holds with a margin that grows
+like $K^2\log K$; this is the only place where the arithmetic of the nodes enters the top coefficient. At $J=1$
+everything is explicit. We use the property \textup{(W)} of Definition~\ref{def:W} below.
+
+\begin{proposition}[One node]\label{prop:J1}
+Let $J=1$, $y_1=a>0$ and $D(a):=2a^3-9a^2+12a-6$, which has a single real root $a_D=2.67765\ldots$. Then
+\hyp{N} holds if and only if $D(a)\neq0$, and in that case
+\begin{gather*}
+  p_1=\frac{4a^3-18a^2+14a-1}{a^2D(a)},\qquad p_2=\frac{2a-1}{a^2D(a)},\qquad
+  R=\frac{(2a-1)y^2+2(2a-1)(a-3)y+D(a)}{a^2D(a)},\\
+  \mu_1=\frac{a^3-6a^2+7a-1}{aD(a)},\qquad Q''(a)=\frac{4(4a^3-12a^2+9a-3)}{a^2D(a)},
+\end{gather*}
+where $\mu_1$ is the derivative weight of the $p_1$-rule (Lemma~\ref{lem:dualrule}). Hence:
+\textup{(a)} \Rp\ holds if and only if $a>3$, i.e.\ if and only if $\PT_1$;
+\textup{(b)} $Q''(a)>0$ for every $a>a_D$;
+\textup{(c)} for $a>a_D$, \textup{(W)} holds if and only if $a>4.49086\ldots$, the largest root of
+$a^3-6a^2+7a-1=\tau_2(a)/a$;
+\textup{(d)} the screening factor is
+$S_{(a)}=(2a-1)(2a^7-33a^6+208a^5-620a^4+908a^3-636a^2+168a-24)/(a^2D(a)^2)$; it equals $1-8/a+8/a^2+O(a^{-3})$,
+and for $a>a_D$ it is positive if and only if $a>3.26513\ldots$.
+\end{proposition}
+
+The proof (Appendix~\ref{app:proofs-toy}) is an explicit computation with $\tau_1$, $\tau_2$, $\tau_3$ and Cramer's rule.
+
+So in the model \textup{(W)} is not a consequence of positivity: for $3<a<4.49$ the front holds but $\mu_1<0$.
+Zero slack in the trace conditions is not enough, either.
+
+\begin{remark}[Zero-slack prefix traces are not sufficient]\label{rem:PT0-false}
+At $J=2$ the node sets $(y_1,y_2)=(3.02,11.3)$, $(3.05,11.05)$ and $(3.02,13.0)$ satisfy $\PT_1$ and $\PT_2$, but
+the coefficient $[y]R_{\yv}$ is negative there (approximately $-5.0\cdot10^{-4}$, $-3.6\cdot10^{-4}$ and
+$-1.7\cdot10^{-5}$; exact rational computation, \nolinkurl{toy/pt/verify_pt0_false.py} with
+\nolinkurl{toy/pt/params/pt0_false.json}, which also certifies \hyp{N} at the three points). So $\PT_K$ for all $K\le J$ does not imply \Rp, and a relative slack
+is needed. We use $\delta=0.05$.
+\end{remark}
+
+The three propositions below are exact certificates. Each one is a finite computation in exact integer arithmetic
+whose design is described in Appendix~\ref{app:proofs-PT}; the positivity step is Lemma~\ref{lem:posc}(b).
+
+\begin{proposition}[Positive cofactors for two nodes]\label{thm:PT2}
+Let $J=2$ and $0<y_1<y_2$ with $y_1\ge\frac{63}{20}$ and $y_1+y_2\ge\frac{147}{10}$ \textup{(}that is,
+$\PT_{0.05}$ at $K=1,2$\textup{)}. Then \hyp{N}$_{\yv}$ holds and $R_{\yv}\in\RR_{>0}[y]$; in particular $p_4>0$.
+\end{proposition}
+
+\begin{proposition}[Positive cofactors for three nodes]\label{thm:PT3}
+Let $c=\frac{21}{20}$ and $0<y_1<y_2<y_3$ with $y_1\ge3c$, $y_1+y_2\ge14c$ and $y_1+y_2+y_3\ge33c$. Then
+\hyp{N}$_{\yv}$ holds, $p_6>0$ and $R_{\yv}\in\RR_{>0}[y]$.
+\end{proposition}
+
+\begin{proposition}[Positive cofactors for four nodes]\label{thm:PT4}
+Let $c=\frac{21}{20}$ and $0<y_1<y_2<y_3<y_4$ with $\sum_{j\le K}y_j\ge c\,K(4K-1)$ for $K=1,2,3,4$ \textup{(}i.e.\
+$y_1\ge3.15$, $y_1+y_2\ge14.7$, $y_1+y_2+y_3\ge34.65$, $y_1+\dots+y_4\ge63$\textup{)}. Then \hyp{N}$_{\yv}$ holds,
+$p_8>0$ and $R_{\yv}\in\RR_{>0}[y]$.
+\end{proposition}
+
+\begin{proof}[Proofs of Propositions~\ref{thm:PT2}--\ref{thm:PT4} \textup{(computer-assisted)}]
+Fix $J\in\{2,3,4\}$ and $V:=\prod_{i<j}(y_i-y_j)$. The verifier computes, in exact arithmetic in
+$\ZZ[y_1,\dots,y_J]$, polynomials $G_0,\dots,G_{2J}$ (the Cramer numerators of $D\cdot R_{\yv}$, divided by $V^4$) and
+checks two identities: (i) $A_{\yv}(y)\sum_iG_iy^i$ satisfies the $2J$ odd Stirling conditions of
+Proposition~\ref{prop:umbral}(c) identically; (ii) the determinant $D$ of the system in \hyp{N}$_{\yv}$ equals
+$\epsilon_J\,(y_1\cdots y_J)^2V^4G_0$ with a sign $\epsilon_J=\pm1$. It then covers the region by finitely many rational
+parametrisations of $[0,\infty)^m$ (two pieces for $J=2$, four for $J=3$, eleven for $J=4$; Appendix~\ref{app:proofs-PT})
+and checks that every substituted, homogenised $G_i$ has only positive coefficients and a positive constant term; by
+Lemma~\ref{lem:posc}(b), every $G_i>0$ on the region. Then $D\neq0$, i.e.\ \hyp{N}. By (i), $A_{\yv}\sum_iG_iy^i$ is an
+admissible polynomial of degree $\le4J$ with double zeros at the nodes, hence a multiple of $Q_{\yv}$ (by \hyp{N} the
+space of such polynomials is one-dimensional); comparing values at $0$ gives
+$R_{\yv}=\sum_iG_iy^i/\bigl((y_1\cdots y_J)^2G_0\bigr)\in\RR_{>0}[y]$, and $p_{2J}=G_{2J}/((y_1\cdots y_J)^2G_0)>0$.
+
+\emph{Ancillary data.} Script \nolinkurl{toy/pt/verify_pt.py} with parameter files \nolinkurl{toy/pt/params/pt2.json},
+\nolinkurl{pt3.json}, \nolinkurl{pt4.json} (SHA-256 in Appendix~\ref{app:anc}); exact arithmetic (FLINT multivariate
+polynomials over $\ZZ$); the sizes of the polynomials are in Table~\ref{tab:app-toycert}. For $J=2$ a second, independent route (Cramer's rule with explicit
+ratios $r_i/r_4$, on the two original pieces) is \nolinkurl{toy/pt/verify_pt2_cramer.py}; for $J=4$ the region cover is
+checked by \nolinkurl{toy/pt/check_pt4_region.py}. Re-run commands are listed in Appendix~\ref{app:anc}; the $J=4$
+certificate takes about $40$ CPU-minutes.
+\end{proof}
+
+\begin{corollary}[The front for $J\le4$]\label{cor:PT-small}
+For every $J\le4$ and every increasing $\yv$ satisfying $\PT_{0.05}$ at $K=1,\dots,J$, \hyp{N}$_{\yv}$, $p_{2J}>0$ and
+\Rp$_{\yv}$ hold, hence \FRt$_{\yv}$. This applies to $\yPP_J$, $J\le4$, and to every increasing $\yv$ with
+$y_k\ge y^*_k$ for all $k$.
+\end{corollary}
+
+\begin{proof}
+For $J=1$, $y_1\ge3.15>a_D$ gives \hyp{N} and \Rp\ by Proposition~\ref{prop:J1}(a); for $J=2,3,4$ use
+Propositions~\ref{thm:PT2}--\ref{thm:PT4}. The prime powers satisfy the four inequalities directly (their prefix sums $4\pi$, $10\pi$, $18\pi$,
+$28\pi$ exceed $3.15$, $14.7$, $34.65$, $63$), and $y\ge y^*$ coordinatewise gives prefix sums $\ge1.05K(4K-1)$.
+\end{proof}
+
+The prime powers lie above the progression $y^*$, for every $K$.
+
+\begin{proposition}[Prime powers dominate the $\PT$-tight progression]\label{prop:PP-dominates}
+\textup{(a)} For every $K\ge1$, $2\pi n_K>y^*_K=\frac{21}{20}(8K-5)$; the smallest difference,
+$2\pi n_7-y^*_7=18\pi-53.55>2.998$, occurs at $K=7$.
+\textup{(b)} For every $K\ge1$, $\sum_{j\le K}2\pi n_j\ge1.2366\,K(4K-1)$; the ratio of the two sides is smallest at
+$K=9$, where it equals $124\pi/315=1.23669\ldots$.
+Consequently $\yPP$ satisfies $\PT_{0.05}$ \textup{(}indeed $\PT_{0.2366}$\textup{)} at every $K$.
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+Theorem~\ref{thm:PP80} below settles the front on the prime powers for $J\le80$ by a different route. For general
+node sets above $y^*$ there is a monotone-path reduction, which we record because it is the only route we know that
+covers all such node sets.
+
+\begin{remark}[A monotone-path reduction]\label{rem:Mss}
+Let $\mathcal U_K:=\{\yv\in\RR^K:y_1<\dots<y_K,\ y_k\ge y^*_k\ \forall k\}$, regard node sets as doubled chains
+(Definition~\ref{def:chain-laws}), and let $\yv\setminus y_j$ be $\yv$ with $y_j$ removed. Suppose that for every
+$K\le J$:
+$(\mathrm{AP}^+)_K$: $y^*_{\le K}$ is regular and $\tilde R(y^*_{\le K})\in\RR_{>0}[y]$;
+$(\mathrm B)_K$: $T_K(y^*_K)>0$, where $T_K$ is the monic cofactor of the half-step chain
+$(y^*_1,y^*_1,\dots,y^*_{K-1},y^*_{K-1},y^*_K)$;
+$(\mathrm{LOC})_K$: $\partial\tilde R/\partial y_j\in\RR_{\ge0}[y]$ at every regular $\yv\in\mathcal U_K$ with
+$\tilde R(\yv)\in\RR_{>0}[y]$ for which $\yv\setminus y_j$ is regular with $\tilde R(\yv\setminus y_j)\in\RR_{>0}[y]$.
+Then every $\yv\in\mathcal U_J$ is regular with $\tilde R(\yv)\in\RR_{>0}[y]$, so \hyp{N}, $p_{2J}>0$ and \FRt\ hold
+on $\mathcal U_J$.
+
+The proof of this reduction is in Appendix~\ref{app:proofs-toy}.
+
+The base data $(\mathrm{AP}^+)_K$ and $(\mathrm B)_K$ are certified for $K\le90$ (Proposition~\ref{prop:AP-B-cert}).
+The local law $(\mathrm{LOC})$ is open; computed evidence is in Numerical observation~\ref{obs:misc}(a). For $J\le4$ the conclusion holds unconditionally by Corollary~\ref{cor:PT-small}.
+\end{remark}
+
+\begin{proposition}[Base data on the progression]\label{prop:AP-B-cert}
+For every $K\le90$: the node set $y^*_{\le K}$, $y^*_k=\frac{21}{20}(8k-5)$, satisfies \hyp{N}, $p_{2K}>0$ and
+$R\in\RR_{>0}[y]$ \textup{(}hence $(\mathrm{AP}^+)_K$\textup{)}; and the half-step cofactor $T_K$ at $y^*$ lies in
+$\RR_{>0}[y]$, in particular $T_K(y^*_K)>0$ \textup{(}$(\mathrm B)_K$\textup{)}.
+\end{proposition}
+
+\begin{proof}[Proof \textup{(computer-assisted)}]
+All nodes are rational, so everything is exact. For each $K\le90$, \nolinkurl{toy/ap/verify_ap.py} solves the
+$2K\times2K$ system over $\QQ$ (FLINT \texttt{fmpq}) and checks the residual exactly, divides $Q$ by $A$ with zero
+remainder, and checks $p_{2K}>0$ and the positivity of all $2K+1$ coefficients of $R$; as consistency checks it
+verifies $r_1/r_0=1-P(-1)+2\sum_k1/y^*_k$ and $\rho_1=2\delta K(4K-1)$ exactly. \hyp{N} together with $p_{2K}\neq0$ gives
+regularity, and $\tilde R=R/p_{2K}$. The script \nolinkurl{toy/ap/verify_halfstep.py} computes $T_K$ exactly in the
+$\tau$-basis and checks its coefficients and $T_K(y^*_K)$. Parameter file \nolinkurl{toy/ap/params/ap_delta005.json}; logs
+and re-run commands in Appendix~\ref{app:anc}.
+\end{proof}
+

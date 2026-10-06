@@ -1,0 +1,319 @@
+%======================================================================
+\section{Certified bounds}\label{sec:certified}
+%======================================================================
+
+\subsection{Method}\label{ssec:cert-method}
+
+Every statement of this section is computer-assisted, and this paragraph states the conventions once for the whole paper. Each
+proof names the function that is certified, the lemmas it uses and the arithmetic. Appendix~\ref{app:anc} gives, for each
+statement, the script and its input, the command that re-runs it, the run time and the decisive output line; the SHA-256 hashes of
+the inputs are listed there or in the file \texttt{SHA256SUMS} of the ancillary files. \emph{Exact} computations use integers and
+rationals (FLINT \cite{FLINT}); \emph{ball} computations use Arb midpoint--radius arithmetic with outward rounding \cite{Joh17}, and a
+sign is accepted only when the ball excludes~$0$. Every input is an exact rational parameter file whose hash the verifier
+recomputes. Printed upper bounds are rounded up and lower bounds down. Statements labelled ``Numerical observation'' are computed but
+not certified, and are never used in a proof. The common lemmas (positivity certificates, validated Bessel functions, the cushion)
+are in Appendix~\ref{app:certification}. Theorem~\ref{thm:kappa}, Propositions~\ref{thm:kappaOPS}
+and~\ref{prop:lowheight} and the upper bounds in Proposition~\ref{thm:notcritical} use only weak duality (Lemma~\ref{lem:weak-duality}) and
+the exact membership of an explicit function in $\Cone$ or $\ConeOPS$: Proposition~\ref{prop:lowheight} bounds masses, and the others bound
+slacks from above. Proposition~\ref{prop:lowerbound} and the lower bounds in Proposition~\ref{thm:notcritical} use explicit admissible pairs
+(Lemma~\ref{lem:herglotz}). Proposition~\ref{thm:finiteJ} concerns the exact family. No statement about the zeros of $\zeta$ is used.
+
+\subsection{The slack}\label{ssec:kappa}
+
+\begin{theorem}[A certified upper bound for the slack]\label{thm:kappa}
+$\kstar\le1.1508391\cdot10^{-906}$. More precisely, for each $J$ in Table~\ref{tab:kappa-ladder} there are explicit rationals $r_j,s_j$
+($j\le J$) and $\eps>0$ such that, with $H(t):=\prod_{j\le J}(1+r_jt^2+s_jt^4)$, the function
+\[
+\Frep(t):=\Xi(t)^2\bigl(H(t)+\eps e^{-\pi t^2}\bigr)
+\]
+lies in $\Cone$ and satisfies $\Arch(\Frep)/\int\Frep\le\kappa_J$, with $\kappa_J$ as in the table; in particular
+$\kappa_{100}=1.1508391\cdot10^{-906}$.
+\end{theorem}
+
+\begin{table}[ht]
+\centering
+\caption{Certified upper bounds $\kappa_J$ for $\kstar$ (Theorem~\ref{thm:kappa}); $\eps$ is the weight of the cushion and $x_{\mathrm{far}}$
+the start of the far region in the proof.}\label{tab:kappa-ladder}
+\begin{tabular}{rrrr}
+\toprule
+$J$ & $\kappa_J$ (rounded up) & $\eps$ & $x_{\mathrm{far}}$\\
+\midrule
+20 & $2.0151627\cdot10^{-62}$ & $10^{-67}$ & 55\\
+23 & $1.1963682\cdot10^{-80}$ & $10^{-86}$ & 66\\
+24 & $5.2941806\cdot10^{-91}$ & $10^{-93}$ & 70\\
+30 & $7.7522383\cdot10^{-132}$ & $10^{-138}$ & 93\\
+35 & $9.9924044\cdot10^{-177}$ & $10^{-183}$ & 116\\
+40 & $9.3828982\cdot10^{-220}$ & $10^{-226}$ & 137\\
+50 & $1.8493714\cdot10^{-311}$ & $10^{-318}$ & 182\\
+60 & $1.0640143\cdot10^{-417}$ & $10^{-424}$ & 231\\
+100 & $1.1508391\cdot10^{-906}$ & $10^{-911}$ & 452\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{proof}[Proof (computer-assisted; ball arithmetic; Appendix~\ref{app:anc}, Table~\ref{tab:anc-index}, first row)]
+Write $H(t)=P(t^2)$. Four facts are proved.
+(1) $H>0$ on $\RR$, exactly: $s_j>0$ and $r_j^2<4s_j$ for every $j$. Hence $\Frep\ge0$ on $\RR$, and $\Frep\in\Tc$
+(Section~\ref{ssec:bessel}).
+(2) $\FT F_{\mathrm{rep}}\ge0$ on $[\xi_2,\infty)$. The transform of $\Xi^2H$ and its $\xi$-derivatives are evaluated through
+Proposition~\ref{thm:bessel} and Lemma~\ref{lem:abel}, with $K_0,K_1$ from Lemma~\ref{lem:K-validated}: the operator
+$P(-(\theta+\frac12)^2)\theta^2(\theta+1)^2$ acts exactly on $\operatorname{span}\{z^kK_0,z^kK_1\}$, and the divisor sum is truncated with a
+rigorous tail bound. Near each of the $J$ prime powers where $\widehat{\Xi^2H}$ has a zero of order at least two, up to the rationalisation of the
+parameters, including the gap edge $\xi_2$, a Taylor model centred exactly at $\xi_n$ gives a quadratic lower bound; elsewhere on
+$[\xi_2,\xi_{\mathrm{far}}]$, Taylor models on pieces with dyadic endpoints give lower bounds, with a rigorous bound for the remainder. The
+cushion term $\eps\,\widehat{\Xi^2e^{-\pi t^2}}$ is positive everywhere and is at least $c(\xi):=\eps I_\delta e^{-\pi(\xi+\delta)^2}$ for
+$\xi\ge0$, with $\delta=\frac1{20}$ and $I_\delta$ as in Lemma~\ref{lem:cushion}; it makes the transform positive at and near the nodes, where
+the rationalisation may leave $\widehat{\Xi^2H}$ slightly negative. \emph{The far region.} By Lemma~\ref{lem:abel},
+$\widehat{\Xi^2H}(\xi)=2\pi\sqrt x\sum_Nd(N)\bigl(A(2\pi Nx)K_0(2\pi Nx)+B(2\pi Nx)K_1(2\pi Nx)\bigr)$ with explicit polynomials $A,B$ of degree
+at most $D$. Write $\lvert A\rvert$, $\lvert B\rvert$ for the polynomials whose coefficients are the absolute values of those of $A$, $B$, and
+$z=2\pi x$. From $d(N)\le2\sqrt N$, $0<K_0\le K_1\le K_{3/2}$ with $K_{3/2}(w)=(\pi/2w)^{1/2}e^{-w}(1+1/w)$, and a geometric series over $N$
+(ratio at most $q:=2^De^{-z}<\frac12$), one gets
+$\lvert\widehat{\Xi^2H}(\xi)\rvert\le\Upsilon(x):=4\pi(\lvert A\rvert+\lvert B\rvert)(z)\,e^{-z}(1+1/z)/(1-q)$. The verifier takes the first
+integer $x_{\mathrm{far}}$ beyond the last node with $2\pi x_{\mathrm{far}}>D+4$ and $\Upsilon(x_{\mathrm{far}})<c(\xi_{\mathrm{far}})$, and
+checks $\xi_{\mathrm{far}}+\delta<3$, where $\xi_{\mathrm{far}}=\log x_{\mathrm{far}}/2\pi$. Since $\frac{d}{dz}\log\Upsilon\le D/z-1$ and
+$\frac{d}{dz}\log c=-(\xi+\delta)/z$, we get $\frac{d}{dz}(\log\Upsilon-\log c)\le(D+\xi+\delta)/z-1$. This is negative for every
+$x\ge x_{\mathrm{far}}$, because $z-\xi$ increases with $z$ and $z_{\mathrm{far}}>D+4>D+\xi_{\mathrm{far}}+\delta$. Hence $\Upsilon<c$, and the
+transform is positive, on all of $[x_{\mathrm{far}},\infty)$.
+(3) $\Arch(\Frep)$ is bounded above using Corollary~\ref{cor:zerokilling} for $\Xi^2H$ and the value of $\Arch(\Xi^2e^{-\pi t^2})$ in
+Lemma~\ref{lem:cushion}. The prime-power sum is evaluated term by term up to $x_{\mathrm{far}}+1$; beyond, its terms are at most
+$\log n\cdot\Upsilon(n)$, and their ratios are checked to be below $\frac12$, so the tail is bounded by a geometric series.
+(4) $\int\Frep\ge\widehat{\Xi^2H}(0)$, which is bounded below. Since $\Frep/\int\Frep\in\Cone$ has integral $1$,
+$\kstar\le\Arch(\Frep)/\int\Frep$, and the printed bound is the upper end of the resulting ball, rounded up.
+\end{proof}
+
+Every $\Frep$ vanishes at every non-trivial zero of $\zeta$, on or off the line, and $H$ is a rational approximation of the exact
+polynomial $P_J$ of Proposition~\ref{prop:E}, factored as in Section~\ref{ssec:hermite}. By Corollary~\ref{cor:zerokilling}, $\Arch(\Frep)$ is
+essentially a tail sum starting at the first prime power $n_{J+1}$ not killed by $H$; its first term is of the size of
+$\Psi(\xi_{n_{J+1}})\approx C_\infty n_{J+1}^4e^{-2\pi n_{J+1}}$ (Proposition~\ref{thm:bessel}) times a cofactor. Table~\ref{tab:kappa-ladder}
+gives $-\log\kappa_J/n_{J+1}=3.30$, $3.82$, $4.17$, $4.55$, $4.95$ at $J=20$, $30$, $40$, $60$, $100$ ($n_{J+1}=43$, $79$, $121$, $211$,
+$421$), against $2\pi\approx6.28$ for the factor $e^{-2\pi n_{J+1}}$ alone. So the number of certified digits is governed by $n_{J+1}$, and it
+grows with $J$ for as long as positivity can be certified.
+
+\begin{corollary}[Conductor form; infeasible deformations]\label{cor:qmin}
+(a) No admissible pair has a zero measure $\mu\ge\lambda\dd t$ with $\lambda>1.1508391\cdot10^{-906}$.
+(b) If $\log q<-2\pi\cdot1.1508391\cdot10^{-906}$, in particular if $q\le1-7.3\cdot10^{-906}$, the data $\Arch_q$ admit
+no admissible pair. Equivalently, replacing $\log\pi$ by $\log\pi+\eta$ in $\Oinf$ leaves no admissible pair once
+$\eta>7.2309354\cdot10^{-906}$. Hence $\qmin=e^{-2\pi\kstar}\ge1-7.3\cdot10^{-906}$. Under RH, $\qmin\le1$, so then
+$1-7.3\cdot10^{-906}\le\qmin\le1$.
+\end{corollary}
+
+\begin{proof}
+(a) is Lemma~\ref{lem:weak-duality} applied to $\Frep/\int\Frep$ with $J=100$. (b) For that function,
+$\Arch_q=\Arch+(\log q/2\pi)\int$ is negative when $\log q<-2\pi\kappa_{100}$, which excludes admissible pairs by
+Lemma~\ref{lem:weak-duality}; replacing $\log\pi$ by $\log\pi+\eta$ is the case $\log q=-\eta$, and
+$2\pi\kappa_{100}\le7.2309354\cdot10^{-906}$. Then $\qmin\ge e^{-7.2309354\cdot10^{-906}}\ge1-7.3\cdot10^{-906}$
+(Proposition~\ref{prop:conductor}). Under RH, $\pz\in\Kad$, so $\kstar\ge0$ (Theorems~\ref{thm:logic}
+and~\ref{thm:duality}).
+\end{proof}
+
+\subsection{The classical cone and low-height rigidity}
+
+Let $f_k(u):=L_k^{(-1/2)}(2\pi u^2)e^{-\pi u^2}$; these are even Hermite functions, with $\widehat{f_k}=(-1)^kf_k$. They form the Laguerre basis
+that Cohn and Gon\c{c}alves used for sign uncertainty \cite{CG19}.
+
+\begin{proposition}[The classical cone]\label{thm:kappaOPS}
+$\kstar\le\kOPS\le9.9462\cdot10^{-41}$. Explicitly, with $s=13$, $K=128$, explicit rationals $c_0,\dots,c_K$ and
+$\eps=10^{-56}$, the function
+\[
+\Frep(t):=\sum_{k\le K}c_kf_k(t/s)+\eps\bigl(e^{-\pi t^2/(16s^2)}+e^{-16\pi t^2/s^2}\bigr)
+\]
+satisfies $\Frep>0$ and $\FT F_{\mathrm{rep}}>0$ on all of $\RR$, and $\Arch(\Frep)/\int\Frep\le9.9461827002\cdot10^{-41}$.
+Consequently the classical explicit-formula conductor bound in degree~1, optimised over $\ConeOPS$, is at
+least $1-6.25\cdot10^{-40}$.
+\end{proposition}
+
+\begin{proof}[Proof (computer-assisted; exact Sturm sequences and ball arithmetic; Appendix~\ref{app:anc})]
+Write $X=2\pi t^2/s^2$, $Y=2\pi s^2\xi^2$ and $F:=\sum_{k\le K}c_kf_k(t/s)$. Then $F=e^{-X/2}P(X)$ and $\hF=s\,e^{-Y/2}Q(Y)$ with
+$P,Q\in\QQ[X]$ of degree $128$. Exact Sturm sequences show that $P$ and $Q$ have no root in $(0,\infty)$, and $P(0)$,
+$Q(0)$ and the leading coefficients are positive; hence $F>0$ and $\hF>0$ on $\RR$. The two Gaussians of the repair term are
+positive with positive Fourier transforms, so $\Frep\ge F$ and $\FT F_{\mathrm{rep}}\ge\hF$, and $\Frep\in\ConeOPS\subseteq\Cone$. (Here
+the repair term is not needed for positivity, since $P$ and $Q$ have no positive roots; its contribution to $\Arch(\Frep)$ is
+included in the computed value.) Then $\Arch(\Frep)$ is one rigorous Arb integral of $\Frep$ against the digamma weight on a finite
+interval, plus an explicit tail bound (Lemma~\ref{lem:digamma}), and $\int\Frep=\FT F_{\mathrm{rep}}(0)$ is enclosed exactly up to a ball. Finally
+$2\pi\cdot9.9461827002\cdot10^{-41}\le6.2494\cdot10^{-40}$ and $e^{-a}\ge1-a$.
+\end{proof}
+
+This bound needs no gap at $\xi_2$, so it is directly comparable with Odlyzko's tables \cite[Table~4]{Odl90}. A certificate of the
+same kind bounds the mass that \emph{any} admissible pair can put away from the low zeros of $\zeta$ and away from the prime powers.
+
+\begin{proposition}[Low-height rigidity of every admissible pair]\label{prop:lowheight}
+There is an explicit $F_{80}\in\ConeOPS$ of the form of Proposition~\ref{thm:kappaOPS}, with $K=80$, $s=12$ and $\eps=10^{-30}$,
+such that $\Arch(F_{80})\le7.72525424595\cdot10^{-25}$ and $\int F_{80}\ge0.9999999999999999444$. Consequently every admissible pair
+$(\mu,\nu)$ satisfies the mass bounds of Table~\ref{tab:windows}.
+\end{proposition}
+
+\begin{table}[ht]
+\centering\small
+\caption{Mass bounds valid for every admissible pair (Proposition~\ref{prop:lowheight}). The intervals $I_k$ are the gaps between the
+first six positive zero ordinates of $\zeta$, shrunk by $0.1$ at both ends and rounded inward to ten decimals; the prime-side windows
+are $[\xin a,\xin b]$.}\label{tab:windows}
+\begin{tabular}{@{}lll@{\qquad}lll@{}}
+\toprule
+\multicolumn{3}{@{}l}{Zero side} & \multicolumn{3}{l@{}}{Prime side}\\
+\cmidrule(r){1-3}\cmidrule(l){4-6}
+$k$ & $I_k$ & bound for $\mu(I_k)$ & $[a,b]$ & & bound for $\nu$ \\
+\midrule
+1 & $[14.2347251418,20.9220396387]$ & $2.75\cdot10^{-17}$ & $[2.05,2.95]$ & & $6.81\cdot10^{-19}$\\
+2 & $[21.1220396388,24.9108575801]$ & $1.91\cdot10^{-16}$ & $[5.05,6.95]$ & & $6.94\cdot10^{-14}$\\
+3 & $[25.1108575802,30.3248761258]$ & $4.81\cdot10^{-15}$ & $[7.05,7.95]$ & & $2.72\cdot10^{-12}$\\
+4 & $[30.5248761259,32.8350615877]$ & $2.28\cdot10^{-14}$ & $[10.05,10.95]$ & & $5.95\cdot10^{-10}$\\
+5 & $[33.0350615878,37.4861781588]$ & $2.39\cdot10^{-13}$ & $[12.05,12.95]$ & & $3.80\cdot10^{-8}$\\
+ & & & $[14,15]$ & & $1.82\cdot10^{-8}$\\
+ & & & atom at $\xin{2.5}$ & & $1.53\cdot10^{-21}$\\
+ & & & atom at $\xin6$ & & $6.37\cdot10^{-18}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+No hypothesis on the zeros is used: whether or not RH holds, every admissible pair puts at most these masses into windows that avoid
+the low zeros of $\zeta$ and the low prime powers. Positivity in the explicit formula has long been used to locate low zeros
+\cite[p.~132]{Odl90}, \cite{Mil02,Bob15}; here the positivity of both measures takes the place of GRH.
+
+\begin{proof}[Proof (computer-assisted; exact arithmetic and ball arithmetic; Appendix~\ref{app:anc})]
+As in the proof of Proposition~\ref{thm:kappaOPS}, exact Sturm sequences give $F_{80}\in\ConeOPS$, and ball arithmetic gives the bounds for
+$\Arch(F_{80})$ and $\int F_{80}$. For
+$F\in\Cone$, $\mu$ even and $I\subset(0,\infty)$, Lemma~\ref{lem:weak-duality} gives $2\min_IF\cdot\mu(I)\le\Arch(F)$, and
+$\min_I\hF\cdot\nu(I)\le\pi\Arch(F)$. Lower bounds $F_{80}\ge m$ on $40$ intervals in $t$ and $\FT F_{80}\ge m$ on $19$ windows in $\xi$ are
+proved in exact arithmetic: $e^{X/2}$ is bounded by a rational Taylor polynomial with Lagrange remainder, and positivity of the resulting
+rational polynomials is shown by Descartes' rule after a M\"obius map, with bisection (Lemma~\ref{lem:posc}). The values $\FT F_{80}(\xin n)$
+at the two atoms are enclosed in ball arithmetic. With the certified upper bound for $\Arch(F_{80})$, the two inequalities give the
+bounds of Table~\ref{tab:windows}, rounded up.
+\end{proof}
+
+\subsection{The exact family at finite \texorpdfstring{$J$}{J}}
+
+\begin{proposition}[Certified finite-$J$ instances]\label{thm:finiteJ}
+For $J\in\{10,60,61,110,111\}$ the Hermite matrix $M_J$ is non-singular, every coefficient of the exact $P_J$ is positive, and
+$\max_{1\le k\le2J}((2k)!\,p_k^{(J)})^{1/2k}\le0.71636$, that is, $0<p_k^{(J)}\le0.71636^{2k}/(2k)!$. Hence $H_J\ge1$ on $\RR$ and
+$\lvert H_J(t)\rvert\le\cosh(0.71636\lvert t\rvert)$ on $\CC$.
+\end{proposition}
+
+\begin{proof}[Proof (computer-assisted; ball arithmetic; Appendix~\ref{app:anc})]
+Through Proposition~\ref{thm:bessel}, the moments $(-1)^k(2\pi)^{-2k}\Psi^{(2k+\varepsilon)}(\xi_n)$, with $\varepsilon\in\{0,1\}$, are
+enclosed rigorously; rows and columns are scaled by exact powers of two, and the ball system is solved with Arb's preconditioned
+solver. A successful solve proves that every matrix in the ball, in particular $M_J$, is non-singular, and the output balls contain the
+exact $p^{(J)}_k$; positivity holds because every ball is positive. The certified bounds for $\max_k((2k)!p_k)^{1/2k}$ are $0.697078$
+($J=10$), $0.716207$, $0.716214$, $0.716351$ and $0.716352$; the bounds on $H_J$ follow from Proposition~\ref{prop:coeff} with $C=1$.
+Each enclosure is compared with a second enclosure computed by a different implementation, and every pair of balls overlaps.
+\end{proof}
+
+Uniform versions of these facts are the hypotheses \hyp{N}, \hyp{G$_a$} and \hyp{Z$_\infty$} of Theorem~\ref{thm:criterion}, through
+Proposition~\ref{prop:coeff}.
+
+\begin{observation}[The exact family for $J\le110$]\label{obs:family}
+The following were computed in high-precision arithmetic (at most $4600$ bits); the floating-point table is
+\nolinkurl{computed/family_J1_110.tsv} in the ancillary files. For every $1\le J\le110$ the Hermite system is non-singular and
+$p^{(J)}_{2J}>0$. All coefficients $p_k^{(J)}$ are positive for $J\in\{1,2\}$ and for $10\le J\le110$; for $3\le J\le9$ the coefficient
+$p^{(J)}_{2J-1}$ is non-positive, and for $4\le J\le8$ so is $p^{(J)}_{2J-3}$. The quantity $a_J:=\max_{1\le k\le2J}((2k)!\,|p_k^{(J)}|)^{1/2k}$ (for $J\le110$ the maximum is attained at a positive
+coefficient, so the table's values are the same if only positive coefficients are used) stays below $0.71$ for $J\le9$ and increases with $J$ for $10\le J\le110$, up to $0.7164$ at $J=110$ (attained near $k\approx20$--$24$); so \eqref{eq:POSa} holds
+numerically with $a=0.7164$ and $C=1$ for $10\le J\le110$. Dense scans at $J=20,30,40,50,60$ ($x\in[2,1.15n_J+5]$, step $0.05$, and up to
+$x=425$ at $J=60$) found no sign change of $\FT F_J$ off the nodes.
+\end{observation}
+
+\subsection{A lower bound for the slack, and other archimedean data}\label{ssec:otherdata}
+
+Lower bounds for slacks come from explicit admissible pairs, which are feasible points of the dual linear programme; Cohn and
+Triantafillou used dual feasible points in the same way to prove that linear programming bounds for sphere packing are not sharp
+\cite{CT22}. We build them for the data of $\zeta$ with a conductor $q$, that is, for
+$\Arch_q=\Arch+\frac{\log q}{2\pi}\int$ (Section~\ref{ssec:criticality}), and, as a control, for the archimedean data of $\QQ(\sqrt5)$
+and $\QQ(\sqrt{-3})$. For $\mathfrak g\in\{\GR,\GR^2,\GC\}$ let $(k_j)_{j\le d}$ be $(0)$, $(0,0)$ and $(0,1)$ respectively, put
+\begin{gather*}
+\Omega_{\mathfrak g}(t):=\frac1{2\pi}\sum_{j\le d}\Bigl(\Re\psi\bigl(\tfrac{\frac12+k_j+it}{2}\bigr)-\log\pi\Bigr),\\
+\Arch_{\mathfrak g,q}(F):=F\bigl(\tfrac i2\bigr)+F\bigl(-\tfrac i2\bigr)+\int_\RR F(t)\Bigl(\Omega_{\mathfrak g}(t)+\frac{\log q}{2\pi}\Bigr)\dd t,
+\end{gather*}
+so that $\Omega_{\GR}=\Oinf$ and $\Arch_{\GR,q}=\Arch_q$. Admissible pairs, $\Cone$ and $\kstar$ are defined for $\Arch_{\mathfrak g,q}$ exactly as for
+$\zeta$, with the same test class and the same gap $\xi_2$ (Definition~\ref{def:admissible}); Lemma~\ref{lem:weak-duality} holds with the
+same proof, and $\kstar(\Arch_{\mathfrak g,q})=\kstar(\Arch_{\mathfrak g,1})+\frac{\log q}{2\pi}$. More generally, for a gap $g>0$ we write $\Cone_g$ and $\kstar_g$ for the cone and the slack defined with $[g,\infty)$ in place of
+$[\xi_2,\infty)$, both for the prime measures and for the condition $\hF\ge0$; Lemma~\ref{lem:weak-duality} holds with the same proof, and
+$\ConeOPS\subseteq\Cone_g$ for every $g$.
+
+\begin{lemma}[Herglotz form of an admissible pair]\label{lem:herglotz}
+Let $\tilde\nu\ge0$ be a measure on $[2,\infty)$ such that $\sigma:=\tilde\nu-\one_{[2,\infty)}(x)\dd x$ satisfies
+$\int x^{-1/2}\dd\lvert\sigma\rvert(x)<\infty$, and put $\mathcal L(s):=\int x^{-s}\dd\tilde\nu(x)$ for $\Re s>1$. Then $\mathcal L$ extends
+continuously to $\Re s\ge\frac12$, $s\ne1$, as $2^{1-s}/(s-1)+\int x^{-s}\dd\sigma$. Let
+$\mu(t):=\Omega_{\mathfrak g}(t)+\frac{\log q}{2\pi}-\frac1\pi\Re\mathcal L(\frac12+it)$, and let $\nu$ be the image of $x^{-1/2}\tilde\nu$ under
+$x\mapsto\log x/2\pi$. Then $\Arch_{\mathfrak g,q}(F)=\int F\mu\dd t+\frac1\pi\int\FT F\dd\nu$ for every $F\in\Tc$. Hence $(\mu\dd t,\nu)$ is an
+admissible pair for $\Arch_{\mathfrak g,q}$ if and only if $\mu\ge0$.
+\end{lemma}
+
+\begin{proof}
+Let $F\in\Tc_\delta$ and $\frac12<y<\frac12+\delta$. Since $\FT F(\log x/2\pi)=\int F(t)x^{-it}\dd t$, shifting the contour
+to $\Im t=-y$ and using Fubini (note $\int x^{-1/2-y}\dd\tilde\nu<\infty$) gives
+$\frac1\pi\int\FT F\dd\nu=\frac1\pi\int_{\Im w=-y}F(w)\mathcal L(\frac12+iw)\dd w$. The integrand is meromorphic in
+$-y\le\Im w\le0$ with one simple pole, at $w=-i/2$, where $\mathcal L(\frac12+iw)\sim1/(i(w+\frac i2))$; $F$ decays like
+$(1+\lvert w\rvert)^{-2}$ and $\mathcal L$ is bounded away from the pole. Moving the contour to $\Im w=-\eta$, $0<\eta<\frac12$, picks up
+$2\pi i\cdot F(-\frac i2)/i$. As $\eta\downarrow0$ the integrals over $\Im w=-\eta$ converge to the integral over $\RR$, by dominated
+convergence: $\mathcal L(\frac12+iw)$ is bounded on $-\frac14\le\Im w\le0$ away from the pole and continuous up to $\Im w=0$. So
+$\frac1\pi\int\FT F\dd\nu=\frac1\pi\int_\RR F(t)\mathcal L(\frac12+it)\dd t+2F(-\frac i2)$. As $F$ is even and real and
+$\mathcal L(\frac12-it)=\overline{\mathcal L(\frac12+it)}$, the integral equals $\frac1\pi\int F\,\Re\mathcal L(\frac12+it)\dd t$, and
+$2F(-\frac i2)=F(\frac i2)+F(-\frac i2)$. Adding $\int F\mu$ gives $\Arch_{\mathfrak g,q}(F)$. The measure $\nu$ is positive
+and carried by $[\xi_2,\infty)$, and $\mu$ is even; so admissibility is equivalent to $\mu\ge0$.
+\end{proof}
+
+Lemma~\ref{lem:herglotz} is a representation of Herglotz--Nevanlinna type: the zero density is read off from the boundary values of
+$\Re\mathcal L$ on the critical line, much as Vedana's classification of summation formulas on a strip describes the continuous part of
+the Fourier-side measure through a generalised Nevanlinna representation of a generating function \cite{Ved26}.
+
+We use measures $\tilde\nu$ equal to $\one_{[2,\infty)}\dd x$ minus densities on finitely many cells, plus finitely many atoms and polynomial
+bumps, minus tails $a_mx^{-m}\dd x$ ($m\ge1$) beyond some $X$; then $\mathcal L$ and $\mu$ are explicit. The verifier checks $\tilde\nu\ge0$ and
+$\supp\tilde\nu\subseteq[2,\infty)$, and proves $\mu>0$ on a range $[0,T]$ by mean-value steps $\mu(t)\ge\mu(t_0)-h\sup\lvert\mu'\rvert$, with
+$\mu'$ enclosed in ball arithmetic on each whole step. On $[T,\infty)$ it uses monotone majorants: $\Omega_{\mathfrak g}$ is increasing in $t\ge0$,
+while the contributions of the cells, bumps and tails to $\mu$ are bounded by explicit constants times the decreasing functions
+$(\frac14+t^2)^{-1/2}$, $\min(1,(k/\beta t)^k)$ (for bumps of half-width $\beta$ built from $k$ uniform variables) and
+$((m-\frac12)^2+t^2)^{-1/2}$. The tail coefficients are checked to satisfy $a_m\ge0$, so that $1-\sum_ma_mx^{-m}$ is increasing and
+$\tilde\nu\ge0$ needs to be checked only at $x=X$.
+
+\begin{proposition}[An unconditional lower bound for the slack]\label{prop:lowerbound}
+For $\zeta$'s data with conductor $q=e^{0.02}$ there is an admissible pair of the form of Lemma~\ref{lem:herglotz} with
+$\mu\ge4.71949\cdot10^{-4}$ on $\RR$. Hence $\qmin\le e^{0.02}$ and
+\[
+\kstar\ge4.71949\cdot10^{-4}-\frac{0.02}{2\pi}\ge-2.7112\cdot10^{-3}.
+\]
+\end{proposition}
+
+\begin{proof}[Proof (computer-assisted; ball arithmetic; Appendix~\ref{app:anc})]
+The pair is certified as described above, with mean-value steps on $[0,2000]$ and monotone majorants beyond; Lemma~\ref{lem:herglotz} gives
+admissibility for $\Arch_q$, so $\qmin\le e^{0.02}$. For $F\in\Cone$ with $\int F=1$, Lemma~\ref{lem:weak-duality} gives
+$\Arch_q(F)\ge\int F\mu\dd t\ge4.71949\cdot10^{-4}$; so $\kstar(\Arch_q)\ge4.71949\cdot10^{-4}$, and $\kstar=\kstar(\Arch_q)-0.02/(2\pi)$ by
+Proposition~\ref{prop:conductor}. Finally $0.02/(2\pi)\le3.1831\cdot10^{-3}$.
+\end{proof}
+
+\begin{proposition}[The data of $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$, also at their natural gaps]\label{thm:notcritical}
+\textup{(a)} For the archimedean data $\Arch_{\GR^2,5}$ of $\QQ(\sqrt5)$ and every gap $g\in(0,\xin{4.04915}]$, in particular for $\zeta$'s gap
+$\xi_2$ and for the natural gap $\xi_4$ of the field: $1.64\cdot10^{-5}\le\kstar_g\le4.83\cdot10^{-4}$. In particular some admissible pair has zero
+measure $\ge1.64\cdot10^{-5}\dd t$, and the set of admissible pairs is not a singleton.
+\textup{(b)} For the data $\Arch_{\GC,3}$ of $\QQ(\sqrt{-3})$ and every gap $g\in(0,\xin{3.011664}]$, in particular for $\xi_2$ and for the natural
+gap $\xi_3$: $1.50\cdot10^{-4}\le\kstar_g\le9.99\cdot10^{-4}$, with the same consequences.
+\end{proposition}
+
+\begin{proof}[Proof (computer-assisted; exact Sturm sequences and ball arithmetic; Appendix~\ref{app:anc})]
+(a) For the upper bound, an explicit $F$ of the form of Proposition~\ref{thm:kappaOPS}, a combination of $f_0(t/7),\dots,f_{80}(t/7)$ plus the two
+Gaussians, has $\Arch_{\GR^2,1}(F)/\int F\le k_0:=-0.25566705789831547610$; positivity of $F$ and $\hF$ on $\RR$ is shown by exact Sturm sequences,
+so $F\in\ConeOPS\subseteq\Cone_g$ for every $g$, and the functional is one Arb integral. Hence $\kstar_g(\Arch_{\GR^2,5})\le k_0+\log5/2\pi\le4.83\cdot10^{-4}$.
+For the lower bound, a pair of the form of Lemma~\ref{lem:herglotz} for $\Arch_{\GR^2,q_0}$, $\log q_0=1.6093347792651136$, has $\tilde\nu\ge0$, and
+$\tilde\nu$ vanishes on $[2,x_0)$ for some $x_0\ge4.049150$, a bound read off exactly from its parameters; its zero density satisfies
+$\mu\ge6.59\cdot10^{-9}$ on $[0,800]$ and $\mu\ge1.79$ on $[800,\infty)$. So the pair is admissible for every gap $g\le\xin{x_0}$. Read at $q=5$, the
+same prime measure gives the zero density $\mu+(\log5-\log q_0)/2\pi\ge1.64\cdot10^{-5}$, and Lemma~\ref{lem:weak-duality} for the gap $g$ gives
+$\kstar_g\ge1.64\cdot10^{-5}$. Adding to $\tilde\nu$ a small atom $w\delta_{x_1}$, $x_1\ge x_0$, changes $\mu$ by $-(w/\pi)x_1^{-1/2}\cos(t\log x_1)$; for
+small $w>0$ the result is a second admissible pair. The two certificates are combined in exact arithmetic, which gives
+$1.6420748\cdot10^{-5}\le\kstar_g\le4.8294147\cdot10^{-4}$.
+(b) Identical, with a dual certificate for $\GC$ ($K=64$, functions $f_k(t/9)$), also in $\ConeOPS$, and a pair of the form of
+Lemma~\ref{lem:herglotz} at $\log q_0=1.0976698108720329$ whose prime measure vanishes below $x_0\ge3.011664$ and whose zero density satisfies the
+certified floor $\mu\ge6.67\cdot10^{-8}$ on $\RR$. The lower bound is $(\log3-\log q_0)/2\pi+\inf\mu$; the floor is needed, since
+$(\log3-\log q_0)/2\pi$ alone is slightly below $1.5\cdot10^{-4}$. The combination gives $1.5006672\cdot10^{-4}\le\kstar_g\le9.9854968\cdot10^{-4}$.
+\end{proof}
+
+\begin{remark}[The gap and the margins]\label{rem:gap}
+The prime-ideal norms of $\QQ(\sqrt5)$ start at $4$, and those of $\QQ(\sqrt{-3})$ at $3$, so $\xi_4$ and $\xi_3$ are the gaps that match the
+fields' own explicit formulas. Proposition~\ref{thm:notcritical} holds at these natural gaps as well as at $\xi_2$, so for these two fields the
+comparison with $\zeta$ is like-for-like. Under GRH for the Dedekind zeta function, the field's own pair is admissible at its natural gap.
+Since $\kstar_g>0$ there, these data are not critical, and their admissible pairs are not unique: the field's own pair, whose zero measure is
+atomic, and the certified pair, whose zero measure is at least $c\dd t$ with $c>0$, are two distinct pairs. This indicates that
+near-criticality is a property of $\zeta$'s data rather than of the method. These are two examples; we make no claim about $L$-functions in
+general. The margins are small. At every gap $g\le\xin{4.04915}$ the certificates in (a) place the critical conductor of the data $\GR^2$ (the
+infimum of the $q$ for which $\Arch_{\GR^2,q}$ has an admissible pair at the gap $g$) in $[4.9848,4.9995]$: the dual function excludes every
+$q<4.9848$ by weak duality, and the pair is admissible at $q_0<4.9995$. So the conductor $5$ of $\QQ(\sqrt5)$ exceeds it by a factor between
+$1+1.0\cdot10^{-4}$ and $1+3.1\cdot10^{-3}$. For $\GC$ and every gap $g\le\xin{3.011664}$ the same argument gives $[2.9812,2.9972]$, and the
+conductor $3$ of $\QQ(\sqrt{-3})$ exceeds it by a factor between $1+9.4\cdot10^{-4}$ and $1+6.3\cdot10^{-3}$. The slack as a
+function of the gap is treated in \cite{N3}.
+\end{remark}

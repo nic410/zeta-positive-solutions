@@ -1,0 +1,33 @@
+# command : python kappa/verify_kappa.py kappa/params/J60.json --prec 1700 --order 28 --workers 1
+# date    : 2026-10-06T19:59:10Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+parameter file  : kappa/params/J60.json
+  file sha256   : e22afd8721e40313f47f4ee5ab3415dcc4d5c24502c17c4994499a9971e94a7e
+  factors sha256: 30f38d155fe41a76d1f5a945e68d9c3f65617b8bd0482e603e2621889a6b4685 (canonical list, checked)
+J = 60, eps = 1e-424, working precision 1700 bits, Taylor order 28, workers 1
+(1) H > 0 on R (exact: s_j > 0, r_j^2 < 4 s_j for all j): True
+    operator degree D = 273, N-truncation z_cut = 1824 (setup 0.5 s)
+    cushion: I_delta = int_{-1/20}^{1/20} Psi >= [0.0978288056476 +/- 4.3e-16];  A(Xi^2 e^{-pi t^2}) in [0.930646274515431 +/- 2.27e-16]
+(2a) node neighbourhoods (centred at the 60 killed prime powers 2..199):
+    n =    2: h = 4.00e-03, Fhat_H(xi_n) = [+/- 1.02e-501], Fhat_H'(xi_n) = [+/- 5.81e-499], c_2 = [58.1 +/- 0.0173], lower bound with cushion [8.9873e-426 +/- 2.31e-431]
+    n =   17: h = 1.61e-03, Fhat_H(xi_n) = [+/- 1.29e-507], Fhat_H'(xi_n) = [+/- 1.45e-504], c_2 = [4.54e-19 +/- 3.22e-22], lower bound with cushion [4.4250e-426 +/- 1.52e-431]
+    n =   43: h = 3.16e-04, Fhat_H(xi_n) = [+/- 3.15e-541], Fhat_H'(xi_n) = [+/- 7.68e-538], c_2 = [2.85e-66 +/- 2.31e-69], lower bound with cushion [2.6056e-426 +/- 4.38e-431]
+    n =   79: h = 8.29e-05, Fhat_H(xi_n) = [+/- 1.23e-603], Fhat_H'(xi_n) = [+/- 5.04e-600], c_2 = [1.35e-141 +/- 1.96e-144], lower bound with cushion [1.7068e-426 +/- 5.5e-434]
+    n =  121: h = 2.70e-05, Fhat_H(xi_n) = [+/- 5.02e-687], Fhat_H'(xi_n) = [+/- 2.97e-683], c_2 = [2.30e-232 +/- 3.16e-235], lower bound with cushion [1.2246e-426 +/- 1.49e-431]
+    n =  163: h = 2.01e-05, Fhat_H(xi_n) = [+/- 4.38e-777], Fhat_H'(xi_n) = [+/- 3.37e-773], c_2 = [7.88e-321 +/- 3.66e-324], lower bound with cushion [9.5432e-427 +/- 1.97e-433]
+    n =  199: h = 3.35e-05, Fhat_H(xi_n) = [+/- 8.19e-858], Fhat_H'(xi_n) = [+/- 7.50e-854], c_2 = [5.36e-392 +/- 3.87e-395], lower bound with cushion [8.0111e-427 +/- 2.62e-432]
+    all 60 neighbourhoods certified; min lower bound 8.011e-427; max |Fhat_H(xi_n)| <= 1.03e-501 (15 s)
+(2c) far region: x_far = 231, U(x_far) = [4.83e-427 +/- 8.60e-431] < cushion(x_far) = [7.00e-427 +/- 1.80e-430]; monotone beyond (2 pi x_far > D + 4)
+(2b) gaps [c, xi_far] minus neighbourhoods: 6741 pieces, all certified; min lower bound 3.372e-427 (307 s)
+    => Fhat_rep >= 0 on [c, oo)
+(3) prime-power sum over n <= 232 (64 terms): S(Xi^2 H) = [2.96693123411170e-417 +/- 3.72e-432]  (truncated)
+    tail n >= 233: <= 2.03e-431;  eps A(cushion) <= 9.3065e-425
+    A(Xi^2 H) = S(Xi^2 H) + tail in [2.9669312341117e-417 +/- 2.40e-431]
+    A(F_rep) <= 2.96693132718e-417
+    Fhat_H(0) = [2.7884318319915484823 +/- 3.20e-20]  (Fhat_rep(0) >= Fhat_H(0))
+    cushion-free ratio A(Xi^2 H)/Fhat_H(0) = [1.06401426066e-417 +/- 2.02e-429]
+(4) kappa* <= A_upper / Fhat_H(0)_lower <= 1.0640143e-417   (rounded up; 12 digits: 1.06401429404e-417)
+CERTIFIED: True   [J = 60, total 311 s]
+{"J": 60, "param_file": "kappa/params/J60.json", "param_file_sha256": "e22afd8721e40313f47f4ee5ab3415dcc4d5c24502c17c4994499a9971e94a7e", "factors_sha256": "30f38d155fe41a76d1f5a945e68d9c3f65617b8bd0482e603e2621889a6b4685", "eps": "1e-424", "prec": 1700, "order": 28, "order_far": null, "order_switch": null, "H_positive": true, "nodes_ok": true, "pieces": 6741, "x_far": 231, "S_trunc": "[2.96693123411170e-417 +/- 3.72e-432]", "A_H": "[2.9669312341117e-417 +/- 2.40e-431]", "A_upper": "2.96693132718e-417", "Fhat0": "[2.7884318319915484823 +/- 3.20e-20]", "kappa_upper": "1.0640143e-417", "kappa_upper_12": "1.06401429404e-417", "certified": true, "secs": 311.5}
+# exit code 0; wall time 311.5 s

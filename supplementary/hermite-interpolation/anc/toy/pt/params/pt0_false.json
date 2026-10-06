@@ -1,0 +1,4 @@
+{
+ "statement": "Remark (zero-slack prefix traces are not sufficient): at J = 2 these node sets satisfy PT_1 and PT_2 with zero slack (y_1 >= 3, y_1 + y_2 >= 14) but r_1 = [y] R < 0",
+ "points": [["151/50", "113/10"], ["61/20", "221/20"], ["151/50", "13"]]
+}

@@ -1,0 +1,22 @@
+# command : python general/verify_pair.py general/params/pair_gammaR2_X240.json --gap-x 4
+# date    : 2026-10-06T20:12:48Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+parameter file : general/params/pair_gammaR2_X240.json
+sha256         : 3b9f85c84efcf36f0e753e01edd442bfc3d6a1a2ead2377124b015ea2b7dfb1d
+pair           : Gamma_R shifts [0, 0], log q = 1.6093347792651136; 300 cells, 53 bumps (half-width 0.05, order 8), tails [(1, 0.9990589711989291), (3, 3001.1200713761295)], X = e^{v_n} = [240.000000000 +/- 5e-14]
+nu~ >= 0       : f in [0,1], w >= 0, bump supports in [log 2, oo), sum_m a_m X^-m = [0.0043798 +/- 4.07e-8] < 1: True
+nu~ support    : supp nu~ in [x0, oo) with x0 >= 4.049150
+  t = 0.959, steps = 5000, min lower bound so far [6.59e-9 +/- 4.98e-12] (11 s)
+  t = 3.810, steps = 10000, min lower bound so far [6.59e-9 +/- 4.98e-12] (23 s)
+  t = 127.274, steps = 15000, min lower bound so far [6.59e-9 +/- 4.98e-12] (34 s)
+steps on [0, 800]: 17214 mean-value steps; min lower bound for mu = [6.5950e-9 +/- 2.45e-14] (>= 6.5949e-9)
+tail t >= 800   : mu(t) >= [1.7928286 +/- 1.28e-8] (>= 1.79282)
+MU FLOOR       : mu(t) >= 6.59497e-9 for all real t
+ADMISSIBLE     : True  (mu > 0 on R, nu >= 0 on [xi_2, oo))
+GAP            : admissible at gap xi_4 (prime measure on [4, oo)): True
+CONDUCTOR      : admissible at log q = 1.6093347792651136, q = [4.99948436074528 +/- 1.63e-15]; hence q_min(data) <= 4.9994844
+CLAIM          : q_min <= 4.9994844 ... implied
+summary written: general/results/pair_gammaR2_X240.json
+RESULT         : CERTIFIED (37 s)
+# exit code 0; wall time 37.2 s

@@ -1,0 +1,8 @@
+{
+ "statement": "Proposition (certified remainders on the prime powers): for y = PP_J and every Y >= y_{J+1}, Delta_y(Y) = (2 S_y / Y^2)(1 + 8J/Y + theta C_J / Y^2) with theta in [0, 1]",
+ "nodes": "y_j = 2*pi*n_j, n_j the j-th prime power, real pi (Arb)",
+ "cases": [{"J": 6, "C": 1300}, {"J": 10, "C": 4000}, {"J": 20, "C": 11000}],
+ "start_precision_bits": 2000,
+ "max_precision_bits": 32000,
+ "prime_powers": [2, 3, 4, 5, 7, 8, 9, 11, 13, 16, 17, 19, 23, 25, 27, 29, 31, 32, 37, 41, 43]
+}

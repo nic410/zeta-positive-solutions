@@ -1,0 +1,16 @@
+# command : python exact/verify_base.py exact/out/P60_ball.txt --X 199 --theta 0.787979 --prec 1800 --workers 2
+# date    : 2026-10-06T15:51:08Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+P-enclosure exact/out/P60_ball.txt (sha256 fdfbfe57bfe9945f640291b6f1e1b7e74e4d5afb04278961d5737f26db6cda4b): J = 60; region [xi_2, xi_X], X = 199 (60 nodes); theta = 0.787979; 1800 bits, Taylor order 28
+  node    2: Fhat''(xi_n) = [116.23 +/- 4.51e-3];  h = 4.00e-03;  c_2'/(theta sup Psi_1 n^2 ((e^{2 pi h}-1)/h)^2) = [1.593 +/- 1.31e-4];  [computed Fhat(xi_n) = [+/- 5.52e-468], Fhat'(xi_n) = [+/- 3.41e-465]: zero balls]
+  node   17: Fhat''(xi_n) = [9.0864e-19 +/- 2.75e-24];  h = 1.61e-03;  c_2'/(theta sup Psi_1 n^2 ((e^{2 pi h}-1)/h)^2) = [4.728e+14 +/- 3.22e+10];  [computed Fhat(xi_n) = [+/- 3.67e-473], Fhat'(xi_n) = [+/- 4.17e-470]: zero balls]
+  node   43: Fhat''(xi_n) = [5.6954e-66 +/- 1.35e-71];  h = 3.16e-04;  c_2'/(theta sup Psi_1 n^2 ((e^{2 pi h}-1)/h)^2) = [2.212e+36 +/- 3.30e+32];  [computed Fhat(xi_n) = [+/- 3.71e-506], Fhat'(xi_n) = [+/- 9.09e-503]: zero balls]
+  node   79: Fhat''(xi_n) = [2.6961e-141 +/- 1.06e-146];  h = 8.29e-05;  c_2'/(theta sup Psi_1 n^2 ((e^{2 pi h}-1)/h)^2) = [5.628e+57 +/- 4.15e+53];  [computed Fhat(xi_n) = [+/- 3.18e-568], Fhat'(xi_n) = [+/- 1.31e-564]: zero balls]
+  node  121: Fhat''(xi_n) = [4.6063e-232 +/- 7.18e-238];  h = 2.70e-05;  c_2'/(theta sup Psi_1 n^2 ((e^{2 pi h}-1)/h)^2) = [2.458e+80 +/- 4.79e+76];  [computed Fhat(xi_n) = [+/- 1.37e-651], Fhat'(xi_n) = [+/- 8.08e-648]: zero balls]
+  node  163: Fhat''(xi_n) = [1.5753e-320 +/- 3.03e-325];  h = 2.01e-05;  c_2'/(theta sup Psi_1 n^2 ((e^{2 pi h}-1)/h)^2) = [6.980e+105 +/- 3.65e+101];  [computed Fhat(xi_n) = [+/- 1.22e-741], Fhat'(xi_n) = [+/- 9.37e-738]: zero balls]
+  node  199: Fhat''(xi_n) = [1.0712e-391 +/- 2.62e-396];  h = 3.35e-05;  c_2'/(theta sup Psi_1 n^2 ((e^{2 pi h}-1)/h)^2) = [2.258e+132 +/- 3.85e+128];  [computed Fhat(xi_n) = [+/- 2.26e-822], Fhat'(xi_n) = [+/- 2.07e-818]: zero balls]
+(i) Fhat''(xi_n) > 0 at all 60 nodes n <= 199; node neighbourhoods certified (9 s)
+(ii) all 59 gaps certified: 6313 pieces; min over pieces of lower(Fhat)/upper(theta Psi_1 min(1,d^2)) = 1.01231e0 (gap 2-3)
+CERTIFIED: Fhat_J >= 0.787979 Psi_1 min(1, d^2) on [xi_2, xi_199] and Fhat_J'' > 0 at the nodes (J = 60): True   (170 s)
+# exit code 0; wall time 170.4 s

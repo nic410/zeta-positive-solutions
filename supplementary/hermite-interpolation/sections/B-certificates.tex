@@ -1,0 +1,189 @@
+%======================================================================
+\section{Certificates for the model}\label{app:certificates}\label{app:tables}
+%======================================================================
+
+The arithmetic is that of \cite{PaperI}. \emph{Exact} computations use integers and rationals (FLINT \texttt{fmpz},
+\texttt{fmpq} and their polynomial and matrix types \cite{FLINT}). \emph{Interval} computations use Arb ball arithmetic
+\cite{Joh17}: a real number is represented by a ball $[m\pm r]$ that is guaranteed to contain it, and every operation returns
+a ball containing all possible results. Both are accessed through python-flint (version $0.9.0$); constants such as $\pi$
+are balls, so the nodes $2\pi n$ are exact. Linear systems are solved by Arb's ball solver, which either returns balls
+containing the exact solution of every system in the input balls, and thereby certifies that the exact matrix is
+invertible, or fails. A sign is accepted only if the ball excludes $0$. Positivity of polynomials is certified by
+coefficient signs.
+
+\begin{lemma}[Positive-coefficient certificates]\label{lem:posc}
+\textup{(a)} \textup{(Descartes at $c$.)} If $p\in\RR[t]$ and every coefficient of $p(c+t)\in\RR[t]$ is non-negative with
+positive constant term, then $p>0$ on $[c,\infty)$. If $p$ vanishes to exact order $m$ at $c$ and the coefficients of
+$t^m,t^{m+1},\dots$ in $p(c+t)$ are positive, then $p>0$ on $(c,\infty)$.
+
+\textup{(b)} \textup{(Region certificates.)} Let $\mathcal R\subseteq\bigcup_i\phi_i([0,\infty)^m)$, where the coordinates of
+each $\phi_i$ are rational functions with a common denominator $w_i>0$ on $[0,\infty)^m$. Let $G$ be a polynomial of
+total degree $d$. If each polynomial $w_i^d\cdot(G\circ\phi_i)$ has non-negative coefficients and a positive constant
+term, then $G>0$ on $\mathcal R$.
+
+\textup{(c)} A polynomial with non-negative coefficients in $v\in[0,\infty)^m$ is non-negative there, and positive at every
+point at which some monomial with a positive coefficient is positive.
+
+With ball coefficients, ``positive'' means that the ball lies in $(0,\infty)$.
+\end{lemma}
+
+Parts (a) and (c) are also in \cite{PaperI}.
+
+\begin{proof}
+All three statements follow from the fact that a polynomial with non-negative coefficients takes non-negative values
+on the non-negative orthant, with the indicated strictness. In (b), $w_i^d\cdot(G\circ\phi_i)$ is a polynomial because
+$\deg G=d$, and $w_i>0$ transfers its sign to $G\circ\phi_i$.
+\end{proof}
+
+In the applications the coefficients are exact integers (Propositions~\ref{thm:PT2}--\ref{thm:PT4}, \ref{thm:W-J2},
+\ref{thm:W-J3}) or balls (the Descartes tests in Section~\ref{ssec:toy-tail} and Proposition~\ref{prop:base}); Taylor shifts of
+ball polynomials are computed by Horner's scheme at a ball containing $c$, which encloses the exact shifted coefficients.
+
+\subsection{The certificates for small \texorpdfstring{$J$}{J}}\label{app:proofs-PT}
+
+This subsection describes the computations behind Propositions~\ref{thm:PT2}--\ref{thm:PT4}; the logic was given after
+Proposition~\ref{thm:PT4}. Throughout, $c=\frac{21}{20}$, $V=\prod_{i<j}(y_i-y_j)$, and all arithmetic is exact.
+
+\emph{The polynomials $G_i$.} Let $\mathfrak M(y)$ be the $(2J+1)\times(2J+1)$ matrix whose rows are the data rows
+$(\tau_k(y_j))_{k\le2J}$, $(\tau_k'(y_j))_{k\le2J}$, $j\le J$, followed by the row $(\tau_k(y))_{k\le2J}$. Its determinant
+$\mathfrak Q(y)$ is a combination of the $\tau_k$, hence admissible, and vanishes doubly at each $y_j$; its constant
+term is $\pm D$, where $D$ is the determinant of the system in \hyp{N}$_{\yv}$. The verifier computes the minors by
+Laplace expansion along the pairs of node rows, divides $\mathfrak Q$ by $A_{\yv}$ exactly, checks that every coefficient
+$N_i$ of the quotient is divisible by $V^4$, and sets $G_i:=\pm N_i/V^4$, with the sign chosen so that $G_0>0$ at
+$y^*$. It then checks the identities (i) and (ii) of the proof of Proposition~\ref{thm:PT4} symbolically. For $J=3$ and
+$J=4$ the fingerprints of the $G_i$ are printed in the logs.
+
+\emph{Slack coordinates and region covers.} Write $y_1=c(3+A)$ and $y_{k+1}=y_k+c\,B_k$ with $B_1=B$, $B_2=E$,
+$B_3=F$. The hypotheses of the propositions become $A\ge0$, $B,E,F>0$ and $2A+B\ge8$, $3A+2B+E\ge24$,
+$4A+3B+2E+F\ge48$ (as far as they apply). All parameters $s,t,a,b,e,f$ below range over $[0,\infty)$.
+\begin{itemize}
+\item $J=2$: piece I, $A=4+s$, $B=t$; piece II, $A=4s/(1+s)$, $B=8-2A+t$. Every point with $A\ge4$ lies in I, and
+every point with $A<4$ lies in II (take $s=A/(4-A)$).
+\item $J=3$: PA, $A=8s/(1+s)+a$, $B=12/(1+s)+b$, $E=e$, which covers $3A+2B\ge24$ with $B>0$ (given $(A,B)$, any
+$s\in[\max(0,12/B-1),A/(8-A)]$ works, and this interval is non-empty exactly when $3A+2B\ge24$); PA$'$, $A=8+a$; and
+PB1, PB2, in which $(A,B)$ runs over the triangles with vertices $(0,8),(4,0),(8,0)$ and $(0,8),(8,0),(0,12)$ in the
+projective barycentric form $\lambda=(1,s,t)/(1+s+t)$ with apex $(0,8)$, and $E=24-3A-2B+e$. The edges with
+$\lambda_1=0$ lie in $\{B=0\}$ or in $\{3A+2B=24\}\subset$ PA.
+\item $J=4$: if $\ell:=4A+3B+2E\ge48$ (which implies $3A+2B+E\ge24$), the pieces Ia1 ($B=16+b$), Ia$'$ ($A=12+a$)
+and Ia3 (the triangle $(12,0),(0,16),(12,16)$ in $(A,B)$, with apex $(12,0)$) cover $4A+3B\ge48$, and Ib1, Ib2 (the triangles
+$(0,8),(4,0),(12,0)$ and $(0,8),(12,0),(0,16)$, both with apex $(0,8)$, and $E=(48-4A-3B)/2+e$) cover the rest, each with
+$F=f$. The edge omitted from Ia3 is $\{B=16\}$, which lies in Ia1; the edge omitted from Ib1 lies in $\{B=0\}$, outside the
+region; the edge omitted from Ib2 is the segment $\{4A+3B=48\}$, which is not part of the domain $4A+3B<48$ of Ib1, Ib2 and
+lies in Ia3 (its endpoint $(0,16)$ in Ia1). If $\ell<48$, the pieces II1--II6 are the cones from the apex $(0,8,8)$ (which is
+the point $y^*$) over the six triangles that triangulate the facets $B=0$, $E=0$ and $\ell=48$ of the polytope
+$\mathcal P:=\{A,B,E\ge0,\ 2A+B\ge8,\ 3A+2B+E\ge24,\ \ell\le48\}$, with $F=48-\ell+f$. The apex lies on the three other facets
+$A=0$, $2A+B=8$ and $3A+2B+E=24$, so $\mathcal P$ is the union of the cones from the apex over the facets $B=0$, $E=0$,
+$\ell=48$ (a convex polytope is the union of the cones from one of its vertices over the facets that do not contain it).
+The parametrisation omits the base face of each cone, which lies in $\{B=0\}\cup\{E=0\}$, outside the region, or in
+$\{\ell=48\}$, covered by the first part.
+\end{itemize}
+\emph{What is machine-checked.} For every piece, \nolinkurl{toy/pt/verify_pt.py} checks that the piece lies in the region
+(the line \texttt{inside} of its logs). The converse inclusion, that the pieces cover the region, is the hand argument
+above, for $J=2$, for $J=3$, and for the part $\ell\ge48$ of $J=4$. For the part $\ell<48$ of $J=4$ the script
+\nolinkurl{toy/pt/check_pt4_region.py} checks in exact arithmetic that the eight vertices of $\mathcal P$ and the six
+triangles are as stated and that the six cones have total volume $1024/3$, the volume of $\mathcal P$ computed
+independently; together with the convexity argument above this gives the cover.
+In each piece the coordinates are rational functions of the parameters with a positive common denominator, and the
+verifier checks that each homogenised $G_i\circ\phi$ has only positive coefficients and a positive constant term
+(Lemma~\ref{lem:posc}(b)); the numbers of polynomials and their sizes are in Table~\ref{tab:app-toycert}. No subdivision
+beyond these pieces is needed: on the whole region the numerators are coefficientwise positive in the slack variables.
+
+\subsection{Design of the certificates for Theorem~\texorpdfstring{\ref{thm:PP80}}{PP80}}\label{app:PP80}
+
+\emph{Chain route.} For a chain $Z$ of level $K$, the coefficients $q_m$ of $\omega_Z\pf$, for a monic $\pf$ of degree
+$K$, are affine in the $K$ unknown lower coefficients of $\pf$. By Proposition~\ref{prop:umbral}(c), $\omega_Z\pf$ is
+admissible if and only if $\sum_mq_m|s(m,2i-1)|=0$ for $i=1,\dots,K$; the unsigned Stirling numbers are exact
+integers. This gives a $K\times K$ linear system for $\pf_Z$ (and a $(K+1)\times(K+1)$ system for $\pg_Z=\pf_{Z+0}$), whose
+successful ball solution proves regularity. The script then checks $(\mathrm{I0})_K$, the increments
+$\varrho_{k+1}-\varrho_k>0$, and $\pg^{(K)}(z_{K+1})>0$, at $4000$ bits; the worst relative radius over all levels is below
+$10^{-785}$.
+
+\emph{Direct route.} Here the interpolants are computed in the basis $\tau_0,\dots,\tau_K$ of $\Asp^{\mathrm{pol}}_K$,
+with $\tau_k$ generated exactly by $\tau_k=(-1)^k(\Eul-y)^{2k}\,1$ (the conjugate $e^y\Eul e^{-y}=\Eul-y$); the cofactors are
+obtained by exact division by $\omega_Z$ in ball arithmetic and compared with the expected degrees and leading
+coefficients. The script checks $(\mathrm{I0})_K$, $(\mathrm{I1}')_K$ in the cross-multiplied form
+$g_{k+1}f_k-g_kf_{k+1}>0$, and $(\mathrm{Y0})_K$ for every $K\le160$; and, for every $J\le80$ and without appeal to
+Theorem~\ref{thm:A}, \hyp{N} for the system with $P(0)=1$, $p_{2J}>0$, strict $\TEL_J$, positivity of the half-step
+cofactor, and the consistency relation $p_{2J}\prod_jy_j^2\,\tilde R_J(0)=1$ as a ball containment. The level range is
+split into two runs ($K\le134$ and $135\le K\le160$). At
+$K=160$ about $1150$ decimal digits are lost, so $6000$ bits leave a wide margin.
+
+The two routes share no code beyond the python-flint library and agree on every level: they certify the same signs,
+and their margins agree to the printed digits.
+
+\subsection{Tables}\label{ssec:app-tables}
+
+\begin{table}[ht]
+\centering\small
+\caption{Computer-assisted statements about the model. ``Exact'': integer or rational arithmetic; ``Arb'': ball
+arithmetic at the stated precision. Scripts are in \texttt{toy/} (Appendix~\ref{app:anc}).}\label{tab:app-toycert}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.33\textwidth}>{\raggedright\arraybackslash}p{0.22\textwidth}@{}}
+\toprule
+Statement & Arithmetic & Size & Script \\
+\midrule
+Prop.~\ref{thm:PT2} & exact & $G_i$: $54,\dots,26$ terms; $10$ substituted polynomials; second route by Cramer's rule &
+\nolinkurl{pt/verify_pt.py}, \nolinkurl{pt/verify_pt2_cramer.py} \\
+Prop.~\ref{thm:PT3} & exact & $G_i$: $1304,\dots,636$ terms; $4$ pieces, $28$ polynomials, up to $38\,104$ terms &
+\nolinkurl{pt/verify_pt.py} \\
+Prop.~\ref{thm:PT4} & exact & $D$: $308\,386$ terms; $G_i$: $45\,612,\dots,22\,604$ terms; $11$ pieces, $99$ polynomials,
+up to $219\,336$ terms; region cover checked separately & \nolinkurl{pt/verify_pt.py}, \nolinkurl{pt/check_pt4_region.py} \\
+Prop.~\ref{prop:AP-B-cert} & exact & $K\le90$; up to $181$ coefficients & \nolinkurl{ap/verify_ap.py},
+\nolinkurl{ap/verify_halfstep.py} \\
+Thm.~\ref{thm:PP80} & Arb, $4000$ and $6000$ bits & levels $K\le160$, $J\le80$; two independent routes &
+\nolinkurl{pp80/verify_pp80_chain.py}, \nolinkurl{pp80/verify_pp80_tau.py} \\
+Prop.~\ref{prop:PP-dominates} & exact & $K\le2.17\cdot10^5$ & \nolinkurl{pp/verify_pp_prefix.py} \\
+Prop.~\ref{prop:W-false} & Arb, $1500$--$7000$ bits & up to $J=50$ & \nolinkurl{w/verify_w_cex.py} \\
+Props.~\ref{thm:W-J2}, \ref{thm:W-J3} & exact & two routes; $J=3$: up to about $37\,000$ terms & \nolinkurl{w/verify_w_small.py},
+\nolinkurl{w/verify_w_insertion.py} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering\small
+\caption{Margins in Theorem~\ref{thm:PP80} along the prime-power chain (direct route, $6000$ bits): certified lower bound
+for the smallest relative increment $\min_k(\varrho_{k+1}-\varrho_k)/|\varrho_k|$ at level $K$, and certified upper bound for
+the largest relative radius of a cofactor coefficient.}\label{tab:app-PP80}
+\begin{tabular}{@{}rll@{}}
+\toprule
+$K$ & increment $\ge$ & radius $\le$ \\
+\midrule
+$20$ & $0.3869948$ & $10^{-1732}$ \\
+$40$ & $0.2650057$ & $10^{-1609}$ \\
+$60$ & $0.1690426$ & $10^{-1464}$ \\
+$80$ & $0.1159777$ & $10^{-1311}$ \\
+$100$ & $0.08632101$ & $10^{-1154}$ \\
+$120$ & $0.06810364$ & $10^{-990}$ \\
+$140$ & $0.05605644$ & $10^{-818}$ \\
+$160$ & $0.04739370$ & $10^{-648}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The certified increments decrease with $K$, roughly like $1/K$: the overall log--log slope between $K=20$ and $K=160$ is
+about $1.01$ (local slopes $0.55$, $1.11$, $1.31$, $1.32$, $1.30$, $1.26$, $1.26$), and $K$ times the increment falls
+monotonically from $10.6$ ($K=40$) to $7.58$ ($K=160$). Divided by the scale $K/(k^*(K-k^*))$ of Newton's inequalities at
+the position $k^*\approx0.66K$ of the minimum, they fall from about $2.38$ ($K=40$) to $1.70$ ($K=160$) (computed from
+the table). So, relative to the natural $1/K$ scale, the margin is still decreasing at $K=160$; nothing in the data
+suggests a sign change, but nothing suggests a positive limit either.
+
+
+\begin{table}[ht]
+\centering\small
+\caption{Counterexamples to W (Proposition~\ref{prop:W-false}), in the units $n=y/2\pi$; values rounded, signs certified.}
+\label{tab:app-W}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.45\textwidth}@{}}
+\toprule
+Node set & Failure & Values \\
+\midrule
+$\{1,\dots,7\}$ & $\mu_7<0$ & $\mu_7\approx-2.332\cdot10^{-18}$ \\
+$\{1,\dots,10\}$ & $\mu_9,\mu_{10}<0$; $p_1^{(10)}<p_1^{(9)}$ & $\mu_9\approx-8.924\cdot10^{-23}$, $\mu_{10}\approx-1.403\cdot10^{-25}$,
+$p_1^{(10)}-p_1^{(9)}\approx-7.341\cdot10^{-11}$ \\
+$\{1,\dots,5\}\cup\{m\}$ & $S<0$; $\mu_Y,\Delta<0$ & $S\approx-3.478\cdot10^{-6}$; $\Delta\approx-1.972\cdot10^{-9}$ ($m=10$),
+$-1.773\cdot10^{-13}$ ($m=1000$) \\
+$(1+\eps)j$, $j\le10$ & $\mu_9,\mu_{10}<0$ & $\eps=10^{-4}$: $S_{\le5}\approx-3.29\cdot10^{-6}$; $\eps=10^{-3}$: $S_{\le5}\approx-1.54\cdot10^{-6}$ \\
+$(1+\frac1{200})j$, $j\le10$ & $\mu_{10}<0$ & $\mu_{10}\approx-3.025\cdot10^{-26}$ \\
+$\frac{11}{10}+j$, $0\le j<50$ & $\mu_{48},\mu_{49},\mu_{50}<0$ & $\mu_{48}\approx-7.050\cdot10^{-122}$, $\mu_{50}\approx-1.720\cdot10^{-129}$ \\
+\bottomrule
+\end{tabular}
+\end{table}

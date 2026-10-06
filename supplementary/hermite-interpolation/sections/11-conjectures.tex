@@ -1,0 +1,182 @@
+%======================================================================
+\section{Conjectures and open problems}\label{sec:conjectures}
+%======================================================================
+
+We collect the open statements of this paper. For each conjecture we give the claim, what it would imply and through
+which result, the evidence with its range, and what a finite prefix of the computed family can and cannot decide. All numerical values in
+this section are computed, not certified, unless a certified statement is cited. None of these conjectures implies the
+Riemann Hypothesis: the strongest consequence of the conjectures on the true family is Conjecture~U of \cite{PaperI}
+(Fact~\ref{fact:logic}), and Conjecture~U gives only $\RH\Leftrightarrow\condE$.
+
+The named conditions of the paper, with their status, are indexed in Table~\ref{tab:named}.
+
+\begin{table}[!tp]
+\centering\scriptsize
+\caption{The named conditions of this paper: where each is defined, where it is used, and its status. ``Open'' means not
+known for all $J$ (or all levels); finite certificates and computations are as indicated.}\label{tab:named}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}p{0.3\textwidth}@{}}
+\toprule
+Condition & Defined in & Used in & Status \\
+\midrule
+\hyp{N}, \hyp{G$_a$}, \hyp{Z$_\infty$}, \hyp{Mg} & Section~\ref{ssec:setting-family} & Fact~\ref{thm:M} & open; finite-$J$ instances of the
+first three certified at $J\in\{10,60,61,110,111\}$ (Fact~\ref{thm:finiteJ}, Proposition~\ref{prop:roots}) \\
+\hyp{Z$^+$}, \hyp{R$_\eta$}, \hyp{R$_k$}, \hyp{R$_E$}, \hyp{Mg$_{\BRS}$} & Corollary~\ref{cor:Mvariants} & Corollary~\ref{cor:Mvariants} & open \\
+\hyp{POS$_a$} & Fact~\ref{prop:POS} & Corollary~\ref{cor:Bprime} & open; certified at $J\in\{10,60,61,110,111\}$ with $a=0.71636$ \\
+(G1)--(G3), \hyp{LR-step}, \hyp{SW-step}, \hyp{CNT$_1$} & Theorem~\ref{thm:IG} & Corollary~\ref{cor:POSroute} & open; computed for
+$10\le J\le109$ (Numerical observation~\ref{obs:LRstep}) \\
+\hyp{SW$_{\hat z}$}, \hyp{C01}, \hyp{C02}, \hyp{Z} & Corollary~\ref{cor:SW} & Corollary~\ref{cor:SW} & open; computed
+(Numerical observation~\ref{obs:LRstep}) \\
+\hyp{TEL$_J$}, \hyp{EVEN-TEL$_J$} & Hypothesis~\ref{hyp:TEL} & Theorem~\ref{thm:B} & open (Conjecture~\ref{conj:TELtrue});
+computed for $J\le110$ \\
+\hyp{ES} & Hypothesis~\ref{hyp:ES} & Theorem~\ref{thm:B}, Corollary~\ref{cor:Bprime} & open (Conjecture~\ref{conj:ES}) \\
+\hyp{B$^+$}$_{J_0}$ & Hypothesis~\ref{hyp:Bplus} & Theorem~\ref{thm:B} & certified for $J_0=10,60$ except on two short intervals
+(Proposition~\ref{prop:base}) \\
+\hyp{B}, \hyp{$\Phi$}, \hyp{$\Phi$-mono}, \hyp{p} & Theorem~\ref{thm:FFred}, Corollary~\ref{cor:FFprime} & the same & \hyp{B} certified
+for $(J_1,X)=(60,31),(110,53)$; the others open \\
+\hyp{SM}$_k$, \hyp{SM}$_{\mathrm{true}}$, \hyp{W}$_{\mathrm{top}}$ & Proposition~\ref{prop:tail-general}, Theorem~\ref{thm:TBtrue} &
+Theorem~\ref{thm:TBtrue} & open (Conjecture~\ref{conj:SMtrue}); computed for $K\le121$; for the model \hyp{SM}$_k$ is certified for
+$k\le60$ (Proposition~\ref{prop:SMset-cert}) \\
+\hyp{CP}$_i$, \hyp{UM}$_i$ & Theorem~\ref{thm:Tprime} & Theorem~\ref{thm:Tprime} & model: open (Conjecture~\ref{conj:UM}); certified
+at sampled levels (Proposition~\ref{prop:UM-cert}) \\
+\hyp{Q} & Remark~\ref{rem:pencil} & Remark~\ref{rem:pencil} & open; computed for $K\le109$ \\
+\hyp{N}$_{\yv}$, \Rp, \FRt, $\TEL_J$, $\PT_K$, $\PT_\delta$ & Definitions~\ref{def:nested} and~\ref{def:toy} & Sections~\ref{sec:model}--\ref{sec:W}
+& model: \Rp\ and \FRt\ proved for $J\le80$ on the prime powers (Theorem~\ref{thm:PP80}) \\
+$(\mathrm{I0})$, $(\mathrm{I1}')$, $(\mathrm{I1})$, $(\mathrm{Y0})$ & Definition~\ref{def:chain-laws} & Theorem~\ref{thm:A} & open
+(Conjecture~\ref{conj:I1prime}); certified for $K\le160$ \\
+$(\mathrm{AP}^+)_K$, $(\mathrm B)_K$, $(\mathrm{LOC})$ & Remark~\ref{rem:Mss} & Remark~\ref{rem:Mss} & the first two certified for
+$K\le90$ (Proposition~\ref{prop:AP-B-cert}); \hyp{LOC} open \\
+(W), $(\mathrm W_{\mathrm{top}})$ & Definition~\ref{def:W} & Section~\ref{sec:W} & (W) fails on the class $\mathcal W$
+(Proposition~\ref{prop:W-false}); holds for $J=2,3$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Step laws for the true family}\label{ssec:conj-true}
+%----------------------------------------------------------------------
+
+The front hypothesis of Theorem~\ref{thm:B} and Corollary~\ref{cor:Bprime} is the step law $\TEL$ of
+Hypothesis~\ref{hyp:TEL}.
+
+\begin{conjecture}[The true step law]\label{conj:TELtrue}
+For every $J\ge2$ such that \hyp{N}$_{J-1}$ and \hyp{N}$_J$ hold \textup{(}so that $F_{J-1}$ and $F_J$ are defined; by
+Conjecture~\ref{conj:PPmagic}(a) this should be every $J$\textup{)}, and every $x\ge1$:
+$\FT F_J(x)\ge(1-x/n_J)^2\,\FT F_{J-1}(x)$, where $x=e^{2\pi\xi}$.
+\end{conjecture}
+
+\emph{Implication.} With \hyp{N}$_J$ for every $J\ge J_0$ and the base hypothesis \hyp{B$^+$}$_{J_0}$
+(Hypothesis~\ref{hyp:Bplus}), which is certified only in part for $J_0=10,60$ (Proposition~\ref{prop:base}),
+Theorem~\ref{thm:B} gives the front \FRt\ for every $J\ge J_0$; adding \hyp{ES} (Conjecture~\ref{conj:ES}) and \hyp{POS$_a$},
+Corollary~\ref{cor:Bprime} gives \condS\ and \condU. \emph{Evidence.} Computed (not certified) for every $J=2,\dots,110$ on a
+grid of $657$ points in $[1.5,1.35\,n_J]$ and at all nodes, so the range is short for small $J$ and $[1,1.5)$ is not
+covered; repeated with independent code for $J=2,\dots,12,20,30,\dots,110$, in some cases up to $x=1000n_J$ (Numerical
+observation~\ref{obs:TEL}). The log-margin $\tau_J(n_J)$ at the new node lies between $1.58$ and $2.21$ (Numerical
+observation~\ref{obs:toy-true}). The stronger law with $(1-x^2/n_J^2)^2$ also holds on these data, but its margin shrinks like a
+small power of $n_J$ (Numerical observation~\ref{obs:misc}(e)), so we do not conjecture it. \emph{Refutation.} One $J$ and one $x\ge1$ violating the
+inequality.
+
+\begin{conjecture}[The true insertion laws beyond $J=110$]\label{conj:SMtrue}
+Let $\yv_k:=\yPP_k$ for the true kernel. \textup{(a)} For every $k\ge110$, \hyp{N} holds for $\yv_k$, and for every prime
+power $n>n_{k+1}$ it holds for $\yv_k\cup\{2\pi n\}$ and $\yv_{k+1}\cup\{2\pi n\}$, and
+$\Delta_{\yv_{k+1}}(2\pi n)\le\Delta_{\yv_k}(2\pi n)$.
+\textup{(b)} $\Delta p_1^{(K)}\ge0$ for every $K\ge110$.
+\end{conjecture}
+
+\emph{Implication.} Part (a) gives the hypotheses \hyp{N} and \hyp{SM}$_{\mathrm{true}}$ of Theorem~\ref{thm:TBtrue} with
+$J_1=110$, and part (b) its hypothesis \hyp{W}$_{\mathrm{top}}$; so $\delta:=\sum_{K\ge110}|\Delta p_1^{(K)}|\le B_{110}$. With the
+computed value $B_{110}\approx1.8672\cdot10^{-10}$ (Numerical observation~\ref{obs:B110}) and the certified ratio bound
+$R_1=4.844\cdot10^9$ on $[2,53]$ at $J_1=110$ (Proposition~\ref{prop:base}), one gets $R_1\delta\le R_1B_{110}\approx0.905$
+(computed), so hypothesis~(p) of Corollary~\ref{cor:FFprime}, $(1+\eta)R_1\delta<1$, would hold on $[2,53]$ provided
+\hyp{$\Phi$-mono} holds with $\eta<0.105$.
+\emph{Evidence.} (a) computed at $K=1,\dots,121$ on sampled grids, with relative margin about $0.8/n$ (Numerical
+observation~\ref{obs:SMset-true}); (b) computed for $J\le109$ and certified at $J=60,110$ (Proposition~\ref{prop:increments}). \emph{Refutation.} A single $k$ and prime power $n$ violating (a), or
+$\Delta p_1^{(K)}<0$ for some $K\ge110$.
+
+\begin{conjecture}[Erosion summability]\label{conj:ES}
+Hypothesis~\ref{hyp:ES} holds: for every $x\in[1,\infty)\setminus\PP$, $\FT F_K(x)>0$ for all sufficiently large $K$, and
+$\sum_K\max(\varepsilon_K(x),0)<\infty$, where $\varepsilon_K(x):=\log\bigl(\FT F_{K-1}(x)/\FT F_K(x)\bigr)$ and the sum runs over
+those $K$.
+\end{conjecture}
+
+\emph{Implication.} With Conjecture~\ref{conj:TELtrue}, \hyp{N}, \hyp{POS$_a$} and \hyp{B$^+$}$_{J_0}$:
+\condS\ and \condU\ by Corollary~\ref{cor:Bprime}. \emph{Evidence.} At fixed $x$ the erosion is, to $5$--$6$ digits,
+$\Delta p_1^{(K)}$ times a profile independent of $K$ (Numerical observation~\ref{obs:rankone}), so it decays like
+$n_K^{-2.4}$ in the computed range; at $x=1.25$ and $x=1.5$ it is negative for $J\ge10$. Heuristically, \hyp{ES} would
+follow from $\sum_K|\Delta p_1^{(K)}|<\infty$ and a bounded relative profile at fixed $x$, but this derivation needs sign
+control of $\Delta p_1^{(K)}$ of the type in Conjecture~\ref{conj:SMtrue}(b). \emph{Refutation.} No finite prefix of the
+family decides it alone (a rigorous tail bound could); a sustained decay of the erosion slower than $1/K$ at some fixed $x$
+would be evidence against it.
+
+\subsection{Laws for the model}\label{ssec:conj-toy}
+
+\begin{conjecture}[Front law of the model]\label{conj:I1prime}
+Along the prime-power chain of the model (Definition~\ref{def:chain-laws}), $(\mathrm{I1}')_K$ and $(\mathrm{Y0})_K$ hold
+for every $K\ge0$.
+\end{conjecture}
+
+\emph{Implication.} By Theorem~\ref{thm:A}: for every $J$, \hyp{N}, $p_{2J}>0$, \Rp\ and strict $\TEL_J$ hold on
+$\yPP_J$. \emph{Evidence.} Certified for every $K\le160$ (Theorem~\ref{thm:PP80}). The relative margins decrease from
+$0.39$ at $K=20$ to $0.047$ at $K=160$, roughly like $1/K$, and relative to that scale they are still decreasing at
+$K=160$ (Table~\ref{tab:app-PP80} and the comment after it). The law fails at critical density and on
+the progression $y^*$ (computed; Numerical observation~\ref{obs:misc}(b)), so a proof must use a property of the prime powers
+that these node sets lack, presumably their growth well above the $\PT$-tight scale ($y_K=2\pi n_K\approx2\pi K\log K$, against
+$y^*_K\approx8.4K$), rather than sparsity as such.
+\emph{Refutation.} A level $K$ with $\varrho_{k+1}<\varrho_k$ for some $k$, or with $\pg^{(K)}(z_{K+1})\le0$.
+
+\begin{conjecture}[Tail law of the model]\label{conj:UM}
+Let $B_i$ be the prime-power half-step chain of the model ($B_{2K}$ the doubled chain of $\yPP_K$,
+$B_{2K+1}=B_{2K}+y_{K+1}$) and $z_{i+1}$ its next point. For every $i\ge0$: $(\mathrm{CP})_i$ $D_1(B_i)\neq0$ and
+$S(B_i)>0$; and $(\mathrm{UM})_i$ on $[z_{i+1},\infty)$: $F_1^{B_i}\neq0$, $a_{B_i}$ is non-decreasing, and
+$(q_1^{B_i})'<0$.
+\end{conjecture}
+
+\emph{Implication.} By Theorem~\ref{thm:Tprime}, for every $J_1$, in the model,
+\[
+  \sum_{K\ge J_1}\Delta p_1^{(K)}\le2S_{J_1}\sum_{n\in\PP,\,n>n_{J_1}}\bigl(-F_0/F_1\bigr)^{B_{2J_1}}(2\pi n).
+\]
+\emph{Evidence.} $(\mathrm{UM})_i$ is certified at both chain levels $i=2J$ and $i=2J+1$ for
+$J\in\{2,4,8,12,20,30,40,60\}$ (Proposition~\ref{prop:UM-cert}), with the non-vanishing $D_1(B_i)\ne0$ certified by the ball
+solves. The sign condition $S(B_i)>0$ of $(\mathrm{CP})_i$ is certified only at $i=2J$ for $J\in\{6,10,20\}$ (the values of
+$S_{\yPP_J}$ in Proposition~\ref{prop:Fremainder}) and, for $J=20$, also at $i=41$, by
+Proposition~\ref{thm:halfstep}\textup{(H2)}, since $a_{B_{40}}(y_{21})>0$ is certified in Proposition~\ref{prop:UM-cert}. So both
+laws are certified together only at $i=40,41$. The hypotheses of Theorem~\ref{thm:Tprime} were computed (not certified) on
+sampled points at every level $J\le40$, and $S_K>0$ at six further levels (Numerical observation~\ref{obs:toytail-data}). By Proposition~\ref{prop:obstruction}, no proof can rest on open sign
+conditions on the five-function system alone. \emph{Refutation.} A level with $S(B_i)\le0$, or a point of
+$[z_{i+1},\infty)$ where $a_{B_i}'<0$ or $(q_1^{B_i})'\ge0$.
+
+\subsection{Open problems}\label{ssec:open}
+
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item\label{op:global-chain} \emph{A global description of the chain pair} $\Fc_{Z+0}/\Fc_Z$ that proves the per-level laws
+(Conjectures~\ref{conj:I1prime} and~\ref{conj:UM} in the model, Conjectures~\ref{conj:TELtrue} and~\ref{conj:SMtrue} for
+the true kernel) at all levels at once; inductive arguments meet the window obstruction of Remark~\ref{rem:windowP}.
+\item\label{op:two-rungs} \emph{Model and true kernel.} Make ``the true kernel behaves like the model two companion rungs
+up'' (Numerical observation~\ref{obs:toy-true}(c)) precise, with error terms.
+\item\label{op:certify} \emph{Finite certifications.} Certify $B_{110}$, which would make (p) of
+Corollary~\ref{cor:FFprime} on $[2,53]$ conditional only on Conjecture~\ref{conj:SMtrue}; close the base
+$(\mathrm B^+)_{60}$ on $[1,2)$ and on the node sliver $(199,199.39)$; and certify uniqueness windows at a non-arithmetic
+critical point $q_c$ itself.
+\item\label{op:sandwich} \emph{Coefficient positivity.} Prove the comparisons (C01), (C02) and the front inequality (Z) of
+Corollary~\ref{cor:SW} for all $J$, or the sandwich step directly (Section~\ref{ssec:piece1}).
+\end{enumerate}
+
+Table~\ref{tab:falsify} summarises what each conjecture would give and how a finite computation could refute it; the tests
+listed are sufficient, not a complete account of how a conjecture could fail.
+
+\begin{table}[ht]
+\centering\small
+\caption{The conjectures of this paper: consequence, evidence, and finite tests that would refute them.}\label{tab:falsify}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}@{}}
+\toprule
+Statement & Gives (via) & Evidence & Refuted by \\
+\midrule
+Conj.~\ref{conj:TELtrue} & front for $J\ge60$ (Thm.~\ref{thm:B}) & computed $J\le110$ & one $(J,x)$ violating it \\
+Conj.~\ref{conj:SMtrue} & tail at $J_1=110$ (Thm.~\ref{thm:TBtrue}) & computed $K\le121$ & one $(k,n)$; $\Delta p_1^{(K)}<0$ \\
+Conj.~\ref{conj:ES} & \hyp{Mg}; with the above, \condS, \condU\ (Cor.~\ref{cor:Bprime}) & rank-one profile, $J\le109$ &
+no finite prefix of the family alone \\
+Conj.~\ref{conj:I1prime} & model front, all $J$ (Thm.~\ref{thm:A}) & certified $K\le160$ &
+a decreasing ratio, or $\pg^{(K)}(z_{K+1})\le0$ \\
+Conj.~\ref{conj:UM} & model tail bound (Thm.~\ref{thm:Tprime}) & (UM) certified at $8$ levels $J\le60$; (CP) at $i=40,41$ & $S(B_i)\le0$; $a'<0$; $q_1'\ge0$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+

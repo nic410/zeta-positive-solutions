@@ -1,0 +1,114 @@
+%======================================================================
+\section{A sign property that fails}\label{sec:W}\label{ssec:W}
+%======================================================================
+
+The derivative weights $\mu_j$ of the $p_1$-rule govern how $p_1$ moves with the nodes (Lemma~\ref{lem:dualrule}(d)). A sign
+property of these weights would give monotonicity of $p_1$ in the node set. We show that it fails at and strictly inside the
+critical density, that it holds for two and three nodes, and that at a new node it is the front property of a companion
+family.
+
+\begin{definition}[The sign property W]\label{def:W}
+Let $\yv$ satisfy \hyp{N}$_{\yv}$, and let $\mu_j$ ($j\le J$) be the derivative weights of the $p_1$-rule
+(Lemma~\ref{lem:dualrule}, model data). \emph{Property \textup{(W)}} at $\yv$: $\mu_j>0$ and $Q''_{\yv}(y_j)>0$ for every
+$j\le J$. \emph{Property $(\mathrm W_{\mathrm{top}})$} for the insertion of $Y$: $\mu_Y>0$ and
+$Q''_{\yv\cup\{Y\}}(Y)>0$ at the new node. By Lemma~\ref{lem:dualrule}(d), $\partial p_1/\partial y_j=-Q''_{\yv}(y_j)\mu_j$,
+so \textup{(W)} makes $p_1$ strictly decreasing in each node. The \emph{class} $\mathcal W$ consists of the node sets with
+$y_1\ge2\pi$ and $y_{j+1}-y_j\ge2\pi$ (gaps at least $1$ in the units $n=y/2\pi$).
+\end{definition}
+
+The class $\mathcal W$ contains the prime powers and all sets of integers, i.e.\ it reaches exactly the critical density.
+One might expect (W) at every node set with \hyp{N} in $\mathcal W$: together with Corollary~\ref{cor:Ftoy-signs}, (W) along a
+sequence of node sets would give $\Delta p_1^{(K)}>0$ and a comparison principle in the node set. This expectation is
+false.
+
+\begin{proposition}[Counterexamples to W]\label{prop:W-false}
+In the units $n=y/2\pi$:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\yv=2\pi\cdot(1,2,\dots,7)$: \hyp{N} holds and $Q''_{\yv}(y_j)>0$ for all $j$, but $\mu_7<0$
+\textup{(}$\mu_7\approx-2.332\cdot10^{-18}$\textup{)};
+\item $\yv=2\pi\cdot(1,\dots,10)$: $\mu_9,\mu_{10}<0$, and $p_1^{(10)}<p_1^{(9)}$;
+\item $\yv=2\pi\cdot(1,\dots,5)$: $S_{\yv}<0$ \textup{(}$S_{\yv}\approx-3.478\cdot10^{-6}$\textup{)}; hence, by
+Theorem~\ref{thm:Ftoy}\textup{(2)}, $\Delta_{\yv}(Y)<0$ for all sufficiently large $Y$; and $\mu_Y<0$, $\Delta_{\yv}(Y)<0$ at
+$Y=2\pi m$ for $m\in\{10,15,20,50,100,1000\}$;
+\item \textup{(strict interior)} $y_j=2\pi(1+\eps)j$, $j\le10$: for $\eps\in\{10^{-4},10^{-3}\}$, $\mu_9,\mu_{10}<0$ and
+$S_{\yle5}<0$; for $\eps=1/200$, $\mu_{10}<0$;
+\item \textup{(shifted integers)} $y_j=2\pi(\frac{11}{10}+j)$, $0\le j<50$: $\mu_{48},\mu_{49},\mu_{50}<0$;
+\item \textup{(no monotonicity in the node set)} $2\pi\cdot(1,\dots,8)$ satisfies \textup{(W)}, while its subset
+$2\pi\cdot(1,\dots,7)$ does not.
+\end{enumerate}
+All these node sets lie in the class $\mathcal W$ of Definition~\ref{def:W}, and those of \textup{(d)} in its interior.
+Hence \textup{(W)} fails on $\mathcal W$, at and strictly inside the critical density.
+\end{proposition}
+
+\begin{proof}[Proof \textup{(computer-assisted)}]
+For each node set the verifier builds the model system with the nodes $2\pi n$ as Arb balls (real $\pi$), solves the
+system with $P(0)=1$ by a rigorous ball solver (which certifies \hyp{N}), obtains the weights $\mu_j$ from the transposed
+system (the $p_1$-rule of Lemma~\ref{lem:dualrule}), $Q''_{\yv}(y_j)$ from the solution, $S_{\yv}$ and $\Delta_{\yv}(Y)$ from
+\eqref{eq:toy-insertion}, and accepts each sign only if the ball excludes $0$; it also checks that every node set lies in
+the class. In (c), $S_{\yv}\ne0$ gives $p_{2J}\ne0$ (since $S_{\yv}=-p_{2J}\ell_1^*$), so Theorem~\ref{thm:Ftoy} applies.
+Ancillary file: \nolinkurl{toy/w/verify_w_cex.py} with \nolinkurl{toy/w/params/w_cex.json} ($1500$--$7000$ bits; items
+(a)--(f) as above).
+\end{proof}
+
+The failures at critical density do not reach the prime powers (Numerical observation~\ref{obs:W-PP}), and for two and
+three nodes (W) holds on the whole class.
+
+\begin{proposition}[W for two nodes]\label{thm:W-J2}
+Let $J=2$ and $0<y_1<y_2$ with either \textup{(a)} $y_1\ge\frac{157}{25}$ and $y_2-y_1\ge\frac{157}{25}$, or
+\textup{(b)} $y_1\ge8$. Then \hyp{N} holds, $\mu_1,\mu_2>0$ and $Q''_{\yv}(y_1),Q''_{\yv}(y_2)>0$.
+\end{proposition}
+
+\begin{proposition}[W for three nodes]\label{thm:W-J3}
+Let $J=3$ and $0<y_1<y_2<y_3$ with either \textup{(a)} $y_1\ge\frac{157}{25}$ and $y_{j+1}-y_j\ge\frac{157}{25}$
+\textup{(}$j=1,2$\textup{)}, or \textup{(b)} $y_1\ge12$. Then \hyp{N} holds and $\mu_j>0$, $Q''_{\yv}(y_j)>0$ for
+$j=1,2,3$.
+\end{proposition}
+
+Since $\frac{157}{25}<2\pi$, both propositions cover the class $\mathcal W$; part (b) needs no gap condition.
+
+\begin{proof}[Proofs of Propositions~\ref{thm:W-J2} and~\ref{thm:W-J3} \textup{(computer-assisted, exact)}]
+Write each region in non-negative slack variables: $y_1=g+w_1$ and $y_k=y_{k-1}+h+w_k$ ($k\ge2$), with
+$(g,h)=(\frac{157}{25},\frac{157}{25})$ in case (a) and $(g,h)=(8,0)$, resp.\ $(12,0)$, in case (b). Two independent exact
+certificates are shipped. \emph{Cramer route} (\nolinkurl{toy/w/verify_w_small.py}): with $M$ the matrix of \hyp{N}$_{\yv}$,
+Cramer's rule gives $\mu_j=-N_j/\det M$ with explicit $N_j,\det M\in\ZZ[y_1,\dots,y_J]$, and
+$\det M=(y_1\cdots y_J)^2V^4D_c$ with $V=\prod_{i<j}(y_i-y_j)$. After the substitution, $D_c$ and every $N_j$ have
+coefficients of one fixed sign, strictly (a non-zero constant term in case (a); in case (b) a non-zero monomial free of $w_1$,
+positive because the gaps are positive), and the signs give $\det M\ne0$ and $\mu_j>0$ (Lemma~\ref{lem:posc}). Each region lies
+in $\PT_{0.05}$, so Propositions~\ref{thm:PT2} and~\ref{thm:PT3} give $R_{\yv}\in\RR_{>0}[y]$ and hence
+$Q''_{\yv}(y_j)=2R_{\yv}(y_j)\prod_{i\ne j}(y_j-y_i)^2>0$. \emph{Insertion route} (\nolinkurl{toy/w/verify_w_insertion.py}):
+every node is the inserted node of the configuration without it (Proposition~\ref{prop:insertion} allows insertion
+anywhere off the nodes), and by \eqref{eq:toy-insertion}, after clearing the base determinant,
+$\mu_Y=A/(\omega W_{\mathrm d})$ and $Q''_{\yv\cup\{Y\}}(Y)=\omega W_{3\mathrm d}/(\det M\cdot W_{\mathrm d})$ with explicit
+polynomials $A$, $W_{\mathrm d}$, $W_{3\mathrm d}$, $\det M$ and $\omega=\prod_i(Y-y_i)^2$; for every insertion position these
+four polynomials are one-signed on the region, with the signs that give \hyp{N}, $\mu_Y>0$ and $Q''>0$, without using
+Propositions~\ref{thm:PT2} and~\ref{thm:PT3}. Both formulas are checked against a direct rational solve at one point.
+Parameter file \nolinkurl{toy/w/params/w_small.json}.
+\end{proof}
+
+The $\mu$-half of (W) is a front property of a companion family.
+
+\begin{proposition}[W at a new node is companion positivity]\label{prop:W-reduction}
+Let $\yv$ satisfy \hyp{N}$_{\yv}$, $J\ge1$. Then $E_*=\ell_1^*E_2-\ell_2^*E_1$ lies in $u^2\RR[u]$ and has zero data at
+$\yv$; $R_*=Q_{E_*}/A_{\yv}$ has degree $2J+4$ and leading coefficient $\ell_1^*$; and for $Y\in(0,\infty)\setminus\yv$,
+\hyp{N}$_{\yv\cup\{Y\}}$ holds if and only if $\mathcal W(Y)\neq0$, and then $\mu_Y=R_*(Y)/(A_{\yv}(Y)\mathcal W(Y))$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item If $\ell_1^*\neq0$ and $\mathcal I\subset(0,\infty)$ is an interval, unbounded above, on which $R_*$ and $\mathcal W$
+have no zeros, then for every $Y\in\mathcal I\setminus\yv$, \hyp{N}$_{\yv\cup\{Y\}}$ holds and
+$\operatorname{sign}\mu_Y=-\operatorname{sign}\ell_1^*$, which is $\operatorname{sign}(S_{\yv}/p_{2J})$ when $p_{2J}\neq0$.
+\item If $[u^2]E_*\neq0$, then $E_*/[u^2]E_*=u^2\tilde h$ with $\tilde h(0)=1$ and $\deg\tilde h\le2J$, and
+$\tilde h(-\Eul^2)[\Eul^4e^{-y}]$ has double zeros at $\yv$: $\tilde h$ solves the Hermite problem at the same nodes for
+the companion kernel $\Eul^4e^{-y}=\tau_2(y)e^{-y}$. So ``$R_*$ has no zeros on $\mathcal I$'' is the front property on
+$\mathcal I$ of the companion family.
+\item For a node $y_j$, with all objects built from $\yv\setminus y_j$ \textup{(}assuming \hyp{N} for $\yv\setminus y_j$
+and for $\yv$\textup{)}: $\mu_j=R_*^{(j)}(y_j)/(A^{(j)}(y_j)\mathcal W^{(j)}(y_j))$. Hence $\mu_j>0$ for every $j$
+follows if, for each $j$, $S_{\yv\setminus y_j}/p_{2J-2}(\yv\setminus y_j)>0$ and $R_*^{(j)}$, $\mathcal W^{(j)}$ have no
+zeros on $[y_j,\infty)$ \textup{(}old nodes included\textup{)}.
+\end{enumerate}
+\end{proposition}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+The companion kernel $\Eul^4e^{-y}$ changes sign at the zeros $0.16575\ldots$, $1.34337\ldots$, $4.49086\ldots$ of
+$\tau_2(y)/y$, so its front property can hold only beyond about $4.4$; at $J=1$, (W) is exactly $\tau_2(a)>0$,
+i.e.\ $a>4.49086\ldots$ (Proposition~\ref{prop:J1}(c)). Thus (W) splits into the companion front, \hyp{N} along the
+insertions, and one sign at infinity, $S_{\yv}>0$; the $Q''$-half of (W) is the model front itself.

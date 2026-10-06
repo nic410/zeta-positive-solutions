@@ -1,0 +1,6 @@
+{
+ "statement": "(AP+) at delta = 1/20, with (N) and p_2J > 0",
+ "c": "21/20",
+ "nodes": "y*_K = c (8K - 5), K = 1..J, c = 1 + delta",
+ "J_range": [1, 90]
+}

@@ -1,0 +1,131 @@
+%======================================================================
+\section{The Christoffel chain of the model and the front for \texorpdfstring{$J\le80$}{J <= 80}}\label{sec:model-chain}
+%======================================================================
+
+\subsection{The Christoffel chain}\label{ssec:toy-chain}
+
+In the model the chain calculus of Section~\ref{sec:chain} can be read on coefficients. Let
+$\Asp^{\mathrm{pol}}_K:=\operatorname{span}(\tau_0,\dots,\tau_K)$, the admissible polynomials of degree $\le2K$, so that
+$\Asp_K=\Asp^{\mathrm{pol}}_Ke^{-y}$ for the base kernel $e^{-y}$.
+
+\begin{definition}[Chains, cofactors and the chain laws]\label{def:chain-laws}
+A \emph{chain of level $K$} is a multiset $Z\subset(0,\infty)$ of size $K$; $\omega_Z(y):=\prod_{z\in Z}(y-z)$. A
+\emph{cofactor} of $Z$ is a monic polynomial $f$ of degree $K$ with $\omega_Zf\in\Asp^{\mathrm{pol}}_K$; $Z$ is
+\emph{regular} if the cofactor is unique, and then it is denoted $\pf_Z$ (so that $\omega_Z\pf_Ze^{-y}$ is the
+top-normalised interpolant $\Fc_Z$ of Definition~\ref{def:nested}, since $e^{y}\Eul^{2K}e^{-y}=(-1)^K\tau_K$ is monic). For
+regular $Z$ with $\pf_Z(0)\neq0$ put $\pg_Z:=\pf_{Z+0}$ (the \emph{$0$-augmented cofactor}, of degree $K+1$; $Z+0$ is regular
+by Lemma~\ref{lem:R}) and $\hat{\pf}_Z:=\pf_Z/\pf_Z(0)$. For the doubled chain $\yv+\yv$ of a node set (level $2J$),
+$\pf_{\yv+\yv}=\tilde R_{\yv}$ and $\hat{\pf}_{\yv+\yv}=\hat R_{\yv}$. Writing $\pf_Z=\sum_kf_ky^k$ and $\pg_Z=\sum_kg_ky^k$:
+\begin{itemize}
+\item $(\mathrm{I0})_Z$: $\pf_Z\in\RR_{>0}[y]$;
+\item $(\mathrm{I1}')_Z$: $\varrho_k:=g_k/f_k$ is non-decreasing for $0\le k\le K$;
+\item $(\mathrm{I1})_Z$: $\sigma'_k:=g_k/f_{k+1}$ is non-decreasing for $0\le k\le K-1$.
+\end{itemize}
+Along a sequence $z_1,z_2,\ldots>0$ with $Z_K:=(z_1,\dots,z_K)$, $\pf^{(K)}:=\pf_{Z_K}$ and $\pg^{(K)}:=\pg_{Z_K}$, the
+condition $(\mathrm{Y0})_K$ is $\pg^{(K)}(z_{K+1})>0$. The \emph{prime-power chain} is $z_{2j-1}=z_{2j}=2\pi n_j$; its
+even levels are the node sets $\yPP_J$ and its odd levels the half-steps $\yPP_J+y_{J+1}$.
+\end{definition}
+
+For the model, the Christoffel identity (Lemma~\ref{lem:christoffel}(c)) reads: if $Z$ is regular, $\pf_Z(0)\neq0$ and
+$\pf_Z(z)\neq0$ ($z\in Z$ allowed), then $Z+z$ is regular and
+\begin{equation}\label{eq:christoffel-toy}
+  (y-z)\,\pf_{Z+z}(y)=y\,\pg_Z(y)-\lambda(z)\pf_Z(y),\qquad \lambda(z):=z\,\pg_Z(z)/\pf_Z(z).
+\end{equation}
+The next two statements use the polynomial structure (the top coefficients $f_{K+1}=0$, $g_{K+1}=1$, and
+normalisation at $0$); they have no analogue for the true kernel as stated.
+
+\begin{lemma}[Half-steps]\label{lem:ST}
+Let $Z$ be a regular chain of level $K$, $f=\pf_Z$, $g=\pg_Z$, and $z>0$.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \textup{(ST)} If $(\mathrm{I0})_Z$, $(\mathrm{I1}')_Z$ and $g(z)>0$, then $Z+z$ is regular,
+$\pf_{Z+z}\in\RR_{>0}[y]$, and $\hat{\pf}_{Z+z}-\hat{\pf}_Z$ has positive coefficients in every degree $1,\dots,K+1$.
+\item \textup{(SC)} If $(\mathrm{I0})_Z$, $(\mathrm{I1})_Z$, $g_K>0$ \textup{(}equivalently $\Sigma Z>(K+1)(2K+1)$, by
+Lemma~\ref{lem:trace}(c)\textup{)} and $g(z)>0$, then $\pf_{Z+z}\in\RR_{>0}[y]$.
+\item $(\mathrm{I1}')_Z$, log-concavity of the coefficients of $f$, and $g_1>0$ together imply $(\mathrm{I1})_Z$.
+\end{enumerate}
+\end{lemma}
+
+The proof (Appendix~\ref{app:proofs-toy}) reads \eqref{eq:christoffel-toy} coefficientwise: the coefficients of
+$\pf_{Z+z}$ are partial sums of a sequence with a single sign change.
+
+\begin{theorem}[The front from one likelihood-ratio law per level]\label{thm:A}
+Let $z_1,z_2,\ldots>0$ and $K_0\ge1$. Suppose that $(\mathrm{I1}')_K$ and $(\mathrm Y0)_K$ hold for every $0\le K<K_0$.
+Then for every $K\le K_0$, $Z_K$ is regular and $\pf^{(K)}\in\RR_{>0}[y]$, and for $K<K_0$, $\hat{\pf}^{(K+1)}-\hat{\pf}^{(K)}$
+has positive coefficients in degrees $1,\dots,K+1$. For a doubled chain ($z_{2j-1}=z_{2j}=y_j$) and every $J$ with
+$2J\le K_0$: \hyp{N}$_{\yle J}$, $p_{2J}>0$, \Rp$_{\yle J}$, strict $\TEL_J$, and every half-step cofactor
+$\pf^{(2J-1)}$ lies in $\RR_{>0}[y]$.
+\end{theorem}
+
+The proof is in Appendix~\ref{app:proofs-toy}.
+
+\begin{remark}[Why the law does not propagate]\label{rem:windowP}
+Let $Z$ be a regular chain of level $K$ with $f:=\pf_Z$ and $g:=\pg_Z$, let $z>0$, and assume $f(0),f(z),g(0),g(z)\ne0$.
+Then $Z+0+0$ is regular; put $h:=\pf_{Z+0+0}$, $\Phi_l:=(f_l,g_{l-1},h_{l-2})\in\RR^3$, $\Phi(z):=\sum_lz^l\Phi_l$ and
+$S_{\le m}(z):=\sum_{l\le m}z^l\Phi_l$. If $\pf_{Z+z}\in\RR_{>0}[y]$, then
+\begin{equation}\label{eq:window}
+(\mathrm{I1})_{Z+z}\iff\det[\Phi(z),S_{\le m}(z),\Phi_{m+1}]/f(z)\ge0\quad\text{for }1\le m\le K .
+\end{equation}
+\emph{Derivation.} By \eqref{eq:christoffel-toy} applied to $Z$ at $z$, and to $Z+0$ at $z$ (whose $0$-augmented cofactor is
+$h$, and whose cofactor at the next level is $\pf_{Z+0+z}=\pg_{Z+z}$, since cofactors depend only on the multiset),
+$f':=\pf_{Z+z}$ and $g':=\pg_{Z+z}$ satisfy $(y-z)f'=yg-\lambda f$ and $(y-z)g'=yh-\lambda'g$, with $\lambda=zg(z)/f(z)$ and
+$\lambda'=zh(z)/g(z)$. Expanding $(z-y)^{-1}$ at $y=0$, as in \eqref{eq:ST-coeff}, gives $f'_k=z^{-k-1}\,u\cdot S_{\le k}(z)$ and
+$g'_k=z^{-k-2}\,v\cdot S_{\le k+1}(z)$ with $u=(\lambda,-1,0)$ and $v=(0,\lambda',-1)$. Since
+$S_{\le m+1}=S_{\le m}+z^{m+1}\Phi_{m+1}$, the identity $(a\cdot c)(b\cdot d)-(a\cdot d)(b\cdot c)=(a\times b)\cdot(c\times d)$ and
+$u\times v=(1,\lambda,\lambda\lambda')=\Phi(z)/f(z)$ give
+\[
+f'_mg'_m-f'_{m+1}g'_{m-1}=z^{-m-2}\det[\Phi(z),S_{\le m}(z),\Phi_{m+1}]/f(z).
+\]
+If $f'\in\RR_{>0}[y]$, the left side is non-negative if and only if $g'_{m-1}/f'_m\le g'_m/f'_{m+1}$, and for $1\le m\le K$ these
+inequalities are $(\mathrm{I1})_{Z+z}$. So propagating the law to the next level requires the next augmented cofactor
+$\pf_{Z+0+0}$, which in turn requires $\pf_{Z+3\cdot0}$, and so on, and we know no way to close this hierarchy at a fixed depth
+(for its computed behaviour along the prime powers, and for the failures of $(\mathrm{I1}')$ at critical density, see
+Numerical observation~\ref{obs:misc}(b)). This is why Theorem~\ref{thm:PP80} below is a finite theorem.
+\end{remark}
+
+%----------------------------------------------------------------------
+\subsection{The front for \texorpdfstring{$J\le 80$}{J <= 80}}\label{ssec:PP80}
+%----------------------------------------------------------------------
+
+\begin{theorem}[The front of the model for $J\le80$]\label{thm:PP80}
+Let $y_j=2\pi n_j$, where $n_j$ is the $j$-th prime power. For every $J\le80$:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \hyp{N}$_{\yPP_J}$ holds and $p_{2J}>0$;
+\item $R_J\in\RR_{>0}[y]$; in particular $Q_J>0$ on $(0,\infty)$ off the nodes \textup{(}model \FRt\textup{)};
+\item strict $\TEL_J$ holds: $\hat R_J-\hat R_{J-1}$ has positive coefficients in every degree $1,\dots,2J$;
+\item the half-step cofactor \textup{(}nodes $y_1,\dots,y_{J-1}$ double, $y_J$ simple\textup{)} has positive
+coefficients.
+\end{enumerate}
+Moreover, \textup{(e)} along the prime-power chain $(\mathrm{I0})_K$, $(\mathrm{I1}')_K$ and $(\mathrm Y0)_K$ hold at
+every level $K\le160$; hence, for every $K\le160$ and every $z>0$ with $\pg^{(K)}(z)>0$, $\pf_{Z_K+z}\in\RR_{>0}[y]$.
+\end{theorem}
+
+The theorem concerns the model only; it says nothing about the true family.
+
+\begin{proof}[Proof \textup{(computer-assisted, two independent certificates)}]
+Both certificates use Arb ball arithmetic \cite{Joh17} with the real number $\pi$ (a ball), so the nodes are
+exact; every sign decision is a ball that excludes $0$, and linear systems are solved by a rigorous ball solver that
+fails unless it proves the matrix invertible (Appendix~\ref{app:certificates}). The prime powers $n_1,\dots,n_{81}$ are read from
+the parameter file and checked in the script to be the initial segment of the prime powers.
+
+\emph{Chain route} (\nolinkurl{toy/pp80/verify_pp80_chain.py}, parameter file
+\nolinkurl{toy/pp80/params/pp80_chain.json}, $4000$ bits). For every $K\le160$ the script computes $\pf^{(K)}$ and
+$\pg^{(K)}$ by rigorous ball solves of the odd Mellin conditions of Proposition~\ref{prop:umbral}(c), which proves the
+regularity of $Z_K$ and $Z_K+0$, and checks $(\mathrm{I0})_K$, $(\mathrm{I1}')_K$ and $(\mathrm{Y0})_K$. Theorem~\ref{thm:A}
+with $K_0=160$ then gives (a)--(d) for every $J\le80$, and (e) follows from Lemma~\ref{lem:ST}(i).
+
+\emph{Direct route} (\nolinkurl{toy/pp80/verify_pp80_tau.py}, parameter file \nolinkurl{toy/pp80/params/pp80.json},
+$6000$ bits, two runs). A different algorithm (Hermite systems in the $\tau$-basis, then division by $\omega_Z$) checks
+the same chain conditions for every $K\le160$, and, without using Theorem~\ref{thm:A}, \hyp{N}, $p_{2J}>0$, strict
+$\TEL_J$ and positivity of the half-step cofactor for every $J\le80$.
+
+Both routes end with ``ALL CERTIFIED''. The worst relative radius of a cofactor coefficient is below
+$2.6\cdot10^{-649}$ (direct route, $K=160$), and the smallest relative likelihood-ratio increment
+$\min_k(\varrho_{k+1}-\varrho_k)/|\varrho_k|$ over all levels is at least $0.0473$ (attained at $K=160$); the margins per
+level are in Table~\ref{tab:app-PP80}. The design of both certificates is described in Appendix~\ref{app:PP80};
+files, hashes, logs and commands are in Appendix~\ref{app:anc}. Total cost about $19$ CPU-minutes.
+\end{proof}
+
+Without this theorem, the front of the model on the prime powers is proved here only for $J\le4$
+(Corollary~\ref{cor:PT-small}). By Theorem~\ref{thm:A}, extending it to all $J$ amounts to one likelihood-ratio law per
+level (Conjecture~\ref{conj:I1prime}); Remark~\ref{rem:windowP} explains why an induction on the level does not close.
+

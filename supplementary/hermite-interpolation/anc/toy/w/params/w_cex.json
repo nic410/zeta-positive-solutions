@@ -1,0 +1,12 @@
+{
+ "statement": "Proposition (certified counterexamples to W), items (a)-(f); nodes y_j = 2 pi n_j, n_j exact rationals",
+ "class": "{n_1 >= 1, n_{j+1} - n_j >= 1} (y_1 >= 2 pi, gaps >= 2 pi)",
+ "items": [
+  {"id": "a", "n": "1..7", "prec": 1500, "claim": "(N); Q''(y_j) > 0 for all j; mu_7 < 0"},
+  {"id": "b", "n": "1..10", "prec": 1500, "claim": "mu_9 < 0, mu_10 < 0; p_1(1..10) < p_1(1..9)"},
+  {"id": "c", "n": "1..5", "Y": [10, 15, 20, 50, 100, 1000], "prec": 2000, "claim": "S < 0; for each Y: mu_Y < 0 and p_1(1..5, Y) < p_1(1..5)"},
+  {"id": "d", "eps": ["1/10000", "1/1000"], "eps_weak": ["1/200"], "prec": 2000, "claim": "n_j = (1 + eps) j, j <= 10: mu_9, mu_10 < 0 and S(n_1..n_5) < 0; for eps_weak: mu_10 < 0"},
+  {"id": "e", "start": "11/10", "count": 50, "prec": 7000, "claim": "n_j = 11/10 + j, 0 <= j < 50: mu_48, mu_49, mu_50 < 0"},
+  {"id": "f", "n": "1..8", "prec": 1500, "claim": "(W) holds: mu_j > 0 and Q''(y_j) > 0 for all j (while its subset 1..7 fails, item (a))"}
+ ]
+}

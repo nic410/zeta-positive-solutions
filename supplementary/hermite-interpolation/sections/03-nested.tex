@@ -1,0 +1,159 @@
+%======================================================================
+\section{Nested Hermite families}\label{sec:nested}\label{ssec:hermite}
+%======================================================================
+
+The interpolation problems of this paper share one linear-algebraic structure, which we set up
+for an arbitrary kernel. All derivatives are taken in $y$.
+
+\begin{definition}[Nested Hermite families]\label{def:nested}
+A \emph{base kernel} is a function $\varphi$, real-analytic on an interval $I=(y_-,\infty)\subseteq(0,\infty)$,
+such that the functions $\varphi_k:=(-\theta^2)^k\varphi$ ($k\ge0$) are linearly independent on $I$.
+Put $\sigma_k:=\theta^{2k}\varphi=(-1)^k\varphi_k$ and $\Asp_K:=\operatorname{span}\{\varphi_0,\dots,\varphi_K\}$. For a
+polynomial $P(u)=\sum_kp_ku^k$ put $\Fc_P:=P(-\theta^2)\varphi=\sum_kp_k\varphi_k$. For $F\in\Asp_K$ we write
+$[F]_r$ for its $\varphi_r$-coefficient (so $[\Fc_P]_r=[u^r]P$), and $\ell_0(F):=[F]_0$.
+\begin{enumerate}[label=(\roman*),leftmargin=2em]
+\item \emph{Chains.} A \emph{chain of level $K$} is a list $Z=(z_1,\dots,z_K)$ of points of $I$, repetitions
+allowed; $\operatorname{mult}_Z(z)$ is the number of occurrences of $z$. Its \emph{data functionals} are
+$\lambda_r(f):=f^{(m_r)}(z_r)$, with $m_r:=\#\{s<r:z_s=z_r\}$, and $f$ \emph{vanishes on $Z$} if
+$\lambda_r(f)=0$ for all $r$. Put $\Delta(Z):=\det[\lambda_r(\sigma_b)]_{1\le r\le K,\,0\le b<K}$ ($\Delta(\emptyset):=1$).
+$Z$ is \emph{regular} if $\Delta(Z)\ne0$. Then there is a unique \emph{top-normalised interpolant}
+$\Fc_Z\in\sigma_K+\Asp_{K-1}$ vanishing on $Z$; its \emph{cofactor} is $f_Z:=\Fc_Z/\omega_Z$,
+$\omega_Z(y):=\prod_{r}(y-z_r)$, an analytic function on $I$. For $z\in I$, $Z+z:=(z_1,\dots,z_K,z)$, and
+the \emph{next data functional} at $z$ is $\delta^Z_z(f):=f^{(\mu)}(z)$, $\mu:=\operatorname{mult}_Z(z)$; it is the
+functional that $Z+z$ adds to the data of $Z$.
+\item \emph{Node sets.} A \emph{node set} is $\yv=(y_1<\dots<y_J)\subset I$; its \emph{doubled chain}
+$(y_1,y_1,\dots,y_J,y_J)$ has level $2J$, with data functionals $\delta_{y_j}$, $\delta'_{y_j}$. The
+\emph{Hermite problem} at $\yv$ asks for $P$ with $P(0)=1$, $\deg P\le2J$ and $\Fc_P(y_j)=\Fc_P'(y_j)=0$
+($j\le J$). Condition \hyp{N}$_{\yv}$ states that the $2J\times2J$ matrix $[\varphi_k(y_j);\varphi_k'(y_j)]$,
+$j\le J$, $1\le k\le2J$, is non-singular; then the solution $P_{\yv}=1+\sum_{k=1}^{2J}p_k(\yv)u^k$ is unique,
+and $\Fc_{\yv}:=\Fc_{P_{\yv}}$.
+\item \emph{The $p_1$-rule.} Assume \hyp{N}$_{\yv}$. The Hermite projection $\Pi_{\yv}$ maps a polynomial $G$ to the
+unique element of $\operatorname{span}\{u,\dots,u^{2J}\}$ with the same data at $\yv$ as $G$. The
+\emph{$p_1$-rule} is $\mathcal L_{\yv}(G):=[u]\,\Pi_{\yv}G$; its moments are $\ell_k:=\mathcal L_{\yv}(u^k)$
+($k\ge1$), so that $\ell_k=\delta_{k1}$ for $k\le2J$, and $\ell_1^*:=\ell_{2J+1}$, $\ell_2^*:=\ell_{2J+2}$. The
+\emph{extension elements} are $E_m:=u^{2J+m}-\Pi_{\yv}u^{2J+m}$ ($m\ge1$), with zero data at $\yv$; the
+\emph{insertion element} is $E_*:=\ell_1^*E_2-\ell_2^*E_1$, and the \emph{screening factor} is
+$S_{\yv}:=1-\mathcal L_{\yv}(uP_{\yv})$.
+\item \emph{Insertion.} For $Y\in I\setminus\yv$, $\yv\cup\{Y\}$ is the node set with $Y$ added. If
+\hyp{N} holds for $\yv$ and for $\yv\cup\{Y\}$, the \emph{insertion response} is
+$\Delta_{\yv}(Y):=p_1(\yv\cup\{Y\})-p_1(\yv)$.
+\item \emph{Instances.} The \emph{true family} has $\varphi=\Psi$, viewed as a function of $y\in I=(0,\infty)$;
+then $\Fc_P=\widehat{\Xi^2P(t^2)}$. The \emph{Gamma-only family} has $\varphi=\Psione$, and the \emph{model}
+(Section~\ref{sec:toy}) has $\varphi=e^{-y}$.
+\end{enumerate}
+\end{definition}
+
+The number $\ell_0$ is a functional on $\Asp_K$; it is not one of the moments $\ell_k$, $k\ge1$.
+We record some elementary facts.
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item $P\mapsto\Fc_P$ is a linear isomorphism from the polynomials of degree $\le K$ onto $\Asp_K$. For the
+true and Gamma-only kernels, linear independence holds because $\sum_kc_k\varphi_k$ is the Fourier
+transform of $\Xi^2\sum_kc_kt^{2k}$ (resp.\ $\Xiinf^{\,2}\sum_kc_kt^{2k}$), which is real-analytic in
+$\xi\in\RR$; if it vanishes on an interval it vanishes identically, and then the polynomial is $0$. For
+$e^{-y}$, $\varphi_k=e^{-y}\tau_k$ with $\tau_k$ a polynomial of exact degree $2k$.
+\item A chain $Z$ of level $K$ is regular if and only if the only element of $\Asp_{K-1}$ vanishing on $Z$ is
+$0$. Reordering $Z$ permutes the rows of $\Delta(Z)$, so regularity is a property of the multiset.
+\item Under \hyp{N}$_{\yv}$, $\mathcal L_{\yv}(uP_{\yv})=\sum_kp_k\ell_{k+1}=1+p_{2J}\ell_1^*$, so
+$S_{\yv}=-p_{2J}(\yv)\ell_1^*$.
+\item \emph{Bottom and top normalisation.} If \hyp{N}$_{\yv}$ holds, the elements of $\Asp_{2J}$ vanishing on the
+doubled chain $Z$ of $\yv$ form the line spanned by $\Fc_{\yv}$, so $Z$ is regular if and only if
+$p_{2J}(\yv)\ne0$, and then $\Fc_{\yv}=p_{2J}(\yv)\Fc_Z$. Conversely, if $Z$ is regular, then \hyp{N}$_{\yv}$ holds
+if and only if $\ell_0(\Fc_Z)\ne0$, and then $P_{\yv}$ corresponds to $\Fc_Z/\ell_0(\Fc_Z)$.
+\item \emph{Sign at $+\infty$.} For the three instances, $\varphi_k(y)=(-1)^kc_ky^{2k+d}e^{-y}(1+O_k(y^{-1}))$ as
+$y\to\infty$, with $c_k>0$ and $d=4$ for the true and Gamma-only kernels (Lemma~\ref{lem:moments}) and
+$d=0$ for $e^{-y}$. So $\sigma_K$ is positive near $+\infty$ and dominates every element of $\Asp_{K-1}$
+there, and every top-normalised interpolant is positive near $+\infty$.
+\item For the true family it is often convenient to use $\xi$-derivatives, as in Fact~\ref{prop:E}. Since
+$dy/d\xi=2\pi y\ne0$, the change of coordinate multiplies the derivative rows by non-zero factors. It does not affect \hyp{N},
+regularity, $p_k(\yv)$, or any ratio of Wronskians with equal numbers of entries.
+\end{enumerate}
+
+Coefficient positivity is not a property of the kernel alone: for the true family at the prime powers and
+$3\le J\le9$, the coefficients $p^{(J)}_{2J-1}$ (and, for some $J$, $p^{(J)}_{2J-3}$) are negative, while
+$p^{(J)}_{2J}>0$ for every $J$ computed (Numerical observation~\ref{obs:POS}).
+
+\begin{lemma}[$p_1$-rule and node derivative]\label{lem:dualrule}
+Let $\varphi$ be a base kernel and $\yv=(y_1<\dots<y_J)$ with \hyp{N}$_{\yv}$.
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item There are unique numbers $\lambda_j,\mu_j$ such that
+$\mathcal L_{\yv}(G)=\sum_{j\le J}(\lambda_j\Fc_G(y_j)+\mu_j\Fc_G'(y_j))$ for every polynomial $G$; this
+functional is characterised by $\mathcal L_{\yv}(u^k)=\delta_{k1}$ ($1\le k\le2J$). Moreover
+$p_1(\yv)=-\mathcal L_{\yv}(1)$.
+\item If \hyp{N} also holds for $\yv'=\yv\cup\{y_{J+1}\}$, then
+$p_1(\yv')-p_1(\yv)=-\mathcal L_{\yv'}(P_{\yv})=-(\lambda'_{J+1}r+\mu'_{J+1}r')$, where
+$(r,r'):=(\Fc_{\yv},\Fc_{\yv}')(y_{J+1})$ and $\lambda'_{J+1},\mu'_{J+1}$ are the weights of $\mathcal L_{\yv'}$ at
+$y_{J+1}$.
+\item If $\yv\subset\yv'$ with $\lvert\yv'\rvert=J'>J$ and \hyp{N}$_{\yv'}$, then
+$p_1(\yv)-p_1(\yv')=\sum_{k=2J+1}^{2J'}p_k(\yv')\ell_k$, with $\ell_k=\mathcal L_{\yv}(u^k)$.
+\item \emph{(Node derivative.)} If \hyp{N} holds near $\yv$, then $p_1$ is real-analytic in the nodes and
+$\partial p_1/\partial y_j=-\Fc_{\yv}''(y_j)\,\mu_j$.
+\end{enumerate}
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-hermite}.
+
+The weights $\lambda_j,\mu_j$ depend on the coordinate; the products in (b) and (d) do not.
+
+\begin{lemma}[Increment identity]\label{lem:increment}
+Let $\yv_J=(y_1<\dots<y_J)$ and $\yv_{J+1}=\yv_J\cup\{y_{J+1}\}$ be nested node sets for a base kernel,
+with \hyp{N} for both, and write $\Fc_J:=\Fc_{\yv_J}$. For a function $f$ that is $C^1$ near the nodes, let
+$\Pi_Jf$ be the element of $\operatorname{span}\{\varphi_1,\dots,\varphi_{2J}\}$ with the data of $f$ at $\yv_J$, and let
+$A_{J+1},B_{J+1}\in\operatorname{span}\{\varphi_1,\dots,\varphi_{2J+2}\}$ be the cardinal functions at the newest node:
+zero data at $y_1,\dots,y_J$, and $(A,A')(y_{J+1})=(1,0)$, $(B,B')(y_{J+1})=(0,1)$. Then
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item $\Fc_J=\varphi-\Pi_J\varphi$, and
+$D_J:=\Fc_{J+1}-\Fc_J=-\Pi_{J+1}\Fc_J=-r_JA_{J+1}-r_J'B_{J+1}$ with $(r_J,r_J'):=(\Fc_J,\Fc_J')(y_{J+1})$;
+\item $D_J$ lies in the two-dimensional space of elements of $\operatorname{span}\{\varphi_1,\dots,\varphi_{2J+2}\}$ with
+zero data at $y_1,\dots,y_J$; $D_J(y_{J+1})=-r_J$; $D_J=\Fc_{P_{J+1}-P_J}$ with $P_{J+1}-P_J$ vanishing at
+$u=0$; and, telescoping,
+$\Fc_J=\Fc_{J_1}-\sum_{J_1\le K<J}(r_KA_{K+1}+r_K'B_{K+1})$ for nested node sets $\yv_{J_1}\subset\dots\subset\yv_J$;
+\item \emph{(removable singularity)} if $\Fc_K$ has a double zero at a node $y_i$ with $\Fc_K''(y_i)\ne0$, and
+$G$ is $C^3$ with a double zero at $y_i$, then $G/\Fc_K$ extends continuously to $y_i$ with value
+$G''(y_i)/\Fc_K''(y_i)$.
+\end{enumerate}
+For the true family at the prime powers ($J,J+1\in\Jset$) these are statements about $\FT F_J$.
+\end{lemma}
+
+\begin{proof}
+(a) $\Fc_J$ is the element of $\varphi+\operatorname{span}\{\varphi_1,\dots,\varphi_{2J}\}$ with zero data, so
+$\Fc_J=\varphi-\Pi_J\varphi$. $\Pi_{J+1}$ is the identity on $\operatorname{span}\{\varphi_1,\dots,\varphi_{2J+2}\}$, hence
+$\Pi_{J+1}\Pi_J=\Pi_J$ and $D_J=\Pi_J\varphi-\Pi_{J+1}\varphi=-\Pi_{J+1}(\varphi-\Pi_J\varphi)$. As $\Fc_J$ has zero
+data at $y_1,\dots,y_J$, $\Pi_{J+1}\Fc_J=r_JA_{J+1}+r_J'B_{J+1}$. (b) follows from (a). (c) is Taylor's
+formula with remainder at $y_i$ for $G$ and $\Fc_K$.
+\end{proof}
+
+\begin{lemma}[Node addition]\label{lem:nodeadd}
+Let $\varphi$ be a base kernel, $\yv=(y_1<\dots<y_J)$, $Y\in I\setminus\yv$, with \hyp{N} for $\yv$ and $\yv\cup\{Y\}$,
+and put $\mathcal W:=\Wr(\Fc_{E_1},\Fc_{E_2})$.
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item \emph{(Additive form.)} $P_{\yv\cup\{Y\}}=P_{\yv}+aE_1+bE_2$, with
+\[
+a=p_{2J+1}(\yv\cup\{Y\})=-\frac{\Wr(\Fc_{P_{\yv}},\Fc_{E_2})(Y)}{\mathcal W(Y)},\qquad
+b=p_{2J+2}(\yv\cup\{Y\})=\frac{\Wr(\Fc_{P_{\yv}},\Fc_{E_1})(Y)}{\mathcal W(Y)}.
+\]
+Hence
+$p_k(\yv\cup\{Y\})-p_k(\yv)=a[u^k]E_1+b[u^k]E_2$ for $1\le k\le2J$.
+\item \emph{(Multiplicative form.)} Let $\mathfrak D_k(\yv)$ be the maximal minor, with column $k$ deleted, of
+the $2J\times(2J+1)$ data matrix of $(\varphi_0,\dots,\varphi_{2J})$ at $\yv$, so that
+$p_k=(-1)^k\mathfrak D_k/\mathfrak D_0$. For $0\le k\le2J$ with $p_k(\yv)\ne0$,
+\[
+\mathfrak D_k(\yv\cup\{Y\})=\mathfrak D_k(\yv)\,\mathfrak W_k(Y),\qquad
+\frac{p_k(\yv\cup\{Y\})}{p_k(\yv)}=\frac{\mathfrak W_k(Y)}{\mathfrak W_0(Y)},
+\]
+where $\mathfrak W_k:=\Wr(\Fc_{G_{k,1}},\Fc_{G_{k,2}})$, $G_{k,m}:=u^{2J+m}-I_k(u^{2J+m})$, and $I_k(G)$ is the
+interpolant of the data of $G$ at $\yv$ in $\operatorname{span}\{u^j:j\le2J,\ j\ne k\}$. Moreover
+$G_{k,m}=E_m+(\pi_k^{(m)}/p_k)P_{\yv}$ with $\pi_k^{(m)}:=[u^k]\Pi_{\yv}u^{2J+m}$, and $\mathfrak W_0=\mathcal W$.
+\item \emph{(Cofactor form.)} With $\mathcal G_{\yv}:=\Fc_{\yv}/\prod_{j\le J}(1-y/y_j)^2$, $Y:=y_J$ and
+$\yv^-:=\yv\setminus\{Y\}$,
+$\mathcal G_{\yv}=\mathcal G_{\yv^-}(1-y/Y)^{-2}+(\Fc_{\yv}-\Fc_{\yv^-})/\prod_{j\le J}(1-y/y_j)^2$.
+\item If all coefficients of $P_{\yv}$ are positive, then all coefficients of $P_{\yv\cup\{Y\}}$ are positive if and
+only if $\mathfrak W_k(Y)/\mathcal W(Y)>0$ for $1\le k\le2J$ and $a,b>0$.
+\end{enumerate}
+\end{lemma}
+
+The proof is in Appendix~\ref{app:proofs-hermite}: (a) is Cramer's rule in the two-dimensional space of polynomials
+of degree $\le2J+2$ with zero data at $\yv$, which is spanned by $E_1,E_2$, and (b) is the Schur complement formula.
+
+Positivity of all coefficients of $P_{\yv\cup\{Y\}}$ does not imply it for $P_{\yv}$: for the true family on the
+prime powers it holds at $J=10$ (Fact~\ref{thm:finiteJ}) but not at $J=9$ (Numerical
+observation~\ref{obs:POS}). So (d) cannot be run backwards.

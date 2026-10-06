@@ -1,0 +1,19 @@
+# command : python toy/ap/verify_ap.py toy/ap/params/ap_delta005.json 81 90
+# date    : 2026-10-06T15:47:03Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+(AP+) certificate, exact rational arithmetic
+parameter file toy/ap/params/ap_delta005.json  sha256 8154e4dd3a63096e6626be846752083bde36b5c5c26267db59506145d4175235
+c = 1 + delta = 21/20, nodes y*_K = c(8K - 5), J = 81..90
+J=81  (N) ok  exact division ok  R_J > 0 (all 163 coefficients) ok  p_2J > 0 ok  identities ok  r_1/r_0 >= 1.26991681034e+0  [18.9 s]
+J=82  (N) ok  exact division ok  R_J > 0 (all 165 coefficients) ok  p_2J > 0 ok  identities ok  r_1/r_0 >= 1.27284271296e+0  [20.6 s]
+J=83  (N) ok  exact division ok  R_J > 0 (all 167 coefficients) ok  p_2J > 0 ok  identities ok  r_1/r_0 >= 1.27573309623e+0  [22.8 s]
+J=84  (N) ok  exact division ok  R_J > 0 (all 169 coefficients) ok  p_2J > 0 ok  identities ok  r_1/r_0 >= 1.27858881220e+0  [23.8 s]
+J=85  (N) ok  exact division ok  R_J > 0 (all 171 coefficients) ok  p_2J > 0 ok  identities ok  r_1/r_0 >= 1.28141068261e+0  [24.5 s]
+J=86  (N) ok  exact division ok  R_J > 0 (all 173 coefficients) ok  p_2J > 0 ok  identities ok  r_1/r_0 >= 1.28419950033e+0  [26.6 s]
+J=87  (N) ok  exact division ok  R_J > 0 (all 175 coefficients) ok  p_2J > 0 ok  identities ok  r_1/r_0 >= 1.28695603069e+0  [28.9 s]
+J=88  (N) ok  exact division ok  R_J > 0 (all 177 coefficients) ok  p_2J > 0 ok  identities ok  r_1/r_0 >= 1.28968101275e+0  [38.1 s]
+J=89  (N) ok  exact division ok  R_J > 0 (all 179 coefficients) ok  p_2J > 0 ok  identities ok  r_1/r_0 >= 1.29237516047e+0  [41.5 s]
+J=90  (N) ok  exact division ok  R_J > 0 (all 181 coefficients) ok  p_2J > 0 ok  identities ok  r_1/r_0 >= 1.29503916385e+0  [44.1 s]
+ALL CERTIFIED: (N), p_2J > 0 and (AP+)_J at delta = 1/20 for J = 81..90
+# exit code 0; wall time 290.5 s

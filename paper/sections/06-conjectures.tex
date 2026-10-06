@@ -1,0 +1,78 @@
+%======================================================================
+\section{Conjectures and open problems}\label{sec:conjectures}
+%======================================================================
+
+For each conjecture, Table~\ref{tab:falsify} gives what it would imply and through which result, the evidence, and finite
+computations that would refute it; these are sufficient tests, not a complete list of the ways in which the conjecture could fail.
+
+\begin{table}[!ht]
+\centering\small
+\caption{Conjectures of the paper: consequence, evidence, and sufficient finite refutation tests.}\label{tab:falsify}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.15\textwidth}>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.28\textwidth}@{}}
+\toprule
+Statement & Gives (via) & Evidence & Refuted, for example, by \\
+\midrule
+Conj.~\ref{conj:U} & $\RH\Leftrightarrow\condE$ (Thm.~\ref{thm:logic}) & Section~\ref{sec:uniqueness} & a second admissible pair \\
+Conj.~\ref{conj:S} & $\kstar=0$ under \condE\ (Thm.~\ref{thm:duality}(a)) & Table~\ref{tab:kappa-ladder} & an admissible pair at $q=1$ with $\mu\ge\lambda\dd t$,
+$\lambda>0$; the finite certificates here cannot confirm it \\
+Conj.~\ref{conj:family} & \condS, \condU\ (Thm.~\ref{thm:criterion}) & Prop.~\ref{thm:finiteJ}; Obs.~\ref{obs:family} & a singular $M_J$;
+$p_k^{(J)}\le0$ with $J\ge10$; $a_J\ge\pi/2$; no finite prefix of the family alone refutes (c) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{A prime-power magic-function conjecture}
+
+Let $P_J$, $H_J=P_J(t^2)$ and $F_J=\Xi^2H_J$ be the exact family of Proposition~\ref{prop:E}. The following conjecture is of the same kind as
+the conjectures of Cohn and Miller on explicit sequences converging to magic functions \cite{CM16}.
+
+\begin{conjecture}[Prime-power magic function]\label{conj:family}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $M_J$ is non-singular for every $J\ge1$.
+\item For every $J\ge10$ all coefficients $p^{(J)}_k$, $0\le k\le2J$, are positive, and
+$a^*:=\sup_{J\ge10}\max_{1\le k\le2J}\bigl((2k)!\,p^{(J)}_k\bigr)^{1/(2k)}<\pi/2$.
+\item $P_J\to P_\infty$ coefficientwise, and $F_\infty:=\Xi^2P_\infty(t^2)$ satisfies $\FT F_\infty(\xi)>0$ for every
+$\xi\in[\xin2,\infty)\setminus\xiPP$.
+\end{enumerate}
+\end{conjecture}
+
+\emph{Implication.} The conjecture implies \condS\ and \condU\ unconditionally, hence $\RH\Leftrightarrow\condE$. Indeed (b) is
+\eqref{eq:POSa} with $a=a^*$ and $C=1$, so Proposition~\ref{prop:coeff} gives $H_J\ge1$ on $\RR$ and $|H_J(t)|\le\cosh(a^*|t|)$; with this
+bound, coefficientwise convergence gives $H_J\to H_\infty$ locally uniformly with a uniform exponential majorant of type $a^*<\pi/2$, so
+$\FT F_J\to\FT F_\infty$ pointwise by dominated convergence, and (c) gives \hyp{Mg}. Remark~\ref{rem:variant}(a) applies.
+
+\emph{Evidence.} Parts (a) and (b) are certified at $J\in\{10,60,61,110,111\}$ (Proposition~\ref{thm:finiteJ}) and computed for
+$1\le J\le110$ and $10\le J\le110$ respectively (Numerical observation~\ref{obs:family}), which also shows why (b) starts at $J=10$.
+
+\emph{Refutation.} Each of the following, at some finite $J$, refutes the conjecture: a singular $M_J$; a non-positive coefficient with
+$J\ge10$; $a_J:=\max_{1\le k\le2J}((2k)!\,|p^{(J)}_k|)^{1/2k}\ge\pi/2$. These are sufficient tests, not a complete list. Part (b) asks for
+$\sup_{J\ge10}a_J<\pi/2$, which fails if $a_J\to\pi/2$, even when $a_J<\pi/2$ for every $J$. Part (c) concerns the limit: no finite prefix of
+the computed family alone refutes it, although a finite computation combined with rigorous bounds for the rest of the family could.
+
+\subsection{Sharpness and uniqueness}
+
+The certificates of Section~\ref{sec:certified} bound $\kstar$ above by positive numbers, so no finite collection of them proves \condS; a
+proof needs more, for instance an exact magic function (Corollary~\ref{cor:magic}, Theorem~\ref{thm:criterion}), which a finite
+computer-assisted argument for a suitable uniform statement might supply. A finite computation can refute \condS: an explicit admissible pair at
+$q=1$ whose zero measure is certified to satisfy $\mu\ge\lambda\dd t$ with $\lambda>0$ would give $\kstar\ge\lambda>0$ by
+Lemma~\ref{lem:weak-duality}. Proposition~\ref{thm:notcritical}
+certifies pairs of this kind for other archimedean data, at $\xi_2$ and at their natural gaps. Under \condE, \condS\ says $\kstar=0$, that is, every
+admissible $\mu$ is purely atomic on one discrete set (Theorem~\ref{thm:crit}), and the optimised degree-one explicit-formula conductor
+bound is exactly $1$. Conjecture~\ref{conj:U} would be refuted by a single admissible pair other than $\pz$; the results of
+Section~\ref{sec:uniqueness} exclude such pairs on $\zeta$'s support and with finitely many extra zeros.
+
+\subsection{Open problems}
+
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item\label{op:Beurling} \emph{Beurling case.} Conjecture~\ref{conj:U} for zero measures with integer weights and prime measures that
+generate a multiplicative semigroup which is not uniformly discrete; the uniformly discrete case is treated in \cite{N4} (in
+preparation), using \cite{LO15}; compare \cite{Lag99}.
+\item \emph{Extra primes.} Finitely many extra prime-side atoms off $\BRS$ (Remark~\ref{rem:extraprimes}), in particular atoms at positions
+$\eta$ with $e^{4\pi\eta}$ irrational.
+\item \emph{Infinitely many extra zeros} on the zero side, for instance countable, locally finite sets $E$ with
+$\sum_{e\in E}\mu(\{e\})\,|\zeta(\frac12+ie)|\,(1+|e|)^{-1/4+\delta}<\infty$ for some $\delta>0$.
+\item\label{op:strict-compl} \emph{Strict complementarity.} Does \condU\ imply the existence of an exact magic function
+without spurious zeros?
+\item \emph{The existence statement} \condE, that is $\kstar\ge0$, without assuming RH: Odlyzko's question
+whether explicit-formula bounds proved under GRH hold unconditionally \cite{Odl90}, specialised to $\QQ$.
+\end{enumerate}

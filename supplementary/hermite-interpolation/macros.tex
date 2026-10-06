@@ -1,0 +1,80 @@
+% macros.tex -- shared macros for main.tex and sections/*.tex.
+% The notation follows the companion paper (positive solutions of the explicit formula).
+% New local macros in a section file: use \providecommand and a section-specific prefix.
+
+% ---------------------------------------------------------------- general
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Wr}{\operatorname{Wr}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\FT}[1]{\widehat{#1}}          % Fourier transform, \int f(t)e^{-2\pi i\xi t}dt
+\newcommand{\hF}{\widehat F}
+\newcommand{\hyp}[1]{\textup{(#1)}}       % named hypothesis tag, e.g. \hyp{N}, \hyp{Mg}
+
+% ---------------------------------------------------------------- coordinates
+\newcommand{\xin}[1]{\xi_{#1}}            % \xi_n = \log n/(2\pi)
+\newcommand{\Eul}{\theta}                 % Euler operator x d/dx = y d/dy
+
+% ---------------------------------------------------------------- arithmetic data
+\newcommand{\PP}{\mathrm{PP}}             % prime powers > 1; \PP_J the first J
+\newcommand{\xiPP}{\xi_{\mathrm{PP}}}     % {\xi_n : n \in PP}
+\newcommand{\BRS}{\mathcal M}             % {\log m/(4\pi) : m \ge 1}
+\newcommand{\GR}{\Gamma_{\mathbb R}}
+\newcommand{\GC}{\Gamma_{\mathbb C}}
+\newcommand{\Xiinf}{\Xi_\infty}           % archimedean part of \Xi
+\newcommand{\Zz}{Z_\zeta}                 % real zero ordinates of zeta
+\newcommand{\muz}{\mu_\zeta}
+\newcommand{\nuz}{\nu_\zeta}
+\newcommand{\pz}{p_\zeta}
+
+% ---------------------------------------------------------------- framework
+\newcommand{\Oinf}{\Omega_\infty}         % archimedean density
+\newcommand{\Arch}{\mathcal A}            % archimedean functional; \Arch_q with conductor q
+\newcommand{\Tc}{\mathcal T}              % test class; \Tc_\delta
+\newcommand{\Gc}{\mathcal G}              % Gaussian wave packets
+\newcommand{\Kad}{\mathcal K}             % admissible pairs
+\newcommand{\Cone}{\mathcal C}
+\newcommand{\ConeOPS}{\mathcal C_{\mathrm{OPS}}}
+\newcommand{\kstar}{\kappa^{*}}
+\newcommand{\kOPS}{\kappa^{*}_{\mathrm{OPS}}}
+\newcommand{\qmin}{q_{\min}}
+\newcommand{\condE}{\textup{(E)}}
+\newcommand{\condU}{\textup{(U)}}
+\newcommand{\condS}{\textup{(S)}}
+\newcommand{\RH}{\mathrm{RH}}
+
+% ------------------------------------------------------------- zero-killing family
+\newcommand{\Wnull}{W_0}                  % z^2[(z^2+9)K_0 - 6zK_1]
+\newcommand{\Psione}{\Psi_1}              % Gamma-only kernel
+\newcommand{\kt}{\tilde\kappa}            % sqrt(2z/pi) e^z K_0(z)
+\newcommand{\Hc}{\mathscr H}              % growth class \Hc_a
+\newcommand{\Jset}{\mathcal J}            % {J : M_J non-singular}
+\newcommand{\Frep}{F_{\mathrm{rep}}}      % certified rational representative
+\newcommand{\TEL}{\mathrm{TEL}}
+\newcommand{\PT}{\mathrm{PT}}
+
+% ---------------------------------------------------------------- interpolation calculus
+\newcommand{\Fc}{\mathcal F}              % \Fc_P = P(-\theta^2)\varphi
+\newcommand{\Asp}{\mathscr A}             % nested spaces \Asp_K
+\newcommand{\yv}{\mathbf y}               % node set (y_1<...<y_J)
+\newcommand{\yPP}{\mathbf y^{\mathrm{PP}}}% prime-power node set, \yPP_J
+
+% ---------------------------------------------------------------- the polynomial model
+\newcommand{\Hank}{\mathcal H_0}            % Hankel-type transform
+\newcommand{\Lag}{\mathfrak L}               % y^m -> m! L_m(y)
+\newcommand{\Lrule}{\mathcal L}              % the p_1-rule
+\newcommand{\Tu}{\operatorname{Tu}}          % Turan ratio
+\newcommand{\Rp}{\textup{(R$^{+}$)}}
+\newcommand{\FRt}{\textup{(FR)}}
+\newcommand{\yle}[1]{\mathbf y_{\le #1}}
+\newcommand{\pf}{\mathsf f}                  % monic cofactor of a chain
+\newcommand{\pg}{\mathsf g}                  % 0-augmented cofactor

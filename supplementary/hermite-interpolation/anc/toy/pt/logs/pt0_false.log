@@ -1,0 +1,23 @@
+# command : python toy/pt/verify_pt0_false.py toy/pt/params/pt0_false.json
+# date    : 2026-10-06T15:58:13Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+Zero-slack PT is not sufficient at J = 2: exact certificate
+parameter file toy/pt/params/pt0_false.json  sha256 13590e181604c187d680d8179d4c51fe778516b508f2febd661b7c932065d5e4
+(y_1, y_2) = (151/50, 113/10) = (3.02, 11.3) exactly:
+    PT_1 (y_1 > 3) and PT_2 (y_1 + y_2 > 14): True;  PT_0.05 (y_1 >= 63/20, y_1 + y_2 >= 147/10): False;  (N): True
+    R = Q/A exact, r_0 = 1/(y_1 y_2)^2: True;  signs of r_0..r_4: +-+++
+    r_1 = -1201801359132942620000000/2402662784921853135410296777
+    r_1 in [-5.00196e-4, -5.00195e-4];  r_1/r_0 in [-5.82520e-1, -5.82519e-1]  => r_1 < 0: True
+(y_1, y_2) = (61/20, 221/20) = (3.05, 11.05) exactly:
+    PT_1 (y_1 > 3) and PT_2 (y_1 + y_2 > 14): True;  PT_0.05 (y_1 >= 63/20, y_1 + y_2 >= 147/10): False;  (N): True
+    R = Q/A exact, r_0 = 1/(y_1 y_2)^2: True;  signs of r_0..r_4: +-+++
+    r_1 = -2745032432154764800000/7534383286324550321037229
+    r_1 in [-3.64335e-4, -3.64334e-4];  r_1/r_0 in [-4.13832e-1, -4.13831e-1]  => r_1 < 0: True
+(y_1, y_2) = (151/50, 13) = (3.02, 13) exactly:
+    PT_1 (y_1 > 3) and PT_2 (y_1 + y_2 > 14): True;  PT_0.05 (y_1 >= 63/20, y_1 + y_2 >= 147/10): False;  (N): True
+    R = Q/A exact, r_0 = 1/(y_1 y_2)^2: True;  signs of r_0..r_4: +-+++
+    r_1 = -30006695371501000000/1773585118790309498031709
+    r_1 in [-1.69187e-5, -1.69186e-5];  r_1/r_0 in [-2.60776e-2, -2.60775e-2]  => r_1 < 0: True
+ALL CERTIFIED: at every point PT_1 and PT_2 hold (zero slack), (N) holds and r_1 < 0
+# exit code 0; wall time 0.1 s

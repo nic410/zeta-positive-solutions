@@ -1,0 +1,81 @@
+%======================================================================
+\section{Ancillary files}\label{app:anc}
+%======================================================================
+
+The ancillary files of this paper contain, for every computer-assisted statement, the exact input, a standalone verifier
+and the log of a fresh run. Their file \nolinkurl{README.md} describes each script in detail; this appendix is an index.
+Paths are relative to the top directory of the ancillary files.
+
+\emph{Requirements.} Python $\ge3.10$ with python-flint $0.9.0$ (FLINT $3.6.0$, which contains Arb) and mpmath $1.3.0$;
+nothing else. All commands are run from the top directory of the ancillary files, with \texttt{PY} set to such an
+interpreter. The wrapper \texttt{runlog.sh LOG "\$PY" SCRIPT ARGS} writes a log whose header records the command, the date
+and the software versions, and whose footer records the exit code and the wall time. A run succeeds if it exits with
+code $0$ and its final output line reports success (\texttt{CERTIFIED: True}, \texttt{ALL CERTIFIED: \dots} or
+\texttt{ALL CHECKS PASSED}; the exact line for each script is listed in \nolinkurl{README.md}). Every script prints the
+SHA-256 of each input file; all hashes are listed in \texttt{SHA256SUMS}. The ancillary files are self-contained: they
+include a copy of the shared library of \cite{PaperI} (\nolinkurl{lib/}) and copies of the certified enclosures
+\nolinkurl{exact/out/P}$J$\nolinkurl{_ball.txt} ($J=10,60,61,110,111$) of the exact members, which the certificates of
+Propositions~\ref{prop:roots}, \ref{prop:base} and~\ref{prop:increments} read; these enclosures are produced by the verifier of
+Fact~\ref{thm:finiteJ} in the ancillary files of \cite{PaperI}, and the copies are byte-identical. The ancillary files are licensed under the Apache License 2.0 (copyright 2026 Nic Johns); the text is licensed under
+CC BY 4.0.
+
+\begin{table}[ht]
+\centering\scriptsize
+\caption{Index of the certificates. Directories: \texttt{exact/} (members of the true family), \texttt{toy/} (the
+model). Runtimes are wall times of the shipped logs.}\label{tab:anc-index}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.21\textwidth}>{\raggedright\arraybackslash}p{0.4\textwidth}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.12\textwidth}@{}}
+\toprule
+Statement & Script and input & Arithmetic & Runtime \\
+\midrule
+Prop.~\ref{prop:base} & \nolinkurl{exact/verify_bf.py}, \nolinkurl{exact/verify_base.py}, \nolinkurl{exact/verify_r1.py} &
+Arb & up to $464$\,s \\
+Prop.~\ref{prop:increments} & \nolinkurl{exact/verify_r1.py} ($\Delta p_1$); \nolinkurl{exact/verify_increments.py} (signs) &
+Arb & up to $464$\,s \\
+Prop.~\ref{prop:roots} & \nolinkurl{exact/verify_roots.py} with \nolinkurl{exact/out/P}$J$\nolinkurl{_ball.txt}, $J=60,110,111$ &
+Arb, $2000$ bits & $<5$\,s \\
+Thm.~\ref{thm:PP80} & \nolinkurl{toy/pp80/verify_pp80_tau.py toy/pp80/params/pp80.json} (two parts);
+\nolinkurl{toy/pp80/verify_pp80_chain.py toy/pp80/params/pp80_chain.json} & Arb, $6000$ / $4000$ bits & $658$\,s; $458$\,s \\
+Props.~\ref{thm:PT2}--\ref{thm:PT4} & \nolinkurl{toy/pt/verify_pt.py toy/pt/params/pt}$J$\nolinkurl{.json}; for $J=2$ also
+\nolinkurl{toy/pt/verify_pt2_cramer.py}; for $J=4$ also \nolinkurl{toy/pt/check_pt4_region.py} & exact & $0.1$\,s, $3$\,s,
+$2190$\,s \\
+Remark~\ref{rem:PT0-false} & \nolinkurl{toy/pt/verify_pt0_false.py toy/pt/params/pt0_false.json} & exact & $0.1$\,s \\
+Prop.~\ref{prop:PP-dominates} & \nolinkurl{toy/pp/verify_pp_prefix.py toy/pp/params/pp_prefix.json} & exact & $0.4$\,s \\
+Prop.~\ref{prop:AP-B-cert} & \nolinkurl{toy/ap/verify_ap.py}, \nolinkurl{toy/ap/verify_halfstep.py} with
+\nolinkurl{toy/ap/params/ap_delta005.json} & exact & $643$\,s; $642$\,s \\
+Props.~\ref{prop:Fremainder}, \ref{prop:SMset-cert}, \ref{prop:UM-cert} & \nolinkurl{toy/ft/verify_farbound.py},
+\nolinkurl{toy/sm/verify_smset.py}, \nolinkurl{toy/um/verify_um.py}, each with its parameter file & Arb & $0.2$\,s; $119$\,s; $38$\,s \\
+Prop.~\ref{prop:W-false} & \nolinkurl{toy/w/verify_w_cex.py toy/w/params/w_cex.json} & Arb, $1500$--$7000$ bits & $6$\,s \\
+Props.~\ref{thm:W-J2}, \ref{thm:W-J3} & \nolinkurl{toy/w/verify_w_small.py} and \nolinkurl{toy/w/verify_w_insertion.py} with
+\nolinkurl{toy/w/params/w_small.json}, argument $J=2$ or $3$ & exact & $<5$\,s \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering\scriptsize
+\caption{SHA-256 of the input files of the main certificates of the model (all others: \texttt{SHA256SUMS}).}\label{tab:anc-hashes}
+\begin{tabular}{@{}ll@{}}
+\toprule
+File & SHA-256 \\
+\midrule
+\nolinkurl{toy/pp80/params/pp80.json} & \texttt{9f840fb2e65142ddf7bd47f33f2e95be51ac05dc42a03ef93fea5401cc82f91c} \\
+\nolinkurl{toy/pp80/params/pp80_chain.json} & \texttt{0fedf5dd3f57bd2335abc6678b9451ace7cab7de6fb8e8943dc9dd3bcc90f9ca} \\
+\nolinkurl{toy/pt/params/pt2.json} & \texttt{0db9256e86d5345238649f9544948bb06a39eed7c982391d9e0d146893e529f7} \\
+\nolinkurl{toy/pt/params/pt3.json} & \texttt{2f55a0f3f7792042c1410fd58f36c2cbe5c303fb473ff366ec3b0d28fbc63813} \\
+\nolinkurl{toy/pt/params/pt4.json} & \texttt{03bb73e2e7baab96bb2ccd5a9365a93c7cfdaa323bbb9588e2615a2df9cb2cb6} \\
+\nolinkurl{toy/ap/params/ap_delta005.json} & \texttt{8154e4dd3a63096e6626be846752083bde36b5c5c26267db59506145d4175235} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\emph{Re-running.} The script \nolinkurl{toy/run_all.sh} repeats all certificates of the model (about $80$ CPU-minutes) and
+\nolinkurl{exact/run_all.sh} those of Section~\ref{ssec:front}, after which \texttt{sha256sum -c SHA256SUMS} checks that inputs
+and shipped outputs are unchanged. A single certificate is repeated with the command recorded in the first line of its log,
+for example
+\begin{verbatim}
+./runlog.sh toy/pp80/logs/pp80_tau_K0-134.log "$PY" \
+    toy/pp80/verify_pp80_tau.py toy/pp80/params/pp80.json 0 134
+\end{verbatim}
+The precision, Taylor orders and number of worker processes affect only the running time and the width of the
+enclosures, not the validity of a successful run. Computed but uncertified data used in numerical observations are
+listed separately in \nolinkurl{README.md}; no statement of this paper depends on them.

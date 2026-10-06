@@ -1,0 +1,15 @@
+# command : python exact/verify_exact_member.py 110 --prec 3000 --workers 2 --ref exact/ref/P110_ref.txt --out exact/out/P110_ball.txt
+# date    : 2026-10-06T19:47:02Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+J = 110: nodes = the first 110 prime powers (2 ... 467); moments Psi^(j), j <= 441; 3000 bits; z_cut = 6056
+  moments done (708 s); min relative accuracy of m_0, m_0' at the nodes: 2982 bits
+(N)  rigorous solve of the 220 x 220 system succeeded (matrix certified non-singular): True
+     enclosure of p_0..p_220: max log10 relative radius -789
+(POS) all 221 coefficients p_k certified > 0: True
+     min_k p_k >= 8.266e-1227 (at k = 220);  p_1 in [0.023346052275879926715 +/- 1.21e-22]
+     a = max_k ((2k)! p_k)^(1/2k) <= 0.716351
+     enclosure written to exact/out/P110_ball.txt (sha256 7c8999567bc77cd1c6fb5a9e816bb0b4f212b971f26dd0f3bda3237ff51c117a)
+     reference enclosure exact/ref/P110_ref.txt (sha256 dcba593fad1b1e11ce5320bb05c990dd9d3894879be4f2767ad9a483d53ef043): max log10 rel radius -608; all p_k > 0: True; every ball overlaps the new enclosure: True
+CERTIFIED (N) and (POS) at J = 110: True   (732 s)
+# exit code 0; wall time 731.7 s

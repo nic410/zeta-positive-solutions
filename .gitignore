@@ -1,0 +1,21 @@
+# LaTeX auxiliary files and build intermediates.
+# build/main.pdf and build/main.bbl are tracked, in paper/build/ and in each supplementary/**/build/.
+*.aux
+*.blg
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+# LaTeX logs only; the logs of the certificate scripts in the anc/ directories are tracked
+**/build/*.log
+
+# Output of paper/production/make_arxiv_tarball.sh
+paper/production/out/
+
+# Python
+__pycache__/
+*.pyc
+
+# Lean build products and downloaded dependencies
+.lake/

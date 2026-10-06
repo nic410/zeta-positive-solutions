@@ -1,0 +1,13 @@
+# command : python exact/verify_roots.py exact/out/P60_ball.txt --prec 2000
+# date    : 2026-10-06T15:43:28Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+P-enclosure exact/out/P60_ball.txt (sha256 fdfbfe57bfe9945f640291b6f1e1b7e74e4d5afb04278961d5737f26db6cda4b): degree 120 in u = t^2
+all 120 roots isolated (validated disjoint balls, one root each)
+min |Im t| >= 9.6386206e0
+min |arg u| >= 1.0351074e0;  min |u| >= 1.0825343e2
+B = sum 1/|u| in [0.05816833696 +/- 8.25e-13];  p_1 = -sum 1/u in [0.0233460518568 +/- 4.96e-14]
+roots with Re u > 0: 6 (certified), Re u < 0: 114, undetermined: 0;  |arg u| of the Re u > 0 roots: [1.0351, 1.0351, 1.2448, 1.2448, 1.4523, 1.4523]
+|arg u| of the Re u > 0 roots: all in [1.0351074e0, 1.4522567e0] (rounded outward)
+sup_r N(r)/r <= 0.41658
+# exit code 0; wall time 0.4 s

@@ -1,0 +1,12 @@
+{
+ "statement": "Theorem PT2 (J = 2)",
+ "J": 2,
+ "c": "21/20",
+ "region": "PT_delta, delta = 1/20: 0 < y_1 < ... < y_J and y_1 + ... + y_K >= (21/20) K (4K - 1) for every K <= J",
+ "slack_coordinates": "y_1 = c (3 + X_1), y_k = y_{k-1} + c X_k (k >= 2), c = 21/20; region = {X_1 >= 0, X_k > 0, sum_{j<=K} (K-j+1) X_j >= 4K(K-1)}",
+ "piece_semantics": "each piece: variables v >= 0, X_j = X[j](v) / W(v); y_k = c (3 W + X_1 + ... + X_k) / W",
+ "pieces": [
+  {"name": "I", "description": "A = 4 + s, B = t  (covers A >= 4)", "vars": ["s", "t"], "W": "1", "X": ["4 + s", "t"]},
+  {"name": "II", "description": "A = 4s/(1+s), B = 8 - 2A + t  (covers 0 <= A < 4, 2A + B >= 8)", "vars": ["s", "t"], "W": "1 + s", "X": ["4*s", "8 + t*(1 + s)"]}
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "parameter_file": "general/params/zeta_K104_s13.json",
+ "sha256": "737928c4912bc81b352fb163eef1b4171903e5c470f80a79a96bab08cdc1adde",
+ "K": 104,
+ "s": "13",
+ "eps": "1e-45",
+ "gamma_data": {
+  "shifts": [
+   "0"
+  ],
+  "log_conductor": "0",
+  "pole_residue": "1"
+ },
+ "numerics": {
+  "prec_bits": 448,
+  "T": 200,
+  "rel_tol_bits": 200,
+  "abs_tol_exp10": 55
+ },
+ "positivity": {
+  "P(0)>0": true,
+  "P_roots_(0,oo)": 0,
+  "Q(0)>0": true,
+  "Q_roots_(0,oo)": 0,
+  "Q_roots_(Y_lo,oo)": 0,
+  "Q_roots_(Y_hi,oo)": 0,
+  "Q(Y_lo)>0": true,
+  "F_rep>0_on_R": true,
+  "Fhat_rep>0_on_[xi2,oo)": true,
+  "Fhat_rep>0_on_R": true
+ },
+ "A": "[7.246505067157387600466e-32 +/- 6.91e-54]",
+ "int_F": "[1.000000000000000055511151 +/- 2.32e-25]",
+ "D": "[0.17826910475916008051 +/- 1.71e-21]",
+ "ratio": "[7.246505067157387198204e-32 +/- 6.60e-54]",
+ "tail": "[2.26e-62 +/- 1.43e-65]",
+ "kappa_upper": "7.2465050671573871983e-32",
+ "log_conductor_threshold_lower": "-4.5531134166365717816e-31",
+ "qmin_lower": "0.99999999999999999999",
+ "qmin_lower_as_1_minus": "4.55312e-31",
+ "pole_residue_left_width_upper": "4.06492480958e-31",
+ "claims_checked": {
+  "kappa_upper_le": true,
+  "pole_left_width_gt": true
+ },
+ "certified": true
+}

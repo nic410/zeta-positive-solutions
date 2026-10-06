@@ -1,0 +1,7 @@
+{
+ "statement": "Proposition (one-base laws certified at sampled levels): (UM+) at both chain levels PP_J and PP_J + y_{J+1} on [y_{J+1}, inf), and a(y_{J+1}) > 0",
+ "nodes": "y_j = 2*pi*n_j, n_j the j-th prime power, real pi (Arb)",
+ "J_list": [2, 4, 8, 12, 20, 30, 40, 60],
+ "precision_bits": 6000,
+ "prime_powers": [2, 3, 4, 5, 7, 8, 9, 11, 13, 16, 17, 19, 23, 25, 27, 29, 31, 32, 37, 41, 43, 47, 49, 53, 59, 61, 64, 67, 71, 73, 79, 81, 83, 89, 97, 101, 103, 107, 109, 113, 121, 125, 127, 128, 131, 137, 139, 149, 151, 157, 163, 167, 169, 173, 179, 181, 191, 193, 197, 199, 211]
+}
