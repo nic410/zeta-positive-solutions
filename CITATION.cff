@@ -5,6 +5,14 @@ type: software
 authors:
   - family-names: Johns
     given-names: Nic
+doi: "10.5281/zenodo.23197915"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23197915"
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: "10.5281/zenodo.23197916"
+    description: "Version 1.0.0"
 repository-code: "https://github.com/nic410/zeta-positive-solutions"
 url: "https://github.com/nic410/zeta-positive-solutions"
 license:
@@ -39,4 +47,5 @@ preferred-citation:
       given-names: Nic
   year: 2026
   month: 10
+  doi: "10.5281/zenodo.23197915"
   url: "https://github.com/nic410/zeta-positive-solutions"

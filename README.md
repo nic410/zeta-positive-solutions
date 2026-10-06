@@ -1,5 +1,7 @@
 # Positive solutions of the explicit formula for ζ(s): near-criticality and uniqueness
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23197915.svg)](https://doi.org/10.5281/zenodo.23197915)
+
 **Status: preprint, October 2026; not yet peer-reviewed.** Author: Nic Johns. Licensing: the papers and documentation
 are CC BY 4.0, the scripts are Apache-2.0 (see [Licence](#licence)).
 
@@ -158,11 +160,14 @@ zero (Miller; Bober et al.) and the classification of Fourier summation formulas
   year         = {2026},
   month        = oct,
   howpublished = {Preprint},
+  doi          = {10.5281/zenodo.23197915},
   url          = {https://github.com/nic410/zeta-positive-solutions}
 }
 ```
 
-A Zenodo DOI will be added with the first release.
+The DOI above is the concept DOI, which always resolves to the latest archived version; each release also has its
+own version DOI on [Zenodo](https://doi.org/10.5281/zenodo.23197915) (v1.0.0: 10.5281/zenodo.23197916). GitHub's
+"Cite this repository" button (generated from `CITATION.cff`) gives the same reference in other formats.
 
 ## Licence
 
