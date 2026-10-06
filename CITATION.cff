@@ -13,6 +13,9 @@ identifiers:
   - type: doi
     value: "10.5281/zenodo.23197916"
     description: "Version 1.0.0"
+  - type: doi
+    value: "10.5281/zenodo.23199443"
+    description: "Version 1.1"
 repository-code: "https://github.com/nic410/zeta-positive-solutions"
 url: "https://github.com/nic410/zeta-positive-solutions"
 license:

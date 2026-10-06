@@ -182,7 +182,7 @@ zero (Miller; Bober et al.) and the classification of Fourier summation formulas
 ```
 
 The DOI above is the concept DOI, which always resolves to the latest archived version; each release also has its
-own version DOI on [Zenodo](https://doi.org/10.5281/zenodo.23197915) (v1.0.0: 10.5281/zenodo.23197916). GitHub's
+own version DOI on [Zenodo](https://doi.org/10.5281/zenodo.23197915) (v1.0.0: 10.5281/zenodo.23197916; v1.1: 10.5281/zenodo.23199443). GitHub's
 "Cite this repository" button (generated from `CITATION.cff`) gives the same reference in other formats.
 
 ## Related repository
