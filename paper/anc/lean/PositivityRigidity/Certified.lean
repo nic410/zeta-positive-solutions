@@ -1,7 +1,9 @@
 /-
-§5: the certified bounds.  Theorem 5.1, Corollary 5.2, Proposition 5.4, Proposition 5.9 and
-Proposition 5.10, from the certificate axioms of `Ledger.lean`, weak duality (Lemma 2.5), the
-normalisation `F ↦ F/∫F`, Proposition 2.10, and exact arithmetic (bounds for `π`, `log 3`, `log 5`).
+§5: the certified bounds.  Proposition 5.4 (the Gaussian–Laguerre function in the classical cone),
+Proposition 5.5, Proposition 5.10 and Proposition 5.11, from the certificate axioms of `Ledger.lean`, weak
+duality (Lemma 2.5), the normalisation `F ↦ F/∫F`, Proposition 2.10, and exact arithmetic (bounds for `π`,
+`log 3`, `log 5`).  Theorem 5.1, Corollary 5.2 and Proposition 5.7, through the exact members `F_J`, are in
+`ExactMember.lean`; Corollary 5.3 is in `NearRigidity.lean`.
 -/
 import PositivityRigidity.Duality
 import PositivityRigidity.Atoms
@@ -39,121 +41,13 @@ theorem slack_ge_of_dominates {A : (ℂ → ℂ) → ℝ} (hA : Homog A) {g : �
     (hdom : DominatesLeb p.μ c) : (c : EReal) ≤ slack A (ConeG g) :=
   (le_slack_iff hA hC c).mpr fun _ hF => le_of_dominates hp hc hdom hF
 
-/-- The natural-gap step of Proposition 5.10: a pair whose prime measure lives on `[g', ∞)` is admissible
+/-- The natural-gap step of Proposition 5.11: a pair whose prime measure lives on `[g', ∞)` is admissible
 at every gap `g ≤ g'`. -/
 theorem admissible_mono_gap {A : (ℂ → ℂ) → ℝ} {g g' : ℝ} (hg : g ≤ g') {p : Pair}
     (hp : Admissible A g' p) : Admissible A g p :=
   ⟨hp.1, measure_mono_null (Set.compl_subset_compl.mpr (Set.Ici_subset_Ici.mpr hg)) hp.2.1, hp.2.2⟩
 
-/-! ## Theorem 5.1 and Corollary 5.2 -/
-
-/-- **Theorem 5.1.** `κ* ≤ κ_J` for every row of Table 1; in particular `κ* ≤ 1.1508391 · 10^{-906}`. -/
-theorem thm_5_1 : ∀ row ∈ kappaLadder, kappaStar ≤ ((row.kappa : ℝ) : EReal) := by
-  intro row hrow
-  obtain ⟨r, s, -, hcone, hpos, hA⟩ := cert_kappa_ladder row hrow
-  have h := slack_le homog_Arch (scalable_ConeG_Arch xi2) hcone hpos
-  refine h.trans ?_
-  have : Arch (Frep r s row.eps) / intR (Frep r s row.eps) ≤ (row.kappa : ℝ) := by
-    rw [div_le_iff₀ hpos]; exact hA
-  exact_mod_cast this
-
-theorem kappa100_mem : (⟨100, kappa100, 1 / 10 ^ 911⟩ : LadderRow) ∈ kappaLadder := by
-  simp [kappaLadder, kappa100]
-
-theorem kappaStar_le_kappa100 : kappaStar ≤ ((kappa100 : ℝ) : EReal) :=
-  thm_5_1 _ kappa100_mem
-
-/-- The normalised certificate of Theorem 5.1 at `J = 100`. -/
-theorem exists_cert100 :
-    ∃ F ∈ Cone, intR F = 1 ∧ Arch F ≤ (kappa100 : ℝ) := by
-  obtain ⟨r, s, -, hcone, hpos, hA⟩ := cert_kappa_ladder _ kappa100_mem
-  obtain ⟨h1, h2, h3⟩ := normalize homog_Arch (scalable_ConeG_Arch xi2) hcone hpos
-  refine ⟨_, h1, h2, ?_⟩
-  rw [h3, div_le_iff₀ hpos]
-  exact hA
-
-theorem two_pi_kappa100 : 2 * Real.pi * (kappa100 : ℝ) ≤ (72309354 : ℝ) / 10 ^ 913 := by
-  have hpi := Real.pi_lt_d20
-  unfold kappa100
-  push_cast
-  set x : ℝ := 11508391 / 10 ^ 913 with hx
-  have hx0 : 0 < x := by rw [hx]; positivity
-  have h1 : (72309354 : ℝ) / 10 ^ 913 = (72309354 / 11508391 : ℝ) * x := by
-    rw [hx]; field_simp
-  have h2 : 2 * Real.pi ≤ (72309354 / 11508391 : ℝ) := by
-    have : (2 : ℝ) * 3.14159265358979323847 ≤ 72309354 / 11508391 := by norm_num
-    linarith
-  rw [h1]
-  exact mul_le_mul_of_nonneg_right h2 hx0.le
-
-/-- **Corollary 5.2.**
-(a) No admissible pair has a zero measure `μ ≥ λ dt` with `λ > 1.1508391 · 10^{-906}`.
-(b) If `log q < −2π · 1.1508391 · 10^{-906}`, in particular if `0 < q ≤ 1 − 7.3 · 10^{-906}`, the data
-`𝒜_q` admit no admissible pair; equivalently, replacing `log π` by `log π + η` in `Ω_∞` (that is,
-`log q = −η`) leaves no admissible pair once `η > 7.2309354 · 10^{-906}`.  Hence
-`q_min ≥ 1 − 7.3 · 10^{-906}`, and under RH `1 − 7.3 · 10^{-906} ≤ q_min ≤ 1`. -/
-theorem cor_5_2 :
-    (∀ p ∈ K, ∀ lam : ℝ, (kappa100 : ℝ) < lam → ¬ DominatesLeb p.μ lam) ∧
-    (∀ q : ℝ, 0 < q → Real.log q < -2 * Real.pi * (kappa100 : ℝ) → Kset (Arch_q q) xi2 = ∅) ∧
-    (∀ q : ℝ, 0 < q → q ≤ 1 - (73 : ℝ) / 10 ^ 907 → Kset (Arch_q q) xi2 = ∅) ∧
-    (∀ η : ℝ, (72309354 : ℝ) / 10 ^ 913 < η →
-      Kset (ArchShift (-η / (2 * Real.pi))) xi2 = ∅) ∧
-    1 - (73 : ℝ) / 10 ^ 907 ≤ qmin := by
-  obtain ⟨F, hF, h1, hA⟩ := exists_cert100
-  have hpi : 0 < Real.pi := Real.pi_pos
-  -- the key: an admissible pair for `𝒜 + λ∫` forces `λ ≥ −κ_100`
-  have key : ∀ lam : ℝ, (Kset (ArchShift lam) xi2).Nonempty → -(kappa100 : ℝ) ≤ lam := by
-    rintro lam ⟨p, hp⟩
-    have := weak_duality_nonneg hp hF
-    simp only [ArchShift, h1, mul_one] at this
-    linarith
-  have hb : ∀ q : ℝ, 0 < q → Real.log q < -2 * Real.pi * (kappa100 : ℝ) →
-      Kset (Arch_q q) xi2 = ∅ := by
-    intro q _ hlog
-    by_contra hne
-    have := key _ (Set.nonempty_iff_ne_empty.mpr hne)
-    have h2 : -(kappa100 : ℝ) * (2 * Real.pi) ≤ Real.log q := by
-      rw [le_div_iff₀ (by positivity)] at this; exact this
-    nlinarith
-  refine ⟨fun p hp lam hlam => not_dominatesLeb_of_cone hp hF h1 (lt_of_le_of_lt hA hlam),
-    hb, ?_, ?_, ?_⟩
-  · intro q hq hq'
-    apply hb q hq
-    have hlog : Real.log q ≤ q - 1 := Real.log_le_sub_one_of_pos hq
-    have := two_pi_kappa100
-    have : (72309354 : ℝ) / 10 ^ 913 < (73 : ℝ) / 10 ^ 907 := by norm_num
-    nlinarith
-  · intro η hη
-    by_contra hne
-    have := key _ (Set.nonempty_iff_ne_empty.mpr hne)
-    have h2 : η ≤ (kappa100 : ℝ) * (2 * Real.pi) := by
-      have h3 : -(kappa100 : ℝ) ≤ -η / (2 * Real.pi) := this
-      rw [le_div_iff₀ (by positivity)] at h3
-      linarith
-    have := two_pi_kappa100
-    nlinarith
-  · -- `q_min = e^{−2πκ*} ≥ e^{−2πκ_100} ≥ 1 − 2πκ_100 ≥ 1 − 7.3·10^{-906}`
-    have hk : kappaStar.toReal ≤ (kappa100 : ℝ) := by
-      have := kappaStar_le_kappa100
-      rw [← kappaStar_coe] at this
-      exact_mod_cast this
-    unfold qmin
-    have h2 := Real.add_one_le_exp (-2 * Real.pi * kappaStar.toReal)
-    have := two_pi_kappa100
-    have : (72309354 : ℝ) / 10 ^ 913 < (73 : ℝ) / 10 ^ 907 := by norm_num
-    nlinarith
-
-/-- **Corollary 5.2, last clause.** Under RH, `1 − 7.3 · 10^{-906} ≤ q_min ≤ 1`. -/
-theorem cor_5_2_RH (hRH : RiemannHypothesis) : 1 - (73 : ℝ) / 10 ^ 907 ≤ qmin ∧ qmin ≤ 1 := by
-  refine ⟨cor_5_2.2.2.2.2, ?_⟩
-  have h0 : 0 ≤ kappaStar := condE_iff_kappaStar_nonneg.mp ?_
-  · unfold qmin
-    rw [Real.exp_le_one_iff]
-    have : 0 ≤ kappaStar.toReal := EReal.toReal_nonneg h0
-    nlinarith [Real.pi_pos]
-  · exact ⟨_, (pZeta_mem_K_of_RH hRH)⟩
-
-/-! ## Proposition 5.4 (the classical cone) -/
+/-! ## Proposition 5.4 (the classical cone): the Gaussian–Laguerre certificate -/
 
 /-- The optimised classical (OPS) conductor bound `e^{−2πκ*_OPS}`. -/
 def qminOPS : ℝ := Real.exp (-2 * Real.pi * kappaOPS.toReal)
@@ -161,8 +55,9 @@ def qminOPS : ℝ := Real.exp (-2 * Real.pi * kappaOPS.toReal)
 theorem kappaOPS_ne_bot : kappaOPS ≠ ⊥ :=
   ne_bot_of_le_ne_bot kappaStar_ne_bot kappaStar_le_kappaOPS
 
-/-- **Proposition 5.4.** `κ* ≤ κ*_OPS ≤ 9.9462 · 10^{-41}`; consequently the classical OPS conductor
-bound in degree 1, optimised over `𝒞_OPS`, is at least `1 − 6.25 · 10^{-40}`. -/
+/-- **Proposition 5.4, the Gaussian–Laguerre certificate.** `κ* ≤ κ*_OPS ≤ 9.9462 · 10^{-41}`; consequently
+the classical OPS conductor bound in degree 1, optimised over `𝒞_OPS`, is at least `1 − 6.25 · 10^{-40}`.
+(v1.2: the exact member `F₁₁₁ ∈ 𝒞_OPS` gives `κ*_OPS ≤ 1.4291572 · 10^{-1060}`, `thm_5_1`.) -/
 theorem prop_5_3 :
     kappaStar ≤ kappaOPS ∧ kappaOPS ≤ (((99462 : ℝ) / 10 ^ 45 : ℝ) : EReal) ∧
       1 - (625 : ℝ) / 10 ^ 42 ≤ qminOPS := by
@@ -298,9 +193,9 @@ theorem prop_5_4 : ∀ p ∈ K,
     simp only [atomWindows, List.mem_cons, List.not_mem_nil, or_false] at hw
     rcases hw with rfl | rfl <;> norm_num
 
-/-! ## Proposition 5.9 (an unconditional lower bound for the slack) -/
+/-! ## Proposition 5.10 (an unconditional lower bound for the slack) -/
 
-/-- **Proposition 5.9, the slack bound.** From the certified pair for `𝒜_q`, `q = e^{0.02}`, with
+/-- **Proposition 5.10, the slack bound.** From the certified pair for `𝒜_q`, `q = e^{0.02}`, with
 `μ ≥ 4.71949 · 10^{-4}`: `κ* ≥ 4.71949 · 10^{-4} − 0.02/(2π) ≥ −2.7112 · 10^{-3}`. -/
 theorem prop_5_8_kappa : ((-(27112 : ℝ) / 10 ^ 7 : ℝ) : EReal) ≤ kappaStar := by
   obtain ⟨p, hp, hdom⟩ := cert_lowerbound
@@ -321,7 +216,7 @@ theorem prop_5_8_kappa : ((-(27112 : ℝ) / 10 ^ 7 : ℝ) : EReal) ≤ kappaStar
     norm_num
   linarith
 
-/-- **Proposition 5.9, the conductor bound.** `q_min ≤ e^{0.02}`. -/
+/-- **Proposition 5.10, the conductor bound.** `q_min ≤ e^{0.02}`. -/
 theorem prop_5_8_qmin : qmin ≤ Real.exp (1 / 50) := by
   obtain ⟨p, hp, -⟩ := cert_lowerbound
   have hK : (Kset (Arch_q (Real.exp (1 / 50))) xi2).Nonempty := by
@@ -330,14 +225,14 @@ theorem prop_5_8_qmin : qmin ≤ Real.exp (1 / 50) := by
     rw [Real.log_exp]; exact hp
   exact (conductor_form (Real.exp_pos _)).mp hK
 
-/-- **Proposition 5.9.** For `ζ`'s data with conductor `q = e^{0.02}` there is an admissible pair with
+/-- **Proposition 5.10.** For `ζ`'s data with conductor `q = e^{0.02}` there is an admissible pair with
 `μ ≥ 4.71949 · 10^{-4}` (ledger certificate); hence `q_min ≤ e^{0.02}` and
 `κ* ≥ 4.71949 · 10^{-4} − 0.02/(2π) ≥ −2.7112 · 10^{-3}`. -/
 theorem prop_5_8 :
     qmin ≤ Real.exp (1 / 50) ∧ ((-(27112 : ℝ) / 10 ^ 7 : ℝ) : EReal) ≤ kappaStar :=
   ⟨prop_5_8_qmin, prop_5_8_kappa⟩
 
-/-! ## Proposition 5.10 (the data of ℚ(√5) and ℚ(√−3), also at their natural gaps) -/
+/-! ## Proposition 5.11 (the data of ℚ(√5) and ℚ(√−3), also at their natural gaps) -/
 
 /-- `κ*_g` for the archimedean data `𝒜_{𝔤,q}` (§5.5). -/
 def kappaG (ks : List ℕ) (q g : ℝ) : EReal := slack (ArchG ks q) (ConeG g)
@@ -387,7 +282,7 @@ theorem xiOf_mono {x y : ℝ} (hx : 0 < x) (hxy : x ≤ y) : xiOf x ≤ xiOf y :
   apply div_le_div_of_nonneg_right (Real.log_le_log hx hxy)
   have := Real.pi_pos; positivity
 
-/-- **Proposition 5.10(a).**  For the archimedean data `𝒜_{Γ_ℝ²,5}` of `ℚ(√5)` and every gap
+/-- **Proposition 5.11(a).**  For the archimedean data `𝒜_{Γ_ℝ²,5}` of `ℚ(√5)` and every gap
 `g ∈ (0, ξ_{4.04915}]`, in particular for `ξ₂` and for the natural gap `ξ₄`:
 `1.64 · 10^{-5} ≤ κ*_g ≤ 4.83 · 10^{-4}`. -/
 theorem prop_5_9_a : ∀ g : ℝ, 0 < g → g ≤ xiOf ((4049150 : ℝ) / 10 ^ 6) →
@@ -431,7 +326,7 @@ theorem prop_5_9_a : ∀ g : ℝ, 0 < g → g ≤ xiOf ((4049150 : ℝ) / 10 ^ 6
       push_cast; norm_num
     linarith
 
-/-- **Proposition 5.10(b).**  For the data `𝒜_{Γ_ℂ,3}` of `ℚ(√−3)` and every gap
+/-- **Proposition 5.11(b).**  For the data `𝒜_{Γ_ℂ,3}` of `ℚ(√−3)` and every gap
 `g ∈ (0, ξ_{3.011664}]`, in particular for `ξ₂` and for the natural gap `ξ₃`:
 `1.50 · 10^{-4} ≤ κ*_g ≤ 9.99 · 10^{-4}`. -/
 theorem prop_5_9_b : ∀ g : ℝ, 0 < g → g ≤ xiOf ((3011664 : ℝ) / 10 ^ 6) →
@@ -475,7 +370,7 @@ theorem prop_5_9_b : ∀ g : ℝ, 0 < g → g ≤ xiOf ((3011664 : ℝ) / 10 ^ 6
       push_cast; norm_num
     linarith
 
-/-- The gaps named in Proposition 5.10: `ζ`'s gap `ξ₂` and the natural gaps `ξ₄`, `ξ₃` are in range. -/
+/-- The gaps named in Proposition 5.11: `ζ`'s gap `ξ₂` and the natural gaps `ξ₄`, `ξ₃` are in range. -/
 theorem prop_5_9_gaps :
     0 < xi2 ∧ xi2 ≤ xiOf ((4049150 : ℝ) / 10 ^ 6) ∧ xiOf 4 ≤ xiOf ((4049150 : ℝ) / 10 ^ 6) ∧
     xi2 ≤ xiOf ((3011664 : ℝ) / 10 ^ 6) ∧ xiOf 3 ≤ xiOf ((3011664 : ℝ) / 10 ^ 6) := by

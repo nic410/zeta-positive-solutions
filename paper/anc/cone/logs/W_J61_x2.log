@@ -1,0 +1,47 @@
+# command : python cone/cert_exact.py 61 --pball exact/out/P61_ball.txt --sha 8cc7b2b9a66f643e8e40d84fd4ffd6970401342aeab87b716ec169bc91ca3dd4 --prec 2000 --order 28 --order-far 48 --order-switch 80 --workers 3 --xmin 2 --cost 400 --json cone/out/W_J61_x2.json
+# date    : 2026-10-07T10:07:37Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+cert_exact: J = 61, working precision 2000 bits, Taylor order 28, order 48 for x >= 80.0, K backend trap, x_min = 2, workers 3
+  python 3.10.12 | flint 0.9.0
+  pball exact/out/P61_ball.txt  sha256 8cc7b2b9a66f643e8e40d84fd4ffd6970401342aeab87b716ec169bc91ca3dd4  (expected 8cc7b2b9a66f: True)
+  code cone/cert_exact.py       sha256 58b4afeabe96a27070b1b24dde4171d598b09377adcf4c20a6eaced40803e46b
+  code cone/conelib.py          sha256 cc1534c4f34b72579f3eedd2df2adb8ce649d6ddbdacbd5a1090143031db12ee
+  code lib/bessel_form.py       sha256 b80182e8bdbe8ceaafd78d2813251a5ab949767808e8a97b96d3fd20f3c072bc
+  code lib/besselk.py           sha256 3d3fd6601742c49b17fc355a0d9310474704ad480508010f91ae92615131501a
+  code lib/common.py            sha256 d8e3056e04fdb144a8706bbc31ef0d3028860f21bd5dc09e0db9ee65aa14242a
+  code lib/k01_trapezoid.py     sha256 864867203d52f421ade04725be5f78f8be4dcbf8569d355c98a3d43bf87408a1
+(POS) p_0 = 1 exactly; all 123 coefficients p_k certified > 0: True  (min_k p_k >= 3.470e-588 at k = 122)
+      => P_J(u) >= 1 for u >= 0, H_J(t) = P_J(t^2) >= 1 and F_J >= Xi^2 on R
+  nodes: the first 61 prime powers 2 .. 211; operator length D = 298 (setup 0.1 s)
+(BF) Q = Abel preimage, degree 248 = 4J+4, leading coefficient > 0; all 249 Taylor coefficients of Q at y_0 = 2 pi x_0 certified > 0 for x_0 = 2113/10 (first point of the grid n_J + k*1/20)
+     => Fhat_J > 0 on [x_0, oo) = [2113/10, oo)  (Lemma 4.6, all divisor terms)
+(NODE) jet-subtracted neighbourhoods of the 61 nodes (n = 2 one-sided):
+    n =    2: p = 28, h = 1.000e-02, c_0 = [+/- 2.28e-55], c_1 = [+/- 4.31e-52], c_2 = Fhat_J''(xi_n)/2 = [58.117255 +/- 4.95e-7], bracket >= 3.26186e1 (0.56 c_2)
+    n =    3: p = 28, h = 1.000e-02, c_0 = [+/- 9.74e-59], c_1 = [+/- 1.90e-55], c_2 = Fhat_J''(xi_n)/2 = [2.3846018 +/- 9.41e-10], bracket >= 1.18129e-1 (0.05 c_2)
+    n =    4: p = 28, h = 7.991e-03, c_0 = [+/- 2.18e-55], c_1 = [+/- 4.13e-52], c_2 = Fhat_J''(xi_n)/2 = [0.17206407 +/- 4.07e-9], bracket >= 8.87399e-2 (0.52 c_2)
+    n =   17: p = 28, h = 2.171e-03, c_0 = [+/- 4.07e-83], c_1 = [+/- 1.05e-79], c_2 = Fhat_J''(xi_n)/2 = [4.5340308e-19 +/- 3.63e-28], bracket >= 2.27375e-19 (0.50 c_2)
+    n =   43: p = 28, h = 4.264e-04, c_0 = [+/- 6.50e-202], c_1 = [+/- 3.49e-198], c_2 = Fhat_J''(xi_n)/2 = [2.7433334e-66 +/- 3.29e-74], bracket >= 1.58590e-66 (0.58 c_2)
+    n =   79: p = 28, h = 5.596e-05, c_0 = [+/- 2.01e-440], c_1 = [+/- 2.01e-436], c_2 = Fhat_J''(xi_n)/2 = [1.1057820e-141 +/- 3.81e-149], bracket >= 9.38180e-142 (0.85 c_2)
+    n =  121: p = 48, h = 1.456e-04, c_0 = [+/- 1.35e-710], c_1 = [+/- 7.97e-707], c_2 = Fhat_J''(xi_n)/2 = [1.2215008e-232 +/- 3.02e-240], bracket >= 6.39862e-233 (0.52 c_2)
+    n =  163: p = 48, h = 1.085e-04, c_0 = [+/- 2.58e-800], c_1 = [+/- 1.99e-796], c_2 = Fhat_J''(xi_n)/2 = [1.5847504e-321 +/- 2.27e-329], bracket >= 8.71093e-322 (0.55 c_2)
+    n =  197: p = 48, h = 1.809e-04, c_0 = [+/- 2.70e-876], c_1 = [+/- 2.45e-872], c_2 = Fhat_J''(xi_n)/2 = [1.7069203e-390 +/- 1.02e-398], bracket >= 5.93915e-391 (0.35 c_2)
+    n =  199: p = 48, h = 1.809e-04, c_0 = [+/- 7.68e-881], c_1 = [+/- 7.05e-877], c_2 = Fhat_J''(xi_n)/2 = [8.3895853e-394 +/- 3.25e-402], bracket >= 4.21950e-394 (0.50 c_2)
+    n =  211: p = 48, h = 2.621e-04, c_0 = [+/- 2.90e-908], c_1 = [+/- 2.80e-904], c_2 = Fhat_J''(xi_n)/2 = [5.1791954e-414 +/- 2.34e-423], bracket >= 1.21582e-414 (0.23 c_2)
+    all certified: True; every c_0, c_1 ball contains 0 (input consistency): True  (3 s)
+(GAP) 60 gaps, 1392 Taylor pieces (597 bisections), all certified: True; min (lower bound / |centre value|) = [0.00108 +/- 1e-10]  (39 s)
+(COVER) the items tile [xi_2 (x = 2; one-sided node item from the exact xi_2), xi(x_0)] with exact dyadic endpoints, and the last endpoint >= xi(x_0): True
+W_J: Fhat_J >= 0 on [x = 2, oo), with exact double zeros at the 61 nodes and Fhat_J > 0 elsewhere: True
+     In particular W_J holds on every window [2, L(D+1)], D = 4J (any L > 0).
+(C) clauses of Def 2.4 for F_J = Xi^2 P_J(t^2):  F_J in T (Sec 4.1, a theorem: even, real, Xi^2 P(t^2) in T_delta);  F_J >= Xi^2 >= 0 on R (POS);  Fhat_J >= 0 on [xi_2, oo) (W above)  =>  F_J in C, exactly (no cushion).
+(A) A(F_J) = (1/pi) sum_{n in PP, n > n_J} Lambda(n) n^{-1/2} Fhat_J(xi_n)  (Lemma 2.3 + Cor 4.4 + Prop 4.5; unconditional)
+    truncation: terms n_J = 211 < n <= 400 (36 prime powers), each enclosed; their sum / pi = [6.50716403226231e-442 +/- 1.25e-457]
+    first terms: n = 223: [6.5071639e-442 +/- 1.94e-450]; n = 227: [1.1290429e-449 +/- 7.69e-458]; n = 229: [1.2524341e-453 +/- 1.18e-461]
+    tail n >= 401: every term >= 0 (W_J); sum <= log(n1) U(n1)/((1 - q) pi) = 9.22e-834, q = [0.00392 +/- 4.36e-6] < 1/2
+    A(F_J) in [6.50716403226e-442, 6.50716403227e-442]   (certified ball: [6.50716403226e-442 +/- 2.32e-454])
+    int F_J = Fhat_J(0) = [2.788431831933736852610659 +/- 1.67e-25]
+    kappa_J^exact = A(F_J)/int F_J in [2.333628513e-442, 2.333628514e-442]  =>  kappa* <= 2.3336286e-442  (F_J in C, Def 2.4)
+    near-rigidity: every admissible pair (mu, nu) has int Xi^2 dmu <= int F_J dmu <= A(F_J) <= 6.5071641e-442  (Lemma 2.5, F_J >= Xi^2, Fhat_J >= 0 on supp nu)
+CERTIFIED: True   [J = 61, 40 s]
+{"J": 61, "pball": "exact/out/P61_ball.txt", "pball_sha256": "8cc7b2b9a66f643e8e40d84fd4ffd6970401342aeab87b716ec169bc91ca3dd4", "prec": 2000, "order": 28, "order_far": 48, "order_switch": 80.0, "kback": "trap", "xmin": 2, "POS": true, "x0_BF": "2113/10", "nodes_ok": true, "pieces": 1392, "cover_ok": true, "W_certified": true, "A_lower": "6.50716403226e-442", "A_upper": "6.50716403227e-442", "Fhat0": "[2.788431831933736852610659 +/- 1.67e-25]", "nmax": 400, "tail_upper": "9.22e-834", "kappa_exact_lower": "2.333628513e-442", "kappa_exact_upper": "2.333628514e-442", "secs": 39.7}
+# exit code 0; wall time 39.8 s

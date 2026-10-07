@@ -2,8 +2,8 @@
 Lemma A.2 (positive-coefficient certificates), Appendix A.1 of the paper (Mathlib only).
 
 These are the elementary positivity criteria by coefficient signs that the certificates of
-Theorem 5.1 (node neighbourhoods, Taylor models) and Propositions 5.4 and 5.5 (positivity of the
-Gaussian–Laguerre polynomials, window lower bounds after a Möbius map) apply to explicit polynomials.
+Propositions 5.4, 5.5 and 5.7 (positivity of the Gaussian–Laguerre polynomials, window lower bounds after a Möbius
+map, the far field of the exact members) apply to explicit polynomials.
 They are proved here outright; the certificates themselves remain ledger axioms.
 -/
 import Mathlib
@@ -19,7 +19,7 @@ theorem eval_comp_X_add_C_sub (p : Polynomial ℝ) (c x : ℝ) :
   simp
 
 /-- **Lemma A.2(a) (Descartes at `c`), first claim** (Appendix A.1; used by the certificates of
-Theorem 5.1 and Propositions 5.4, 5.5).  If every coefficient of `p(c + t)` is non-negative and the
+Propositions 5.4, 5.5 and 5.7).  If every coefficient of `p(c + t)` is non-negative and the
 constant term is positive, then `p > 0` on `[c, ∞)`. -/
 theorem posc_a (p : Polynomial ℝ) (c : ℝ)
     (h : ∀ i, 0 ≤ (p.comp (Polynomial.X + Polynomial.C c)).coeff i)
@@ -33,7 +33,7 @@ theorem posc_a (p : Polynomial ℝ) (c : ℝ)
   · exact ⟨0, Finset.mem_range.mpr (Nat.succ_pos _), by simpa using h0⟩
 
 /-- **Lemma A.2(a) (Descartes at `c`), second claim** (Appendix A.1; used by the certificates of
-Theorem 5.1 and Propositions 5.4, 5.5).  If `p` vanishes to exact order `m` at `c` (the coefficients of
+Propositions 5.4, 5.5).  If `p` vanishes to exact order `m` at `c` (the coefficients of
 `t^i`, `i < m`, of `p(c + t)` vanish and `p ≠ 0`) and the coefficients of `t^m, t^{m+1}, …` (up to the
 degree) in `p(c + t)` are positive, then `p > 0` on `(c, ∞)`. -/
 theorem posc_a' (p : Polynomial ℝ) (c : ℝ) (m : ℕ)
@@ -58,7 +58,7 @@ theorem posc_a' (p : Polynomial ℝ) (c : ℝ) (m : ℕ)
   · exact ⟨q.natDegree, Finset.mem_range.mpr (Nat.lt_succ_self _),
       mul_pos (hpos _ hm le_rfl) (pow_pos ht _)⟩
 
-/-- **Lemma A.2(b), non-negativity** (Appendix A.1; used by the certificates of Theorem 5.1 and
+/-- **Lemma A.2(b), non-negativity** (Appendix A.1; used by the certificates of
 Propositions 5.4, 5.5).  A polynomial with non-negative coefficients is non-negative on the
 non-negative orthant. -/
 theorem posc_b {σ : Type*} [Fintype σ] (p : MvPolynomial σ ℝ) (h : ∀ s, 0 ≤ p.coeff s)
@@ -67,7 +67,7 @@ theorem posc_b {σ : Type*} [Fintype σ] (p : MvPolynomial σ ℝ) (h : ∀ s, 0
   exact Finset.sum_nonneg fun s _ =>
     mul_nonneg (h s) (Finset.prod_nonneg fun i _ => pow_nonneg (hv i) _)
 
-/-- **Lemma A.2(b), positivity** (Appendix A.1; used by the certificates of Theorem 5.1 and
+/-- **Lemma A.2(b), positivity** (Appendix A.1; used by the certificates of
 Propositions 5.4, 5.5).  A polynomial with non-negative coefficients is positive at every point `v` of
 the non-negative orthant at which some monomial with a positive coefficient is positive. -/
 theorem posc_b' {σ : Type*} [Fintype σ] (p : MvPolynomial σ ℝ) (h : ∀ s, 0 ≤ p.coeff s)

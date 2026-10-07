@@ -1,8 +1,8 @@
 /-
-Theorem 2.7(b) (convexity of `𝒦`) and the consequences of Proposition 5.10 (some admissible pair has a
+Theorem 2.7(b) (convexity of `𝒦`) and the consequences of Proposition 5.11 (some admissible pair has a
 zero measure `≥ c dt`; the set of admissible pairs is not a singleton), from the ledger axioms
 `cert_Qsqrt5_pair`, `cert_Qsqrtm3_pair` (via the natural-gap step) and the perturbation in the proof of
-Proposition 5.10(a).
+Proposition 5.11(a).
 -/
 import PositivityRigidity.Certified
 import PositivityRigidity.Faithful
@@ -59,7 +59,7 @@ theorem K_convex {p₁ p₂ : Pair} (h₁ : p₁ ∈ K) (h₂ : p₂ ∈ K) {t :
       ENNReal.ofReal t • p₁.ν + ENNReal.ofReal (1 - t) • p₂.ν⟩ : Pair) ∈ K :=
   Kset_convex Arch xi2 h₁ h₂ ht0 ht1
 
-/-! ## Proposition 5.10: not a singleton -/
+/-! ## Proposition 5.11: not a singleton -/
 
 theorem sigmaFinite_ofReal_smul_volume (c : ℝ) :
     SigmaFinite (ENNReal.ofReal c • (volume : Measure ℝ)) := by
@@ -169,7 +169,7 @@ theorem FT_eq_integral_cos {F : ℂ → ℂ} (hF : F ∈ TestClass) (ξ : ℝ) :
   rw [show -2 * Real.pi * v * ξ = -(2 * Real.pi * ξ * v) by ring, Real.cos_neg]
   simp [Complex.ofReal_re]
 
-/-- **Perturbation (proof of Proposition 5.10(a)).**  A pair admissible for `𝒜_{𝔤,q}` at a gap `g` whose
+/-- **Perturbation (proof of Proposition 5.11(a)).**  A pair admissible for `𝒜_{𝔤,q}` at a gap `g` whose
 zero measure dominates `c dt`, `c > 0`, is not the only admissible pair: adding an atom `w δ_g` to `ν`
 (`w = πc/2`) and subtracting the density `(w/π) cos(2πg t)` from `μ` gives another one. -/
 theorem not_unique_of_dominates {ks : List ℕ} {q g c : ℝ} (_hg : 0 < g) {p : Pair}
@@ -293,7 +293,7 @@ theorem dominatesLeb_mono {μ : Measure ℝ} {a b : ℝ} (hab : a ≤ b) (h : Do
   simp only [Measure.smul_apply, smul_eq_mul]
   gcongr
 
-/-- The natural-gap step and the change of conductor of Proposition 5.10 (as in `kappaG_ge_of_pair`):
+/-- The natural-gap step and the change of conductor of Proposition 5.11 (as in `kappaG_ge_of_pair`):
 a pair admissible for `𝒜_{𝔤,q₀}` at the gap `g'` with `μ ≥ c dt` gives, for every `g ≤ g'` and `q ≥ q₀`,
 a pair admissible for `𝒜_{𝔤,q}` at the gap `g` with `μ ≥ (c + (log q − log q₀)/(2π)) dt`. -/
 theorem exists_pair_shift (ks : List ℕ) {q₀ q g g' c : ℝ} (hq₀ : 0 < q₀) (hq : q₀ ≤ q) (hc : 0 ≤ c)
@@ -316,7 +316,7 @@ theorem exists_pair_shift (ks : List ℕ) {q₀ q g g' c : ℝ} (hq₀ : 0 < q�
   rw [ENNReal.ofReal_add hc hd0, add_smul]
   gcongr
 
-/-- **Proposition 5.10(a), (b), the consequences.**  For the data of `ℚ(√5)` (resp. `ℚ(√−3)`) and every
+/-- **Proposition 5.11(a), (b), the consequences.**  For the data of `ℚ(√5)` (resp. `ℚ(√−3)`) and every
 gap `g ∈ (0, ξ_{4.04915}]` (resp. `(0, ξ_{3.011664}]`): some admissible pair has zero measure
 `≥ 1.64 · 10^{-5} dt` (resp. `≥ 1.50 · 10^{-4} dt`), and the set of admissible pairs is not a singleton. -/
 theorem prop_5_9_not_singleton :

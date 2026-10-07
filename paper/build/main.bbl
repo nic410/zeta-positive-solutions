@@ -247,6 +247,9 @@ H.~M. Stark, \emph{Some effective cases of the {B}rauer--{S}iegel theorem}, Inve
 \bibitem{Tit86}
 E.~C. Titchmarsh, \emph{The theory of the {R}iemann zeta-function}, second ed., Clarendon Press, Oxford, 1986, Revised by D. R. Heath-Brown.
 
+\bibitem{TW14}
+Lloyd~N. Trefethen and J.~A.~C. Weideman, \emph{The exponentially convergent trapezoidal rule}, SIAM Rev. \textbf{56} (2014), no.~3, 385--458, \href{https://doi.org/10.1137/130932132}{doi:10.1137/130932132}.
+
 \bibitem{Ved26}
 Guilherme Vedana, \emph{Classification of {F}ourier summation formulas on a horizontal strip}, 2026, arXiv:2608.10121v2.
 

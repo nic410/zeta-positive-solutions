@@ -37,10 +37,10 @@ abstract: >-
   conjecture that ζ's own pair is the only solution; this does not imply the Riemann hypothesis, but makes it
   equivalent to existence. We prove it when the zero measure lives on the zeros of ζ and the origin, whatever the
   prime measure, and when it lives on the zeros plus countably many summable points with the prime measure on the
-  Bondarenko–Radchenko–Seip nodes. Certificates of the form Ξ²(H + ε·exp(−πt²)), with H ≥ 1 a polynomial in t²,
-  vanish at every zero of ζ and show unconditionally that κ* ≤ 1.1508391·10⁻⁹⁰⁶ and that every solution has
-  ∫Ξ² dμ ≤ 3.21·10⁻⁹⁰⁶. Uniqueness would follow from asymptotic properties of such functions defined by Hermite
-  interpolation at the prime powers.
+  Bondarenko–Radchenko–Seip nodes. Certificates Ξ²P_J(t²), where the polynomial P_J is defined by Hermite
+  interpolation at the first J prime powers, vanish at every zero of ζ; the one with J = 111 shows unconditionally
+  that κ* ≤ 1.4291572·10⁻¹⁰⁶⁰ and that every solution has ∫Ξ² dμ ≤ 3.99·10⁻¹⁰⁶⁰. Uniqueness would follow from
+  asymptotic properties of these functions.
 preferred-citation:
   type: article
   status: preprint

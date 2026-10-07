@@ -1,0 +1,34 @@
+# command : python cone/cert_exact.py 10 --pball exact/out/P10_ball.txt --sha 4e55d361d6d2c05f15565bd3c94d56b9f5e0715acecda9fd362410181bdc48d3 --prec 800 --order 24 --workers 3 --xmin 1 --json cone/out/W_J10_x1.json
+# date    : 2026-10-07T10:26:21Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+cert_exact: J = 10, working precision 800 bits, Taylor order 24, K backend trap, x_min = 1, workers 3
+  python 3.10.12 | flint 0.9.0
+  pball exact/out/P10_ball.txt  sha256 4e55d361d6d2c05f15565bd3c94d56b9f5e0715acecda9fd362410181bdc48d3  (expected 4e55d361d6d2: True)
+  code cone/cert_exact.py       sha256 58b4afeabe96a27070b1b24dde4171d598b09377adcf4c20a6eaced40803e46b
+  code cone/conelib.py          sha256 cc1534c4f34b72579f3eedd2df2adb8ce649d6ddbdacbd5a1090143031db12ee
+  code lib/bessel_form.py       sha256 b80182e8bdbe8ceaafd78d2813251a5ab949767808e8a97b96d3fd20f3c072bc
+  code lib/besselk.py           sha256 3d3fd6601742c49b17fc355a0d9310474704ad480508010f91ae92615131501a
+  code lib/common.py            sha256 d8e3056e04fdb144a8706bbc31ef0d3028860f21bd5dc09e0db9ee65aa14242a
+  code lib/k01_trapezoid.py     sha256 864867203d52f421ade04725be5f78f8be4dcbf8569d355c98a3d43bf87408a1
+(POS) p_0 = 1 exactly; all 21 coefficients p_k certified > 0: True  (min_k p_k >= 6.600e-55 at k = 20)
+      => P_J(u) >= 1 for u >= 0, H_J(t) = P_J(t^2) >= 1 and F_J >= Xi^2 on R
+  nodes: the first 10 prime powers 2 .. 16; operator length D = 70 (setup 0.0 s)
+(BF) Q = Abel preimage, degree 44 = 4J+4, leading coefficient > 0; all 45 Taylor coefficients of Q at y_0 = 2 pi x_0 certified > 0 for x_0 = 329/20 (first point of the grid n_J + k*1/20)
+     => Fhat_J > 0 on [x_0, oo) = [329/20, oo)  (Lemma 4.6, all divisor terms)
+(NODE) jet-subtracted neighbourhoods of the 10 nodes (all two-sided):
+    n =    2: p = 24, h = 5.000e-03, c_0 = [+/- 1.23e-51], c_1 = [+/- 2.16e-48], c_2 = Fhat_J''(xi_n)/2 = [58.118650 +/- 1.59e-7], bracket >= 4.42277e1 (0.76 c_2)
+    n =    3: p = 24, h = 5.000e-03, c_0 = [+/- 6.64e-54], c_1 = [+/- 1.20e-50], c_2 = Fhat_J''(xi_n)/2 = [2.3857873 +/- 7.44e-9], bracket >= 1.70466e0 (0.71 c_2)
+    n =    4: p = 24, h = 3.995e-03, c_0 = [+/- 3.50e-56], c_1 = [+/- 6.42e-53], c_2 = Fhat_J''(xi_n)/2 = [0.17337233 +/- 1.18e-9], bracket >= 1.29371e-1 (0.75 c_2)
+    n =   11: p = 24, h = 2.991e-03, c_0 = [+/- 2.13e-65], c_1 = [+/- 4.26e-62], c_2 = Fhat_J''(xi_n)/2 = [1.4513774e-8 +/- 4.65e-16], bracket >= 8.28241e-9 (0.57 c_2)
+    n =   13: p = 24, h = 2.991e-03, c_0 = [+/- 6.64e-54], c_1 = [+/- 1.20e-50], c_2 = Fhat_J''(xi_n)/2 = [2.0390346e-10 +/- 4.77e-18], bracket >= 1.04107e-10 (0.51 c_2)
+    n =   16: p = 24, h = 1.859e-03, c_0 = [+/- 9.42e-75], c_1 = [+/- 2.03e-71], c_2 = Fhat_J''(xi_n)/2 = [2.5535880e-13 +/- 3.10e-21], bracket >= 1.64484e-13 (0.64 c_2)
+    all certified: True; every c_0, c_1 ball contains 0 (input consistency): True  (0 s)
+(GAP) 11 gaps, 83 Taylor pieces (26 bisections), all certified: True; min (lower bound / |centre value|) = [0.0732 +/- 3e-8]  (2 s)
+(COVER) the items tile [xi = 0 (x = 1), xi(x_0)] with exact dyadic endpoints, and the last endpoint >= xi(x_0): True
+W_J: Fhat_J >= 0 on [x = 1, oo), with exact double zeros at the 10 nodes and Fhat_J > 0 elsewhere: True
+     In particular W_J holds on every window [2, L(D+1)], D = 4J (any L > 0).
+(C) clauses of Def 2.4 for F_J = Xi^2 P_J(t^2):  F_J in T (Sec 4.1, a theorem: even, real, Xi^2 P(t^2) in T_delta);  F_J >= Xi^2 >= 0 on R (POS);  Fhat_J >= 0 on [xi_2, oo) (W above)  =>  F_J in C, exactly (no cushion).
+CERTIFIED: True   [J = 10, 2 s]
+{"J": 10, "pball": "exact/out/P10_ball.txt", "pball_sha256": "4e55d361d6d2c05f15565bd3c94d56b9f5e0715acecda9fd362410181bdc48d3", "prec": 800, "order": 24, "order_far": null, "order_switch": null, "kback": "trap", "xmin": 1, "POS": true, "x0_BF": "329/20", "nodes_ok": true, "pieces": 83, "cover_ok": true, "W_certified": true, "secs": 1.9}
+# exit code 0; wall time 2.0 s

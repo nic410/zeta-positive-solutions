@@ -115,26 +115,25 @@ this for an explicit family, and Corollary~\ref{cor:certroute} gives a route tha
 
 \begin{lthm}{C}[Near-criticality]\label{thm:intro-C}
 \begin{enumerate}[label=\textup{(\alph*)}]
-\item $\kstar\le1.1508391\cdot10^{-906}$. Hence $\qmin\ge1-7.3\cdot10^{-906}$; in the classical cone $\ConeOPS$,
-$\kOPS\le9.9462\cdot10^{-41}$.
+\item $\kstar\le\kOPS\le1.4291572\cdot10^{-1060}$. Hence $\qmin\ge1-8.98\cdot10^{-1060}$, and the same bound holds already in the
+classical cone $\ConeOPS$.
 \item $\kstar\ge-2.7112\cdot10^{-3}$.
 \end{enumerate}
 \end{lthm}
 
-These are Theorem~\ref{thm:kappa}, Corollary~\ref{cor:qmin}, Proposition~\ref{thm:kappaOPS} and Proposition~\ref{prop:lowerbound}; they are
-computer-assisted and unconditional. Together they give, unconditionally, $1-7.3\cdot10^{-906}\le\qmin<1.017182$; only under
+These are Theorem~\ref{thm:kappa}, Corollary~\ref{cor:qmin} and Proposition~\ref{prop:lowerbound}; they are
+computer-assisted and unconditional. Together they give, unconditionally, $1-8.98\cdot10^{-1060}\le\qmin<1.017182$; only under
 \condE, for instance under RH, is $\kstar\ge0$, that is, $\qmin\le1$. So Theorem~\ref{thm:intro-C} sharpens the conductor bound that the
-explicit-formula method can give for $\zeta$'s data; the arithmetic conductor of $\zeta$ is $1$ in any case. The certificate in (a) is a
-zero-killing function $\Xi^2(H+\eps e^{-\pi t^2})$, where $\Xi$ is Riemann's $\Xi$-function and $H>0$ is a polynomial in $t^2$. It vanishes
-at every zero of $\zeta$, on or off the line, so $\Arch$ of it is a sum over prime powers alone. For the exact interpolant $P_J$ of
-Section~\ref{ssec:hermite}, the transform of $\Xi^2P_J(t^2)$ has zeros of order at least two at the first $J$ prime powers, so that sum
-would start at the $(J+1)$-st prime power. The certificate uses a rational approximation $H$ of $P_J(t^2)$ and a small positive cushion,
-which leave small contributions at the first $J$ prime powers; the proof bounds these contributions and the tail rigorously
-(Section~\ref{ssec:kappa}). Since $H\ge1$ for these certificates, they also bound every positive solution:
-$\int\Xi^2\dd\mu\le3.21\cdot10^{-906}$ for every admissible pair, so $\mu(I)\le3.21\cdot10^{-906}/\min_I\Xi^2$ for every compact interval $I$ that
-avoids $\Zz$ (Corollary~\ref{cor:nearrigid}). Near-criticality thus forces near-rigidity, at low height. The exponent $906$ is a
-computational budget ($J=100$); the evidence for \condS\ is the ladder of
-Table~\ref{tab:kappa-ladder}, in which the certified bounds keep improving from $J=20$ to $J=100$. A certificate of the classical
+explicit-formula method can give for $\zeta$'s data; the arithmetic conductor of $\zeta$ is $1$ in any case. The certificate in (a) is the
+zero-killing function $\Xi^2P_J(t^2)$ with $J=111$, where $\Xi$ is Riemann's $\Xi$-function and $P_J$ is the exact interpolant of
+Section~\ref{ssec:hermite}. It vanishes at every zero of $\zeta$, on or off the line, so $\Arch$ of it is a sum over prime powers alone, and
+its transform has zeros of order two at the first $J$ prime powers, so that sum starts at the $(J+1)$-st prime power. We certify that these
+functions lie in $\Cone$, and even in $\ConeOPS$, for $J\in\{10,60,61,110,111\}$, with no approximation of $P_J$
+(Proposition~\ref{prop:exactcone}). Since $P_J\ge1$ on $[0,\infty)$ for these $J$, they also bound every positive solution:
+$\int\Xi^2\dd\mu\le3.99\cdot10^{-1060}$ for every admissible pair, so $\mu(I)\le3.99\cdot10^{-1060}/\min_I\Xi^2$ for every compact interval $I$ that
+avoids $\Zz$ (Corollary~\ref{cor:nearrigid}). Near-criticality thus forces near-rigidity, at low height. The exponent $1060$ is a
+computational budget ($J=111$); the evidence for \condS\ is
+Table~\ref{tab:kappa-ladder}, in which the certified bounds keep improving from $J=10$ to $J=111$. A certificate of the classical
 (Gaussian--Laguerre) kind shows that every admissible pair, whether or not RH holds, puts mass at most $2.4\cdot10^{-13}$ into each gap
 between the first six positive zero ordinates of $\zeta$, shrunk by $0.1$ at both ends, and at most $3.8\cdot10^{-8}$ into listed windows between low prime powers
 (Proposition~\ref{prop:lowheight}). With the same gap $\xi_2$, and also at their own natural gaps, the archimedean data of $\QQ(\sqrt5)$ and
@@ -147,7 +146,7 @@ Theorem~\ref{thm:criterion}, then \condS\ and \condU\ hold, and RH$\Leftrightarr
 \end{lthm}
 
 Here $P_J$ is the polynomial with $P_J(0)=1$ and degree at most $2J$ for which the transform of $F_J$ has zeros of order at least two at the first $J$
-prime powers; the certificates of Theorem~\ref{thm:intro-C}(a) are rational approximations of these functions. The hypotheses ask for uniform
+prime powers; the certificate of Theorem~\ref{thm:intro-C}(a) is the member $J=111$ of this family. The hypotheses ask for uniform
 growth bounds, no real limit zeros, and non-negativity of $\liminf_J\FT F_J$ beyond the gap; by Theorem~\ref{thm:intro-B}(a) no strict
 positivity of the limiting transform is needed.
 
@@ -162,7 +161,7 @@ results are stated.
 \item Only one side of criticality is certified. The inequality $\kstar\ge0$, equivalently $\qmin\le1$, is \condE; we know it only under
 RH, and unconditionally we know only $\kstar\ge-2.7112\cdot10^{-3}$, that is, $\qmin<1.017182$. We never claim $\kstar=0$.
 \item The hypotheses of Theorem~\ref{thm:intro-D} concern infinitely many $J$, or a limit in $J$, and are open. Only finite-$J$ instances
-are certified (Proposition~\ref{thm:finiteJ}); convergence of the family is neither assumed nor proved.
+are certified (Propositions~\ref{thm:finiteJ} and~\ref{prop:exactcone}); convergence of the family is neither assumed nor proved.
 \item Uniqueness is proved only near $\zeta$'s support. Theorem~\ref{thm:intro-B}(a) allows any prime measure but no extra zeros other than
 $0$; Theorem~\ref{thm:intro-B}(b) allows countably many extra zeros under a summability condition, but no prime mass off $\BRS$. Extra zeros
 together with prime mass off $\BRS$, extra zeros without summability, and non-atomic extra zero mass are open. Corollary~\ref{cor:nearrigid} is quantitative only at
@@ -202,9 +201,9 @@ carried by $\BRS$, as in Theorem~\ref{thm:intro-B}(b)). None of these works impo
 
 \emph{Conductor bounds and characterisations of $\zeta$.} The method for discriminants is due to Stark and Odlyzko, with the explicit
 formula introduced by Serre and refinements by Poitou \cite{Sta74,Odl76,Ser75,Poi77,Poi77b}; Odlyzko treated Artin conductors \cite{Odl77}
-and Mestre conductors of varieties \cite{Mes86}; see \cite{Odl90,DyD80}. In Odlyzko's own setting, the classical cone, Proposition~\ref{thm:kappaOPS} raises the
-tabulated $0.997$ to at least $1-6.25\cdot10^{-40}$; Theorem~\ref{thm:intro-C}(a) relaxes the positivity of $\hF$ to $[\xin2,\infty)$ and gives
-at least $1-7.3\cdot10^{-906}$. Both address \cite[Open Problem~2.2]{Odl90} in degree one for the data of $\zeta$. In the literature we
+and Mestre conductors of varieties \cite{Mes86}; see \cite{Odl90,DyD80}. In Odlyzko's own setting, the classical cone, a Gaussian--Laguerre
+function (Proposition~\ref{thm:kappaOPS}) raises the tabulated $0.997$ to at least $1-6.25\cdot10^{-40}$, and the zero-killing certificate of
+Theorem~\ref{thm:intro-C}(a), which also lies in the classical cone, to at least $1-8.98\cdot10^{-1060}$. Both address \cite[Open Problem~2.2]{Odl90} in degree one for the data of $\zeta$. In the literature we
 searched we found no optimisation of this bound beyond Odlyzko's one-parameter family, and no claim that its optimum is $1$. A related
 extremal problem concerns the lowest zero: among Dedekind zeta functions, $\zeta$ has the highest lowest zero \cite[p.~132]{Odl90};
 Miller \cite{Mil02} proved the analogue under GRH for entire $L$-functions of real archimedean type by positivity in the explicit

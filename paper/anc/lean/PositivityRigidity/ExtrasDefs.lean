@@ -4,10 +4,9 @@ Definitions for the v1.1 additions (definitions only; no axioms, no theorems):
 * the summability condition (3.5) of Theorem 3.8 (countably many extra zeros), in its weighted and its
   cumulative form, and the countable forms of Lemma 3.7 (formula (3.4)) and of the mean-value step
   (Lemmas B.3, B.4), as properties of a basis `B` and a coefficient function `α`, parallel to `Lemma36` and
-  `LemmaB3` in `BRSDefs.lean` (v1.0 Lemma 3.6 and the v1.0 Landau step);
-* the polynomial `P` with `H(t) = P(t²)` of the certified functions of Theorem 5.1 (Corollary 5.3).
+  `LemmaB3` in `BRSDefs.lean` (v1.0 Lemma 3.6 and the v1.0 Landau step).
 
-Statement numbers are those of the v1.1 paper.
+Statement numbers are those of v1.2 of the paper (for these statements, the same as in v1.1).
 -/
 import PositivityRigidity.Basic
 import PositivityRigidity.BRSDefs
@@ -81,12 +80,5 @@ def MeanValueStep (α : ℕ → ℂ → ℂ) : Prop :=
     (∀ N : ℕ, N % 3 = 2 →
       Summable (fun e : ↥Ep => (rhoTilde a e : ℂ) * α N (sOf e)) ∧ 0 ≤ cNc α Ep a N) →
     ∀ e ∈ Ep, rhoTilde a e = 0
-
-/-! ## The certified ladder functions -/
-
-/-- The polynomial `P(u) = Π_{j < J} (1 + r_j u + s_j u²)` of the certified representative
-`F_rep = Ξ²(P(t²) + ε e^{−πt²})` of Theorem 5.1 (`H(t) = P(t²)`), with rational coefficients. -/
-def Hpoly {J : ℕ} (r s : Fin J → ℚ) : Polynomial ℚ :=
-  ∏ j, (1 + Polynomial.C (r j) * Polynomial.X + Polynomial.C (s j) * Polynomial.X ^ 2)
 
 end PosRig

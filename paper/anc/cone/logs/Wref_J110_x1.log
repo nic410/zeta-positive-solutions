@@ -1,0 +1,45 @@
+# command : python cone/cert_exact_alt.py 110 --pball exact/ref/P110_ref.txt --sha dcba593fad1b1e11ce5320bb05c990dd9d3894879be4f2767ad9a483d53ef043 --prec 3000 --order 28 --order-far 64 --order-switch 121 --workers 3 --xmin 1 --kback series --json cone/out/Wref_J110_x1.json
+# date    : 2026-10-07T10:22:25Z
+# system  : Linux x86_64, 16 visible cores
+# python  : 3.10.12 | python-flint 0.9.0 | mpmath 1.3.0
+Second evaluation path cert_exact_alt.py: evaluator = conelib_alt.FhatAlt (independent operator construction); code sha256 cc3d0af2570c6348528c320fc454b0c615d8d11cc5f0c296b1bf6c7945dabd91 (driver), a382244cbfc7c51ec74ada5faf5fe60337dd51e647547b011cf45d9bf023f638 (conelib_alt), c1c245c6186ad4c7f13980573c63fcd8eebac74815d91ce3bcb6ee456be81565 (lib/opcalc.py)
+cert_exact: J = 110, working precision 3000 bits, Taylor order 28, order 64 for x >= 121.0, K backend series, x_min = 1, workers 3
+  python 3.10.12 | flint 0.9.0
+  pball exact/ref/P110_ref.txt  sha256 dcba593fad1b1e11ce5320bb05c990dd9d3894879be4f2767ad9a483d53ef043  (expected dcba593fad1b: True)
+  code cone/cert_exact.py       sha256 58b4afeabe96a27070b1b24dde4171d598b09377adcf4c20a6eaced40803e46b
+  code cone/conelib.py          sha256 cc1534c4f34b72579f3eedd2df2adb8ce649d6ddbdacbd5a1090143031db12ee
+  code lib/bessel_form.py       sha256 b80182e8bdbe8ceaafd78d2813251a5ab949767808e8a97b96d3fd20f3c072bc
+  code lib/besselk.py           sha256 3d3fd6601742c49b17fc355a0d9310474704ad480508010f91ae92615131501a
+  code lib/common.py            sha256 d8e3056e04fdb144a8706bbc31ef0d3028860f21bd5dc09e0db9ee65aa14242a
+  code lib/k01_trapezoid.py     sha256 864867203d52f421ade04725be5f78f8be4dcbf8569d355c98a3d43bf87408a1
+(POS) p_0 = 1 exactly; all 221 coefficients p_k certified > 0: True  (min_k p_k >= 8.266e-1227 at k = 220)
+      => P_J(u) >= 1 for u >= 0, H_J(t) = P_J(t^2) >= 1 and F_J >= Xi^2 on R
+  nodes: the first 110 prime powers 2 .. 467; operator length D = 510 (setup 5.2 s)
+(BF) Q = Abel preimage, degree 444 = 4J+4, leading coefficient > 0; all 445 Taylor coefficients of Q at y_0 = 2 pi x_0 certified > 0 for x_0 = 9347/20 (first point of the grid n_J + k*1/20)
+     => Fhat_J > 0 on [x_0, oo) = [9347/20, oo)  (Lemma 4.6, all divisor terms)
+(NODE) jet-subtracted neighbourhoods of the 110 nodes (all two-sided):
+    n =    2: p = 28, h = 1.000e-02, c_0 = [+/- 6.83e-96], c_1 = [+/- 2.19e-92], c_2 = Fhat_J''(xi_n)/2 = [58.117249 +/- 3.97e-7], bracket >= 3.13583e1 (0.54 c_2)
+    n =    3: p = 28, h = 1.000e-02, c_0 = [+/- 3.51e-94], c_1 = [+/- 1.11e-90], c_2 = Fhat_J''(xi_n)/2 = [2.3845975 +/- 2.63e-8], bracket >= 2.58392e-1 (0.11 c_2)
+    n =    4: p = 28, h = 7.991e-03, c_0 = [+/- 4.82e-96], c_1 = [+/- 1.53e-92], c_2 = Fhat_J''(xi_n)/2 = [0.17205930 +/- 4.74e-9], bracket >= 8.87625e-2 (0.52 c_2)
+    n =   17: p = 28, h = 2.171e-03, c_0 = [+/- 5.94e-82], c_1 = [+/- 1.64e-78], c_2 = Fhat_J''(xi_n)/2 = [4.3614227e-19 +/- 3.39e-28], bracket >= 2.18301e-19 (0.50 c_2)
+    n =   43: p = 28, h = 4.264e-04, c_0 = [+/- 3.20e-196], c_1 = [+/- 1.61e-192], c_2 = Fhat_J''(xi_n)/2 = [1.3370243e-66 +/- 7.42e-75], bracket >= 6.45281e-67 (0.48 c_2)
+    n =   79: p = 28, h = 5.596e-05, c_0 = [+/- 1.02e-420], c_1 = [+/- 1.02e-416], c_2 = Fhat_J''(xi_n)/2 = [2.5231143e-143 +/- 2.27e-152], bracket >= 2.11303e-143 (0.84 c_2)
+    n =  121: p = 64, h = 2.912e-04, c_0 = [+/- 2.42e-702], c_1 = [+/- 3.57e-698], c_2 = Fhat_J''(xi_n)/2 = [1.1304951e-237 +/- 4.60e-245], bracket >= 2.91748e-238 (0.26 c_2)
+    n =  163: p = 64, h = 2.170e-04, c_0 = [+/- 2.03e-861], c_1 = [+/- 1.63e-857], c_2 = Fhat_J''(xi_n)/2 = [7.1039315e-333 +/- 3.43e-341], bracket >= 1.92790e-333 (0.27 c_2)
+    n =  211: p = 64, h = 1.238e-04, c_0 = [+/- 9.67e-962], c_1 = [+/- 9.81e-958], c_2 = Fhat_J''(xi_n)/2 = [1.4494323e-440 +/- 3.96e-448], bracket >= 5.96783e-441 (0.41 c_2)
+    n =  257: p = 64, h = 6.980e-05, c_0 = [+/- 1.85e-1061], c_1 = [+/- 2.24e-1057], c_2 = Fhat_J''(xi_n)/2 = [2.3219584e-553 +/- 2.20e-561], bracket >= 1.54625e-553 (0.67 c_2)
+    n =  311: p = 64, h = 5.739e-05, c_0 = [+/- 4.87e-1182], c_1 = [+/- 6.99e-1178], c_2 = Fhat_J''(xi_n)/2 = [2.1283946e-674 +/- 3.39e-682], bracket >= 8.45279e-675 (0.40 c_2)
+    n =  361: p = 64, h = 2.487e-05, c_0 = [+/- 2.81e-1296], c_1 = [+/- 4.62e-1292], c_2 = Fhat_J''(xi_n)/2 = [1.7737010e-789 +/- 1.88e-797], bracket >= 1.39946e-789 (0.79 c_2)
+    n =  421: p = 64, h = 4.263e-05, c_0 = [+/- 4.44e-1436], c_1 = [+/- 8.39e-1432], c_2 = Fhat_J''(xi_n)/2 = [1.3467914e-919 +/- 3.81e-927], bracket >= 8.34825e-920 (0.62 c_2)
+    n =  461: p = 64, h = 3.876e-05, c_0 = [+/- 1.13e-1530], c_1 = [+/- 2.31e-1526], c_2 = Fhat_J''(xi_n)/2 = [1.4483895e-1004 +/- 1.33e-1012], bracket >= 8.05484e-1005 (0.56 c_2)
+    n =  463: p = 64, h = 3.876e-05, c_0 = [+/- 1.97e-1535], c_1 = [+/- 4.07e-1531], c_2 = Fhat_J''(xi_n)/2 = [2.2457577e-1008 +/- 4.75e-1016], bracket >= 1.49173e-1008 (0.66 c_2)
+    n =  467: p = 64, h = 7.701e-05, c_0 = [+/- 5.98e-1545], c_1 = [+/- 1.25e-1540], c_2 = Fhat_J''(xi_n)/2 = [9.3300715e-1015 +/- 4.02e-1023], bracket >= 3.99838e-1015 (0.43 c_2)
+    all certified: True; every c_0, c_1 ball contains 0 (input consistency): True  (21 s)
+(GAP) 111 gaps, 6304 Taylor pieces (2967 bisections), all certified: True; min (lower bound / |centre value|) = [0.0146 +/- 1e-9]  (411 s)
+(COVER) the items tile [xi = 0 (x = 1), xi(x_0)] with exact dyadic endpoints, and the last endpoint >= xi(x_0): True
+W_J: Fhat_J >= 0 on [x = 1, oo), with exact double zeros at the 110 nodes and Fhat_J > 0 elsewhere: True
+     In particular W_J holds on every window [2, L(D+1)], D = 4J (any L > 0).
+(C) clauses of Def 2.4 for F_J = Xi^2 P_J(t^2):  F_J in T (Sec 4.1, a theorem: even, real, Xi^2 P(t^2) in T_delta);  F_J >= Xi^2 >= 0 on R (POS);  Fhat_J >= 0 on [xi_2, oo) (W above)  =>  F_J in C, exactly (no cushion).
+CERTIFIED: True   [J = 110, 411 s]
+{"J": 110, "pball": "exact/ref/P110_ref.txt", "pball_sha256": "dcba593fad1b1e11ce5320bb05c990dd9d3894879be4f2767ad9a483d53ef043", "prec": 3000, "order": 28, "order_far": 64, "order_switch": 121.0, "kback": "series", "xmin": 1, "POS": true, "x0_BF": "9347/20", "nodes_ok": true, "pieces": 6304, "cover_ok": true, "W_certified": true, "secs": 411.5}
+# exit code 0; wall time 411.6 s

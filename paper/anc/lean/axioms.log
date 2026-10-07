@@ -1,5 +1,5 @@
 # command : nice -n 10 taskset -c 8-15 lake env lean scripts/print_axioms.lean
-# date    : 2026-10-06T22:57:05Z
+# date    : 2026-10-07T10:38:42Z
 # toolchain: leanprover/lean4:v4.33.0-rc2; Mathlib 51e6992efd06126df61a496bebf8f49482a4e129; Zeta23 fbdc36bbf17d20af3fd0447c6d1a8a02773c9844
 # Every theorem depends only on ledger axioms (PosRig.*, all in PositivityRigidity/Ledger.lean) and propext, Classical.choice, Quot.sound.
 'PosRig.theoremA' depends on axioms: [propext,
@@ -29,10 +29,11 @@
  Quot.sound]
 'PosRig.theoremC' depends on axioms: [propext,
  Classical.choice,
- PosRig.cert_kappaOPS,
- PosRig.cert_kappa_ladder,
+ PosRig.cert_exact_cone,
+ PosRig.cert_finiteJ,
  PosRig.cert_lowerbound,
  PosRig.floor_bound,
+ PosRig.xi_decay,
  Quot.sound]
 'PosRig.theoremD'' depends on axioms: [propext,
  Classical.choice,
@@ -281,22 +282,51 @@
  PosRig.riemannZeta_neg_of_mem_Ioo,
  PosRig.zero_support_rigidity,
  Quot.sound]
-'PosRig.thm_5_1' depends on axioms: [propext, Classical.choice, PosRig.cert_kappa_ladder, Quot.sound]
+'PosRig.thm_5_1' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.cert_exact_cone,
+ PosRig.cert_finiteJ,
+ PosRig.xi_decay,
+ Quot.sound]
+'PosRig.prop_exact_cone' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.cert_exact_cone,
+ PosRig.cert_finiteJ,
+ PosRig.explicit_formula,
+ PosRig.xi_decay,
+ Quot.sound]
+'PosRig.Ffam_ge_Xi_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.Ffam_mem_Cone_of' depends on axioms: [propext, Classical.choice, PosRig.xi_decay, Quot.sound]
+'PosRig.Ffam_mem_ConeOPS_of' depends on axioms: [propext, Classical.choice, PosRig.xi_decay, Quot.sound]
+'PosRig.FT_neg_of_even' depends on axioms: [propext, Classical.choice, Quot.sound]
 'PosRig.cor_5_2' depends on axioms: [propext,
  Classical.choice,
- PosRig.cert_kappa_ladder,
+ PosRig.cert_exact_cone,
+ PosRig.cert_finiteJ,
  PosRig.floor_bound,
+ PosRig.xi_decay,
  Quot.sound]
 'PosRig.cor_5_2_RH' depends on axioms: [propext,
  Classical.choice,
- PosRig.cert_kappa_ladder,
+ PosRig.cert_exact_cone,
+ PosRig.cert_finiteJ,
  PosRig.duality_no_gap,
  PosRig.explicit_formula,
  PosRig.floor_bound,
+ PosRig.xi_decay,
  Quot.sound]
-'PosRig.near_rigidity' depends on axioms: [propext, Classical.choice, PosRig.cert_near_rigidity, Quot.sound]
-'PosRig.near_rigidity_interval' depends on axioms: [propext, Classical.choice, PosRig.cert_near_rigidity, Quot.sound]
-'PosRig.Frep_ge_Xi_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PosRig.near_rigidity' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.cert_exact_cone,
+ PosRig.cert_finiteJ,
+ PosRig.xi_decay,
+ Quot.sound]
+'PosRig.near_rigidity_interval' depends on axioms: [propext,
+ Classical.choice,
+ PosRig.cert_exact_cone,
+ PosRig.cert_finiteJ,
+ PosRig.xi_decay,
+ Quot.sound]
 'PosRig.prop_5_3' depends on axioms: [propext, Classical.choice, PosRig.cert_kappaOPS, PosRig.floor_bound, Quot.sound]
 'PosRig.prop_5_4' depends on axioms: [propext, Classical.choice, PosRig.cert_lowheight, Quot.sound]
 'PosRig.prop_5_5' depends on axioms: [propext, Classical.choice, PosRig.cert_finiteJ, Quot.sound]

@@ -8,7 +8,9 @@ The headline theorems of v1.0 are kept unchanged (`theoremA`, `logic_display`, `
 `theoremB'`, `corollary_magic`, `theoremC`, `theoremD'`); in v1.1 `theoremB'` is the finite case of
 Theorem B(b), `corollary_magic` the finite case of the second sentence of the Corollary, and `theoremD'` the
 strict-(Mg) case of Theorem D.  The v1.1 headline results are `theoremB_a`, `theoremB_b`,
-`corollary_magic_a` and `theoremD_nonstrict'` (end of this file).
+`corollary_magic_a` and `theoremD_nonstrict'` (end of this file).  In v1.2 the statement of `theoremC` (a)
+changes with the paper: its certified numbers are those of the exact member `F₁₁₁` (`ExactMember.lean`), and it
+states `κ* ≤ κ*_OPS` and the classical conductor bound `e^{−2πκ*_OPS} ≥ 1 − 8.98 · 10^{-1060}` as well.
 -/
 import PositivityRigidity.Criticality
 import PositivityRigidity.Uniqueness
@@ -118,20 +120,20 @@ theorem remark_4_10b (h0 : kappaStar = 0) {Fs : ℝ → ℝ} (hFs : IsWeakMagic 
   exact ⟨hRH, Set.Subset.antisymm (fun q hq => (hall q hq).2) (Set.singleton_subset_iff.mpr hp)⟩
 
 /-- **Theorem C (near-criticality).**
-(a) `κ* ≤ 1.1508391 · 10^{-906}`.  Hence `q_min ≥ 1 − 7.3 · 10^{-906}`; in the classical
-Odlyzko–Poitou–Serre cone, `κ*_OPS ≤ 9.9462 · 10^{-41}`.
+(a) `κ* ≤ κ*_OPS ≤ 1.4291572 · 10^{-1060}`.  Hence `q_min ≥ 1 − 8.98 · 10^{-1060}`, and the same bound holds
+already in the classical Odlyzko–Poitou–Serre cone: `e^{−2πκ*_OPS} ≥ 1 − 8.98 · 10^{-1060}`.
 (b) `κ* ≥ −2.7112 · 10^{-3}`.
-(Theorem 5.1, Corollary 5.2, Proposition 5.4, Proposition 5.9.) -/
+(Theorem 5.1, Corollary 5.2, Proposition 5.10; (a) through the exact member `F₁₁₁ ∈ 𝒞_OPS` of Proposition 4.5,
+certified without a cushion, Proposition 5.7.) -/
 theorem theoremC :
-    (kappaStar ≤ (((11508391 : ℝ) / 10 ^ 913 : ℝ) : EReal) ∧
-      1 - (73 : ℝ) / 10 ^ 907 ≤ qmin ∧
-      kappaOPS ≤ (((99462 : ℝ) / 10 ^ 45 : ℝ) : EReal)) ∧
+    (kappaStar ≤ kappaOPS ∧ kappaOPS ≤ (((14291572 : ℝ) / 10 ^ 1067 : ℝ) : EReal) ∧
+      1 - (898 : ℝ) / 10 ^ 1062 ≤ qmin ∧ 1 - (898 : ℝ) / 10 ^ 1062 ≤ qminOPS) ∧
     ((-(27112 : ℝ) / 10 ^ 7 : ℝ) : EReal) ≤ kappaStar := by
-  refine ⟨⟨?_, cor_5_2.2.2.2.2, prop_5_3.2.1⟩, prop_5_8_kappa⟩
-  have h : ((kappa100 : ℚ) : ℝ) = (11508391 : ℝ) / 10 ^ 913 := by
-    unfold kappa100; push_cast; ring
+  have h : ((kappa111 : ℚ) : ℝ) = (14291572 : ℝ) / 10 ^ 1067 := by
+    unfold kappa111; push_cast; ring
+  refine ⟨⟨kappaStar_le_kappaOPS, ?_, cor_5_2.2.2.2.2.1, cor_5_2.2.2.2.2.2⟩, prop_5_8_kappa⟩
   rw [← h]
-  exact kappaStar_le_kappa100
+  exact kappaOPS_le_kappa111
 
 /-- **Theorem D with the strict (Mg) of v1.0.**  If the exact Hermite family `F_J = Ξ² P_J(t²)` satisfies
 (N), (G_a), (Z_∞) and the strict (Mg) of v1.0 (`HypMg`), then (S) and (U) hold, and `RH ⇔ (E)`; under

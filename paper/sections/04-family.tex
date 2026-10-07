@@ -121,8 +121,8 @@ the remark before Lemma~\ref{lem:Psi-pos} and Corollary~\ref{cor:zerokilling}.
 \end{proof}
 
 Every real polynomial with $P(0)=1$ factors over $\RR$ as $\prod_j(1+r_ju+s_ju^2)$, by pairing complex
-conjugate roots and pairing the real roots arbitrarily (with one factor having $s_j=0$ if the degree is odd). The certified representatives of
-Section~\ref{sec:certified} use this parametrisation of $P_J$.
+conjugate roots and pairing the real roots arbitrarily (with one factor having $s_j=0$ if the degree is odd). The cushioned certificates of an earlier version
+of this paper, used as a cross-check in Section~\ref{ssec:kappa} (ancillary directory \nolinkurl{kappa/}), use this parametrisation of $P_J$.
 
 \begin{lemma}[An integral representation]\label{lem:abel}
 For a polynomial $P$ put $\mathcal Q_P(\theta):=P\bigl(-(\theta+\tfrac12)^2\bigr)\theta^2(\theta+1)^2$ and
@@ -134,7 +134,7 @@ g_P(z):=\bigl[P\bigl(-(\theta+\tfrac12)^2\bigr)\Wnull\bigr](z)=\int_z^\infty Q_P
 and $\widehat{\Xi^2P(t^2)}(\xi)=2\pi\sqrt x\sum_Nd(N)g_P(2\pi Nx)$.
 \end{lemma}
 
-The proof is in Appendix~\ref{app:proofs-hermite}. The certificates of Section~\ref{ssec:kappa} evaluate $\widehat{\Xi^2H}$ and its derivatives through Proposition~\ref{thm:bessel} and this lemma.
+The proof is in Appendix~\ref{app:proofs-hermite}. The certificates of Proposition~\ref{prop:exactcone} (Appendix~\ref{app:exact}) evaluate $\widehat{\Xi^2P_J(t^2)}$ and its derivatives through Proposition~\ref{thm:bessel} and this lemma.
 
 %----------------------------------------------------------------------
 \subsection{Robust compactness and the proof of Theorem D}\label{ssec:thmM}
@@ -162,8 +162,8 @@ $\Arch(F)/\int F$ over such $F$ is $0$ and is attained at $F_\infty$.
 The proof (Appendix~\ref{app:proofs-M}) combines Montel's theorem with dominated convergence: by (i) and
 \eqref{eq:XB}, $\lvert F_J(t)\rvert\le C(1+\lvert\Re t\rvert)^6e^{-(\pi/2-a)\lvert\Re t\rvert}$ on the strip, uniformly in $J$.
 
-The certified functions of Section~\ref{sec:certified} satisfy (ii)--(v) only approximately; (iv) and (v) are
-asymptotic conditions, so cushioned or rationalised representatives may be used, provided the uniform bound (i)
+Conditions (iv) and (v) are
+asymptotic, so cushioned or rationalised representatives may be used, provided the uniform bound (i)
 holds for them. The hypotheses of Lemma~\ref{lem:robust}, for some sequence, are equivalent to the existence of an
 exact magic function of the form $\Xi^2H$ with $H\in\Hc$ and $H(0)\ne0$ (take the constant sequence $H/H(0)$), which is a priori
 stronger than \condS.
@@ -181,7 +181,8 @@ $\liminf_{J\in\Jset}\min_{\lvert t\rvert\le T}H_J(t)>0$ (Appendix~\ref{app:proof
 $\eta>0$ and $J_0$ such that every zero of $H_J$, $J\in\Jset$, $J\ge J_0$, has $\lvert\Im t\rvert\ge\eta$. Since a bound on a strip implies
 the same bound on every narrower strip, the size of $\delta$ in \hyp{G$_a$} plays no role. Finite-$J$ instances of \hyp{N}, and of the
 coefficient bound \eqref{eq:POSa} below, which would give \hyp{G$_a$} and \hyp{Z$_\infty$}, are certified for $J\in\{10,60,61,110,111\}$
-(Proposition~\ref{thm:finiteJ}); \hyp{Mg} is a $\liminf$ in $J$ and has no finite-$J$ instance.
+(Proposition~\ref{thm:finiteJ}); \hyp{Mg} is a $\liminf$ in $J$ and has no finite-$J$ instance, although its finite-$J$ analogue
+$\FT F_J\ge0$ on $[\xin2,\infty)$ is certified at the same $J$ (Proposition~\ref{prop:exactcone}).
 
 \begin{theorem}[Theorem D]\label{thm:criterion}
 Assume \hyp{N}, \hyp{G$_a$}, \hyp{Z$_\infty$} and \hyp{Mg} for the exact family. Then some subsequential limit

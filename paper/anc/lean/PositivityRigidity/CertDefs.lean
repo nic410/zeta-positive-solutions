@@ -1,5 +1,6 @@
 /-
-Definitions used to state the computer-assisted certificates of §5 (Theorem 5.1 and Table 1).
+Definitions used to state the computer-assisted certificates of §5: Table 1 (v1.2: the certified exact members
+`F_J = Ξ² P_J(t²)` of Proposition 4.5, Theorem 5.1) and the windows of Table 2.
 -/
 import PositivityRigidity.Basic
 
@@ -9,33 +10,28 @@ open Complex
 
 namespace PosRig
 
-/-- The certified representative of Theorem 5.1:
-`F_rep(t) = Ξ(t)² (H(t) + ε e^{−πt²})` with `H(t) = Π_{j < J} (1 + r_j t² + s_j t⁴)`. -/
-def Frep {J : ℕ} (r s : Fin J → ℚ) (ε : ℚ) (z : ℂ) : ℂ :=
-  Xi z ^ 2 * ((∏ j, (1 + (r j : ℂ) * z ^ 2 + (s j : ℂ) * z ^ 4)) +
-    (ε : ℂ) * Complex.exp (-(Real.pi : ℂ) * z ^ 2))
-
-/-- A row of Table 1: `J`, the certified bound `κ_J` (rounded up) and the cushion weight `ε`. -/
-structure LadderRow where
+/-- A row of Table 1 (v1.2): `J`, the certified upper bound `archUp` for `𝒜(F_J)`, the certified lower bound
+`intLo` for `∫ F_J`, and the printed bound `κ_J` for `𝒜(F_J)/∫ F_J`, where `F_J = Ξ² P_J(t²)` is the exact member
+of Proposition 4.5 (`Ffam J`, `FamilyDefs.lean`). -/
+structure ExactRow where
   J : ℕ
+  archUp : ℚ
+  intLo : ℚ
   kappa : ℚ
-  eps : ℚ
 
-/-- Table 1 (the certified ladder), with the printed decimals written as exact rationals:
-`κ_J = d.ddddddd · 10^{-e}` is `ddddddd · 10^{-(e+7)}`, `ε = 10^{-e'}`. -/
-def kappaLadder : List LadderRow :=
-  [⟨20, 20151627 / 10 ^ 69, 1 / 10 ^ 67⟩,
-   ⟨23, 11963682 / 10 ^ 87, 1 / 10 ^ 86⟩,
-   ⟨24, 52941806 / 10 ^ 98, 1 / 10 ^ 93⟩,
-   ⟨30, 77522383 / 10 ^ 139, 1 / 10 ^ 138⟩,
-   ⟨35, 99924044 / 10 ^ 184, 1 / 10 ^ 183⟩,
-   ⟨40, 93828982 / 10 ^ 227, 1 / 10 ^ 226⟩,
-   ⟨50, 18493714 / 10 ^ 318, 1 / 10 ^ 318⟩,
-   ⟨60, 10640143 / 10 ^ 424, 1 / 10 ^ 424⟩,
-   ⟨100, 11508391 / 10 ^ 913, 1 / 10 ^ 911⟩]
+/-- Table 1 (v1.2): the certified exact members `J = 10, 60, 61, 110, 111`, with the decimals of the logs
+`cone/logs/W_J{J}_x2.log` written as exact rationals: `archUp` is the upper end of the certified interval for
+`𝒜(F_J)`, `intLo` the lower end of the certified ball for `∫ F_J = F̂_J(0)` rounded down to 21 decimals, and
+`κ_J` the printed bound `κ* ≤ κ_J` (that `κ_J ≥ archUp/intLo` is checked in Lean, `thm_5_1`). -/
+def exactMembers : List ExactRow :=
+  [⟨10, 421255630298 / 10 ^ 30, 2788432137013103687755 / 10 ^ 21, 15107258 / 10 ^ 26⟩,
+   ⟨60, 296693123412 / 10 ^ 428, 2788431831991548482268 / 10 ^ 21, 10640143 / 10 ^ 424⟩,
+   ⟨61, 650716403227 / 10 ^ 453, 2788431831933736852610 / 10 ^ 21, 23336286 / 10 ^ 449⟩,
+   ⟨110, 557968396331 / 10 ^ 1053, 2788431830827063476513 / 10 ^ 21, 20010115 / 10 ^ 1049⟩,
+   ⟨111, 398510732132 / 10 ^ 1071, 2788431830818955391538 / 10 ^ 21, 14291572 / 10 ^ 1067⟩]
 
-/-- `κ_100 = 1.1508391 · 10^{-906}` (Theorem 5.1). -/
-def kappa100 : ℚ := 11508391 / 10 ^ 913
+/-- `κ_111 = 1.4291572 · 10^{-1060}` (Theorem 5.1, v1.2: the exact member `F₁₁₁`). -/
+def kappa111 : ℚ := 14291572 / 10 ^ 1067
 
 /-- A window of Table 2: an interval `[lo, hi]` (in `t` for the zero side, in `x` with `ξ = ξ_x` for
 the prime side), the certified lower bound `m` of `F_80` (resp. `F̂_80`) on it, and the printed mass bound. -/

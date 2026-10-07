@@ -16,20 +16,22 @@ CC BY 4.0.
 
 \begin{table}[ht]
 \centering\scriptsize
-\caption{Index of the certificates. Directories: \texttt{kappa/} (the slack), \texttt{exact/} (exact members
-$P_J$), \texttt{general/} (Gaussian--Laguerre functions and pairs of Herglotz form). Runtimes are wall times from the
-footers of the shipped logs.}\label{tab:anc-index}
+\caption{Index of the certificates. Directories: \texttt{cone/} (the exact members in the cone), \texttt{exact/} (exact
+members $P_J$), \texttt{general/} (Gaussian--Laguerre functions and pairs of Herglotz form), \texttt{kappa/} (the cushioned
+cross-check of Section~\ref{ssec:kappa}). Runtimes are wall times from the footers of the shipped logs; $W$ is the number of
+worker processes (otherwise one).}\label{tab:anc-index}
 \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.41\textwidth}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.12\textwidth}@{}}
 \toprule
 Statement & Script and input & Arithmetic & Runtime \\
 \midrule
-Thm.~\ref{thm:kappa}, Table~\ref{tab:kappa-ladder} & \nolinkurl{kappa/verify_kappa.py} with \nolinkurl{kappa/params/J}$J$\nolinkurl{.json},
-$J=20,23,24,30,35,40,50,60,100$ & Arb, $500$--$3300$ bits & $7$\,s--$1648$\,s \\
-Cor.~\ref{cor:nearrigid} ($H\ge1$ for the nine certificates) & \nolinkurl{kappa/check_H_nonneg.py} with \nolinkurl{kappa/params/J}$J$\nolinkurl{.json} and
-\nolinkurl{kappa/logs/J100.log} & exact & $56$\,s \\
-Lemma~\ref{lem:cushion} (constants) & \nolinkurl{kappa/cushion_A.py}, \nolinkurl{lib/cushion.py} & Arb integration & $0.5$\,s \\
-Lemma~\ref{lem:K-validated} (validation only) & \nolinkurl{kappa/selftest.py} & Arb vs.\ mpmath & $247$\,s \\
-Prop.~\ref{thm:finiteJ} & \nolinkurl{exact/verify_exact_member.py}, $J=10,60,61,110,111$; \nolinkurl{exact/check_coefficient_bound.py} & Arb, $800$--$3000$ bits; exact & up to $732$\,s; $0.1$\,s \\
+Prop.~\ref{prop:exactcone}, Thm.~\ref{thm:kappa}, Table~\ref{tab:kappa-ladder}, Cors.~\ref{cor:qmin} and~\ref{cor:nearrigid} &
+\nolinkurl{cone/cert_exact.py} with \nolinkurl{exact/out/P}$J$\nolinkurl{_ball.txt}, $J=10,60,61,110,111$; \texttt{--xmin 2 --cost} ($\Cone$,
+$\Arch(F_J)$, $\kappa_J$) and \texttt{--xmin 1} ($\ConeOPS$) & Arb, $800$--$3000$ bits & $1.1$\,s--$584$\,s ($W=3$) \\
+Prop.~\ref{prop:exactcone} (second evaluation path; corroboration only) & \nolinkurl{cone/cert_exact_alt.py} with
+\nolinkurl{exact/ref/P}$J$\nolinkurl{_ref.txt}; \nolinkurl{cone/compare_runs.py} & Arb; exact comparison & $1.4$\,s--$412$\,s ($W=3$); $<1$\,s \\
+Lemma~\ref{lem:K-validated} and the trapezoid rule (validation only) & \nolinkurl{kappa/selftest.py}; \nolinkurl{cone/selftest.py} & Arb vs.\
+mpmath & $247$\,s; $5$\,s \\
+Prop.~\ref{thm:finiteJ} & \nolinkurl{exact/verify_exact_member.py}, $J=10,60,61,110,111$; \nolinkurl{exact/check_coefficient_bound.py} & Arb, $800$--$3000$ bits; exact & up to $732$\,s ($W=2$); $0.1$\,s \\
 Prop.~\ref{thm:kappaOPS} & \nolinkurl{general/verify_general.py} with \nolinkurl{zeta_K128_s13.json} & exact Sturm; Arb & $557$\,s \\
 Prop.~\ref{prop:lowheight} & \nolinkurl{general/verify_general.py} with \nolinkurl{zeta_K80_s12_F80.json};
 \nolinkurl{general/verify_windows.py} with \nolinkurl{F80_windows.json} & exact Sturm; Arb; exact & $296$\,s; $2$\,s \\
@@ -40,6 +42,9 @@ Prop.~\ref{thm:notcritical} & \nolinkurl{general/verify_general.py} with \nolink
 Arb; exact & $168$\,s, $187$\,s; $37$\,s, $19$\,s; $<1$\,s \\
 Lemma~\ref{lem:herglotz} (consistency check only) & \nolinkurl{general/check_pair_identity.py} on the three pairs above,
 two lines of integration each & mpmath, $30$ digits & $63$\,s--$88$\,s \\
+Cross-check of Section~\ref{ssec:kappa} (cushioned certificates) & \nolinkurl{kappa/verify_kappa.py} with
+\nolinkurl{kappa/params/J}$J$\nolinkurl{.json}, $J=20,\dots,100$; \nolinkurl{kappa/cushion_A.py}; \nolinkurl{kappa/check_H_nonneg.py} & Arb,
+$500$--$3300$ bits; exact & $7$\,s--$1648$\,s \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -51,16 +56,20 @@ two lines of integration each & mpmath, $30$ digits & $63$\,s--$88$\,s \\
 \toprule
 File & SHA-256 \\
 \midrule
-\nolinkurl{kappa/params/J100.json} & \texttt{1186be2c9c2e575810781c02fc8a22ee060ffa4c61be4e8eab21b63a90719662} \\
-\nolinkurl{kappa/params/J60.json} & \texttt{e22afd8721e40313f47f4ee5ab3415dcc4d5c24502c17c4994499a9971e94a7e} \\
-\nolinkurl{kappa/params/J20.json} & \texttt{d686e47b0412358c8ad519370655c6f8600c2d44d25ee8da8e39ab66551c5ec8} \\
+\nolinkurl{exact/out/P111_ball.txt} & \texttt{25669a321f71ddef789247cd0adc0fd129c5d70f293e488bc4dab8c3f708b3f1} \\
+\nolinkurl{exact/out/P110_ball.txt} & \texttt{7c8999567bc77cd1c6fb5a9e816bb0b4f212b971f26dd0f3bda3237ff51c117a} \\
 \nolinkurl{general/params/zeta_K128_s13.json} & \texttt{0976a6711193adc0f02a532931974b8ef4912337f79e39f59aa21445879a4df2} \\
+\nolinkurl{kappa/params/J100.json} (cross-check) & \texttt{1186be2c9c2e575810781c02fc8a22ee060ffa4c61be4e8eab21b63a90719662} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\emph{Details of the headline runs.} Theorem~\ref{thm:kappa} with $J=100$ uses $3300$ bits, Taylor order $28$ ($64$ for $x\ge121$) and $5848$
-pieces, and its decisive output line is \texttt{(4) kappa* <= A\_upper / Fhat\_H(0)\_lower <= 1.1508391e-906}. Proposition~\ref{thm:kappaOPS} uses one Arb
+\emph{Details of the headline runs.} Theorem~\ref{thm:kappa} with $J=111$ reads \nolinkurl{exact/out/P111_ball.txt} at $3000$ bits, with Taylor
+order $28$ ($64$ for $x\ge121$), $x_0=4793/10$ and $6448$ pieces ($6454$ with \texttt{--xmin 1}). Its decisive output lines are
+\texttt{A(F\_J) in [3.98510732131e-1060, 3.98510732132e-1060]}, \texttt{kappa* <= 1.4291572e-1060} and, for Corollary~\ref{cor:nearrigid},
+\texttt{A(F\_J) <= 3.9851074e-1060}. With \texttt{--xmin 1} the run prints the line \texttt{W\_J: Fhat\_J >= 0 on [x = 1, oo), with exact double
+zeros at the 111 nodes and Fhat\_J > 0 elsewhere: True}. All twenty runs of \nolinkurl{cone/} end with \texttt{CERTIFIED: True}, and
+\nolinkurl{cone/compare_runs.py} prints \texttt{ALL CONSISTENT} for both ranges. Proposition~\ref{thm:kappaOPS} uses one Arb
 integral on $[0,220]$ at $512$ bits and prints \texttt{kappa*\_OPS (and kappa*) of the data <= 9.9461827001452550725e-41}; the run for
 Proposition~\ref{prop:lowheight} prints the bound $7.7252542459488902828\cdot10^{-25}$ for $\Arch(F_{80})/\int F_{80}$, and the enclosures of
 $\Arch(F_{80})$ and $\int F_{80}$ in its log imply the two bounds stated there. The exact members use $800$ bits ($J=10$), $1800$ ($60$), $2000$ ($61$)
@@ -70,19 +79,21 @@ all real t}; the pairs for Proposition~\ref{thm:notcritical} use $17\,214$ and $
 \texttt{1.6420748e-5 <= kappa*(Q(sqrt 5)) <= 0.00048294147} and \texttt{0.00015006672 <= kappa*(Q(sqrt -3)) <= 0.00099854968}. The pairs also
 print \texttt{supp nu\textasciitilde{} in [x0, oo) with x0 >= 4.049150} (resp.\ \texttt{3.011664}); run with \texttt{--gap-x 4} (resp.\ \texttt{3}),
 they print \texttt{admissible at gap xi\_4 (prime measure on [4, oo)): True} (resp.\ \texttt{xi\_3}), and the combinations print that the
-bracket and the slack interval hold at the natural gap $\xin4$ (resp.\ $\xin3$). The check of $H\ge1$ prints, for $J=100$,
-\texttt{every admissible pair (mu, nu) has int Xi\textasciicircum{}2 dmu <= int F\_rep dmu <= A(F\_rep) <= 3.21e-906 ... implied}. The consistency
+bracket and the slack interval hold at the natural gap $\xin4$ (resp.\ $\xin3$). The consistency
 check of Lemma~\ref{lem:herglotz} compares both sides of the explicit formula for the three pairs; its residuals are at most $3.2\cdot10^{-30}$, and
 it is not used in any proof.
 
-\emph{Re-running.} Each directory has a script \nolinkurl{run_all.sh} that repeats its certificates ($41.6$, $52.0$ and $29.1$
-CPU-minutes for \nolinkurl{kappa/}, \nolinkurl{exact/} and \nolinkurl{general/}, summed from the log footers), after which \texttt{sha256sum -c SHA256SUMS}
+\emph{Re-running.} Each directory has a script \nolinkurl{run_all.sh} that repeats its certificates ($41.6$, $52.0$, $29.1$ and $205.6$
+CPU-minutes for \nolinkurl{kappa/}, \nolinkurl{exact/}, \nolinkurl{general/} and \nolinkurl{cone/}: the wall times in the log footers times the
+number of workers), after which \texttt{sha256sum -c SHA256SUMS}
 checks that inputs and shipped outputs are unchanged. A single certificate is repeated with the command recorded in the first
 line of its log, for example
 \begin{verbatim}
-./runlog.sh kappa/logs/J100.log "$PY" kappa/verify_kappa.py \
-    kappa/params/J100.json --prec 3300 --order 28 --order-far 64 \
-    --order-switch 121 --workers 1
+./runlog.sh cone/logs/W_J111_x2.log "$PY" cone/cert_exact.py 111 \
+    --pball exact/out/P111_ball.txt \
+    --sha 25669a321f71ddef789247cd0adc0fd129c5d70f293e488bc4dab8c3f708b3f1 \
+    --prec 3000 --order 28 --order-far 64 --order-switch 121 \
+    --workers 3 --xmin 2 --cost 800 --json cone/out/W_J111_x2.json
 \end{verbatim}
 The precision, Taylor orders and number of worker processes affect only the running time and the width of the
 enclosures, not the validity of a successful run. The floating-point table \nolinkurl{computed/family_J1_110.tsv}, used only in

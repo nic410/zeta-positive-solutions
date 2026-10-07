@@ -1,6 +1,6 @@
 import PositivityRigidity
 /-! `#print axioms` for the headline theorems (Theorems A, B, C, D, the Corollary, the logic of §1.2) and
-for every other formalised numbered statement (v1.1 numbering).  Output: `axioms.log`
+for every other formalised numbered statement (v1.2 numbering).  Output: `axioms.log`
 (`lake env lean scripts/print_axioms.lean > axioms.log`); `scripts/audit.sh` requires the output to equal
 `axioms.log` exactly. -/
 -- Headline results (§1), v1.0 names (unchanged)
@@ -73,13 +73,18 @@ for every other formalised numbered statement (v1.1 numbering).  Output: `axioms
 #print axioms PosRig.remark_4_10b
 #print axioms PosRig.remark_4_10b_zero
 #print axioms PosRig.certificate_route
--- §5
+-- §5 (v1.2: Theorem 5.1 and Corollaries 5.2, 5.3 through the exact members; `prop_exact_cone` is
+-- Proposition 5.7, exact members in the cone)
 #print axioms PosRig.thm_5_1
+#print axioms PosRig.prop_exact_cone
+#print axioms PosRig.Ffam_ge_Xi_sq
+#print axioms PosRig.Ffam_mem_Cone_of
+#print axioms PosRig.Ffam_mem_ConeOPS_of
+#print axioms PosRig.FT_neg_of_even
 #print axioms PosRig.cor_5_2
 #print axioms PosRig.cor_5_2_RH
 #print axioms PosRig.near_rigidity
 #print axioms PosRig.near_rigidity_interval
-#print axioms PosRig.Frep_ge_Xi_sq
 #print axioms PosRig.prop_5_3
 #print axioms PosRig.prop_5_4
 #print axioms PosRig.prop_5_5

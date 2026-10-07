@@ -10,23 +10,36 @@ faithfully in Lean, and proves them from Mathlib plus an explicit **axiom ledger
 cited classical theorem, a computer-assisted certificate of §5 (with script, parameter-file SHA-256 and
 log line), or an analytic step proved in the paper but not yet formalised.
 
-**v1.1** (this version) follows v1.1 of the paper: Theorem 3.6 (zero-side support; Theorem B(a)), Theorem 3.8
+**v1.2** (this version) follows v1.2 of the paper: the exact members `F_J = Ξ² P_J(t²)` of Proposition 4.5 are
+certified in the cone `𝒞`, and in the classical cone `𝒞_OPS`, without a cushion, for `J = 10, 60, 61, 110, 111`
+(Proposition 5.7, new). Theorem C (a) becomes
+`κ* ≤ κ*_OPS ≤ 1.4291572·10^{-1060}`, `q_min ≥ 1 − 8.98·10^{-1060}` and `e^{−2πκ*_OPS} ≥ 1 − 8.98·10^{-1060}`
+(Theorem 5.1, Corollary 5.2), and Corollary 5.3 becomes `∫ Ξ² dμ ≤ 3.99·10^{-1060}` (`ExactMember.lean`,
+`NearRigidity.lean`). One certificate axiom is added (`cert_exact_cone`) and two are removed (`cert_kappa_ladder`, the
+cushioned representatives of v1.1's Table 1, and `cert_near_rigidity`); `F_J ∈ 𝒯`, `F_J ≥ Ξ²` and the evenness of
+`F̂_J` are proved in Lean (from `xi_decay` and Proposition 5.6, `cert_finiteJ`). Statement numbers are those of v1.2
+(Proposition 5.7 is new and the cushion lemma of Appendix A is gone, so the later statements of §5 and Appendix A are
+renumbered).
+
+**v1.1** follows v1.1 of the paper: Theorem 3.6 (zero-side support; Theorem B(a)), Theorem 3.8
 for countably many extra zeros (Theorem B(b)), Corollary 3.9(a), Theorem 4.8 with the non-strict (Mg),
 Corollary 4.11 (a certificate route) and Corollary 5.3 (near-rigidity), with three new ledger axioms. Statement
-numbers in docstrings, `LEDGER.md` and `STATUS.md` are those of v1.1; Lean identifiers of v1.0 keep their v1.0
-numbers (e.g. `thm_3_7` is Theorem 3.8 for finite `E`, `prop_5_3` is Proposition 5.4), and the v1.0 headline
-theorems are kept unchanged.
+numbers in docstrings, `LEDGER.md` and `STATUS.md` are those of the current version (v1.2); Lean identifiers of v1.0
+keep their v1.0 numbers (e.g. `thm_3_7` is Theorem 3.8 for finite `E`, `prop_5_3` is Proposition 5.4, `prop_5_8` is
+Proposition 5.10), and the v1.0 headline theorems are kept unchanged (in v1.2, `theoremC` (a) carries the new
+certified numbers).
 
 ## Status
 
 * `lake build` succeeds with **no `sorry`**, no `native_decide`, and no `axiom` outside
   `PositivityRigidity/Ledger.lean` (`build.log`).
-* **23 ledger axioms**: 3 classical, 10 analytic steps proved in the paper (two of which, `brs_lemma36_landau` and
-  `brs_countable_meanvalue`, also carry the classical existence of the BRS basis), 10 certificates
-  (`LEDGER.md`). v1.1 added `zero_support_rigidity`, `brs_countable_meanvalue` and `cert_near_rigidity`.
+* **22 ledger axioms**: 3 classical, 10 analytic steps proved in the paper (two of which, `brs_lemma36_landau` and
+  `brs_countable_meanvalue`, also carry the classical existence of the BRS basis), 9 certificates
+  (`LEDGER.md`). v1.1 added `zero_support_rigidity`, `brs_countable_meanvalue` and `cert_near_rigidity`; v1.2
+  added `cert_exact_cone` and removed `cert_kappa_ladder` and `cert_near_rigidity`.
 * `#print axioms` of every headline theorem lists only ledger axioms and `propext`, `Classical.choice`,
   `Quot.sound` (`axioms.log`).
-* Coverage of the 55 numbered statements of v1.1: 36 formalised (65 %), 28 proved (51 %); see `STATUS.md`.
+* Coverage of the 55 numbered statements of v1.2: 37 formalised (67 %), 29 proved (53 %); see `STATUS.md`.
 * CI: `.github/workflows/lean.yml` (at the root of the public repository) builds the project and runs
   `scripts/audit.sh` on every push (section "Continuous integration and the audit" below).
 
@@ -39,11 +52,12 @@ theorems are kept unchanged.
 | Theorem B(b), finite `E` (the v1.0 Theorem B) | `theoremB'` (`theoremB`); also `theoremB_finite_of_countable` | `Main.lean`, `Uniqueness.lean`, `CountableExtras.lean` | `explicit_formula`, `riemannZeta_neg_of_mem_Ioo`, `brs_lemma36_landau` (resp. `brs_countable_meanvalue` instead) |
 | Corollary, first sentence (Cor 3.9(a)) — v1.1 | `corollary_magic_a` (`magic_principle_zero`) | `Main.lean`, `ZeroSupport.lean` | `zero_support_rigidity`, `logic_b` |
 | Corollary, second sentence, finitely many zeros (Cor 3.9(b), finite `E`) | `corollary_magic` | `Main.lean` | as `theoremB'` |
-| Theorem C (Thm 5.1, Cor 5.2, Prop 5.4, Prop 5.9) | `theoremC` | `Main.lean`, `Certified.lean` | `cert_kappa_ladder`, `cert_kappaOPS`, `cert_lowerbound`, `floor_bound` |
+| Theorem C (Thm 5.1, Cor 5.2, Prop 5.10); v1.2: `κ* ≤ κ*_OPS ≤ 1.4291572·10^{-1060}`, `q_min ≥ 1 − 8.98·10^{-1060}`, the same bound for `e^{−2πκ*_OPS}` | `theoremC` (`thm_5_1`, `kappaOPS_le_kappa111`, `cor_5_2`, `prop_5_8_kappa`) | `Main.lean`, `ExactMember.lean`, `Certified.lean` | `cert_exact_cone`, `cert_finiteJ`, `xi_decay`, `cert_lowerbound`, `floor_bound` |
+| Theorem 5.1, Corollary 5.2 and Proposition 5.7 (exact members in the cone) — v1.2 (`F_J ∈ 𝒞_OPS ⊆ 𝒞` for `J = 10, 60, 61, 110, 111`, without a cushion) | `thm_5_1`, `cor_5_2`, `cor_5_2_RH`, `prop_exact_cone` | `ExactMember.lean` | `cert_exact_cone`, `cert_finiteJ`, `xi_decay` (`floor_bound` for the conductor bounds; `explicit_formula` for the formula for `𝒜(F_J)` in `prop_exact_cone`, and under RH) |
 | Theorem D (Thm 4.8, (Mg) non-strict) — v1.1 | `theoremD_nonstrict'` (`theoremD_nonstrict`) | `Main.lean`, `CriterionWeak.lean` | `robust_compactness`, `Zinf_lower_bound`, `xi_decay`, `explicit_formula`, `logic_b`, `zero_support_rigidity` |
 | Theorem D with the strict (Mg) of v1.0 | `theoremD'` (`theoremD`) | `Main.lean`, `Criterion.lean` | as `theoremB'`, plus `robust_compactness`, `Zinf_lower_bound`, `xi_decay` |
 | Corollary 4.11 (a certificate route) — v1.1 | `certificate_route` | `ZeroSupport.lean` | `zero_support_rigidity`, `logic_b`, `explicit_formula`, `riemannZeta_neg_of_mem_Ioo` |
-| Corollary 5.3 (near-rigidity: `∫ Ξ² dμ ≤ 3.21·10^{-906}`) — v1.1 | `near_rigidity`, `near_rigidity_interval` | `NearRigidity.lean` | `cert_near_rigidity` |
+| Corollary 5.3 (near-rigidity: `∫ Ξ² dμ ≤ 3.99·10^{-1060}`, through `F₁₁₁`; v1.1, with the numbers of v1.2) | `near_rigidity`, `near_rigidity_interval` (`exact111_near_rigidity`, `Ffam_ge_Xi_sq`) | `NearRigidity.lean`, `ExactMember.lean` | `cert_exact_cone`, `cert_finiteJ`, `xi_decay` |
 
 ## Building
 
@@ -56,7 +70,7 @@ Toolchain and pins (the same as those of the Lean formalisation of the families 
 * `lakefile.toml` with `autoImplicit = false`, `relaxedAutoImplicit = false`; `lake-manifest.json` is the
   manifest of the families formalisation with the package name changed.
 
-Mathlib and the used Zeta23 modules must be **prebuilt**; this project compiles only its own ~7,650
+Mathlib and the used Zeta23 modules must be **prebuilt**; this project compiles only its own ~7,830
 lines (under two minutes on 8 cores). If a built checkout of a project with the same pins is at hand (for
 instance the families formalisation), its packages can be reused by a hardlink copy (no extra disk space):
 
@@ -79,9 +93,9 @@ oleans; the imported Zeta23 modules (below) then compile in a few minutes. `.lak
 | `Basic.lean` | Definitions: `ξ_x`, `ξ₂`, strips; test class `𝒯_δ`, `𝒯` (`InTδ`, `TestClass`), Gaussian wave packets `𝒢` (`Gset`); `Ω_∞`, `𝒜` (`Arch`), `𝒜 + λ∫`, `𝒜_q`, `Ω_𝔤`, `𝒜_{𝔤,q}` (`ArchG`); pairs, admissibility at a gap for a functional (`Admissible`), `𝒦`, cones `𝒞_g`, `𝒞`, `𝒞_OPS`, slacks `κ*`, `κ*_OPS` (as `EReal` infima), `q_min`; non-trivial zeros, multiplicities, `t_ρ`, `Z_ζ`, `μ_ζ`, `ν_ζ`, `p_ζ`; (E), (U), (S); `Z(F)`, `Ẑ(F)`, discrete sets, atomic measures, exact and weak magic functions; BRS nodes `ℳ`, `ξ_PP`; `ξ`, `Ξ` |
 | `BRSDefs.lean` | BRS basis (structure and defining properties), complex extension of `𝒜`, atom-weight pairings, the statements of Lemma 3.7 (3.4) for finite `E` and of the v1.0 Landau step |
 | `FamilyDefs.lean` | `n_j`, `Ψ`, moments `m_k`, Hermite matrix `M_J`, `b_J`, `𝒥`, `p^{(J)}`, `P_J`, `H_J`, `F_J`; hypotheses (N), (G_a), (Z∞), the strict (Mg) of v1.0; hypotheses (i)–(v) of Lemma 4.7 |
-| `CertDefs.lean` | `F_rep` of Theorem 5.1, Table 1 (`kappaLadder`), the windows of Table 2 |
-| `ExtrasDefs.lean` | v1.1 definitions: the summability condition (3.5) (weighted and cumulative forms, as sums in `[0, ∞]`), `Lemma36Count` (Lemma 3.7, countable `E`), `MeanValueStep` (Lemmas B.3–B.4), the polynomial `P` of the ladder certificates |
-| `Ledger.lean` | **All 23 axioms** (and nothing else) |
+| `CertDefs.lean` | Table 1 (v1.2: the certified exact members, `ExactRow`, `exactMembers`, `kappa111`), the windows of Table 2 |
+| `ExtrasDefs.lean` | v1.1 definitions: the summability condition (3.5) (weighted and cumulative forms, as sums in `[0, ∞]`), `Lemma36Count` (Lemma 3.7, countable `E`), `MeanValueStep` (Lemmas B.3–B.4) |
+| `Ledger.lean` | **All 22 axioms** (and nothing else) |
 | `Sanity.lean` | Gaussian in `𝒯_δ`, `𝒞_OPS`, `𝒞_g`, `𝒢`; non-emptiness; elementary facts about `𝒯` (continuity, integrability, scaling, real transforms, vanishing of cone elements with `∫F = 0`); admissible pairs are Radon; linearity of `F̂` |
 | `Faithful.lean` | Faithfulness checks: `Arch` = the paper's complex `𝒜` on `𝒯` (Schwarz reflection), `Ω_{Γ_ℝ} = Ω_∞`, `𝒢 ⊂ 𝒯_δ`, `RiemannHypothesis ↔` all zeros in `0 < Re s < 1` on the line |
 | `Atoms.lean` | Measures carried by countable sets; bounds for `log 3`, `log 5` |
@@ -97,11 +111,12 @@ oleans; the imported Zeta23 modules (below) then compile in a few minutes. `.lak
 | `CountableExtras.lean` | **Theorem 3.8** for countable `E` (atom-weight and admissible forms), **Theorem B(b)**, the finite case without the Landau step; the weighted form of (3.5) implies the cumulative form |
 | `Family.lean` | **Corollary 4.4**, last sentence of Lemma 4.7, interpolation property of **Proposition 4.5**, **Proposition 4.9(1)(2)**, **Proposition 5.6** consequences |
 | `FamilyMore.lean` | **Proposition 4.5**: `F_J ∈ 𝒯`, double zeros (value and derivative rows), the tail formula for `𝒜(F_J)` |
-| `Convexity.lean` | **Theorem 2.7(b)** convexity of `𝒦`; non-uniqueness of admissible pairs with a floor (**Proposition 5.10**, "not a singleton") |
+| `Convexity.lean` | **Theorem 2.7(b)** convexity of `𝒦`; non-uniqueness of admissible pairs with a floor (**Proposition 5.11**, "not a singleton") |
 | `Criterion.lean` | **Theorem 4.8 (D)** and **Remark 4.10(a)** with the strict (Mg) of v1.0, from a common core |
 | `CriterionWeak.lean` | v1.1: **Theorem 4.8 (D)** with the non-strict (Mg), **Remark 4.10(a), (b)** (v1.1 forms), **Conjecture 6.1** with its non-strict part (c) and its implication |
-| `Certified.lean` | **Theorem 5.1**, **Corollary 5.2**, **Propositions 5.4, 5.5, 5.9, 5.10** (natural-gap step, exact arithmetic) |
-| `NearRigidity.lean` | v1.1: **Corollary 5.3** (`F_rep ≥ Ξ²` from the certified coefficients; `∫ Ξ² dμ ≤ 3.21·10^{-906}`; `μ(I) ≤ 3.21·10^{-906}/min_I Ξ²`) |
+| `Certified.lean` | **Propositions 5.4** (the Gaussian–Laguerre function), **5.5, 5.10, 5.11** (natural-gap step, exact arithmetic) |
+| `ExactMember.lean` | v1.2: the exact members in the cones (`F_J ∈ 𝒞`, `𝒞_OPS` from the certified facts; `F_J ≥ Ξ²` from positive coefficients; `F̂` of an even function is even), **Proposition 5.7** (exact members in the cone), **Theorem 5.1** (`κ* ≤ κ*_OPS ≤ κ_J` for the rows of Table 1; `κ₁₁₁ = 1.4291572·10^{-1060}`), **Corollary 5.2** (`q_min ≥ 1 − 8.98·10^{-1060}`, the same for `e^{−2πκ*_OPS}`) |
+| `NearRigidity.lean` | **Corollary 5.3** (v1.2: through `F₁₁₁ ≥ Ξ²`; `∫ Ξ² dμ ≤ 3.99·10^{-1060}`; `μ(I) ≤ 3.99·10^{-1060}/min_I Ξ²`) |
 | `PosCert.lean` | **Lemma A.2** (positive-coefficient certificates) |
 | `Conjectures.lean` | **Conjecture 6.1** in its v1.0 form (strict part (c)) stated, and its stated implication ((a)–(c) ⇒ (S), (U), RH ⇔ (E)) proved |
 | `Main.lean` | **Theorems A, B, C, D, the Corollary**, the logic of §1.2, Conjecture S's equivalences, **Remark 4.10(b)** |
@@ -139,13 +154,15 @@ oleans; the imported Zeta23 modules (below) then compile in a few minutes. `.lak
   `RH_iff_critical`).
 * Proposition 2.8's "even real Radon measure `μ` with `μ − λdt ≥ 0`" is formalised, as in the first line of
   its proof, as a pair admissible for `𝒜 − λ∫` (`FloorFeasible`).
-* Theorem C: the decimals are exact rationals (`1.1508391·10^{-906} = 11508391/10^{913}`, …).
+* Theorem C: the decimals are exact rationals (`1.4291572·10^{-1060} = 14291572/10^{1067}`,
+  `8.98·10^{-1060} = 898/10^{1062}`, …).
 * Theorem D's hypotheses (Mg), (iii), (iv) are written without `liminf` ("eventually `≥ c > 0`",
   "eventually `≥ −ε`"), which is equivalent for real sequences. Corollary 4.11's "`𝒜(F_J)/c_J → 0` for `J` in
   an infinite set" is a limit along `atTop ⊓ 𝓟 I`. The Hermite system is set up over `ℝ` with
   real parts of the (real-valued) moments; `M_J`'s derivative rows use `deriv` in `ξ`.
-* The certificate axioms are existential (weaker than the certificates, which exhibit the functions); the
-  arithmetic combining them is done in Lean.
+* The certificate axioms are existential (weaker than the certificates, which exhibit the functions), except
+  `cert_exact_cone` (v1.2), which is about the exact members `Ffam J` themselves (`M_J` is certified non-singular
+  for these `J`, `cert_finiteJ`, so `Ffam J` is the paper's `F_J`); the arithmetic combining them is done in Lean.
 
 ## Continuous integration and the audit
 

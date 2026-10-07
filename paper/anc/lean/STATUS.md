@@ -1,11 +1,17 @@
 # Status: every numbered statement of Paper I
 
-Numbering of v1.1 of the paper (`paper/build/main.pdf`, built 2026-10-06 21:53 UTC). This version has **55**
-numbered statements: the 51 of v1.0, minus the Landau step (v1.0 Lemma B.3), plus **Theorem 3.6** (zero-side
+Numbering of v1.2 of the paper (`paper/build/main.pdf`, built 2026-10-07 10:49 UTC). This version has **55**
+numbered statements: those of v1.1, plus **Proposition 5.7** (exact members in the cone), minus the cushion lemma
+of Appendix A. (v1.1 had the 51 of v1.0, minus the Landau step (v1.0 Lemma B.3), plus **Theorem 3.6** (zero-side
 support), **Corollary 4.11** (a certificate route), **Corollary 5.3** (near-rigidity), **Lemma B.3** (aggregate
-expansion) and **Lemma B.4** (mean-value step).
+expansion) and **Lemma B.4** (mean-value step).)
 Where a statement was renumbered, its v1.0 number is given in brackets. The lettered statements of §1
 (Conjectures U, S; Theorems A–D; the Corollary) are listed at the end.
+
+**v1.2.** The exact members `F_J = Ξ² P_J(t²)` of Proposition 4.5 are certified in `𝒞_OPS ⊆ 𝒞` without a cushion
+for `J = 10, 60, 61, 110, 111` (Proposition 5.7, row 41, ledger axiom `cert_exact_cone`); Table 1 lists these
+members, and Theorem 5.1, Corollaries 5.2 and 5.3 and Theorem C now follow from it
+(`κ* ≤ κ*_OPS ≤ 1.4291572·10^{-1060}`, `q_min ≥ 1 − 8.98·10^{-1060}`, `∫ Ξ² dμ ≤ 3.99·10^{-1060}`).
 
 Status values:
 
@@ -15,8 +21,8 @@ Status values:
 * **not formalised (reason)**.
 
 Lean names are in namespace `PosRig`; files are in `PositivityRigidity/`. Lean identifiers of v1.0 keep their
-v1.0 numbers (e.g. `thm_3_7` is Theorem 3.8 for finite `E`, `prop_5_3` is Proposition 5.4); the docstrings use
-the v1.1 numbers.
+v1.0 numbers (e.g. `thm_3_7` is Theorem 3.8 for finite `E`, `prop_5_3` is Proposition 5.4, `prop_5_8` is
+Proposition 5.10); the docstrings use the v1.2 numbers.
 
 ## §2 Admissible pairs, duality and criticality
 
@@ -71,33 +77,33 @@ the v1.1 numbers.
 
 | # | Statement | Lean | Status |
 |---|---|---|---|
-| 35 | Theorem 5.1 (certified upper bound for `κ*`, Table 1) | `cert_kappa_ladder` (Ledger); `thm_5_1`, `kappaStar_le_kappa100` (Certified) | the "more precisely" part is a **ledger axiom** (certificate); `κ* ≤ κ_J` for every row proved from it |
-| 36 | Corollary 5.2 (conductor form; infeasible deformations) | `cor_5_2`, `cor_5_2_RH` (Certified) | proved from ledger axioms [`cert_kappa_ladder`; `floor_bound` for `q_min`; `explicit_formula` under RH] |
-| 37 | **Corollary 5.3 (near-criticality forces near-rigidity)** — new | `cert_near_rigidity` (Ledger); `near_rigidity`, `near_rigidity_interval`, `Frep_ge_Xi_sq`, `Hpoly_eval₂`, `one_le_H` (NearRigidity) | proved from ledger axioms [`cert_near_rigidity`]: `∫ Ξ² dμ ≤ 3.21·10^{-906}` for every admissible pair (with integrability), and `μ(I) ≤ 3.21·10^{-906}/min_I Ξ²` for compact `I ⊂ ℝ \ Z_ζ`; `H ≥ 1` and `F_rep ≥ Ξ²` from the certified coefficients proved (Mathlib only) |
-| 38 | Proposition 5.4 (the classical cone) [v1.0: 5.3] | `prop_5_3` (Certified) | proved from ledger axioms [`cert_kappaOPS`, `floor_bound`] |
+| 35 | Theorem 5.1 (certified upper bound for `κ*`, Table 1) | v1.2: `thm_5_1`, `thm_5_1_rows`, `kappaStar_le_kappa111`, `kappaOPS_le_kappa111`, `exact111` (ExactMember) | v1.2: proved from ledger axioms [`cert_exact_cone`, `cert_finiteJ`, `xi_decay`]: for every row of Table 1 (`J = 10, 60, 61, 110, 111`) `F_J ∈ 𝒞_OPS ⊆ 𝒞`, `∫ F_J > 0`, `𝒜(F_J) ≤ κ_J ∫ F_J`, so `κ* ≤ κ*_OPS ≤ κ_J`; in particular `κ* ≤ κ*_OPS ≤ 1.4291572·10^{-1060}`. |
+| 36 | Corollary 5.2 (conductor form; infeasible deformations) | `cor_5_2`, `cor_5_2_RH`, `exists_cert111`, `two_pi_kappa111` (ExactMember) | v1.2 (`λ > 1.4291572·10^{-1060}`; `q ≤ 1 − 8.98·10^{-1060}`; `η > 8.9796596·10^{-1060}`; `q_min ≥ 1 − 8.98·10^{-1060}` and `e^{−2πκ*_OPS} ≥ 1 − 8.98·10^{-1060}`): proved from ledger axioms [`cert_exact_cone`, `cert_finiteJ`, `xi_decay`; `floor_bound` for the conductor bounds; `duality_no_gap`, `explicit_formula` under RH] |
+| 37 | **Corollary 5.3 (near-criticality forces near-rigidity)** — new | `near_rigidity`, `near_rigidity_interval` (NearRigidity); `exact111_near_rigidity`, `Ffam_ge_Xi_sq` (ExactMember) | v1.2: proved from ledger axioms [`cert_exact_cone`, `cert_finiteJ`, `xi_decay`]: `∫ Ξ² dμ ≤ 3.99·10^{-1060}` for every admissible pair (with integrability), and `μ(I) ≤ 3.99·10^{-1060}/min_I Ξ²` for compact `I ⊂ ℝ \ Z_ζ`; `F_J ≥ Ξ²` from non-negative coefficients of `P_J` proved (Mathlib only). |
+| 38 | Proposition 5.4 (the classical cone) [v1.0: 5.3] | `prop_5_3` (Certified) | proved from ledger axioms [`cert_kappaOPS`, `floor_bound`] (the Gaussian–Laguerre function; v1.2's sharper `κ*_OPS ≤ 1.4291572·10^{-1060}` is Theorem 5.1, `thm_5_1`) |
 | 39 | Proposition 5.5 (low-height rigidity, Table 2) [v1.0: 5.4] | `prop_5_4`, `zero_window_bound`, `prime_window_bound` (Certified) | proved from ledger axioms [`cert_lowheight`] (all 13 entries of Table 2) |
-| 40 | Proposition 5.6 (certified finite-`J` instances) [v1.0: 5.5] | `cert_finiteJ` (Ledger); `prop_5_5` (Family) | the certified facts are a **ledger axiom**; `H_J ≥ 1` on `ℝ`, `|H_J| ≤ cosh(0.71636|t|)` proved from it (Prop. 4.9) |
-| 41 | Numerical observation 5.7 [v1.0: 5.6] | — | not formalised (uncertified computation, by design never used) |
-| 42 | Lemma 5.8 (Herglotz form) [v1.0: 5.7] | inside `cert_lowerbound`, `cert_Qsqrt5_pair`, `cert_Qsqrtm3_pair` | **ledger axiom** (folded into the three pair certificates, which assert admissibility directly) |
-| 43 | Proposition 5.9 (lower bound for `κ*`) [v1.0: 5.8] | `prop_5_8`, `prop_5_8_kappa`, `prop_5_8_qmin` (Certified) | proved from ledger axioms [`cert_lowerbound`; `duality_no_gap`, `floor_bound` for `q_min ≤ e^{0.02}`] |
-| 44 | Proposition 5.10 (`ℚ(√5)`, `ℚ(√−3)`, all gaps up to the natural ones) [v1.0: 5.9] | `prop_5_9_a`, `prop_5_9_b`, `prop_5_9_gaps`, `admissible_mono_gap` (Certified); `prop_5_9_not_singleton`, `not_unique_of_dominates` (Convexity) | proved from ledger axioms [`cert_Qsqrt5_dual/pair`, `cert_Qsqrtm3_dual/pair`]: the slack brackets at every gap `g ∈ (0, ξ_{x₀}]` (natural-gap step and `log 3`, `log 5`, `π` arithmetic in Lean); "some admissible pair has `μ ≥ 1.64·10^{-5} dt`" (resp. `1.50·10^{-4}`) and "the set of admissible pairs is not a singleton" (perturbation by an atom, proved in general) |
-| 45 | Remark 5.11 (the gap and the margins) [v1.0: 5.10] | — | not formalised (remark; its brackets for the critical conductors follow the same pattern) |
+| 40 | Proposition 5.6 (certified finite-`J` instances) [v1.0: 5.5] | `cert_finiteJ` (Ledger); `prop_5_5` (Family); `pcoef_nonneg_of_finiteJ` (ExactMember) | the certified facts are a **ledger axiom**; `H_J ≥ 1` on `ℝ`, `|H_J| ≤ cosh(0.71636|t|)` proved from it (Prop. 4.9); v1.2: also `F_J ≥ Ξ²` for the exact members |
+| 41 | **Proposition 5.7 (exact members in the cone)** — new | `cert_exact_cone` (Ledger); `prop_exact_cone`, `exact_cone_facts`, `Ffam_mem_Cone_of`, `Ffam_mem_ConeOPS_of`, `FT_neg_of_even`, `Ffam_ge_Xi_sq` (ExactMember) | (b) `F̂_J ≥ 0` on `[0, ∞)` and (c) the bounds for `𝒜(F_J)`, `∫ F_J` are the **ledger axiom** `cert_exact_cone`; (a) `F_J ≥ Ξ²` (Mathlib only, from the coefficients of Proposition 5.6), `F_J ∈ 𝒞_OPS ⊆ 𝒞` [`cert_exact_cone`, `cert_finiteJ`, `xi_decay`] and the formula for `𝒜(F_J)` [`explicit_formula`, `xi_decay`, `cert_finiteJ`] proved; `F̂_J > 0` off the nodes, with zeros of order exactly two, not formalised (only `≥ 0`; order `≥ 2` is `deriv_FT_Ffam_pp`) |
+| 42 | Numerical observation 5.8 [v1.0: 5.6] | — | not formalised (uncertified computation, by design never used) |
+| 43 | Lemma 5.9 (Herglotz form) [v1.0: 5.7] | inside `cert_lowerbound`, `cert_Qsqrt5_pair`, `cert_Qsqrtm3_pair` | **ledger axiom** (folded into the three pair certificates, which assert admissibility directly) |
+| 44 | Proposition 5.10 (lower bound for `κ*`) [v1.0: 5.8] | `prop_5_8`, `prop_5_8_kappa`, `prop_5_8_qmin` (Certified) | proved from ledger axioms [`cert_lowerbound`; `duality_no_gap`, `floor_bound` for `q_min ≤ e^{0.02}`] |
+| 45 | Proposition 5.11 (`ℚ(√5)`, `ℚ(√−3)`, all gaps up to the natural ones) [v1.0: 5.9] | `prop_5_9_a`, `prop_5_9_b`, `prop_5_9_gaps`, `admissible_mono_gap` (Certified); `prop_5_9_not_singleton`, `not_unique_of_dominates` (Convexity) | proved from ledger axioms [`cert_Qsqrt5_dual/pair`, `cert_Qsqrtm3_dual/pair`]: the slack brackets at every gap `g ∈ (0, ξ_{x₀}]` (natural-gap step and `log 3`, `log 5`, `π` arithmetic in Lean); "some admissible pair has `μ ≥ 1.64·10^{-5} dt`" (resp. `1.50·10^{-4}`) and "the set of admissible pairs is not a singleton" (perturbation by an atom, proved in general) |
+| 46 | Remark 5.12 (the gap and the margins) [v1.0: 5.10] | — | not formalised (remark; its brackets for the critical conductors follow the same pattern) |
 
 ## §6 Conjectures
 
 | # | Statement | Lean | Status |
 |---|---|---|---|
-| 46 | Conjecture 6.1 (prime-power magic function), (c) non-strict | `ConjFamily0`, `conjFamily0_implies`, `conjFamily0_of_conjFamily` (CriterionWeak); v1.0 form (strict (c)): `ConjFamily`, `conjFamily_implies` (Conjectures) | stated (open); its stated implication ⇒ (S), (U), `RH ⇔ (E)` proved from ledger axioms [`robust_compactness`, `xi_decay`, `explicit_formula`, `logic_b`, `zero_support_rigidity`] (v1.0 form: [`robust_compactness`, `xi_decay`, `explicit_formula`, `riemannZeta_neg_of_mem_Ioo`, `brs_lemma36_landau`]); the v1.0 form implies the v1.1 form [`xi_decay`] |
+| 47 | Conjecture 6.1 (prime-power magic function), (c) non-strict | `ConjFamily0`, `conjFamily0_implies`, `conjFamily0_of_conjFamily` (CriterionWeak); v1.0 form (strict (c)): `ConjFamily`, `conjFamily_implies` (Conjectures) | stated (open); its stated implication ⇒ (S), (U), `RH ⇔ (E)` proved from ledger axioms [`robust_compactness`, `xi_decay`, `explicit_formula`, `logic_b`, `zero_support_rigidity`] (v1.0 form: [`robust_compactness`, `xi_decay`, `explicit_formula`, `riemannZeta_neg_of_mem_Ioo`, `brs_lemma36_landau`]); the v1.0 form implies the v1.1 form [`xi_decay`] |
 
 ## Appendix A
 
 | # | Statement | Lean | Status |
 |---|---|---|---|
-| 47 | Remark A.1 (ball arithmetic) | — | not formalised (remark on arithmetic; no mathematical claim) |
-| 48 | Lemma A.2 (positive-coefficient certificates) | `posc_a`, `posc_a'`, `posc_b`, `posc_b'` (PosCert) | proved (Mathlib only) |
-| 49 | Lemma A.3 (validated `K_0`, `K_1`) | — | not formalised (DLMF series and asymptotics; used only inside the certificates) |
-| 50 | Lemma A.4 (the cushion) | — | not formalised (needs Lemma 4.1 and Prop. 4.2; used only inside the certificates) |
-| 51 | Lemma A.5 (digamma on vertical lines) | — | not formalised (used only inside the certificates; Phase 2: from Mathlib's `digamma` series) |
+| 48 | Remark A.1 (ball arithmetic) | — | not formalised (remark on arithmetic; no mathematical claim) |
+| 49 | Lemma A.2 (positive-coefficient certificates) | `posc_a`, `posc_a'`, `posc_b`, `posc_b'` (PosCert) | proved (Mathlib only) |
+| 50 | Lemma A.3 (validated `K_0`, `K_1`) | — | not formalised (DLMF series and asymptotics; used only inside the certificates) |
+| 51 | Lemma A.4 (digamma on vertical lines) | — | not formalised (used only inside the certificates; Phase 2: from Mathlib's `digamma` series) |
 
 ## Appendix B
 
@@ -119,26 +125,26 @@ the v1.1 numbers.
 | Theorem B(a) — new | `theoremB_a` (Main) | proved from ledger axioms [`zero_support_rigidity`, `logic_b`] |
 | Theorem B(b) — countable `E` new | `theoremB_b` (Main; `theoremB_b_countable`, CountableExtras) | proved from ledger axioms [`brs_countable_meanvalue`, `explicit_formula`, `riemannZeta_neg_of_mem_Ioo`]; finite `E` ("this holds whenever `E` is finite"): `theoremB'` (the v1.0 Theorem B, unchanged) from [`brs_lemma36_landau`, `explicit_formula`, `riemannZeta_neg_of_mem_Ioo`], and `theoremB_finite_of_countable` from [`brs_countable_meanvalue`, `explicit_formula`, `riemannZeta_neg_of_mem_Ioo`] |
 | Corollary (magic-function principle) | first sentence: `corollary_magic_a` (Main); second sentence, finitely many zeros: `corollary_magic` (Main, unchanged) | proved from ledger axioms: [`zero_support_rigidity`, `logic_b`]; [as `theoremB'`]. The countable case under the condition of Corollary 3.9(b) is not formalised (see row 22) |
-| Theorem C | `theoremC` (Main) | proved from ledger axioms [`cert_kappa_ladder`, `cert_kappaOPS`, `cert_lowerbound`, `floor_bound`] |
+| Theorem C | `theoremC` (Main) | v1.2 statement (`κ* ≤ κ*_OPS ≤ 1.4291572·10^{-1060}`, `q_min ≥ 1 − 8.98·10^{-1060}`, `e^{−2πκ*_OPS} ≥ 1 − 8.98·10^{-1060}`; `κ* ≥ −2.7112·10^{-3}`): proved from ledger axioms [`cert_exact_cone`, `cert_finiteJ`, `xi_decay`, `cert_lowerbound`, `floor_bound`] |
 | Theorem D | `theoremD_nonstrict'` (Main; (Mg) non-strict, v1.1); `theoremD'` (Main; strict (Mg), v1.0, unchanged) | proved from ledger axioms [as Theorem 4.8, row 31] |
 
 ## Coverage
 
-Primary status of the 55 numbered statements (a statement with an axiomatised part and proved parts is
+Primary status of the 55 numbered statements of v1.2 (a statement with an axiomatised part and proved parts is
 counted under its main claim, as in the tables):
 
 | Status | Count | Statements |
 |---|---|---|
 | proved (Mathlib only) | 7 | 2.1, 2.4, 2.5, 2.11, 2.13, 4.9 (parts 1–2), A.2 |
-| proved from ledger axioms | 21 | 2.7, 2.8, 2.9, 2.10, 2.12, 3.5, 3.6, 3.8, 3.9, 4.4, 4.5, 4.8, 4.10, 4.11, 5.2, 5.3, 5.4, 5.5, 5.9, 5.10, 6.1 (implication) |
-| ledger axiom (certified or cited input itself) | 8 | 2.3, 3.4, 3.7, 4.7, 5.1, 5.6, 5.8, B.4 |
-| not formalised | 19 | 2.2, 2.6, 3.1, 3.2, 3.3, 3.10, 4.1, 4.2, 4.3, 4.6, 5.7, 5.11, A.1, A.3, A.4, A.5, B.1, B.2, B.3 |
+| proved from ledger axioms | 22 | 2.7, 2.8, 2.9, 2.10, 2.12, 3.5, 3.6, 3.8, 3.9, 4.4, 4.5, 4.8, 4.10, 4.11, 5.1, 5.2, 5.3, 5.4, 5.5, 5.10, 5.11, 6.1 (implication) |
+| ledger axiom (certified or cited input itself) | 8 | 2.3, 3.4, 3.7, 4.7, 5.6, 5.7, 5.9, B.4 |
+| not formalised | 18 | 2.2, 2.6, 3.1, 3.2, 3.3, 3.10, 4.1, 4.2, 4.3, 4.6, 5.8, 5.12, A.1, A.3, A.4, B.1, B.2, B.3 |
 
-* Formalised (any status but "not formalised"): **36 / 55 = 65 %**.
-* Proved in Lean (Mathlib only, or from ledger axioms): **28 / 55 = 51 %**.
+* Formalised (any status but "not formalised"): **37 / 55 = 67 %**.
+* Proved in Lean (Mathlib only, or from ledger axioms): **29 / 55 = 53 %**.
 * Of these, proved from Mathlib alone: **7 / 55 = 13 %**.
-* Excluding the five items without a mathematical claim of their own (Remarks 3.10, 4.3, 5.11, A.1 and the
-  uncertified Observation 5.7), the formalised share is **36 / 50 = 72 %**.
+* Excluding the five items without a mathematical claim of their own (Remarks 3.10, 4.3, 5.12, A.1 and the
+  uncertified Observation 5.8), the formalised share is **37 / 50 = 74 %**.
 * All lettered headline items of §1 are stated, and all theorems among them are proved from the ledger,
   except one case of the Corollary: countably many extra real zeros under the condition of Corollary 3.9(b)
   (not formalised; it needs Lemma 2.6).
@@ -147,5 +153,5 @@ Theorem 3.6 is counted as "proved from ledger axioms" although its analytic core
 `zero_support_rigidity`: the rest of its statement (RH and `μ = μ_ζ`) is proved. The not-formalised statements
 are (i) analytic lemmas used only inside axiomatised steps (2.2, 2.6), (ii) the soft-analysis section on
 homogeneous directions (3.1–3.3), which no headline result uses, (iii) the special-function and Bessel
-analysis used only inside the certificates (4.1, 4.2, 4.6, A.3–A.5), (iv) the modular analysis inside the
+analysis used only inside the certificates (4.1, 4.2, 4.6, A.3, A.4), (iv) the modular analysis inside the
 mean-value step and the Landau step (B.1–B.3), and (v) remarks and the uncertified observation.

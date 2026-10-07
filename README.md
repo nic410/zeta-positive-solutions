@@ -16,6 +16,9 @@ during an independent review of an earlier version of the paper, and were then c
 Claude referees: the zero-side support theorem (Theorem 3.6), and the extension of Theorem B from finitely to countably
 many extra zeros (Theorem 3.8, with its aggregate estimates and mean-value argument, Lemmas B.3–B.4). Astra also
 contributed their consequences Corollary 3.9(a), Corollary 4.11 and the weakening of hypothesis (Mg) in Theorem 4.8.
+The certificates of the exact members added in version 1.2 (Proposition 5.7) were produced and independently refereed by
+Claude agents; their jet-subtraction approach was suggested by an analysis of the planar Cohn–Elkies certificate cited in
+the paper.
 **No human mathematician has yet checked the proofs line by line.**
 
 ## What the result says, in plain language
@@ -64,21 +67,24 @@ The results, in order of weight:
      zeros of its Fourier transform is needed.
    - The same holds if F has finitely many other real zeros (or countably many, under a summability condition) and
      every zero of its Fourier transform beyond the gap lies in the Bondarenko–Radchenko–Seip nodes.
-3. **Certified bounds (Theorem C; computer-assisted).** Unconditionally, −2.7112·10⁻³ ≤ κ\* ≤ 1.1508391·10⁻⁹⁰⁶, so
-   1 − 7.3·10⁻⁹⁰⁶ ≤ q_min < 1.017182. Only if an admissible pair exists, for instance under RH, is κ\* ≥ 0, that is,
+3. **Certified bounds (Theorem C; computer-assisted).** Unconditionally, −2.7112·10⁻³ ≤ κ\* ≤ 1.4291572·10⁻¹⁰⁶⁰, so
+   1 − 8.98·10⁻¹⁰⁶⁰ ≤ q_min < 1.017182. Only if an admissible pair exists, for instance under RH, is κ\* ≥ 0, that is,
    q_min ≤ 1. The theorem sharpens the bound that the explicit-formula method can give; the arithmetic conductor of ζ is
-   1 in any case. In the classical cone (Fourier transform non-negative everywhere), κ\*_OPS ≤ 9.9462·10⁻⁴¹; Odlyzko's
-   tables give 0.997 for this bound. The upper bound comes from an explicit test function that vanishes at every zero
-   of ζ, and a ladder of such certificates, J = 20, …, 100, keeps improving with J. The certificates are evidence for
-   Conjecture S (κ\* ≤ 0), and they form a reproducible tool: a shipped script checks each one in exact and interval
-   arithmetic. They also give **near-rigidity** (Corollary 5.3): every admissible pair has ∫Ξ²dμ ≤ 3.21·10⁻⁹⁰⁶, so
-   its zero measure puts mass at most 3.21·10⁻⁹⁰⁶/min_I Ξ² on any compact interval I that avoids the zeros of ζ. This is
-   informative at low height.
+   1 in any case. The upper bound holds already in the classical cone (Fourier transform non-negative everywhere):
+   κ\*_OPS ≤ 1.4291572·10⁻¹⁰⁶⁰, so the classical conductor bound is at least 1 − 8.98·10⁻¹⁰⁶⁰, where Odlyzko's tables
+   give 0.997. It comes from an explicit test function Ξ²P₁₁₁(t²) that vanishes at every zero of ζ: the exact member
+   J = 111 of the family of Theorem D, certified to lie in the cone without approximation (Proposition 5.7). The
+   certified members J = 10, 60, 61, 110, 111 keep improving with J. The certificates are evidence for Conjecture S
+   (κ\* ≤ 0), and they form a reproducible tool: a shipped script checks each one in interval arithmetic. They also
+   give **near-rigidity** (Corollary 5.3): every admissible pair has ∫Ξ²dμ ≤ 3.99·10⁻¹⁰⁶⁰, so its zero measure puts
+   mass at most 3.99·10⁻¹⁰⁶⁰/min_I Ξ² on any compact interval I that avoids the zeros of ζ. This is informative at low
+   height.
 4. **What remains, specified (Theorem D).** Conjecture U and κ\* ≤ 0 would follow from asymptotic properties of an
    explicit family of test functions Ξ²P_J(t²), defined by Hermite interpolation at the first J prime powers. These
    properties are open; the limiting Fourier transforms need only be non-negative beyond the gap. At J = 10, 60, 61,
    110 and 111 the paper certifies that the interpolation problem is non-singular, together with the coefficient bound
-   behind two of the hypotheses. Conjectures U and S would also follow from exact cone members F_J ≥ c_JΞ² with
+   behind two of the hypotheses, and that the exact members lie in the cone. Conjectures U and S would also follow from
+   exact cone members F_J ≥ c_JΞ² with
    𝒜(F_J)/c_J → 0 (Corollary 4.11, due to Astra).
 5. **Two examples for contrast.** The archimedean data of the quadratic fields ℚ(√5) and ℚ(√−3) have strictly
    positive slack, both with ζ's gap and at the fields' own natural gaps. This indicates that near-criticality is a
@@ -88,8 +94,8 @@ The results, in order of weight:
 
 - It is **not a proof of RH**. It does not prove that an admissible pair exists without assuming RH; unconditionally
   only κ\* ≥ −2.7112·10⁻³ is known, that is, q_min < 1.017182.
-- It does **not** prove κ\* = 0, Conjecture U or Conjecture S (κ\* ≤ 0). The exponent 906 reflects a computational
-  budget (J = 100), not a limit.
+- It does **not** prove κ\* = 0, Conjecture U or Conjecture S (κ\* ≤ 0). The exponent 1060 reflects a computational
+  budget (J = 111), not a limit.
 - Uniqueness is proved only **near ζ's own solution**: either a zero measure carried by ζ's zeros and the origin (any
   prime measure), or a zero measure carried by ζ's zeros plus countably many summable points with the prime measure on
   the Bondarenko–Radchenko–Seip nodes. Extra zeros together with prime-side mass off these nodes, extra zeros without
@@ -104,12 +110,12 @@ The results, in order of weight:
 
 | Kind of evidence | What it covers | Where |
 |---|---|---|
-| **Certified numerics** (exact rational arithmetic, exact Sturm sequences, Arb ball arithmetic) | every computer-assisted statement: Theorem 5.1 and Corollaries 5.2 and 5.3 (κ\* ≤ 1.1508391·10⁻⁹⁰⁶; ∫Ξ²dμ ≤ 3.21·10⁻⁹⁰⁶), and Propositions 5.4, 5.5, 5.6, 5.9 and 5.10. Each has a standalone verifier, a parameter file pinned by SHA-256, and the log of a fresh run | `paper/anc/`; Appendix C of the paper |
+| **Certified numerics** (exact rational arithmetic, exact Sturm sequences, Arb ball arithmetic) | every computer-assisted statement: Theorem 5.1 and Corollaries 5.2 and 5.3 (κ\* ≤ 1.4291572·10⁻¹⁰⁶⁰; ∫Ξ²dμ ≤ 3.99·10⁻¹⁰⁶⁰), and Propositions 5.4, 5.5, 5.6, 5.7, 5.10 and 5.11. Each has a standalone verifier, an input file pinned by SHA-256, and the log of a fresh run | `paper/anc/`; Appendix C of the paper |
 | **Lean 4, checked by the Lean kernel** | the logical spine: Theorems A–D and the Corollary are stated in Lean and derived from an explicit ledger of axioms (cited theorems, certificate outputs, and analytic steps of the paper not yet formalised) | `paper/anc/lean/` and its `README.md` |
 | **Written proofs** | Theorems A, B and D, the Corollary, and every other proved statement (Sections 2–4 and Appendix B) | `paper/` |
 | **Independent AI reviews** | several rounds of review by separate Claude agents acting as hostile referees (the mathematics, the computations, the literature, the focus of the paper, cold-read regression checks); an independent review by OpenAI's Astra, which contributed Theorems 3.6 and 3.8 (as extended); and line-by-line checks of those two proofs by independent Claude referees. Requested repairs were incorporated | cleaned review records will be added in a later release |
 
-Values that were computed but not certified appear only in Numerical observation 5.7 (and, by reference, in the
+Values that were computed but not certified appear only in Numerical observation 5.8 (and, by reference, in the
 evidence for Conjecture 6.1); they are never used in a proof. The supplementary works have their own status, stated in
 `supplementary/README.md`.
 
@@ -136,7 +142,7 @@ evidence for Conjecture 6.1); they are never used in a proof. The supplementary 
   criticality, §3 uniqueness (the zero-side support proof is in Appendix B.1.4, the cusp expansions and the mean-value
   step in Appendix B.1.6), §4 the criterion, §5 the certified bounds, §6 the conjectures and open problems.
 - **Reproducing the numerics.** `paper/anc/README.md`: Python ≥ 3.10 with `python-flint==0.9.0` and `mpmath==1.3.0`
-  only; every certificate has its command and expected output. The three batches take 41.6, 52.0 and 29.1
+  only; every certificate has its command and expected output. The four batches take 41.6, 52.0, 29.1 and 205.6
   CPU-minutes.
 - **Rebuilding the PDF.** From `paper/`, run pdflatex, then bibtex, then pdflatex again until LaTeX no longer asks for a
   rerun (four pdflatex passes in all for the paper):

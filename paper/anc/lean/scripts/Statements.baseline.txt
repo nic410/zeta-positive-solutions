@@ -1,4 +1,4 @@
-== statement pin: 152 declarations (closure of 14 theorems and 23 ledger axioms) ==
+== statement pin: 150 declarations (closure of 14 theorems and 22 ledger axioms) ==
 
 def PosRig.Admissible
   : ((ℂ → ℂ) → ℝ) → ℝ → PosRig.Pair → Prop
@@ -135,6 +135,26 @@ def PosRig.EvenMeasure
   := fun (μ : MeasureTheory.Measure ℝ) ↦ MeasureTheory.Measure.map (fun (t : ℝ) ↦ -t) μ = μ
   hash 3945193151863429150
 
+structure PosRig.ExactRow
+  : Type
+  | PosRig.ExactRow.mk : ℕ → ℚ → ℚ → ℚ → PosRig.ExactRow
+  hash 15436144651838140332
+
+def PosRig.ExactRow.J
+  : PosRig.ExactRow → ℕ
+  := fun (self : PosRig.ExactRow) ↦ self.1
+  hash 12078141458104158401
+
+def PosRig.ExactRow.archUp
+  : PosRig.ExactRow → ℚ
+  := fun (self : PosRig.ExactRow) ↦ self.2
+  hash 3110799104877900954
+
+def PosRig.ExactRow.intLo
+  : PosRig.ExactRow → ℚ
+  := fun (self : PosRig.ExactRow) ↦ self.3
+  hash 360772654452419148
+
 def PosRig.FT
   : (ℂ → ℂ) → ℝ → ℂ
   := fun (F : ℂ → ℂ) ↦ FourierTransform.fourier (PosRig.onR F)
@@ -145,13 +165,6 @@ def PosRig.Ffam
   := fun (J : ℕ) (z : ℂ) ↦ PosRig.Xi z ^ (2 : ℕ) * PosRig.Hfam J z
   hash 9138512836071544361
 
-def PosRig.Frep
-  : {J : ℕ} → (Fin J → ℚ) → (Fin J → ℚ) → ℚ → ℂ → ℂ
-  := fun {J : ℕ} (r s : Fin J → ℚ) (ε : ℚ) (z : ℂ) ↦
-  PosRig.Xi z ^ (2 : ℕ) *
-    (∏ j : Fin J, ((1 : ℂ) + ↑(r j) * z ^ (2 : ℕ) + ↑(s j) * z ^ (4 : ℕ)) + ↑ε * Complex.exp (-↑Real.pi * z ^ (2 : ℕ)))
-  hash 17661286226153516093
-
 def PosRig.Gset
   : Set (ℂ → ℂ)
   := {F : ℂ → ℂ | F ∈ PosRig.gwpSpan ∧ (∀ (t : ℝ), F (-↑t) = F ↑t) ∧ ∀ (t : ℝ), Complex.im (F ↑t) = (0 : ℝ)}
@@ -161,12 +174,6 @@ def PosRig.Hfam
   : ℕ → ℂ → ℂ
   := fun (J : ℕ) (z : ℂ) ↦ PosRig.Pfam J (z ^ (2 : ℕ))
   hash 17418991707123740318
-
-def PosRig.Hpoly
-  : {J : ℕ} → (Fin J → ℚ) → (Fin J → ℚ) → Polynomial ℚ
-  := fun {J : ℕ} (r s : Fin J → ℚ) ↦
-  ∏ j : Fin J, ((1 : Polynomial ℚ) + Polynomial.C (r j) * Polynomial.X + Polynomial.C (s j) * Polynomial.X ^ (2 : ℕ))
-  hash 8100901913057085622
 
 def PosRig.HypG
   : Prop
@@ -284,26 +291,6 @@ def PosRig.Kset
   : ((ℂ → ℂ) → ℝ) → ℝ → Set PosRig.Pair
   := fun (A : (ℂ → ℂ) → ℝ) (g : ℝ) ↦ {p : PosRig.Pair | PosRig.Admissible A g p}
   hash 16455672048350315878
-
-structure PosRig.LadderRow
-  : Type
-  | PosRig.LadderRow.mk : ℕ → ℚ → ℚ → PosRig.LadderRow
-  hash 9568338317363548519
-
-def PosRig.LadderRow.J
-  : PosRig.LadderRow → ℕ
-  := fun (self : PosRig.LadderRow) ↦ self.1
-  hash 4326360234465729424
-
-def PosRig.LadderRow.eps
-  : PosRig.LadderRow → ℚ
-  := fun (self : PosRig.LadderRow) ↦ self.3
-  hash 18202631835064929731
-
-def PosRig.LadderRow.kappa
-  : PosRig.LadderRow → ℚ
-  := fun (self : PosRig.LadderRow) ↦ self.2
-  hash 6419703652391347108
 
 def PosRig.Lemma36
   : PosRig.BRSBasis → (ℕ → ℂ → ℂ) → Prop
@@ -562,6 +549,13 @@ axiom PosRig.cert_Qsqrtm3_pair
     PosRig.DominatesLeb (PosRig.Pair.μ p) ((667226 : ℝ) / (10 : ℝ) ^ (13 : ℕ))
   hash 786830928
 
+axiom PosRig.cert_exact_cone
+  : ∀ row ∈ PosRig.exactMembers,
+  (∀ (ξ : ℝ), (0 : ℝ) ≤ ξ → (0 : ℝ) ≤ Complex.re (PosRig.FT (PosRig.Ffam (PosRig.ExactRow.J row)) ξ)) ∧
+    PosRig.Arch (PosRig.Ffam (PosRig.ExactRow.J row)) ≤ ↑(PosRig.ExactRow.archUp row) ∧
+      ↑(PosRig.ExactRow.intLo row) ≤ PosRig.intR (PosRig.Ffam (PosRig.ExactRow.J row))
+  hash 3022802391
+
 axiom PosRig.cert_finiteJ
   : ∀ J ∈ {(10 : ℕ), (60 : ℕ), (61 : ℕ), (110 : ℕ), (111 : ℕ)},
   J ∈ PosRig.Jset ∧
@@ -574,16 +568,6 @@ axiom PosRig.cert_kappaOPS
   : ∃ F ∈ PosRig.ConeOPS,
   (0 : ℝ) < PosRig.intR F ∧ PosRig.Arch F ≤ ↑((99461827001452550725 : ℚ) / (10 : ℚ) ^ (60 : ℕ)) * PosRig.intR F
   hash 4142199968
-
-axiom PosRig.cert_kappa_ladder
-  : ∀ row ∈ PosRig.kappaLadder,
-  ∃ (r : Fin (PosRig.LadderRow.J row) → ℚ) (s : Fin (PosRig.LadderRow.J row) → ℚ),
-    (∀ (j : Fin (PosRig.LadderRow.J row)), (0 : ℚ) < s j ∧ r j ^ (2 : ℕ) < (4 : ℚ) * s j) ∧
-      PosRig.Frep r s (PosRig.LadderRow.eps row) ∈ PosRig.Cone ∧
-        (0 : ℝ) < PosRig.intR (PosRig.Frep r s (PosRig.LadderRow.eps row)) ∧
-          PosRig.Arch (PosRig.Frep r s (PosRig.LadderRow.eps row)) ≤
-            ↑(PosRig.LadderRow.kappa row) * PosRig.intR (PosRig.Frep r s (PosRig.LadderRow.eps row))
-  hash 2366133598
 
 axiom PosRig.cert_lowerbound
   : ∃ (p : PosRig.Pair),
@@ -603,13 +587,6 @@ axiom PosRig.cert_lowheight
                 ξ ≤ PosRig.xiOf ↑(PosRig.Window.hi w) → ↑(PosRig.Window.m w) ≤ Complex.re (PosRig.FT F ξ)) ∧
           ∀ w ∈ PosRig.atomWindows, ↑(PosRig.Window.m w) ≤ Complex.re (PosRig.FT F (PosRig.xiOf ↑(PosRig.Window.lo w)))
   hash 3980479047
-
-axiom PosRig.cert_near_rigidity
-  : ∃ (r : Fin (100 : ℕ) → ℚ) (s : Fin (100 : ℕ) → ℚ),
-  (∀ (k : ℕ), (0 : ℚ) ≤ Polynomial.coeff (PosRig.Hpoly r s) k) ∧
-    PosRig.Frep r s ((1 : ℚ) / (10 : ℚ) ^ (911 : ℕ)) ∈ PosRig.Cone ∧
-      PosRig.Arch (PosRig.Frep r s ((1 : ℚ) / (10 : ℚ) ^ (911 : ℕ))) ≤ (321 : ℝ) / (10 : ℝ) ^ (908 : ℕ)
-  hash 1695364638
 
 theorem PosRig.certificate_route
   : ∀ {I : Set ℕ},
@@ -666,6 +643,20 @@ def PosRig.ell
   := fun (ν : ℕ → ℝ) (m : ℕ) ↦ ↑m ^ (1 / 4 : ℝ) * ν m
   hash 8607916630397154329
 
+def PosRig.exactMembers
+  : List PosRig.ExactRow
+  := [{ J := (10 : ℕ), archUp := (421255630298 : ℚ) / (10 : ℚ) ^ (30 : ℕ),
+    intLo := (2788432137013103687755 : ℚ) / (10 : ℚ) ^ (21 : ℕ), kappa := (15107258 : ℚ) / (10 : ℚ) ^ (26 : ℕ) },
+  { J := (60 : ℕ), archUp := (296693123412 : ℚ) / (10 : ℚ) ^ (428 : ℕ),
+    intLo := (2788431831991548482268 : ℚ) / (10 : ℚ) ^ (21 : ℕ), kappa := (10640143 : ℚ) / (10 : ℚ) ^ (424 : ℕ) },
+  { J := (61 : ℕ), archUp := (650716403227 : ℚ) / (10 : ℚ) ^ (453 : ℕ),
+    intLo := (2788431831933736852610 : ℚ) / (10 : ℚ) ^ (21 : ℕ), kappa := (23336286 : ℚ) / (10 : ℚ) ^ (449 : ℕ) },
+  { J := (110 : ℕ), archUp := (557968396331 : ℚ) / (10 : ℚ) ^ (1053 : ℕ),
+    intLo := (2788431830827063476513 : ℚ) / (10 : ℚ) ^ (21 : ℕ), kappa := (20010115 : ℚ) / (10 : ℚ) ^ (1049 : ℕ) },
+  { J := (111 : ℕ), archUp := (398510732132 : ℚ) / (10 : ℚ) ^ (1071 : ℕ),
+    intLo := (2788431830818955391538 : ℚ) / (10 : ℚ) ^ (21 : ℕ), kappa := (14291572 : ℚ) / (10 : ℚ) ^ (1067 : ℕ) }]
+  hash 7903636948498209242
+
 axiom PosRig.explicit_formula
   : ∀ F ∈ PosRig.TestClass,
   (Summable fun (ρ : ↑PosRig.NontrivialZeros) ↦ ↑(PosRig.mult ↑ρ) * F (PosRig.tOf ↑ρ)) ∧
@@ -709,19 +700,6 @@ def PosRig.intR
   : (ℂ → ℂ) → ℝ
   := fun (F : ℂ → ℂ) ↦ ∫ (t : ℝ), Complex.re (F ↑t)
   hash 17899255834767941018
-
-def PosRig.kappaLadder
-  : List PosRig.LadderRow
-  := [{ J := (20 : ℕ), kappa := (20151627 : ℚ) / (10 : ℚ) ^ (69 : ℕ), eps := (1 : ℚ) / (10 : ℚ) ^ (67 : ℕ) },
-  { J := (23 : ℕ), kappa := (11963682 : ℚ) / (10 : ℚ) ^ (87 : ℕ), eps := (1 : ℚ) / (10 : ℚ) ^ (86 : ℕ) },
-  { J := (24 : ℕ), kappa := (52941806 : ℚ) / (10 : ℚ) ^ (98 : ℕ), eps := (1 : ℚ) / (10 : ℚ) ^ (93 : ℕ) },
-  { J := (30 : ℕ), kappa := (77522383 : ℚ) / (10 : ℚ) ^ (139 : ℕ), eps := (1 : ℚ) / (10 : ℚ) ^ (138 : ℕ) },
-  { J := (35 : ℕ), kappa := (99924044 : ℚ) / (10 : ℚ) ^ (184 : ℕ), eps := (1 : ℚ) / (10 : ℚ) ^ (183 : ℕ) },
-  { J := (40 : ℕ), kappa := (93828982 : ℚ) / (10 : ℚ) ^ (227 : ℕ), eps := (1 : ℚ) / (10 : ℚ) ^ (226 : ℕ) },
-  { J := (50 : ℕ), kappa := (18493714 : ℚ) / (10 : ℚ) ^ (318 : ℕ), eps := (1 : ℚ) / (10 : ℚ) ^ (318 : ℕ) },
-  { J := (60 : ℕ), kappa := (10640143 : ℚ) / (10 : ℚ) ^ (424 : ℕ), eps := (1 : ℚ) / (10 : ℚ) ^ (424 : ℕ) },
-  { J := (100 : ℕ), kappa := (11508391 : ℚ) / (10 : ℚ) ^ (913 : ℕ), eps := (1 : ℚ) / (10 : ℚ) ^ (911 : ℕ) }]
-  hash 461374706052725650
 
 def PosRig.kappaOPS
   : EReal
@@ -768,8 +746,8 @@ def PosRig.mult
 theorem PosRig.near_rigidity
   : ∀ p ∈ PosRig.K,
   MeasureTheory.Integrable (fun (t : ℝ) ↦ Complex.re (PosRig.Xi ↑t ^ (2 : ℕ))) (PosRig.Pair.μ p) ∧
-    ∫ (t : ℝ), Complex.re (PosRig.Xi ↑t ^ (2 : ℕ)) ∂PosRig.Pair.μ p ≤ (321 : ℝ) / (10 : ℝ) ^ (908 : ℕ)
-  hash 1244264238
+    ∫ (t : ℝ), Complex.re (PosRig.Xi ↑t ^ (2 : ℕ)) ∂PosRig.Pair.μ p ≤ (399 : ℝ) / (10 : ℝ) ^ (1062 : ℕ)
+  hash 2956266293
 
 theorem PosRig.near_rigidity_interval
   : ∀ {p : PosRig.Pair},
@@ -781,8 +759,8 @@ theorem PosRig.near_rigidity_interval
             (∀ t ∈ Set.Icc a b, Complex.re (PosRig.Xi ↑t₀ ^ (2 : ℕ)) ≤ Complex.re (PosRig.Xi ↑t ^ (2 : ℕ))) ∧
               (0 : ℝ) < Complex.re (PosRig.Xi ↑t₀ ^ (2 : ℕ)) ∧
                 MeasureTheory.Measure.real (PosRig.Pair.μ p) (Set.Icc a b) ≤
-                  (321 : ℝ) / (10 : ℝ) ^ (908 : ℕ) / Complex.re (PosRig.Xi ↑t₀ ^ (2 : ℕ))
-  hash 1453332880
+                  (399 : ℝ) / (10 : ℝ) ^ (1062 : ℕ) / Complex.re (PosRig.Xi ↑t₀ ^ (2 : ℕ))
+  hash 3443382439
 
 def PosRig.nuZeta
   : MeasureTheory.Measure ℝ
@@ -856,6 +834,11 @@ def PosRig.qmin
   : ℝ
   := Real.exp ((-2 : ℝ) * Real.pi * EReal.toReal PosRig.kappaStar)
   hash 4915844489146883738
+
+def PosRig.qminOPS
+  : ℝ
+  := Real.exp ((-2 : ℝ) * Real.pi * EReal.toReal PosRig.kappaOPS)
+  hash 7114238431912488507
 
 def PosRig.rePart
   : (ℂ → ℂ) → ℂ → ℂ
@@ -970,10 +953,12 @@ theorem PosRig.theoremB_b
   hash 1450364146
 
 theorem PosRig.theoremC
-  : (PosRig.kappaStar ≤ ↑((11508391 : ℝ) / (10 : ℝ) ^ (913 : ℕ)) ∧
-    (1 : ℝ) - (73 : ℝ) / (10 : ℝ) ^ (907 : ℕ) ≤ PosRig.qmin ∧ PosRig.kappaOPS ≤ ↑((99462 : ℝ) / (10 : ℝ) ^ (45 : ℕ))) ∧
+  : (PosRig.kappaStar ≤ PosRig.kappaOPS ∧
+    PosRig.kappaOPS ≤ ↑((14291572 : ℝ) / (10 : ℝ) ^ (1067 : ℕ)) ∧
+      (1 : ℝ) - (898 : ℝ) / (10 : ℝ) ^ (1062 : ℕ) ≤ PosRig.qmin ∧
+        (1 : ℝ) - (898 : ℝ) / (10 : ℝ) ^ (1062 : ℕ) ≤ PosRig.qminOPS) ∧
   ↑((-27112 : ℝ) / (10 : ℝ) ^ (7 : ℕ)) ≤ PosRig.kappaStar
-  hash 3081855920
+  hash 2994651445
 
 theorem PosRig.theoremD'
   : PosRig.HypN →

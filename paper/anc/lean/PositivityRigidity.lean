@@ -28,6 +28,7 @@ import PositivityRigidity.PosCert
 import PositivityRigidity.ZeroSupport
 import PositivityRigidity.CountableExtras
 import PositivityRigidity.CriterionWeak
+import PositivityRigidity.ExactMember
 import PositivityRigidity.NearRigidity
 import PositivityRigidity.Main
 import PositivityRigidity.Conjectures

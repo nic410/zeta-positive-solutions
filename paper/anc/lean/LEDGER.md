@@ -1,10 +1,12 @@
 # The axiom ledger
 
 Every unproved input of the formalisation is an `axiom` in `PositivityRigidity/Ledger.lean`, and nowhere
-else (`grep -rn '^axiom' PositivityRigidity/` lists exactly the 23 entries below; `scripts/audit.sh` checks
+else (`grep -rn '^axiom' PositivityRigidity/` lists exactly the 22 entries below; `scripts/audit.sh` checks
 this, and the count in the table below). The docstring of each axiom in `Ledger.lean` repeats the
-information of this table. Statement numbers are those of v1.1 of the paper (`paper/build/main.pdf`,
-55 numbered statements); where a statement was renumbered since v1.0, the v1.0 number is also given.
+information of this table. Statement numbers are those of v1.2 of the paper (`paper/build/main.pdf`,
+55 numbered statements); where a statement was renumbered since v1.0, the v1.0 number is also given. v1.2
+(the exact members of the zero-killing family certified in the cone, without a cushion) adds Proposition 5.7;
+its changes to the ledger are listed below.
 
 **Grouping.**
 
@@ -12,8 +14,25 @@ information of this table. Statement numbers are those of v1.1 of the paper (`pa
 |---|---|---|
 | Classical theorems (literature) | 3 | `explicit_formula`, `riemannZeta_neg_of_mem_Ioo`, `xi_decay` |
 | Analytic steps proved in the paper, not yet formalised | 10 | `duality_no_gap`, `duality_gaussian`, `floor_bound`, `logic_b`, `weak_magic_functions`, `brs_lemma36_landau` (also carries the classical existence of the BRS basis), `brs_countable_meanvalue` (v1.1; likewise), `zero_support_rigidity` (v1.1), `robust_compactness`, `Zinf_lower_bound` |
-| Computer-assisted certificates (§5) | 10 | `cert_kappa_ladder`, `cert_near_rigidity` (v1.1), `cert_kappaOPS`, `cert_lowheight`, `cert_lowerbound`, `cert_Qsqrt5_dual`, `cert_Qsqrt5_pair`, `cert_Qsqrtm3_dual`, `cert_Qsqrtm3_pair`, `cert_finiteJ` |
-| **Total** | **23** | |
+| Computer-assisted certificates (§5) | 9 | `cert_exact_cone` (v1.2), `cert_kappaOPS`, `cert_lowheight`, `cert_lowerbound`, `cert_Qsqrt5_dual`, `cert_Qsqrt5_pair`, `cert_Qsqrtm3_dual`, `cert_Qsqrtm3_pair`, `cert_finiteJ` |
+| **Total** | **22** | |
+
+Changes in v1.2 (23 → 22 axioms: one added, two removed; no statement of another axiom changed):
+* `cert_exact_cone` (Proposition 5.7, exact members in the cone, parts (b) and (c); `cone/cert_exact.py` with
+  `cone/conelib.py`, Arb ball arithmetic, logs `cone/logs/W_J{J}_x1.log` and `cone/logs/W_J{J}_x2.log`): for each row of Table 1,
+  `J = 10, 60, 61, 110, 111` (`exactMembers`, `CertDefs.lean`), the exact member `F_J = Ξ² P_J(t²)` of
+  Proposition 4.5 (`Ffam J`) has `F̂_J ≥ 0` on `[0, ∞)`, `𝒜(F_J) ≤ A_J` and `∫ F_J ≥ I_J`. With the evenness of
+  `F̂_J` (`FT_neg_of_even`), `F_J ∈ 𝒯` (`Ffam_mem_TestClass`, from `xi_decay`) and `F_J ≥ Ξ²` (`Ffam_ge_Xi_sq`,
+  from the positive coefficients of Proposition 5.6, `cert_finiteJ`), all proved in Lean, `F_J ∈ 𝒞_OPS ⊆ 𝒞`
+  without a cushion (`prop_exact_cone`), and Lean derives Theorem 5.1 (`κ* ≤ κ*_OPS ≤ 1.4291572·10^{-1060}`,
+  `thm_5_1`), Corollary 5.2 (`q_min ≥ 1 − 8.98·10^{-1060}`, and `e^{−2πκ*_OPS} ≥ 1 − 8.98·10^{-1060}`, `cor_5_2`) and
+  Corollary 5.3 (`∫ Ξ² dμ ≤ 3.99·10^{-1060}`, `near_rigidity`).
+* `cert_kappa_ladder` (v1.1's Theorem 5.1 and Table 1: the cushioned representatives `Ξ²(H + ε e^{−πt²})`,
+  `J = 20, …, 100`) is **removed**: in v1.2, Table 1 lists the exact members, and the cushioned certificates
+  (ancillary directory `kappa/`) are only an unnumbered cross-check in the text. The definitions `Frep`,
+  `LadderRow`, `kappaLadder`, `kappa100` and `Hpoly` and the lemmas about them are removed with it.
+* `cert_near_rigidity` (v1.1, the `J = 100` certificate of Corollary 5.3) is **removed**: Corollary 5.3 now uses
+  `F₁₁₁`.
 
 Changes in v1.1 (20 → 23 axioms; none removed, no statement of an existing axiom changed; docstrings
 renumbered):
@@ -30,7 +49,7 @@ renumbered):
   kept so that the v1.0 headline theorems keep their axiom sets.
 * `cert_near_rigidity` (Corollary 5.3; `kappa/check_H_nonneg.py`, exact arithmetic): the `J = 100`
   certificate has `P` with non-negative coefficients (so `F_rep ≥ Ξ²`, proved in Lean) and
-  `𝒜(F_rep) ≤ 3.21·10^{-906}`.
+  `𝒜(F_rep) ≤ 3.21·10^{-906}`. (Removed in v1.2, see above.)
 
 Changes before v1.1 (21 → 20 axioms):
 * `support_uniqueness` (Proposition 3.5, signed form) was retired: it is now the theorem
@@ -50,7 +69,10 @@ Changes before v1.1 (21 → 20 axioms):
 * *No posited objects.* Every axiom is a proposition about objects defined from Mathlib in `Basic.lean`,
   `BRSDefs.lean`, `FamilyDefs.lean`, `CertDefs.lean` and `ExtrasDefs.lean`: `riemannZeta`,
   `completedRiemannZeta₀` (for `ξ`, `Ξ`), `Complex.digamma = Γ'/Γ`, Mathlib's Fourier transform `𝓕`,
-  `ArithmeticFunction.vonMangoldt`, measures, `Polynomial ℚ`.  The BRS basis and the coefficient function `α`
+  `ArithmeticFunction.vonMangoldt`, measures. The v1.2 certificate `cert_exact_cone` is about the exact members
+  `Ffam J` themselves (defined from the moments of `Ξ²` and the inverse of the Hermite matrix `M_J`, which
+  `cert_finiteJ` certifies non-singular for these `J`, so `Ffam J` is not a junk value), not about existentially
+  quantified representatives.  The BRS basis and the coefficient function `α`
   of Lemma 3.7 and of the Landau step / mean-value step are not posited: they are only asserted to exist
   jointly (`brs_lemma36_landau`, `brs_countable_meanvalue`), every theorem using them holds for every
   witness, and no uniqueness is claimed.
@@ -81,15 +103,19 @@ Changes before v1.1 (21 → 20 axioms):
 * *v1.1 sanity checks.* `zero_support_rigidity_sanity`: under RH, `p_ζ` satisfies the hypothesis of
   `zero_support_rigidity` and its conclusion holds without the axiom.  `weightedCond_of_finite`,
   `cumulativeCond_of_weightedCond`: the summability condition (3.5) holds for finite `E` and its weighted
-  form implies the cumulative form used in `MeanValueStep` (Mathlib only).  `Frep_ge_Xi_sq`: the certified
-  coefficient property gives `F_rep ≥ Ξ²` (Mathlib only).  `hypMg0_of_hypMg`, `conjFamily0_of_conjFamily`:
-  the v1.1 hypotheses are weaker than the v1.0 ones.
+  form implies the cumulative form used in `MeanValueStep` (Mathlib only).  `hypMg0_of_hypMg`,
+  `conjFamily0_of_conjFamily`: the v1.1 hypotheses are weaker than the v1.0 ones.
+* *v1.2 sanity checks.* `Ffam_ge_Xi_sq`: non-negative coefficients of `P_J` give `F_J ≥ Ξ²` (Mathlib only; the
+  non-vacuity check `near_rigidity_certificate_meaning`, which in v1.1 was the analogous statement for `F_rep`);
+  `FT_neg_of_even`: the transform of an even function is even (Mathlib only); `Ffam_mem_Cone_of`,
+  `Ffam_mem_ConeOPS_of`: the cone memberships from the certified facts (`xi_decay` only, for `F_J ∈ 𝒯`). The
+  bounds `A_J/I_J ≤ κ_J` and `2π·κ₁₁₁ ≤ 8.9796596·10^{-1060}` are checked in Lean.
 * `#print axioms` for the headline theorems is in `axioms.log`: only ledger axioms and
   `propext`, `Classical.choice`, `Quot.sound` occur. No `sorry`, no `native_decide` anywhere.  CI
   (`scripts/audit.sh`) re-checks all of this on every push.
 
-Log lines are quoted with whitespace normalised; `±` in a docstring stands for the logs' `+/-` (a Lean
-docstring cannot contain `/-`). All SHA-256 values are those of `paper/anc/SHA256SUMS`;
+Log lines are quoted with whitespace normalised (the v1.2 lines from `cone/logs/` verbatim, double spaces
+included); `±` in a docstring stands for the logs' `+/-` (a Lean docstring cannot contain `/-`). All SHA-256 values are those of `paper/anc/SHA256SUMS`;
 `python3 scripts/check_ledger_hashes.py` re-checks every cited hash against that file.
 
 ## Classical inputs
@@ -121,16 +147,16 @@ All scripts need Python ≥ 3.10 with `python-flint==0.9.0`, `mpmath==1.3.0` (se
 
 | Axiom | Paper statement | Script, parameter file (SHA-256), decisive log line | Faithful / weaker |
 |---|---|---|---|
-| `cert_kappa_ladder` | Theorem 5.1 and Table 1: for each `(J, κ_J, ε)` there are rationals `r_j, s_j` with `s_j > 0`, `r_j² < 4s_j`, `F_rep = Ξ²(Π(1 + r_j t² + s_j t⁴) + ε e^{−πt²}) ∈ 𝒞`, `∫F_rep > 0`, `𝒜(F_rep) ≤ κ_J ∫F_rep` | `kappa/verify_kappa.py` with `kappa/params/J100.json` (sha256 1186be2c9c2e575810781c02fc8a22ee060ffa4c61be4e8eab21b63a90719662): log `kappa/logs/J100.log`, `(4) kappa* <= A_upper / Fhat_H(0)_lower <= 1.1508391e-906`, `CERTIFIED: True`; likewise `kappa/params/J20.json` (sha256 d686e47b0412358c8ad519370655c6f8600c2d44d25ee8da8e39ab66551c5ec8, `<= 2.0151627e-62`), `J23.json`, `J24.json`, `J30.json`, `J35.json`, `J40.json`, `J50.json`, `J60.json` (hashes in `Ledger.lean`) | **Weaker** (rationals only asserted to exist) |
-| `cert_near_rigidity` (v1.1) | Corollary 5.3's certificate: for the `J = 100` row of Theorem 5.1 (`ε = 10^{-911}`) there are rationals `r_j, s_j` with every coefficient of `P(u) = Π_j (1 + r_j u + s_j u²)` non-negative, `F_rep ∈ 𝒞` and `𝒜(F_rep) ≤ 3.21·10^{-906}` | `kappa/check_H_nonneg.py` (sha256 8e5c63371d867378cfa8675f180d310114950a503f81fb622e2712a731d1120d) with `kappa/params/J100.json` (sha256 1186be2c9c2e575810781c02fc8a22ee060ffa4c61be4e8eab21b63a90719662), exact expansion of `P` over `ℚ`: log `kappa/logs/H_nonneg.log`, `J = 100, deg P = 200, 201 coefficients, 201 of them > 0; P(0) = 1: True`, `CLAIM : J = 100: all coefficients of P >= 0 and P(0) = 1, so H >= 1 on R and F_rep >= Xi^2 ... implied`, `duality : kappa/logs/J100.log: certified True, …; A(F_rep) <= A_upper = 3.20903614143e-906`, `RESULT : CERTIFIED`; `F_rep ∈ 𝒞` and `A(F_rep) <= 3.20903614143e-906` from `kappa/verify_kappa.py`, log `kappa/logs/J100.log` | **Weaker** (rationals only asserted to exist; rounded bound). `H ≥ 1` and `F_rep ≥ Ξ²` are proved in Lean from the coefficients (`Frep_ge_Xi_sq`) |
-| `cert_kappaOPS` | Proposition 5.4 (v1.0: 5.3): some `F ∈ 𝒞_OPS` with `∫F > 0`, `𝒜(F) ≤ 9.9461827001452550725·10^{-41} ∫F` | `general/verify_general.py` with `general/params/zeta_K128_s13.json` (sha256 0976a6711193adc0f02a532931974b8ef4912337f79e39f59aa21445879a4df2): `SLACK : kappa*_OPS (and kappa*) of the data <= 9.9461827001452550725e-41`, `RESULT : CERTIFIED` | **Weaker** (existence). Analytic input of the tail: Lemma A.5 |
-| `cert_lowheight` | Proposition 5.5 (v1.0: 5.4): `F_80 ∈ 𝒞_OPS`, `𝒜(F_80) ≤ 7.72525424595·10^{-25}`, `∫F_80 ≥ 0.9999999999999999444`, and the window lower bounds of Table 2 | `general/verify_general.py` with `general/params/zeta_K80_s12_F80.json` (sha256 c0f3afc2d3367ebdadd0897a6e2f15fc5ae8a7caf8b7c6879b504119a845eee6): `A(F_rep) = [7.725254245948889853868706e-25 +/- 4.30e-50]`; `general/verify_windows.py` with `general/params/F80_windows.json` (sha256 af90186bb2a9126187e3dd4b2358aec7ca4e69c40fbfef7a6daafdabe9579b24): `gap{1..5}_eta0.1 … PROVED`, `win… PROVED`, `atom n = 2.5 F^(xi_n) = [0.0015866025 +/- 3.99e-13]`, `atom n = 6 F^(xi_n) = [3.8125495e-7 +/- 3.84e-15]`, `RESULT : CERTIFIED` | **Weaker** (existence; Table 2's inward-rounded windows). Analytic inputs: Lemma A.2 (window bounds, after a Möbius map; proved in Lean, `PosCert.lean`) and Lemma A.5 (digamma tail) |
-| `cert_lowerbound` | Proposition 5.9 (v1.0: 5.8), with Lemma 5.8 (v1.0: 5.7): an admissible pair for `𝒜_q`, `log q = 0.02`, with `μ ≥ 4.71949·10^{-4} dt` | `general/verify_pair.py` with `general/params/pair_zeta_logq002_X10.json` (sha256 d28b347d9807e6934a55bb326f20e09318c2aab4851595b914788f5c708888f6): `MU FLOOR : mu(t) >= 0.000471949 for all real t`, `GAP : admissible at gap xi_2 (prime measure on [2, oo)): True`, `RESULT : CERTIFIED`; admissibility of the Herglotz form is Lemma 5.8 [paper] | **Weaker** than certificate + Lemma 5.8 (pair only asserted to exist) |
-| `cert_Qsqrt5_dual` | Proposition 5.10(a) (v1.0: 5.9(a)), dual side: `F ∈ 𝒞_OPS`, `𝒜_{Γ_ℝ²,1}(F) ≤ −0.25566705789831547610 ∫F` | `general/verify_general.py` with `general/params/gammaR2_K80_s7.json` (sha256 79936770a00991a3c4b24ac614f8405686fdf499d6eb0040dd9976ae026a71ee): `SLACK : … <= -0.25566705789831547610` | **Weaker** (existence). Lemma A.5 for the tail |
-| `cert_Qsqrt5_pair` | Proposition 5.10(a), primal side (with Lemma 5.8): pair for `𝒜_{Γ_ℝ²,q₀}`, `log q₀ = 1.6093347792651136`, prime measure on `[ξ_{4.049150}, ∞)`, `μ ≥ 6.59497·10^{-9}` | `general/verify_pair.py` with `general/params/pair_gammaR2_X240.json` (sha256 3b9f85c84efcf36f0e753e01edd442bfc3d6a1a2ead2377124b015ea2b7dfb1d): `nu~ support : supp nu~ in [x0, oo) with x0 >= 4.049150`, `MU FLOOR : mu(t) >= 6.59497e-9 for all real t` | **Weaker** (existence) |
-| `cert_Qsqrtm3_dual` | Proposition 5.10(b) (v1.0: 5.9(b)), dual side: `𝒜_{Γ_ℂ,1}(F) ≤ −0.17385102660887763683 ∫F` | `general/verify_general.py` with `general/params/gammaC_K64_s9.json` (sha256 e330d8b743bd835920ecaad507a195773f4c858181d97bafb9d3eca1c296021a): `SLACK : … <= -0.17385102660887763683` | **Weaker** (existence). Lemma A.5 for the tail |
-| `cert_Qsqrtm3_pair` | Proposition 5.10(b), primal side (with Lemma 5.8): `log q₀ = 1.0976698108720329`, prime measure on `[ξ_{3.011664}, ∞)`, `μ ≥ 6.67226·10^{-8}` | `general/verify_pair.py` with `general/params/pair_gammaC_X40.json` (sha256 f32152ae73a8e202fafd9bd56097dc0b98d68741392ee8149ee3d9262828eeae): `nu~ support : … x0 >= 3.011664`, `MU FLOOR : mu(t) >= 6.67226e-8 for all real t` | **Weaker** (existence) |
+| `cert_exact_cone` (v1.2) | Proposition 5.7 (exact members in the cone), parts (b) and (c): for each row of Table 1 (`exactMembers`: `J = 10, 60, 61, 110, 111`), the exact member `F_J = Ξ² P_J(t²)` of Proposition 4.5 has `F̂_J ≥ 0` on `[0, ∞)`, `𝒜(F_J) ≤ A_J` and `∫ F_J ≥ I_J`; e.g. `A₁₁₁ = 3.98510732132·10^{-1060}`, `I₁₁₁ = 2.788431830818955391538`. So `F_J ∈ 𝒞_OPS ⊆ 𝒞` without a cushion (with `F̂_J` even, `F_J ∈ 𝒯` and `F_J ≥ Ξ²` proved in Lean) | `cone/cert_exact.py` (sha256 58b4afeabe96a27070b1b24dde4171d598b09377adcf4c20a6eaced40803e46b) with `cone/conelib.py` (sha256 cc1534c4f34b72579f3eedd2df2adb8ce649d6ddbdacbd5a1090143031db12ee) and the validated `K₀`, `K₁` of `lib/k01_trapezoid.py` (sha256 864867203d52f421ade04725be5f78f8be4dcbf8569d355c98a3d43bf87408a1), Arb ball arithmetic, inputs `exact/out/P10_ball.txt` (sha256 4e55d361d6d2c05f15565bd3c94d56b9f5e0715acecda9fd362410181bdc48d3), `exact/out/P60_ball.txt` (sha256 fdfbfe57bfe9945f640291b6f1e1b7e74e4d5afb04278961d5737f26db6cda4b), `exact/out/P61_ball.txt` (sha256 8cc7b2b9a66f643e8e40d84fd4ffd6970401342aeab87b716ec169bc91ca3dd4), `exact/out/P110_ball.txt` (sha256 7c8999567bc77cd1c6fb5a9e816bb0b4f212b971f26dd0f3bda3237ff51c117a), `exact/out/P111_ball.txt` (sha256 25669a321f71ddef789247cd0adc0fd129c5d70f293e488bc4dab8c3f708b3f1). (b): logs `cone/logs/W_J{J}_x1.log`, `W_J: Fhat_J >= 0 on [x = 1, oo), with exact double zeros at the 111 nodes and Fhat_J > 0 elsewhere: True` (likewise with `10`, `60`, `61`, `110` nodes; all five lines are quoted in `Ledger.lean`). (c): logs `cone/logs/W_J{J}_x2.log`; at `J = 111`: `W_J: Fhat_J >= 0 on [x = 2, oo), with exact double zeros at the 111 nodes and Fhat_J > 0 elsewhere: True`, `A(F_J) in [3.98510732131e-1060, 3.98510732132e-1060]`, `int F_J = Fhat_J(0) = [2.788431830818955391538863 +/- 4.24e-25]`, `kappa_J^exact = A(F_J)/int F_J in [1.429157161e-1060, 1.429157162e-1060]  =>  kappa* <= 1.4291572e-1060  (F_J in C, Def 2.4)`, `near-rigidity: every admissible pair (mu, nu) has int Xi^2 dmu <= int F_J dmu <= A(F_J) <= 3.9851074e-1060  (Lemma 2.5, F_J >= Xi^2, Fhat_J >= 0 on supp nu)`; at `J = 110`: `kappa_J^exact = A(F_J)/int F_J in [2.001011429e-1042, 2.001011430e-1042]  =>  kappa* <= 2.0010115e-1042  (F_J in C, Def 2.4)` (the `A(F_J)` and `int F_J` lines of every `J` are quoted in `Ledger.lean`). Analytic inputs: Proposition 4.5 (exact double zeros at the nodes; `deriv_FT_Ffam_pp` in Lean), Lemma 2.3 and Corollary 4.4 (`𝒜(F_J)` as a prime-power tail sum; `Arch_Ffam_tail` in Lean), Proposition 4.2, Lemma 4.6, validated `K₀`, `K₁` | **Weaker** (only the one-sided bounds used; the order-two zeros and `F̂_J > 0` off the nodes are not stated). `F_J ∈ 𝒯`, `F_J ≥ Ξ²` and the evenness of `F̂_J` are proved in Lean; `A_J/I_J ≤ κ_J` is checked in Lean |
+| `cert_kappaOPS` | Proposition 5.4 (v1.0: 5.3): some `F ∈ 𝒞_OPS` with `∫F > 0`, `𝒜(F) ≤ 9.9461827001452550725·10^{-41} ∫F` | `general/verify_general.py` with `general/params/zeta_K128_s13.json` (sha256 0976a6711193adc0f02a532931974b8ef4912337f79e39f59aa21445879a4df2): `SLACK : kappa*_OPS (and kappa*) of the data <= 9.9461827001452550725e-41`, `RESULT : CERTIFIED` | **Weaker** (existence). Analytic input of the tail: Lemma A.4 |
+| `cert_lowheight` | Proposition 5.5 (v1.0: 5.4): `F_80 ∈ 𝒞_OPS`, `𝒜(F_80) ≤ 7.72525424595·10^{-25}`, `∫F_80 ≥ 0.9999999999999999444`, and the window lower bounds of Table 2 | `general/verify_general.py` with `general/params/zeta_K80_s12_F80.json` (sha256 c0f3afc2d3367ebdadd0897a6e2f15fc5ae8a7caf8b7c6879b504119a845eee6): `A(F_rep) = [7.725254245948889853868706e-25 +/- 4.30e-50]`; `general/verify_windows.py` with `general/params/F80_windows.json` (sha256 af90186bb2a9126187e3dd4b2358aec7ca4e69c40fbfef7a6daafdabe9579b24): `gap{1..5}_eta0.1 … PROVED`, `win… PROVED`, `atom n = 2.5 F^(xi_n) = [0.0015866025 +/- 3.99e-13]`, `atom n = 6 F^(xi_n) = [3.8125495e-7 +/- 3.84e-15]`, `RESULT : CERTIFIED` | **Weaker** (existence; Table 2's inward-rounded windows). Analytic inputs: Lemma A.2 (window bounds, after a Möbius map; proved in Lean, `PosCert.lean`) and Lemma A.4 (digamma tail) |
+| `cert_lowerbound` | Proposition 5.10 (v1.0: 5.8), with Lemma 5.9 (v1.0: 5.7): an admissible pair for `𝒜_q`, `log q = 0.02`, with `μ ≥ 4.71949·10^{-4} dt` | `general/verify_pair.py` with `general/params/pair_zeta_logq002_X10.json` (sha256 d28b347d9807e6934a55bb326f20e09318c2aab4851595b914788f5c708888f6): `MU FLOOR : mu(t) >= 0.000471949 for all real t`, `GAP : admissible at gap xi_2 (prime measure on [2, oo)): True`, `RESULT : CERTIFIED`; admissibility of the Herglotz form is Lemma 5.9 [paper] | **Weaker** than certificate + Lemma 5.9 (pair only asserted to exist) |
+| `cert_Qsqrt5_dual` | Proposition 5.11(a) (v1.0: 5.9(a)), dual side: `F ∈ 𝒞_OPS`, `𝒜_{Γ_ℝ²,1}(F) ≤ −0.25566705789831547610 ∫F` | `general/verify_general.py` with `general/params/gammaR2_K80_s7.json` (sha256 79936770a00991a3c4b24ac614f8405686fdf499d6eb0040dd9976ae026a71ee): `SLACK : … <= -0.25566705789831547610` | **Weaker** (existence). Lemma A.4 for the tail |
+| `cert_Qsqrt5_pair` | Proposition 5.11(a), primal side (with Lemma 5.9): pair for `𝒜_{Γ_ℝ²,q₀}`, `log q₀ = 1.6093347792651136`, prime measure on `[ξ_{4.049150}, ∞)`, `μ ≥ 6.59497·10^{-9}` | `general/verify_pair.py` with `general/params/pair_gammaR2_X240.json` (sha256 3b9f85c84efcf36f0e753e01edd442bfc3d6a1a2ead2377124b015ea2b7dfb1d): `nu~ support : supp nu~ in [x0, oo) with x0 >= 4.049150`, `MU FLOOR : mu(t) >= 6.59497e-9 for all real t` | **Weaker** (existence) |
+| `cert_Qsqrtm3_dual` | Proposition 5.11(b) (v1.0: 5.9(b)), dual side: `𝒜_{Γ_ℂ,1}(F) ≤ −0.17385102660887763683 ∫F` | `general/verify_general.py` with `general/params/gammaC_K64_s9.json` (sha256 e330d8b743bd835920ecaad507a195773f4c858181d97bafb9d3eca1c296021a): `SLACK : … <= -0.17385102660887763683` | **Weaker** (existence). Lemma A.4 for the tail |
+| `cert_Qsqrtm3_pair` | Proposition 5.11(b), primal side (with Lemma 5.9): `log q₀ = 1.0976698108720329`, prime measure on `[ξ_{3.011664}, ∞)`, `μ ≥ 6.67226·10^{-8}` | `general/verify_pair.py` with `general/params/pair_gammaC_X40.json` (sha256 f32152ae73a8e202fafd9bd56097dc0b98d68741392ee8149ee3d9262828eeae): `nu~ support : … x0 >= 3.011664`, `MU FLOOR : mu(t) >= 6.67226e-8 for all real t` | **Weaker** (existence) |
 | `cert_finiteJ` | Proposition 5.6 (v1.0: 5.5): for `J ∈ {10, 60, 61, 110, 111}`, `M_J` non-singular and `0 < p_k ≤ 0.71636^{2k}/(2k)!` | `exact/verify_exact_member.py` (logs `exact/logs/NPOS_J*.log`: `(N) rigorous solve … (matrix certified non-singular): True`, `(POS) all … coefficients p_k certified > 0: True`, `a = max_k ((2k)! p_k)^(1/2k) <= 0.697078` at `J = 10`); `exact/check_coefficient_bound.py` (sha256 c267e87652e86cff504f537b9a2de7913ebc6ea2fa4f6a616995a47e7c0d366c), log `exact/logs/coefficient_bound.log`: `CERTIFIED: 0 < p_k <= 0.71636^(2k)/(2k)! for every k, at J = 60, 61, 110, 111: True` | Faithful |
 
-The arithmetic that combines certificates (`log 3`, `log 5`, `π` bounds, `2π·κ_100 ≤ 7.2309354·10^{-906}`,
-`π𝒜(F_80)/m ≤` Table 2, …) is done in Lean (`Certified.lean`, `Atoms.lean`), not taken from the scripts.
+The arithmetic that combines certificates (`log 3`, `log 5`, `π` bounds, `A_J/I_J ≤ κ_J` for the rows of Table 1,
+`2π·κ₁₁₁ ≤ 8.9796596·10^{-1060}`, `π𝒜(F_80)/m ≤` Table 2, …) is done in Lean (`Certified.lean`, `ExactMember.lean`,
+`Atoms.lean`), not taken from the scripts.

@@ -1,7 +1,7 @@
 /-
 Measures carried by countable sets (Mathlib only): integrals are sums over atoms, and such measures
 are determined by their atoms.  Used to pass between admissible pairs (measures) and the atom-weight
-form of Theorem 3.8.  Also: numerical bounds for `log 3`, `log 5` (Proposition 5.10).
+form of Theorem 3.8.  Also: numerical bounds for `log 3`, `log 5` (Proposition 5.11).
 -/
 import PositivityRigidity.Basic
 

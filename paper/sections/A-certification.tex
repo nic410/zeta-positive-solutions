@@ -2,8 +2,8 @@
 \section{Certification methods}\label{app:certification}
 %======================================================================
 
-This appendix describes the arithmetic, the validated special functions and the cushion used in the certificates of
-Section~\ref{sec:certified}; the conventions are stated in Section~\ref{ssec:cert-method}.
+This appendix describes the arithmetic, the validated special functions and the method for the exact members used in the certificates
+of Section~\ref{sec:certified}; the conventions are stated in Section~\ref{ssec:cert-method}.
 
 %----------------------------------------------------------------------
 \subsection{Exact and ball arithmetic}
@@ -45,7 +45,7 @@ which encloses the exact shifted coefficients.
 \subsection{Validated Bessel functions}
 %----------------------------------------------------------------------
 
-All certificates built on $\Xi^2$ (Theorem~\ref{thm:kappa} and Proposition~\ref{thm:finiteJ}) evaluate $K_0$ and $K_1$ on positive real balls. We do not use the built-in Bessel
+All certificates built on $\Xi^2$ (Propositions~\ref{thm:finiteJ} and~\ref{prop:exactcone}) evaluate $K_0$ and $K_1$ on positive real balls. We do not use the built-in Bessel
 and confluent hypergeometric functions of Arb for this purpose: at moderate $z$ their enclosures can lose about $e^{2z}$
 in relative accuracy. Instead the shipped module \nolinkurl{lib/besselk.py} uses two classical representations with
 explicit error bounds.
@@ -81,49 +81,54 @@ values $\psi(k+1)+\psi(k+2)$, which are positive for $k\ge1$) are at most $2$. S
 hence at most the last computed term; twice the last computed term is added as a ball radius. Evaluating the series directly on a ball
 would multiply the radius by about $e^{2z}$, which the midpoint evaluation avoids.
 
+\emph{A trapezoid-rule evaluation.} The primary path of the certificates of Proposition~\ref{prop:exactcone} uses instead, for $z\ge1$,
+the representations $K_0(z)=e^{-z}(2z)^{-1/2}\int_\RR f_0$ and $zK_1(z)=(2z)^{1/2}e^{-z}\int_\RR f_1$, where
+$f_0(v)=e^{-v^2}(1+v^2/2z)^{-1/2}$ and $f_1(v)=v^2e^{-v^2}(1+v^2/2z)^{1/2}$ (\cite[10.32.8]{DLMF} with $t=1+v^2/z$), evaluated by the
+trapezoid rule with step $h$ (\nolinkurl{lib/k01_trapezoid.py}). The $f_\nu$ are analytic in $|\Im v|<\sqrt{2z}$; for $0<a<\sqrt{2z}$,
+\cite[Theorem~5.1]{TW14} bounds the discretisation error by $2M_\nu/(e^{2\pi a/h}-1)$, with $M_0=\sqrt\pi e^{a^2}(1-a^2/2z)^{-1/2}$ and
+$M_1=\sqrt\pi e^{a^2}[(\frac12+a^2)+(\frac34+a^2+a^4)/4z]$ bounding $\int_\RR|f_\nu(x+iy)|\dd x$ for $|y|<a$ (both decrease in $z$ and are
+taken at the lower end of the ball for $z$). The sum is truncated at $|k|\le n$, and the rest is bounded by geometric series, using
+$f_0(v)\le e^{-v^2}$ and $f_1(v)\le3e^{-v^2/2}$. The second path of these certificates uses Lemma~\ref{lem:K-validated}.
+
 %----------------------------------------------------------------------
-\subsection{The cushion}
+\subsection{The exact members}\label{app:exact}
 %----------------------------------------------------------------------
 
-An explicit zero-killing function with rational parameters vanishes at every zero of $\zeta$ but has its zeros of order at least two at
-the prime powers only up to the rationalisation, so $\FT F$ can be very slightly negative near a node. A small multiple of
-$\Xi^2e^{-\pi t^2}$ repairs this.
+The certificates of Proposition~\ref{prop:exactcone} work with the exact polynomial $P_J$, without approximation or cushion. Their input
+is the ball enclosure of $p^{(J)}$ of Proposition~\ref{thm:finiteJ}, and every bound below is computed from these balls, so it holds for
+every coefficient vector in the box, in particular for the exact one. By Proposition~\ref{thm:bessel} and Lemma~\ref{lem:abel},
+$\FT F_J^{(m)}(\xi)=(2\pi)^m2\pi\sqrt x\sum_Nd(N)(A_mK_0+B_mK_1)(2\pi Nx)$, where the ball polynomials $A_m,B_m$, of degree at most $D$, come
+from exact recurrences for $(\theta+\frac12)^mP_J(-(\theta+\frac12)^2)\theta^2(\theta+1)^2$ acting on $\operatorname{span}\{z^kK_0,z^kK_1\}$.
+The divisor sum is truncated with a rigorous tail bound from $d(N)\le2\sqrt N$, $0<K_0\le K_1\le K_{3/2}$ with
+$K_{3/2}(w)=(\pi/2w)^{1/2}e^{-w}(1+1/w)$, and a geometric series in $N$. In the same way
+$\lvert\FT F_J(\xi)\rvert\le\Upsilon(x):=4\pi(\lvert A_0\rvert+\lvert B_0\rvert)(z)\,e^{-z}(1+1/z)/(1-q)$, with $z=2\pi x$ and
+$q=2^De^{-z}<\frac12$, where $\lvert A\rvert$ is the polynomial whose coefficients are the absolute values of those of $A$. Suprema of
+$\lvert\FT F_J^{(m)}\rvert$ on an interval use that $\lvert A_m\rvert,\lvert B_m\rvert$ increase and $K_0,K_1$ decrease in $z$.
 
-\begin{lemma}[The cushion]\label{lem:cushion}
-Let $\delta>0$.
-\textup{(a)} $\widehat{\Xi^2e^{-\pi t^2}}(\xi)=(\Psi*e^{-\pi(\cdot)^2})(\xi)\ge e^{-\pi(|\xi|+\delta)^2}I_\delta>0$ for every $\xi\in\RR$, where
-$I_\delta:=\int_{-\delta}^{\delta}\Psi(\eta)\dd\eta$.
-\textup{(b)} $\Arch(\Xi^2e^{-\pi t^2})=\frac1\pi\sum_{n\ge2}\Lambda(n)n^{-1/2}\widehat{\Xi^2e^{-\pi t^2}}(\xin n)>0$. Moreover
-$\Arch(\Xi^2e^{-\pi t^2})\in[0.930646274515431\pm2.3\cdot10^{-16}]$, and $I_{1/20}\ge0.09782880564$; the latter is a lower bound obtained from the
-term $N=1$ of Proposition~\ref{thm:bessel} alone, not an approximation of $I_{1/20}$.
-\textup{(c)} Let $H\in\Hc$, $H\ge0$ on $\RR$, $F_H:=\Xi^2H$ and $\eps\ge0$. If
-$\FT{F_H}(\xi)\ge-\eps\,e^{-\pi(\xi+\delta)^2}\int_{-\delta}^{\delta}\Psi$ for $\xi\ge\xin2$, then
-$\Frep:=F_H+\eps\,\Xi^2e^{-\pi t^2}\in\Cone$ and
-\[
-  \kstar\le\frac{\Arch(F_H)+\eps\Arch(\Xi^2e^{-\pi t^2})}{\int F_H+\eps\int\Xi^2e^{-\pi t^2}}\le\frac{\Arch(F_H)+\eps\Arch(\Xi^2e^{-\pi t^2})}{\int F_H}
-\]
-when the numerator is non-negative.
-\end{lemma}
+\emph{Nodes.} At a node $\xi_n$, $n\le n_J$, Proposition~\ref{prop:E} gives $\FT F_J(\xi_n)=\FT F_J'(\xi_n)=0$ exactly. So, with
+$c_k=\FT F_J^{(k)}(\xi_n)/k!$ and $M\ge\sup\lvert\FT F_J^{(p+1)}\rvert$ on $[\xi_n-h,\xi_n+h]$, Taylor's formula gives
+$\FT F_J(\xi_n+\delta)=\delta^2\bigl(\sum_{k=2}^pc_k\delta^{k-2}+R\delta^{p-1}\bigr)$ with $\lvert R\rvert\le M/(p+1)!$. If the least Bernstein
+coefficient of the polynomial part on $[0,h]$ and on $[-h,0]$ exceeds $Mh^{p-1}/(p+1)!$, then $\FT F_J>0$ for $0<\lvert\delta\rvert\le h$,
+and $\xi_n$ is a zero of order exactly two. The idea of subtracting the vanishing jets before dividing by $\delta^2$ comes from the
+planar Cohn--Elkies certificate \cite{OAI26planar}; it makes a cushion unnecessary. The enclosures of $c_0$ and $c_1$ computed from the
+coefficient balls are never used: the verifier only checks that they contain $0$, which detects gross input errors and nothing more. The
+argument rests on Proposition~\ref{thm:finiteJ}, whose balls contain the exact coefficients, and on $c_0=c_1=0$, which holds only for the
+exact $P_J$.
 
-\begin{proof}
-(a) $\widehat{\Xi^2e^{-\pi t^2}}=\FT{\Xi^2}*\widehat{e^{-\pi t^2}}$, and $e^{-\pi t^2}$ is its own Fourier transform. Since $\Psi>0$ (Lemma~\ref{lem:Psi-pos}), restricting the convolution
-integral to $|\eta|\le\delta$, where $|\xi-\eta|\le|\xi|+\delta$, gives the bound. (b) $\Xi^2e^{-\pi t^2}\in\Tc$ vanishes at every
-non-trivial zero of $\zeta$, so Corollary~\ref{cor:zerokilling} gives the identity, and
-positivity follows from (a). The two constants are computer-assisted: $\Arch(\Xi^2e^{-\pi t^2})$ is computed from the archimedean
-side by Arb's rigorous numerical integration on $[0,8]$ plus an explicit tail bound
-(\nolinkurl{kappa/cushion_A.py}); the integral of $\Psi$ uses the term $N=1$ of Proposition~\ref{thm:bessel} with monotone
-bounds for $K_0,K_1$ on subintervals, the terms $N\ge2$ being positive (\nolinkurl{lib/cushion.py}); log
-\nolinkurl{kappa/logs/cushion.log}. The slack certificates use the upper endpoint of the Arb ball for $\Arch(\Xi^2e^{-\pi t^2})$, which is at most
-$0.930646274516$. (c) $\Frep\ge0$ on $\RR$, $\Frep\in\Tc$, and for
-$\xi\ge\xin2$ (a) gives $\FT\Frep(\xi)\ge-\eps e^{-\pi(\xi+\delta)^2}\int\Psi+\eps e^{-\pi(\xi+\delta)^2}\int\Psi=0$; so
-$\Frep\in\Cone$, and the bound is the definition of $\kstar$ applied to $\Frep$ (with $\int\Frep=\FT\Frep(0)$).
-\end{proof}
+\emph{Gaps.} Between the node neighbourhoods, Taylor models of order $p\in[24,64]$ at exact dyadic centres give Bernstein lower bounds minus
+Lagrange remainders on pieces with dyadic endpoints, which are bisected until the bound is positive. The neighbourhoods, rounded inward to
+dyadic endpoints, and the pieces tile $[\xi_2,\xi(x_0)]$, or $[0,\xi(x_0)]$, where $\xi(x)=\log x/2\pi$; the tiling is checked in exact
+arithmetic, and the item at $n=2$ starts at the exact $\xi_2$.
 
-The cushion is not optional: with rationalised parameters $\FT F_H$ need not be non-negative at the nodes; for
-example $\FT F_H(\xin2)\approx-1.9\cdot10^{-119}$ in the certificate for $J=20$. In the shipped certificates of
-Section~\ref{ssec:kappa} the values $|\FT F_H(\xin{n_j})|$ are at most $1.9\cdot10^{-119}$, $1.1\cdot10^{-501}$ and
-$2.4\cdot10^{-983}$ for $J=20$, $60$, $100$, while the cushion term near the nodes is larger by more than forty orders of
-magnitude (Appendix~\ref{app:anc}).
+\emph{Far field.} With $Q_{P_J}$ and $g_{P_J}$ as in Lemma~\ref{lem:abel}, if every Taylor coefficient of $Q_{P_J}$ at $y_0=2\pi x_0$ is
+positive, then $Q_{P_J}>0$ on $[y_0,\infty)$ (Lemma~\ref{lem:posc}(a)), so $g_{P_J}(z)>0$ for $z\ge y_0$, and every divisor term of
+$\FT F_J(\xi)$ is positive when $x\ge x_0$. The verifier takes for $x_0$ the first of the points $n_J+k/20$, $k\ge1$, with this property; in
+Table~\ref{tab:kappa-ladder}, $x_0-n_J\in[0.3,0.45]$.
+
+\emph{The prime sum.} In $\Arch(F_J)=\frac1\pi\sum_{n>n_J}\Lambda(n)n^{-1/2}\FT F_J(\xi_n)$ the terms with $n\le n_{\max}$ ($400$ for
+$J\le61$, $800$ for $J\ge110$) are enclosed one by one. Beyond, the terms are at most $\log n\cdot\Upsilon(n)/\pi$, and the ratio of
+consecutive bounds is at most $((n+1)/n)^De^{-2\pi}\log(n+1)/\log n$, which decreases in $n$; so it is checked only at $n_1=n_{\max}+1$,
+where it is some $q'<\frac12$, and the terms sum to at most $\log(n_1)\Upsilon(n_1)/((1-q')\pi)$. This gives the tail bounds of Proposition~\ref{prop:exactcone}, one for each $J$.
 
 %----------------------------------------------------------------------
 \subsection{The digamma weight}
@@ -155,7 +160,8 @@ that is, $w=\frac14$ and $w=\frac34$. The restriction is needed: for fixed $t$, 
 \subsection{Provenance}
 %----------------------------------------------------------------------
 
-Every input of a certificate is an exact object (integers, rationals, or decimal strings read as exact rationals) stored in a parameter
-file; for the slack certificates the file also stores the SHA-256 of a canonical string of the parameters, which the verifier recomputes.
+Every input of a certificate is an exact object (integers, rationals, or decimal strings read as exact rationals or as balls) stored in a
+file; for the cushioned certificates of \nolinkurl{kappa/} the file also stores the SHA-256 of a canonical string of the parameters, which the
+verifier recomputes, and the certificates of the exact members check the SHA-256 of their input enclosure.
 The scripts check the rounding direction of every printed decimal exactly. Each shipped log was produced by a fresh run of the shipped
 script and records the command, the date, the software versions, the exit code and the wall time.

@@ -9,121 +9,90 @@ proof names the function that is certified, the lemmas it uses and the arithmeti
 statement, the script and its input, the command that re-runs it, the run time and the decisive output line; the SHA-256 hashes of
 the inputs are listed there or in the file \texttt{SHA256SUMS} of the ancillary files. \emph{Exact} computations use integers and
 rationals (FLINT \cite{FLINT}); \emph{ball} computations use Arb midpoint--radius arithmetic with outward rounding \cite{Joh17}, and a
-sign is accepted only when the ball excludes~$0$. Every input is an exact rational parameter file whose hash the verifier
-recomputes. Printed upper bounds are rounded up and lower bounds down. Statements labelled ``Numerical observation'' are computed but
-not certified, and are never used in a proof. The common lemmas (positivity certificates, validated Bessel functions, the cushion)
-are in Appendix~\ref{app:certification}. Theorem~\ref{thm:kappa}, Propositions~\ref{thm:kappaOPS}
+sign is accepted only when the ball excludes~$0$. Every input is an exact rational parameter file, or a certified enclosure written by
+another listed verifier, and its hash is recomputed. Printed upper bounds are rounded up and lower bounds down. Statements labelled ``Numerical observation'' are computed but
+not certified, and are never used in a proof. The common lemmas and methods (positivity certificates, validated Bessel functions, the
+exact members) are in Appendix~\ref{app:certification}. Theorem~\ref{thm:kappa}, Propositions~\ref{thm:kappaOPS}
 and~\ref{prop:lowheight} and the upper bounds in Proposition~\ref{thm:notcritical} use only weak duality (Lemma~\ref{lem:weak-duality}) and
 the exact membership of an explicit function in $\Cone$ or $\ConeOPS$: Proposition~\ref{prop:lowheight} bounds masses, and the others bound
 slacks from above. Proposition~\ref{prop:lowerbound} and the lower bounds in Proposition~\ref{thm:notcritical} use explicit admissible pairs
-(Lemma~\ref{lem:herglotz}). Proposition~\ref{thm:finiteJ} concerns the exact family. No statement about the zeros of $\zeta$ is used.
+(Lemma~\ref{lem:herglotz}). Propositions~\ref{thm:finiteJ} and~\ref{prop:exactcone} concern the exact family. No statement about the zeros of $\zeta$ is used.
 
 \subsection{The slack}\label{ssec:kappa}
 
 \begin{theorem}[A certified upper bound for the slack]\label{thm:kappa}
-$\kstar\le1.1508391\cdot10^{-906}$. More precisely, for each $J$ in Table~\ref{tab:kappa-ladder} there are explicit rationals $r_j,s_j$
-($j\le J$) and $\eps>0$ such that, with $H(t):=\prod_{j\le J}(1+r_jt^2+s_jt^4)$, the function
-\[
-\Frep(t):=\Xi(t)^2\bigl(H(t)+\eps e^{-\pi t^2}\bigr)
-\]
-lies in $\Cone$ and satisfies $\Arch(\Frep)/\int\Frep\le\kappa_J$, with $\kappa_J$ as in the table; in particular
-$\kappa_{100}=1.1508391\cdot10^{-906}$.
+$\kstar\le\kOPS\le1.4291572\cdot10^{-1060}$. More precisely, for each $J$ in Table~\ref{tab:kappa-ladder} the exact member
+$F_J=\Xi^2P_J(t^2)$ of Proposition~\ref{prop:E} lies in $\ConeOPS\subseteq\Cone$ and satisfies $\Arch(F_J)/\int F_J\le\kappa_J$, with
+$\kappa_J$ as in the table; in particular $\kappa_{111}=1.4291572\cdot10^{-1060}$.
 \end{theorem}
 
 \begin{table}[ht]
 \centering
-\caption{Certified upper bounds $\kappa_J$ for $\kstar$ (Theorem~\ref{thm:kappa}); $\eps$ is the weight of the cushion and $x_{\mathrm{far}}$
-the start of the far region in the proof.}\label{tab:kappa-ladder}
-\begin{tabular}{rrrr}
+\caption{Certified upper bounds $\kappa_J$ for $\kstar$ and $\kOPS$ from the exact members $F_J$ (Theorem~\ref{thm:kappa} and
+Proposition~\ref{prop:exactcone}); $n_{J+1}$ is the first prime power not killed by $P_J$, and $x_0$ the start of the far field in the proof
+of Proposition~\ref{prop:exactcone}.}\label{tab:kappa-ladder}
+\begin{tabular}{rrrrr}
 \toprule
-$J$ & $\kappa_J$ (rounded up) & $\eps$ & $x_{\mathrm{far}}$\\
+$J$ & $n_{J+1}$ & $x_0$ & $\Arch(F_J)$ (rounded up) & $\kappa_J$ (rounded up)\\
 \midrule
-20 & $2.0151627\cdot10^{-62}$ & $10^{-67}$ & 55\\
-23 & $1.1963682\cdot10^{-80}$ & $10^{-86}$ & 66\\
-24 & $5.2941806\cdot10^{-91}$ & $10^{-93}$ & 70\\
-30 & $7.7522383\cdot10^{-132}$ & $10^{-138}$ & 93\\
-35 & $9.9924044\cdot10^{-177}$ & $10^{-183}$ & 116\\
-40 & $9.3828982\cdot10^{-220}$ & $10^{-226}$ & 137\\
-50 & $1.8493714\cdot10^{-311}$ & $10^{-318}$ & 182\\
-60 & $1.0640143\cdot10^{-417}$ & $10^{-424}$ & 231\\
-100 & $1.1508391\cdot10^{-906}$ & $10^{-911}$ & 452\\
+10 & 17 & 16.45 & $4.2125564\cdot10^{-19}$ & $1.5107258\cdot10^{-19}$\\
+60 & 211 & 199.4 & $2.9669313\cdot10^{-417}$ & $1.0640143\cdot10^{-417}$\\
+61 & 223 & 211.3 & $6.5071641\cdot10^{-442}$ & $2.3336286\cdot10^{-442}$\\
+110 & 479 & 467.35 & $5.5796840\cdot10^{-1042}$ & $2.0010115\cdot10^{-1042}$\\
+111 & 487 & 479.3 & $3.9851074\cdot10^{-1060}$ & $1.4291572\cdot10^{-1060}$\\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{proof}[Proof (computer-assisted; ball arithmetic; Appendix~\ref{app:anc}, Table~\ref{tab:anc-index}, first row)]
-Write $H(t)=P(t^2)$. Four facts are proved.
-(1) $H>0$ on $\RR$, exactly: $s_j>0$ and $r_j^2<4s_j$ for every $j$. Hence $\Frep\ge0$ on $\RR$, and $\Frep\in\Tc$
-(Section~\ref{ssec:bessel}).
-(2) $\FT F_{\mathrm{rep}}\ge0$ on $[\xi_2,\infty)$. The transform of $\Xi^2H$ and its $\xi$-derivatives are evaluated through
-Proposition~\ref{thm:bessel} and Lemma~\ref{lem:abel}, with $K_0,K_1$ from Lemma~\ref{lem:K-validated}: the operator
-$P(-(\theta+\frac12)^2)\theta^2(\theta+1)^2$ acts exactly on $\operatorname{span}\{z^kK_0,z^kK_1\}$, and the divisor sum is truncated with a
-rigorous tail bound. Near each of the $J$ prime powers where $\widehat{\Xi^2H}$ has a zero of order at least two, up to the rationalisation of the
-parameters, including the gap edge $\xi_2$, a Taylor model centred exactly at $\xi_n$ gives a quadratic lower bound; elsewhere on
-$[\xi_2,\xi_{\mathrm{far}}]$, Taylor models on pieces with dyadic endpoints give lower bounds, with a rigorous bound for the remainder. The
-cushion term $\eps\,\widehat{\Xi^2e^{-\pi t^2}}$ is positive everywhere and is at least $c(\xi):=\eps I_\delta e^{-\pi(\xi+\delta)^2}$ for
-$\xi\ge0$, with $\delta=\frac1{20}$ and $I_\delta$ as in Lemma~\ref{lem:cushion}; it makes the transform positive at and near the nodes, where
-the rationalisation may leave $\widehat{\Xi^2H}$ slightly negative. \emph{The far region.} By Lemma~\ref{lem:abel},
-$\widehat{\Xi^2H}(\xi)=2\pi\sqrt x\sum_Nd(N)\bigl(A(2\pi Nx)K_0(2\pi Nx)+B(2\pi Nx)K_1(2\pi Nx)\bigr)$ with explicit polynomials $A,B$ of degree
-at most $D$. Write $\lvert A\rvert$, $\lvert B\rvert$ for the polynomials whose coefficients are the absolute values of those of $A$, $B$, and
-$z=2\pi x$. From $d(N)\le2\sqrt N$, $0<K_0\le K_1\le K_{3/2}$ with $K_{3/2}(w)=(\pi/2w)^{1/2}e^{-w}(1+1/w)$, and a geometric series over $N$
-(ratio at most $q:=2^De^{-z}<\frac12$), one gets
-$\lvert\widehat{\Xi^2H}(\xi)\rvert\le\Upsilon(x):=4\pi(\lvert A\rvert+\lvert B\rvert)(z)\,e^{-z}(1+1/z)/(1-q)$. The verifier takes the first
-integer $x_{\mathrm{far}}$ beyond the last node with $2\pi x_{\mathrm{far}}>D+4$ and $\Upsilon(x_{\mathrm{far}})<c(\xi_{\mathrm{far}})$, and
-checks $\xi_{\mathrm{far}}+\delta<3$, where $\xi_{\mathrm{far}}=\log x_{\mathrm{far}}/2\pi$. Since $\frac{d}{dz}\log\Upsilon\le D/z-1$ and
-$\frac{d}{dz}\log c=-(\xi+\delta)/z$, we get $\frac{d}{dz}(\log\Upsilon-\log c)\le(D+\xi+\delta)/z-1$. This is negative for every
-$x\ge x_{\mathrm{far}}$, because $z-\xi$ increases with $z$ and $z_{\mathrm{far}}>D+4>D+\xi_{\mathrm{far}}+\delta$. Hence $\Upsilon<c$, and the
-transform is positive, on all of $[x_{\mathrm{far}},\infty)$.
-(3) $\Arch(\Frep)$ is bounded above using Corollary~\ref{cor:zerokilling} for $\Xi^2H$ and the value of $\Arch(\Xi^2e^{-\pi t^2})$ in
-Lemma~\ref{lem:cushion}. The prime-power sum is evaluated term by term up to $x_{\mathrm{far}}+1$; beyond, its terms are at most
-$\log n\cdot\Upsilon(n)$, and their ratios are checked to be below $\frac12$, so the tail is bounded by a geometric series.
-(4) $\int\Frep\ge\widehat{\Xi^2H}(0)$, which is bounded below. Since $\Frep/\int\Frep\in\Cone$ has integral $1$,
-$\kstar\le\Arch(\Frep)/\int\Frep$, and the printed bound is the upper end of the resulting ball, rounded up.
+By Proposition~\ref{prop:exactcone} below, $F_J\in\ConeOPS\subseteq\Cone$, and $\Arch(F_J)$ and $\int F_J=\FT F_J(0)>0$ are enclosed in balls.
+Since $F_J/\int F_J\in\ConeOPS$ has integral $1$, $\kstar\le\kOPS\le\Arch(F_J)/\int F_J$, and $\kappa_J$ is the upper end of the resulting
+ball, rounded up.
 \end{proof}
 
-Every $\Frep$ vanishes at every non-trivial zero of $\zeta$, on or off the line, and $H$ is a rational approximation of the exact
-polynomial $P_J$ of Proposition~\ref{prop:E}, factored as in Section~\ref{ssec:hermite}. By Corollary~\ref{cor:zerokilling}, $\Arch(\Frep)$ is
-essentially a tail sum starting at the first prime power $n_{J+1}$ not killed by $H$; its first term is of the size of
-$\Psi(\xi_{n_{J+1}})\approx C_\infty n_{J+1}^4e^{-2\pi n_{J+1}}$ (Proposition~\ref{thm:bessel}) times a cofactor. Table~\ref{tab:kappa-ladder}
-gives $-\log\kappa_J/n_{J+1}=3.30$, $3.82$, $4.17$, $4.55$, $4.95$ at $J=20$, $30$, $40$, $60$, $100$ ($n_{J+1}=43$, $79$, $121$, $211$,
-$421$), against $2\pi\approx6.28$ for the factor $e^{-2\pi n_{J+1}}$ alone. So the number of certified digits is governed by $n_{J+1}$, and it
-grows with $J$ for as long as positivity can be certified.
+Every $F_J$ vanishes at every non-trivial zero of $\zeta$, on or off the line, so, by Proposition~\ref{prop:E}, $\Arch(F_J)$ is a sum over the
+prime powers from $n_{J+1}$ on; its first term is of the size of $\Psi(\xi_{n_{J+1}})\approx C_\infty n_{J+1}^4e^{-2\pi n_{J+1}}$
+(Proposition~\ref{thm:bessel}) times a cofactor. Table~\ref{tab:kappa-ladder} gives $-\log\kappa_J/n_{J+1}=2.55$, $4.55$, $4.56$, $5.01$, $5.01$
+at $J=10$, $60$, $61$, $110$, $111$, against $2\pi\approx6.28$ for the factor $e^{-2\pi n_{J+1}}$ alone. So the number of certified digits is
+governed by $n_{J+1}$, and it grows with $J$ for as long as positivity can be certified. As a cross-check, the cushioned
+certificates $\Xi^2(H+\eps e^{-\pi t^2})$ of an earlier version of this paper, with $H$ a rational approximation of $P_J(t^2)$ and a
+separate verifier (ancillary directory \nolinkurl{kappa/}), give $\kstar\le1.1508391\cdot10^{-906}$ at $J=100$, and at $J=60$ the bound
+$1.0640143\cdot10^{-417}$, which agrees with $\kappa_{60}$ in Table~\ref{tab:kappa-ladder} to eight digits.
 
 \begin{corollary}[Conductor form; infeasible deformations]\label{cor:qmin}
-(a) No admissible pair has a zero measure $\mu\ge\lambda\dd t$ with $\lambda>1.1508391\cdot10^{-906}$.
-(b) If $\log q<-2\pi\cdot1.1508391\cdot10^{-906}$, in particular if $q\le1-7.3\cdot10^{-906}$, the data $\Arch_q$ admit
+(a) No admissible pair has a zero measure $\mu\ge\lambda\dd t$ with $\lambda>1.4291572\cdot10^{-1060}$.
+(b) If $\log q<-2\pi\cdot1.4291572\cdot10^{-1060}$, in particular if $q\le1-8.98\cdot10^{-1060}$, the data $\Arch_q$ admit
 no admissible pair. Equivalently, replacing $\log\pi$ by $\log\pi+\eta$ in $\Oinf$ leaves no admissible pair once
-$\eta>7.2309354\cdot10^{-906}$. Hence $\qmin=e^{-2\pi\kstar}\ge1-7.3\cdot10^{-906}$. Under RH, $\qmin\le1$, so then
-$1-7.3\cdot10^{-906}\le\qmin\le1$.
+$\eta>8.9796596\cdot10^{-1060}$. Hence $\qmin=e^{-2\pi\kstar}\ge1-8.98\cdot10^{-1060}$, and the classical conductor bound optimised over
+$\ConeOPS$, $e^{-2\pi\kOPS}$, is at least $1-8.98\cdot10^{-1060}$ too. Under RH, $\qmin\le1$, so then $1-8.98\cdot10^{-1060}\le\qmin\le1$.
 \end{corollary}
 
 \begin{proof}
-(a) is Lemma~\ref{lem:weak-duality} applied to $\Frep/\int\Frep$ with $J=100$. (b) For that function,
-$\Arch_q=\Arch+(\log q/2\pi)\int$ is negative when $\log q<-2\pi\kappa_{100}$, which excludes admissible pairs by
+(a) is Lemma~\ref{lem:weak-duality} applied to $F_{111}/\int F_{111}$. (b) For that function,
+$\Arch_q=\Arch+(\log q/2\pi)\int$ is negative when $\log q<-2\pi\kappa_{111}$, which excludes admissible pairs by
 Lemma~\ref{lem:weak-duality}; replacing $\log\pi$ by $\log\pi+\eta$ is the case $\log q=-\eta$, and
-$2\pi\kappa_{100}\le7.2309354\cdot10^{-906}$. Then $\qmin\ge e^{-7.2309354\cdot10^{-906}}\ge1-7.3\cdot10^{-906}$
-(Proposition~\ref{prop:conductor}). Under RH, $\pz\in\Kad$, so $\kstar\ge0$ (Theorems~\ref{thm:logic}
-and~\ref{thm:duality}).
+$2\pi\kappa_{111}\le8.9796596\cdot10^{-1060}$. Then $\qmin\ge e^{-8.9796596\cdot10^{-1060}}\ge1-8.98\cdot10^{-1060}$
+(Proposition~\ref{prop:conductor}), and $e^{-2\pi\kOPS}$ obeys the same bound because $F_{111}\in\ConeOPS$. Under RH, $\pz\in\Kad$, so
+$\kstar\ge0$ (Theorems~\ref{thm:logic} and~\ref{thm:duality}).
 \end{proof}
 
 The same certificate also bounds how far the zero measure of any positive solution can stray from the zeros of $\zeta$.
 
 \begin{corollary}[Near-criticality forces near-rigidity]\label{cor:nearrigid}
-Every admissible pair $(\mu,\nu)$ satisfies $\int\Xi^2\dd\mu\le3.21\cdot10^{-906}$. Consequently $\mu(I)\le3.21\cdot10^{-906}/\min_I\Xi^2$ for
+Every admissible pair $(\mu,\nu)$ satisfies $\int\Xi^2\dd\mu\le3.99\cdot10^{-1060}$. Consequently $\mu(I)\le3.99\cdot10^{-1060}/\min_I\Xi^2$ for
 every compact interval $I\subset\RR\setminus\Zz$.
 \end{corollary}
 
-\begin{proof}[Proof (computer-assisted; exact arithmetic; Appendix~\ref{app:anc})]
-For $J=100$, $H=\prod_j(1+r_jt^2+s_jt^4)=P(t^2)$ is expanded exactly over $\QQ$: $P(0)=1$ and every coefficient of $P$ is positive. So
-$H\ge1$ on $\RR$ and $\Frep=\Xi^2(H+\eps e^{-\pi t^2})\ge\Xi^2$. As $\Frep\in\Cone$, Lemma~\ref{lem:weak-duality} gives
-$\int\Xi^2\dd\mu\le\int\Frep\dd\mu\le\Arch(\Frep)\le3.20903614143\cdot10^{-906}$, the upper bound for $\Arch(\Frep)$ from step (3) of
-the proof of Theorem~\ref{thm:kappa} (\texttt{A\_upper} in its log). On $I$,
-$\Xi^2\ge\min_I\Xi^2>0$.
+\begin{proof}[Proof (computer-assisted; ball arithmetic; Appendix~\ref{app:anc})]
+By Proposition~\ref{prop:E}, $P_{111}(0)=1$, and by Proposition~\ref{thm:finiteJ} every coefficient of $P_{111}$ is positive. So $H_{111}\ge1$ on $\RR$ and
+$F_{111}=\Xi^2H_{111}\ge\Xi^2$. As $F_{111}\in\Cone$ (Proposition~\ref{prop:exactcone}), Lemma~\ref{lem:weak-duality} gives
+$\int\Xi^2\dd\mu\le\int F_{111}\dd\mu\le\Arch(F_{111})\le3.98510732132\cdot10^{-1060}$, the upper end of the enclosure of
+$\Arch(F_{111})$ in Proposition~\ref{prop:exactcone}. On $I$, $\Xi^2\ge\min_I\Xi^2>0$.
 \end{proof}
 
 So every positive solution of the explicit formula, whether or not RH holds, has its zero measure concentrated on the zeros of $\zeta$, up to
-$3.21\cdot10^{-906}$ measured against $\Xi^2$. As $\Xi(t)^2$ decays like $e^{-\pi|t|/2}$, the bound is informative only at low height.
-The same expansion shows that $H\ge1$ for all nine certificates of Table~\ref{tab:kappa-ladder}.
+$3.99\cdot10^{-1060}$ measured against $\Xi^2$. As $\Xi(t)^2$ decays like $e^{-\pi|t|/2}$, the bound is informative only at low height.
+Every $F_J$ of Table~\ref{tab:kappa-ladder} satisfies $F_J\ge\Xi^2$ in the same way.
 
 \subsection{The classical cone and low-height rigidity}
 
@@ -152,7 +121,8 @@ interval, plus an explicit tail bound (Lemma~\ref{lem:digamma}), and $\int\Frep=
 $2\pi\cdot9.9461827002\cdot10^{-41}\le6.2494\cdot10^{-40}$ and $e^{-a}\ge1-a$.
 \end{proof}
 
-This bound needs no gap at $\xi_2$, so it is directly comparable with Odlyzko's tables \cite[Table~4]{Odl90}. A certificate of the
+Like $F_{111}$ (Theorem~\ref{thm:kappa}), this function lies in $\ConeOPS$ and needs no gap at $\xi_2$, so it is directly comparable with
+Odlyzko's tables \cite[Table~4]{Odl90}; unlike $F_{111}$, it uses no arithmetic input. A certificate of the
 same kind bounds the mass that \emph{any} admissible pair can put away from the low zeros of $\zeta$ and away from the prime powers.
 
 \begin{proposition}[Low-height rigidity of every admissible pair]\label{prop:lowheight}
@@ -217,7 +187,32 @@ Each enclosure is compared with a second enclosure computed by a different imple
 \end{proof}
 
 Uniform versions of these facts are the hypotheses \hyp{N}, \hyp{G$_a$} and \hyp{Z$_\infty$} of Theorem~\ref{thm:criterion}, through
-Proposition~\ref{prop:coeff}.
+Proposition~\ref{prop:coeff}. At the same values of $J$ the exact members lie in the cone, without approximation or cushion; the method is in
+Appendix~\ref{app:exact}.
+
+\begin{proposition}[Exact members in the cone]\label{prop:exactcone}
+For $J\in\{10,60,61,110,111\}$ the exact member $F_J=\Xi^2P_J(t^2)$ of Proposition~\ref{prop:E} satisfies:
+\textup{(a)} $F_J\ge\Xi^2$ on $\RR$;
+\textup{(b)} $\FT F_J(\xi)>0$ for every $\xi\ge0$ except at $\xi_{n_1},\dots,\xi_{n_J}$, where $\FT F_J$ has zeros of order exactly two.
+Hence $F_J\in\ConeOPS\subseteq\Cone$. Moreover, \textup{(c)} $\Arch(F_J)=\frac1\pi\sum_{n\in\PP,\,n>n_J}\Lambda(n)n^{-1/2}\FT F_J(\xi_n)$ is at
+most the value in Table~\ref{tab:kappa-ladder}, and $2.7884318\le\int F_J=\FT F_J(0)\le2.7884322$; at $J=111$,
+$\Arch(F_{111})\in[3.98510732131,3.98510732132]\cdot10^{-1060}$.
+\end{proposition}
+
+\begin{proof}[Proof (computer-assisted; ball arithmetic; Appendices~\ref{app:exact} and~\ref{app:anc})]
+(a) Since $P_J(0)=1$ (Proposition~\ref{prop:E}) and every coefficient of $P_J$ is positive (Proposition~\ref{thm:finiteJ}), $H_J\ge1$; and $F_J\in\Tc$ by
+Section~\ref{ssec:bessel}. (b) The input is the ball
+enclosure of $p^{(J)}$ of Proposition~\ref{thm:finiteJ}, which contains the exact coefficients. With $\FT F_J$ and its derivatives evaluated
+through Proposition~\ref{thm:bessel} and Lemma~\ref{lem:abel}, $[0,\infty)$ minus the nodes is covered exactly by punctured neighbourhoods of the nodes, where
+$\FT F_J(\xi_n)=\FT F_J'(\xi_n)=0$ by Proposition~\ref{prop:E} and a positive lower bound for $\FT F_J(\xi_n+\delta)/\delta^2$ is certified,
+by Taylor pieces between them, and by the far field $x\ge x_0$, where Lemma~\ref{lem:abel} gives positivity. As $\FT F_J$ is even,
+$\FT F_J\ge0$ on $\RR$. (c) By Corollary~\ref{cor:zerokilling} and Proposition~\ref{prop:E}, with no hypothesis on the zeros of $\zeta$,
+$\Arch(F_J)$ is the stated sum. Its terms are non-negative by (b); those with $n\le400$ ($J\le61$) or $n\le800$ ($J\ge110$) are enclosed,
+and the remaining terms sum to at most $6.2\cdot10^{-998}$, $2.9\cdot10^{-835}$, $9.3\cdot10^{-834}$, $1.3\cdot10^{-1760}$ and
+$2.6\cdot10^{-1759}$ for $J=10$, $60$, $61$, $110$, $111$. Each certificate was reproduced through a second evaluation path, with
+independently computed coefficient enclosures, an independent operator construction and the other validated $K_0,K_1$, and with the same
+certificate logic.
+\end{proof}
 
 \begin{observation}[The exact family for $J\le110$]\label{obs:family}
 The following were computed in high-precision arithmetic (at most $4600$ bits); the floating-point table is
@@ -226,7 +221,8 @@ $p^{(J)}_{2J}>0$. All coefficients $p_k^{(J)}$ are positive for $J\in\{1,2\}$ an
 $p^{(J)}_{2J-1}$ is non-positive, and for $4\le J\le8$ so is $p^{(J)}_{2J-3}$. The quantity $a_J:=\max_{1\le k\le2J}((2k)!\,|p_k^{(J)}|)^{1/2k}$ (for $J\le110$ the maximum is attained at a positive
 coefficient, so the table's values are the same if only positive coefficients are used) stays below $0.71$ for $J\le9$ and increases with $J$ for $10\le J\le110$, up to $0.7164$ at $J=110$ (attained near $k\approx20$--$24$); so \eqref{eq:POSa} holds
 numerically with $a=0.7164$ and $C=1$ for $10\le J\le110$. Dense scans at $J=20,30,40,50,60$ ($x\in[2,1.15n_J+5]$, step $0.05$, and up to
-$x=425$ at $J=60$) found no sign change of $\FT F_J$ off the nodes.
+$x=425$ at $J=60$) found no sign change of $\FT F_J$ off the nodes; for $J\in\{10,60,61,110,111\}$ this is certified
+(Proposition~\ref{prop:exactcone}).
 \end{observation}
 
 \subsection{A lower bound for the slack, and other archimedean data}\label{ssec:otherdata}

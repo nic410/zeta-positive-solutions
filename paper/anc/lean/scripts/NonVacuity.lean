@@ -6,16 +6,17 @@ The headline theorems quantify over the test class `𝒯`, the cones `𝒞`, `�
 the normalised cone elements that define `κ*`; they would be vacuous (or the slacks junk) if these were
 empty, and the ledger axioms of the form `(∀ F ∈ X, …) → …` would be too strong.  This file restates, from
 the sanity lemmas of the library (`Sanity.lean`, `Faithful.lean`, `Duality.lean`, `EFCheck.lean`, and the v1.1
-files), that none of this happens, and that the hypotheses of the v1.1 results can be met:
+and v1.2 files), that none of this happens, and that the hypotheses of the v1.1 and v1.2 results can be met:
 
 * `𝒯`, `𝒞`, `𝒞_OPS`, `𝒞 ∩ 𝒢` contain the Gaussian, which has `∫ = 1` (so `κ* < ∞`), and `𝒢 ⊆ 𝒯`;
 * admissible pairs are Radon; `Arch` is the paper's complex `𝒜` on `𝒯`; Mathlib's `RiemannHypothesis` is the
   paper's RH; the conclusion of the `explicit_formula` axiom holds on a Paley–Wiener subclass of `𝒯`
   (Zeta23, no ledger axiom);
 * v1.1: the summability condition (3.5) of Theorem 3.8 holds for every finite `E` (weighted and cumulative
-  forms), and its weighted form implies the cumulative one; the certified coefficient property of
-  `cert_near_rigidity` gives `F_rep ≥ Ξ²`; `∫ Ξ² dμ = 0` forces `μ` onto `Z_ζ`, and `μ_ζ` is carried by
-  `Z_ζ ∪ {0}` (the hypothesis of `zero_support_rigidity` holds for `p_ζ`); `Z_ζ` is closed.
+  forms), and its weighted form implies the cumulative one; `∫ Ξ² dμ = 0` forces `μ` onto `Z_ζ`, and `μ_ζ` is
+  carried by `Z_ζ ∪ {0}` (the hypothesis of `zero_support_rigidity` holds for `p_ζ`); `Z_ζ` is closed;
+* v1.2: the certified coefficient property of Proposition 5.6 (`cert_finiteJ`: every coefficient of `P_J` is
+  positive) gives `F_J ≥ Ξ²`, as Corollary 5.3 uses for `F₁₁₁`.
 
 Every theorem here must depend only on `propext`, `Classical.choice` and `Quot.sound` (no ledger axiom); the
 `#print axioms` lines at the end are checked by `scripts/audit.sh`.
@@ -74,11 +75,11 @@ theorem summability_weighted_cumulative {E : Set ℝ} {w : ℝ → ℝ} (h : Wei
     CumulativeCond E w :=
   cumulativeCond_of_weightedCond h
 
-/-- v1.1, Corollary 5.3: the certified coefficient property gives `F_rep ≥ Ξ²` on `ℝ`. -/
-theorem near_rigidity_certificate_meaning {J : ℕ} {r s : Fin J → ℚ}
-    (hcoef : ∀ k, 0 ≤ (Hpoly r s).coeff k) {ε : ℚ} (hε : 0 ≤ ε) (t : ℝ) :
-    (Xi t ^ 2).re ≤ (Frep r s ε t).re :=
-  Frep_ge_Xi_sq hcoef hε t
+/-- v1.2, Corollary 5.3: the certified coefficient property of Proposition 5.6 (non-negative coefficients of
+`P_J`) gives `F_J ≥ Ξ²` on `ℝ`. -/
+theorem near_rigidity_certificate_meaning {J : ℕ} (hpos : ∀ k ≤ 2 * J, 0 ≤ pcoef J k) (t : ℝ) :
+    (Xi t ^ 2).re ≤ (Ffam J t).re :=
+  Ffam_ge_Xi_sq hpos t
 
 /-- v1.1, Corollary 4.11: `∫ Ξ² dμ = 0` forces `μ` onto `Z_ζ`; `Z_ζ` is closed. -/
 theorem xi_sq_support {μ : Measure ℝ} (h : ∫⁻ t, ENNReal.ofReal (Xi t ^ 2).re ∂μ = 0) :
