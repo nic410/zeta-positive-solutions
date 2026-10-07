@@ -10,7 +10,16 @@ faithfully in Lean, and proves them from Mathlib plus an explicit **axiom ledger
 cited classical theorem, a computer-assisted certificate of §5 (with script, parameter-file SHA-256 and
 log line), or an analytic step proved in the paper but not yet formalised.
 
-**v1.2** (this version) follows v1.2 of the paper: the exact members `F_J = Ξ² P_J(t²)` of Proposition 4.5 are
+**v1.3** (this version) follows v1.3 of the paper, which adds Theorem 3.11 (integer weights: if `(μ, ν)` is
+admissible for `𝒜_q`, `q > 0`, and `μ` is purely atomic with integer weights, then `q ≥ 1`, and `q = 1` forces
+RH and `(μ, ν) = p_ζ`; proof in Appendix B.3) and Corollary 3.12 (atomicity and integrality; part (a): (S) ⇔
+every admissible `μ` is purely atomic, and (U) ⇔ every admissible `μ` is purely atomic with integer weights) in
+a new §3.6, and states Theorem 3.11 again, unnumbered, in §1.3. Neither is formalised (`STATUS.md`, rows 24 and
+25), and the unnumbered theorem is not one of the lettered headline results. No statement number changed and no
+formalised statement changed, so the Lean sources, the 22 ledger axioms, `axioms.log` and the statement pin are
+those of v1.2.
+
+**v1.2** follows v1.2 of the paper: the exact members `F_J = Ξ² P_J(t²)` of Proposition 4.5 are
 certified in the cone `𝒞`, and in the classical cone `𝒞_OPS`, without a cushion, for `J = 10, 60, 61, 110, 111`
 (Proposition 5.7, new). Theorem C (a) becomes
 `κ* ≤ κ*_OPS ≤ 1.4291572·10^{-1060}`, `q_min ≥ 1 − 8.98·10^{-1060}` and `e^{−2πκ*_OPS} ≥ 1 − 8.98·10^{-1060}`
@@ -24,7 +33,7 @@ renumbered).
 **v1.1** follows v1.1 of the paper: Theorem 3.6 (zero-side support; Theorem B(a)), Theorem 3.8
 for countably many extra zeros (Theorem B(b)), Corollary 3.9(a), Theorem 4.8 with the non-strict (Mg),
 Corollary 4.11 (a certificate route) and Corollary 5.3 (near-rigidity), with three new ledger axioms. Statement
-numbers in docstrings, `LEDGER.md` and `STATUS.md` are those of the current version (v1.2); Lean identifiers of v1.0
+numbers in docstrings, `LEDGER.md` and `STATUS.md` are those of v1.2, which v1.3 keeps; Lean identifiers of v1.0
 keep their v1.0 numbers (e.g. `thm_3_7` is Theorem 3.8 for finite `E`, `prop_5_3` is Proposition 5.4, `prop_5_8` is
 Proposition 5.10), and the v1.0 headline theorems are kept unchanged (in v1.2, `theoremC` (a) carries the new
 certified numbers).
@@ -39,7 +48,8 @@ certified numbers).
   added `cert_exact_cone` and removed `cert_kappa_ladder` and `cert_near_rigidity`.
 * `#print axioms` of every headline theorem lists only ledger axioms and `propext`, `Classical.choice`,
   `Quot.sound` (`axioms.log`).
-* Coverage of the 55 numbered statements of v1.2: 37 formalised (67 %), 29 proved (53 %); see `STATUS.md`.
+* Coverage of the 57 numbered statements of v1.3: 37 formalised (65 %), 29 proved (51 %); Theorem 3.11 and
+  Corollary 3.12, new in v1.3, are not formalised; see `STATUS.md`.
 * CI: `.github/workflows/lean.yml` (at the root of the public repository) builds the project and runs
   `scripts/audit.sh` on every push (section "Continuous integration and the audit" below).
 

@@ -2,8 +2,8 @@
 \section{Long proofs}\label{app:proofs}
 %======================================================================
 
-This appendix contains the longer proofs, in the order of the sections; each statement in the main text says where
-its proof is. The heart of Theorem~\ref{thm:Gfin} is in Appendix~\ref{app:cusp}: Lemma~\ref{lem:cusp-class2} computes the
+This appendix contains the longer proofs, in the order of the sections, except that the proof of Theorem~\ref{thm:integer} comes
+last (Appendix~\ref{app:proofs-integer}); each statement in the main text says where its proof is. The heart of Theorem~\ref{thm:Gfin} is in Appendix~\ref{app:cusp}: Lemma~\ref{lem:cusp-class2} computes the
 expansions at the three cusps for a single $s$, Lemma~\ref{lem:aggregate} estimates them in aggregate, and Lemma~\ref{lem:meanvalue} is the
 mean-value step.
 
@@ -580,3 +580,83 @@ $(1-z)\sum_kc_kz^k=c_0-\sum_{k\ge1}(c_{k-1}-c_k)z^k-c_dz^{d+1}$, and the subtrac
 $<c_0$; so $P_J(rz)\ne0$ (this is the Enestr\"om--Kakeya bound).
 \end{proof}
 
+\subsection{Proof of Theorem~\ref{thm:integer}}\label{app:proofs-integer}
+
+Write $\mu=\sum_\gamma w_\gamma\delta_\gamma$ with $w_\gamma\in\{1,2,\dots\}$; as $\mu$ is even, $w_{-\gamma}=w_\gamma$. Put $\rho_\gamma:=\frac12+i\gamma$.
+Lemma~\ref{lem:apriori} holds for $\Arch_q$, with constants depending on $q$: $\mu([T-1,T+1])\ll_q\log(3+|T|)$, and
+$\int e^{-\pi(1+\eta)\xi}\dd\nu(\xi)<\infty$ for $\eta>0$. As each atom has mass at least $1$, the atoms are locally finite,
+$\sum_{|\gamma|\le T}w_\gamma=O(T\log T)$ and $\sum_\gamma w_\gamma(1+\gamma^2)^{-1}<\infty$; sums over $\gamma$ of terms with poles at the $\rho_\gamma$ are
+taken over $\pm\gamma$ together, and converge locally uniformly off their poles. Let $\tilde\nu\ge0$ be the image of $\nu$ under
+$\xi\mapsto y=e^{2\pi\xi}$. Beyond Lemma~\ref{lem:apriori}, positivity of $\nu$ is used only to make $\mathsf N$ (Step~2) positive.
+
+\emph{Step 1: Poisson kernels.} For real $s>1$, $P_s(t):=\frac1\pi\frac{s-1/2}{(s-1/2)^2+t^2}$ lies in $\Tc$, with
+$\widehat{P_s}(\xi)=e^{-2\pi(s-1/2)|\xi|}$, $\int P_s=1$, $P_s(\frac i2)+P_s(-\frac i2)=\frac1\pi(\frac1s+\frac1{s-1})$, and
+$\int P_s\Oinf=\frac1{2\pi}(\psi(\frac s2)-\log\pi)$ (Poisson's formula for $\psi(\frac14\mp\frac{it}2)$, analytic with logarithmic growth on
+the closed upper, respectively lower, half-plane). Testing $\Arch_q=\Spec_{\mu,\nu}$ on $P_s$ and continuing analytically, we
+get for $\Re s>1$, where $L$ converges absolutely,
+\begin{equation}\label{eq:int-L}
+L(s):=\int y^{1/2-s}\dd\tilde\nu(y)=\frac1s+\frac1{s-1}+\frac12\psi\big(\tfrac s2\big)-\frac12\log\pi+\frac12\log q-\sum_\gamma\frac{w_\gamma}{s-\rho_\gamma}.
+\end{equation}
+
+\emph{Step 2: the exponential.} Let $\Pi:=y^{1/2}(\log y)^{-1}\tilde\nu$ and $\mathsf N:=\sum_{k\ge0}\Pi^{*k}/k!$, with multiplicative convolution and
+$\Pi^{*0}:=\delta_1$. For real $\sigma>1$, Tonelli's theorem gives $\int y^{-\sigma}\dd\mathsf N=\exp\int y^{-\sigma}\dd\Pi<\infty$. So $\mathsf N$ is a positive
+Radon measure on $\{1\}\cup[2,\infty)$, with $\mathsf N(\{1\})=1$ and $\mathsf N([1,Y])\le Y^\sigma\int y^{-\sigma}\dd\mathsf N$, and
+$\mathcal Z(s):=\int y^{-s}\dd\mathsf N(y)=\exp\int y^{-s}\dd\Pi(y)$ is analytic for $\Re s>1$, with $|\mathcal Z(s)|\le\mathcal Z(\Re s)$ and $-\mathcal Z'/\mathcal Z=L$.
+
+\emph{Step 3: functional equation and order.} Put $\Lambda_{\mathcal Z}(s):=q^{s/2}\GR(s)\mathcal Z(s)$. By \eqref{eq:int-L}, in which $\frac12\log q$
+cancels, $-\Lambda_{\mathcal Z}'/\Lambda_{\mathcal Z}=\frac1s+\frac1{s-1}-\sum_\gamma w_\gamma/(s-\rho_\gamma)$. The right side is meromorphic on $\CC$, and its
+poles are simple, with integer residues: $1$ at $0$ and at $1$, and $-w_\gamma$ at $\rho_\gamma$. This is where integrality is used: the
+exponential of a primitive of the right side is single-valued, so $\Lambda_{\mathcal Z}$ continues meromorphically to $\CC$, with simple poles at
+$0$ and $1$, zeros of order $w_\gamma$ at the $\rho_\gamma$, and no other zeros or poles. As $w$ is even, the right side is odd under $s\mapsto1-s$,
+so $\Lambda_{\mathcal Z}(1-s)/\Lambda_{\mathcal Z}(s)$ is a constant $C$; comparing both sides at $s=\frac12$, where $\Lambda_{\mathcal Z}$ has a zero of order
+$\mu(\{0\})$, gives
+\begin{equation}\label{eq:int-FE}
+\Lambda_{\mathcal Z}(1-s)=C\,\Lambda_{\mathcal Z}(s),\qquad C=(-1)^{\mu(\{0\})}.
+\end{equation}
+As $\sum_{|\gamma|\le T}w_\gamma=O(T\log T)$, the genus-one canonical product $\mathcal P$ over the $\rho_\gamma$ has order at most $1$. The entire
+function $\xi_{\mathcal Z}(s):=\frac12s(s-1)\Lambda_{\mathcal Z}(s)$ has the same zeros, and $\xi_{\mathcal Z}'/\xi_{\mathcal Z}-\mathcal P'/\mathcal P=-\sum_\gamma
+w_\gamma/\rho_\gamma$ is constant; so $\xi_{\mathcal Z}=e^{a+bs}\mathcal P$ has order at most $1$, and $(s-1)\mathcal Z(s)=\xi_{\mathcal Z}(s)(\pi/q)^{s/2}/\Gamma(1+\frac s2)$ is entire of
+finite order. The pole of
+$\mathcal Z$ at $1$ has a residue $r_1>0$, since $\mathcal Z(\sigma)>0$ for $\sigma>1$. So $R_1:=\operatorname{Res}_{s=1}\Lambda_{\mathcal Z}=\sqrt q\,\GR(1)\,r_1
+=\sqrt q\,r_1>0$, and $\operatorname{Res}_{s=0}\Lambda_{\mathcal Z}=-CR_1$ by \eqref{eq:int-FE}.
+
+\emph{Step 4: a self-dual measure.} Let $\theta(x):=\int e^{-\pi xy^2/q}\dd\mathsf N(y)$ for $x>0$; it is continuous by the bound on $\mathsf N([1,Y])$.
+For $\Re s>1$, $\int_0^\infty\theta(x)x^{s/2-1}\dd x=\Lambda_{\mathcal Z}(s)$ by Tonelli's and Fubini's theorems, and $|\Lambda_{\mathcal Z}(s)|\le
+q^{\Re s/2}\mathcal Z(\Re s)|\GR(s)|$; so Mellin inversion gives $\theta(x)=\frac1{4\pi i}\int_{(3/2)}\Lambda_{\mathcal Z}(s)x^{-s/2}\dd s$. We move the line
+to $\Re s=-\frac12$. There $\mathcal Z(s)=Cq^{1/2-s}\GR(1-s)\mathcal Z(1-s)/\GR(s)=O(|s|)$, by \eqref{eq:int-FE} and Stirling's formula, while
+$(s-1)\mathcal Z(s)=O(|s|)$ on $\Re s=\frac32$; as $(s-1)\mathcal Z$ has finite order, the Phragm\'en--Lindel\"of principle gives $(s-1)\mathcal Z(s)=O(|s|^2)$
+on $-\frac12\le\Re s\le\frac32$, $|\Im s|\ge1$, where $\Lambda_{\mathcal Z}$ therefore decays exponentially. Collecting the residues $R_1x^{-1/2}$ at $1$ and
+$-CR_1$ at $0$, and substituting $s\mapsto1-s$ on the new line with \eqref{eq:int-FE}, we get
+$\theta(x)=\frac12R_1x^{-1/2}-\frac12CR_1+Cx^{-1/2}\theta(1/x)$. Now let $\mathfrak m_+$ be the image of $\mathsf N$ under $y\mapsto y/\sqrt q$ plus its
+image under $y\mapsto-y/\sqrt q$, and $\mathfrak m:=CR_1\delta_0+\mathfrak m_+$. With $a:=q^{-1/2}$, $\mathfrak m_+$ is positive, even, carried by $\{|x|\ge a\}$,
+of mass $1$ at $\pm a$, and $\mathfrak m_+([-T,T])\le2qT^2\mathcal Z(2)$; so $\mathfrak m$ is tempered. For $g_x(t):=e^{-\pi xt^2}$ we have
+$\widehat{g_x}=x^{-1/2}g_{1/x}$ and $\int g_x\dd\mathfrak m=CR_1+2\theta(x)$, so the identity for $\theta$, multiplied by $2C$, says
+$\int\widehat{g_x}\dd\mathfrak m=C\int g_x\dd\mathfrak m$. The closed span of the $g_x$ in the Schwartz space $\mathcal S(\RR)$ contains the functions
+$\partial_x^kg_x|_{x=1}=(-\pi t^2)^ke^{-\pi t^2}$, hence the even Hermite functions and all even Schwartz functions; odd functions give $0$ on both
+sides. Therefore
+\begin{equation}\label{eq:int-selfdual}
+\int\widehat f\dd\mathfrak m=C\int f\dd\mathfrak m\quad\big(f\in\mathcal S(\RR)\big),\qquad\text{that is,}\quad\widehat{\mathfrak m}=C\,\mathfrak m\ \text{ in }\mathcal S'(\RR).
+\end{equation}
+
+\emph{Step 5: the case $C=1$.} Let $f_a(t):=(1-|t|/a)_+$, so that $\widehat{f_a}(\xi)=a\big(\frac{\sin\pi a\xi}{\pi a\xi}\big)^2\ge0$, and
+$G_\eps(t):=\eps^{-1}e^{-\pi t^2/\eps^2}$ $(0<\eps\le1)$. Apply \eqref{eq:int-selfdual} to $f_a*G_\eps\in\mathcal S(\RR)$, whose transform is
+$\widehat{f_a}(\xi)e^{-\pi\eps^2\xi^2}$, and let $\eps\to0$. As $\mathfrak m\ge0$, monotone convergence gives
+$\int\widehat{f_a}(\xi)e^{-\pi\eps^2\xi^2}\dd\mathfrak m(\xi)\to\int\widehat{f_a}\dd\mathfrak m=R_1a+\int\widehat{f_a}\dd\mathfrak m_+$. On the other side, $0\le f_a*G_\eps\le1$,
+$f_a*G_\eps(t)\le2ae^{-\pi(|t|-a)^2}$ for $|t|\ge a+1$, and $f_a*G_\eps\to f_a$, which vanishes on $\{|t|\ge a\}\supseteq\supp\mathfrak m_+$; dominated
+convergence gives $\int f_a*G_\eps\dd\mathfrak m\to R_1$. Hence $\int\widehat{f_a}\dd\mathfrak m_+<\infty$, and
+\begin{equation}\label{eq:int-fejer}
+R_1=R_1a+\int\widehat{f_a}\dd\mathfrak m_+\ \ge\ R_1a ;
+\end{equation}
+so $a\le1$, that is, $q\ge1$.
+
+\emph{Step 6: the case $C=-1$.} The function $f(t):=t^2(2\pi t^2-3)e^{-\pi t^2}$ satisfies $\widehat f=f$, as
+$\widehat{t^2g_1}=(\frac1{2\pi}-\xi^2)g_1$ and $\widehat{t^4g_1}=(\xi^4-\frac3\pi\xi^2+\frac3{4\pi^2})g_1$; also $f(0)=0$, and $f(t)>0$ for
+$t^2>\frac3{2\pi}$. If $C=-1$, \eqref{eq:int-selfdual} gives $\int f\dd\mathfrak m_+=\int f\dd\mathfrak m=0$. As $\mathfrak m_+\ne0$ is positive and carried by
+$\{|t|\ge a\}$, this forces $a^2\le\frac3{2\pi}$, that is, $q\ge\frac{2\pi}3>1$. So $q\ge1$ in all cases, and $C=1$ if $q=1$.
+
+\emph{Step 7: the case $q=1$.} Then $C=a=1$, and \eqref{eq:int-fejer} gives $\int\big(\frac{\sin\pi\xi}{\pi\xi}\big)^2\dd\mathfrak m_+(\xi)=0$. The
+integrand is continuous and non-negative, and vanishes only at the non-zero integers; so $\mathsf N$ is carried by $\{1,2,3,\dots\}$, and
+$\mathcal Z(s)=\sum_{m\ge1}c_mm^{-s}$ with $c_m\ge0$ and $c_1=1$, absolutely convergent for $\Re s>1$. As $(s-1)\mathcal Z$ is entire of finite order and
+$\GR(s)\mathcal Z(s)=\GR(1-s)\mathcal Z(1-s)$ (Step~3), Hamburger's theorem \cite{Ham21}, in the form \cite[\S2.13]{Tit86}, gives $\mathcal Z=c_1\zeta=\zeta$. Then $L=-\zeta'/\zeta$, that is, $\int y^{1/2-s}\dd\tilde\nu(y)=\sum_n\Lambda(n)n^{-s}$; on each line $\Re s=\sigma>1$ these
+are the Fourier transforms, in the variable $\log y$, of two finite measures, so $\tilde\nu=\sum_{n\ge2}\Lambda(n)n^{-1/2}\delta_n$, that is,
+$\nu=\nuz$. Theorem~\ref{thm:logic}(b) gives RH and $\mu=\muz$. \qed

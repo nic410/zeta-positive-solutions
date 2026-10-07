@@ -90,5 +90,5 @@ items below affects the correctness of a stated result.
 - Critical conductors: the comparisons of Numerical observation 5.1 for the five types other than Γ_ℝ² and Γ_ℂ were
   computed at the gap ξ₂ only; compute them at the natural gaps of the corresponding fields too, or say less. The
   profile of the slack in the gap (Numerical observation 3.4) is not in the ancillary files either.
-- Integer weights: complete as a short note; its open problems (the general Beurling case, weaker discreteness) are
-  stated in its last section.
+- Integer weights: complete as a short note; its open problems are settled (the general Beurling case) or moot (weaker
+  discreteness) by Theorem 3.11 of Paper I.

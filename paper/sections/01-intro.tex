@@ -83,7 +83,7 @@ carried by one discrete set.
 These are Theorem~\ref{thm:duality}, Proposition~\ref{prop:conductor} and Theorem~\ref{thm:crit}; the logic displayed in
 Section~\ref{ssec:intro-pairs} is Theorem~\ref{thm:logic}. In (b) the common discrete set is the real zero set of a \emph{weak magic
 function}, a limit of near-optimal test functions. Abstract sign and gap conditions alone do not force rigidity
-(Section~\ref{ssec:barrier}); the arithmetic input is the Fourier interpolation basis of Bondarenko, Radchenko and Seip \cite{BRS}, which
+(Section~\ref{ssec:barrier}); the arithmetic input of Theorem~\ref{thm:intro-B} is the Fourier interpolation basis of Bondarenko, Radchenko and Seip \cite{BRS}, which
 is attached to the zeros of $\zeta$ and the points $\BRS$ and does not assume RH.
 
 \begin{lthm}{B}[Uniqueness near $\zeta$'s support]\label{thm:intro-B}
@@ -112,6 +112,15 @@ zeros of $\hF$ in $[\xin2,\infty)$, and Theorem~\ref{thm:intro-B} applies. It is
 near-extremal certificates for the conductor problem, whose limit is an exact magic function with all its real zeros in $\Zz\cup\{0\}$,
 would prove \condU\ through Theorem~\ref{thm:intro-B}(a), with no condition on the zeros of its transform. Theorem~\ref{thm:intro-D} below states
 this for an explicit family, and Corollary~\ref{cor:certroute} gives a route that needs no limit function.
+
+\begin{introthm}[Integer weights]
+Let $q>0$, and let $(\mu,\nu)$ be admissible for the data with Gamma factor $\GR$, one simple pole and conductor $q$. If $\mu$ is purely atomic
+with integer weights, then $q\ge1$; if moreover $q=1$, then RH holds and $(\mu,\nu)=\pz$.
+\end{introthm}
+
+This is Theorem~\ref{thm:integer}. So \condU\ holds if and only if every admissible $\mu$ is purely atomic with integer weights, while \condS\
+holds if and only if every admissible $\mu$ is purely atomic (Theorem~\ref{thm:intro-A}(b) and Corollary~\ref{cor:integer}). The proof uses an
+exponential lift of the prime measure, Fej\'er's kernel and Hamburger's theorem.
 
 \begin{lthm}{C}[Near-criticality]\label{thm:intro-C}
 \begin{enumerate}[label=\textup{(\alph*)}]
@@ -152,7 +161,7 @@ positivity of the limiting transform is needed.
 
 \subsection{What is claimed and what is not}\label{ssec:claims}
 
-Theorems~\ref{thm:intro-A} and~\ref{thm:intro-B} and the Corollary are proved; Theorem~\ref{thm:intro-C} is computer-assisted and
+Theorems~\ref{thm:intro-A} and~\ref{thm:intro-B}, the theorem on integer weights and the Corollary are proved; Theorem~\ref{thm:intro-C} is computer-assisted and
 unconditional; Theorem~\ref{thm:intro-D} is proved, and its hypotheses are open. This list is the single place where the limits of the
 results are stated.
 \begin{enumerate}[label=(\arabic*),leftmargin=*]
@@ -162,9 +171,10 @@ results are stated.
 RH, and unconditionally we know only $\kstar\ge-2.7112\cdot10^{-3}$, that is, $\qmin<1.017182$. We never claim $\kstar=0$.
 \item The hypotheses of Theorem~\ref{thm:intro-D} concern infinitely many $J$, or a limit in $J$, and are open. Only finite-$J$ instances
 are certified (Propositions~\ref{thm:finiteJ} and~\ref{prop:exactcone}); convergence of the family is neither assumed nor proved.
-\item Uniqueness is proved only near $\zeta$'s support. Theorem~\ref{thm:intro-B}(a) allows any prime measure but no extra zeros other than
-$0$; Theorem~\ref{thm:intro-B}(b) allows countably many extra zeros under a summability condition, but no prime mass off $\BRS$. Extra zeros
-together with prime mass off $\BRS$, extra zeros without summability, and non-atomic extra zero mass are open. Corollary~\ref{cor:nearrigid} is quantitative only at
+\item Uniqueness is proved only near $\zeta$'s support and for integer weights. Theorem~\ref{thm:intro-B}(a) allows any prime measure but no
+extra zeros other than $0$; Theorem~\ref{thm:intro-B}(b) allows countably many extra zeros under a summability condition, but no prime mass off
+$\BRS$; Theorem~\ref{thm:integer} allows any prime measure, but only integer weights. Extra zeros, when some zero weight is not an integer,
+together with prime mass off $\BRS$ or without summability, are open, and so is non-atomic extra zero mass. Corollary~\ref{cor:nearrigid} is quantitative only at
 low height.
 \item The comparison with $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$ concerns two examples, at $\zeta$'s gap and at their natural gaps; it is not a
 statement about $L$-functions in general (Remark~\ref{rem:gap}).
@@ -212,8 +222,8 @@ Hamburger's theorem \cite{Ham21,Ham21b} (see \cite{Per17,Bur12}) and its extensi
 degree-one Selberg class \cite{Sel92,CG93,KP99,Sou05}, and the theorems of Beurling \cite{Beu51} and A.~B.~Dixit \cite{DixA20}
 characterise $\zeta$ among Dirichlet series, or impose positivity on Dirichlet coefficients. Conjecture~\ref{conj:U} starts instead from
 the explicit formula, with arbitrary positive measures on both sides. The closest antecedent we found is Booker's converse theorem for
-positive $L$-data \cite[Definition~1.3, Theorem~1.7]{Boo15}; Theorem~\ref{thm:intro-B} is complementary to it, not a generalisation
-(Section~\ref{ssec:Gfin}).
+positive $L$-data \cite[Definition~1.3, Theorem~1.7]{Boo15}; Theorems~\ref{thm:intro-B} and~\ref{thm:integer} are complementary to it, not
+generalisations (Sections~\ref{ssec:Gfin} and~\ref{ssec:integer}).
 
 \emph{Interpolation, linear programming and magic functions.} Bondarenko, Radchenko and Seip \cite{BRS} constructed a Fourier
 interpolation basis for the zeros of $\zeta$ and the points $\BRS$, after Radchenko and Viazovska \cite{RV19}; Proposition~\ref{thm:support}
@@ -237,7 +247,8 @@ prime powers alone \cite{RR22}; our certificates use $\Xi^2$ for this purpose, w
 
 \emph{What is new.} As far as our literature search shows, the following are new: the linear programme over all positive solutions of
 the explicit formula with $\zeta$'s data, with Conjecture~\ref{conj:U}, its logic and the link between criticality and atomicity
-(Theorem~\ref{thm:intro-A}(b)); Theorem~\ref{thm:intro-B} and the Corollary; the zero-killing certificates $\Xi^2H$, which evaluate the dual
+(Theorem~\ref{thm:intro-A}(b)); Theorem~\ref{thm:intro-B} and the Corollary; Theorem~\ref{thm:integer} as an application to the explicit formula (its
+analytic ingredients are classical); the zero-killing certificates $\Xi^2H$, which evaluate the dual
 objective through $\zeta$'s own explicit formula (Theorem~\ref{thm:intro-C}(a)); the criterion of Theorem~\ref{thm:intro-D}; and the
 certified non-criticality of the data of $\QQ(\sqrt5)$ and $\QQ(\sqrt{-3})$ at their natural gaps. Proposition~\ref{thm:support} is essentially contained in
 \cite[\S4.4]{BRS} with \cite[Corollary~1.1]{BRS}, and the duality theory of Section~\ref{sec:setting} is standard conic linear programming.

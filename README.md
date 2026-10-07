@@ -5,7 +5,7 @@
 **Status: preprint, October 2026; not yet peer-reviewed.** Author: Nic Johns. Licensing: the papers and documentation
 are CC BY 4.0, the scripts are Apache-2.0 (see [Licence](#licence)).
 
-This repository contains a mathematics research paper (48 pages) in analytic number theory, the scripts and logs
+This repository contains a mathematics research paper (51 pages) in analytic number theory, the scripts and logs
 behind every computer-assisted statement in it, and a companion manuscript and three notes from the same project.
 
 **How it was made.** The mathematics, the proofs, the numerical certificate scripts and the text were produced by AI
@@ -18,7 +18,8 @@ many extra zeros (Theorem 3.8, with its aggregate estimates and mean-value argum
 contributed their consequences Corollary 3.9(a), Corollary 4.11 and the weakening of hypothesis (Mg) in Theorem 4.8.
 The certificates of the exact members added in version 1.2 (Proposition 5.7) were produced and independently refereed by
 Claude agents; their jet-subtraction approach was suggested by an analysis of the planar Cohn–Elkies certificate cited in
-the paper.
+the paper. The theorem on integer weights added in version 1.3 (Theorem 3.11, with Corollary 3.12) and its proof were
+produced and independently refereed by Claude agents.
 **No human mathematician has yet checked the proofs line by line.**
 
 ## What the result says, in plain language
@@ -53,7 +54,14 @@ The results, in order of weight:
    about small displacements. Part (b) needs the prime measure to be positive on only one residue class of nodes, and
    the zero measure to be positive only at the origin; its proof uses theta-group cusp expansions and a mean-value
    argument for an almost periodic function.
-2. **Duality, and criticality as atomicity (Theorem A).** Linear-programming duality attaches one number to the
+2. **Uniqueness for integer weights (Theorem 3.11).** If the zero measure of an admissible pair is purely atomic with
+   integer weights, as for the zeros of an L-function, then the pair is ζ's own and RH holds, whatever the prime measure.
+   With ζ's Gamma factor and pole but a conductor q in place of 1, such pairs exist only if q ≥ 1. Consequently
+   Conjecture U holds if and only if every admissible zero measure is purely atomic with integer weights, while, by
+   Theorem A(b), Conjecture S (κ\* ≤ 0) holds if and only if every admissible zero measure is purely atomic
+   (Corollary 3.12). The proof turns the prime measure into a positive generalised Dirichlet series with Riemann's
+   functional equation, and combines the one-dimensional Cohn–Elkies bound (Fejér's kernel) with Hamburger's theorem.
+3. **Duality, and criticality as atomicity (Theorem A).** Linear-programming duality attaches one number to the
    problem, the **slack** κ\*. Admissible pairs exist if and only if κ\* ≥ 0, a positivity statement that involves
    neither zeros nor primes. The number q_min = e^{−2πκ\*} is the best degree-one conductor bound that the explicit
    formula gives from ζ's archimedean data, over test functions F ≥ 0 whose Fourier transform is non-negative beyond the
@@ -67,7 +75,7 @@ The results, in order of weight:
      zeros of its Fourier transform is needed.
    - The same holds if F has finitely many other real zeros (or countably many, under a summability condition) and
      every zero of its Fourier transform beyond the gap lies in the Bondarenko–Radchenko–Seip nodes.
-3. **Certified bounds (Theorem C; computer-assisted).** Unconditionally, −2.7112·10⁻³ ≤ κ\* ≤ 1.4291572·10⁻¹⁰⁶⁰, so
+4. **Certified bounds (Theorem C; computer-assisted).** Unconditionally, −2.7112·10⁻³ ≤ κ\* ≤ 1.4291572·10⁻¹⁰⁶⁰, so
    1 − 8.98·10⁻¹⁰⁶⁰ ≤ q_min < 1.017182. Only if an admissible pair exists, for instance under RH, is κ\* ≥ 0, that is,
    q_min ≤ 1. The theorem sharpens the bound that the explicit-formula method can give; the arithmetic conductor of ζ is
    1 in any case. The upper bound holds already in the classical cone (Fourier transform non-negative everywhere):
@@ -79,14 +87,14 @@ The results, in order of weight:
    give **near-rigidity** (Corollary 5.3): every admissible pair has ∫Ξ²dμ ≤ 3.99·10⁻¹⁰⁶⁰, so its zero measure puts
    mass at most 3.99·10⁻¹⁰⁶⁰/min_I Ξ² on any compact interval I that avoids the zeros of ζ. This is informative at low
    height.
-4. **What remains, specified (Theorem D).** Conjecture U and κ\* ≤ 0 would follow from asymptotic properties of an
+5. **What remains, specified (Theorem D).** Conjecture U and κ\* ≤ 0 would follow from asymptotic properties of an
    explicit family of test functions Ξ²P_J(t²), defined by Hermite interpolation at the first J prime powers. These
    properties are open; the limiting Fourier transforms need only be non-negative beyond the gap. At J = 10, 60, 61,
    110 and 111 the paper certifies that the interpolation problem is non-singular, together with the coefficient bound
    behind two of the hypotheses, and that the exact members lie in the cone. Conjectures U and S would also follow from
    exact cone members F_J ≥ c_JΞ² with
    𝒜(F_J)/c_J → 0 (Corollary 4.11, due to Astra).
-5. **Two examples for contrast.** The archimedean data of the quadratic fields ℚ(√5) and ℚ(√−3) have strictly
+6. **Two examples for contrast.** The archimedean data of the quadratic fields ℚ(√5) and ℚ(√−3) have strictly
    positive slack, both with ζ's gap and at the fields' own natural gaps. This indicates that near-criticality is a
    property of ζ's data rather than of the method.
 
@@ -96,10 +104,11 @@ The results, in order of weight:
   only κ\* ≥ −2.7112·10⁻³ is known, that is, q_min < 1.017182.
 - It does **not** prove κ\* = 0, Conjecture U or Conjecture S (κ\* ≤ 0). The exponent 1060 reflects a computational
   budget (J = 111), not a limit.
-- Uniqueness is proved only **near ζ's own solution**: either a zero measure carried by ζ's zeros and the origin (any
-  prime measure), or a zero measure carried by ζ's zeros plus countably many summable points with the prime measure on
-  the Bondarenko–Radchenko–Seip nodes. Extra zeros together with prime-side mass off these nodes, extra zeros without
-  the summability condition, and diffuse extra zero mass are not covered.
+- Uniqueness is proved only **near ζ's own solution, or for integer weights**: a zero measure carried by ζ's zeros and
+  the origin (any prime measure); a zero measure carried by ζ's zeros plus countably many summable points, with the
+  prime measure on the Bondarenko–Radchenko–Seip nodes; or a purely atomic zero measure with integer weights (any prime
+  measure). Extra zeros, when some zero weight is not an integer, together with prime-side mass off these nodes or
+  without the summability condition, and diffuse extra zero mass are not covered.
 - The hypotheses of Theorem D concern infinitely many J, or a limit in J, and are **open**. Only finite-J instances
   are certified; convergence of the family is neither assumed nor proved.
 - The comparison with ℚ(√5) and ℚ(√−3) concerns **two examples**; it is not a statement about L-functions in
@@ -127,7 +136,7 @@ evidence for Conjecture 6.1); they are never used in a proof. The supplementary 
 | `LICENSE`, `LICENSE-CC-BY-4.0` | Apache-2.0 (code) and CC BY 4.0 (papers and documentation); see [Licence](#licence) |
 | `paper/main.tex`, `paper/macros.tex`, `paper/refs.bib` | the paper's LaTeX sources |
 | `paper/sections/` | the section files that `main.tex` inputs: Sections 1–6 and Appendices A–C |
-| `paper/build/main.pdf` | the compiled paper (48 pages) |
+| `paper/build/main.pdf` | the compiled paper (51 pages) |
 | `paper/production/` | the bibliography style `amsplain-doi.bst`, and `make_arxiv_tarball.sh`, which builds the arXiv source tarball (sources, `main.bbl`, `anc/`) and test-compiles it from a clean unpack |
 | `paper/anc/` | the ancillary files as they would be posted on arXiv: verifiers, parameter files, logs, `SHA256SUMS`, and `README.md` with commands, expected output and runtimes |
 | `paper/anc/lean/` | the Lean 4 formalisation of the paper's logical spine, with its axiom ledger, status table and audit scripts; see its `README.md` |
@@ -138,9 +147,10 @@ evidence for Conjecture 6.1); they are never used in a proof. The supplementary 
 
 - **5-minute skim.** This file, then the abstract and §1.4 "What is claimed and what is not" of
   `paper/build/main.pdf` (pp. 1 and 4).
-- **A mathematician.** §1 of the paper (pp. 1–7) states Theorems A–D and points to their proofs: §2 duality and
-  criticality, §3 uniqueness (the zero-side support proof is in Appendix B.1.4, the cusp expansions and the mean-value
-  step in Appendix B.1.6), §4 the criterion, §5 the certified bounds, §6 the conjectures and open problems.
+- **A mathematician.** §1 of the paper (pp. 1–7) states Theorems A–D and the theorem on integer weights, and points to
+  their proofs: §2 duality and criticality, §3 uniqueness (the zero-side support proof is in Appendix B.1.4, the cusp
+  expansions and the mean-value step in Appendix B.1.6, the proof for integer weights in Appendix B.3), §4 the
+  criterion, §5 the certified bounds, §6 the conjectures and open problems.
 - **Reproducing the numerics.** `paper/anc/README.md`: Python ≥ 3.10 with `python-flint==0.9.0` and `mpmath==1.3.0`
   only; every certificate has its command and expected output. The four batches take 41.6, 52.0, 29.1 and 205.6
   CPU-minutes.

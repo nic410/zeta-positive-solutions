@@ -31,8 +31,9 @@
 % Lettered headline theorems: \begin{lthm}{A} ... \end{lthm} prints "Theorem A".
 \newtheorem{lthminner}{Theorem}
 \newenvironment{lthm}[1]{\renewcommand{\thelthminner}{#1}\begin{lthminner}}{\end{lthminner}}
-% Unnumbered corollary for the introduction.
+% Unnumbered corollary and theorem for the introduction.
 \newtheorem*{introcor}{Corollary}
+\newtheorem*{introthm}{Theorem}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \theoremstyle{remark}
@@ -60,8 +61,9 @@ pairs of positive measures, one on the zero side and one on the prime side beyon
 duality such pairs exist if and only if a positivity statement involving neither zeros nor primes holds; its slack
 $\kappa^*$ gives the optimal degree-one explicit-formula conductor bound $q_{\min}=e^{-2\pi\kappa^*}$. We conjecture that $\zeta$'s
 own pair is the only solution; this does not imply the Riemann hypothesis, but makes it equivalent to existence. We
-prove it when the zero measure lives on the zeros of $\zeta$ and the origin, whatever the prime measure, and when it lives
-on the zeros plus countably many summable points with the prime measure on the Bondarenko--Radchenko--Seip nodes. Certificates
+prove it when the zero measure lives on the zeros of $\zeta$ and the origin, whatever the prime measure, when it lives
+on the zeros plus countably many summable points with the prime measure on the Bondarenko--Radchenko--Seip nodes, and when it is purely
+atomic with integer weights, whatever the prime measure. Certificates
 $\Xi^2P_J(t^2)$, where the polynomial $P_J$ is defined by Hermite interpolation at the first $J$ prime powers, vanish at every zero of
 $\zeta$; the one with $J=111$ shows unconditionally that $\kappa^*\le1.4291572\cdot10^{-1060}$ and that every
 solution has $\int\Xi^2\,d\mu\le3.99\cdot10^{-1060}$. Uniqueness would follow from asymptotic properties of these functions.
@@ -91,7 +93,8 @@ were contributed by OpenAI's Astra during an independent review of an earlier ve
 independent Claude referees. The numerical
 certificates were computed by AI-written scripts that are included as supplementary material (Appendix~\ref{app:anc}) and can be
 rerun. The certificates of the exact members (Proposition~\ref{prop:exactcone}) were produced and independently refereed by
-Claude agents, and their jet-subtraction approach was suggested by an analysis of the planar Cohn--Elkies certificate \cite{OAI26planar}. The author initiated and directed this project, designed its verification process, and reviewed the results and the
+Claude agents, and their jet-subtraction approach was suggested by an analysis of the planar Cohn--Elkies certificate \cite{OAI26planar}. The
+theorem on integer weights (Theorem~\ref{thm:integer}) and its proof were produced and independently refereed by Claude agents. The author initiated and directed this project, designed its verification process, and reviewed the results and the
 verification record, but did not independently check every step of the written proofs. The author takes full responsibility for the
 content of this paper, including any errors, and welcomes independent verification and corrections. Section~\ref{ssec:claims}
 states precisely what is claimed.

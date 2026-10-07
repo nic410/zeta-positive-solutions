@@ -3,10 +3,11 @@
 Every unproved input of the formalisation is an `axiom` in `PositivityRigidity/Ledger.lean`, and nowhere
 else (`grep -rn '^axiom' PositivityRigidity/` lists exactly the 22 entries below; `scripts/audit.sh` checks
 this, and the count in the table below). The docstring of each axiom in `Ledger.lean` repeats the
-information of this table. Statement numbers are those of v1.2 of the paper (`paper/build/main.pdf`,
-55 numbered statements); where a statement was renumbered since v1.0, the v1.0 number is also given. v1.2
-(the exact members of the zero-killing family certified in the cone, without a cushion) adds Proposition 5.7;
-its changes to the ledger are listed below.
+information of this table. Statement numbers are those of v1.3 of the paper (`paper/build/main.pdf`,
+57 numbered statements), which are those of v1.2 (55 numbered statements): v1.3 adds Theorem 3.11 and
+Corollary 3.12 (integer weights), which are not formalised, and renumbers nothing. Where a statement was renumbered
+since v1.0, the v1.0 number is also given. v1.2 (the exact members of the zero-killing family certified in the
+cone, without a cushion) adds Proposition 5.7; its changes to the ledger are listed below.
 
 **Grouping.**
 
@@ -16,6 +17,8 @@ its changes to the ledger are listed below.
 | Analytic steps proved in the paper, not yet formalised | 10 | `duality_no_gap`, `duality_gaussian`, `floor_bound`, `logic_b`, `weak_magic_functions`, `brs_lemma36_landau` (also carries the classical existence of the BRS basis), `brs_countable_meanvalue` (v1.1; likewise), `zero_support_rigidity` (v1.1), `robust_compactness`, `Zinf_lower_bound` |
 | Computer-assisted certificates (§5) | 9 | `cert_exact_cone` (v1.2), `cert_kappaOPS`, `cert_lowheight`, `cert_lowerbound`, `cert_Qsqrt5_dual`, `cert_Qsqrt5_pair`, `cert_Qsqrtm3_dual`, `cert_Qsqrtm3_pair`, `cert_finiteJ` |
 | **Total** | **22** | |
+
+Changes in v1.3: none (22 axioms; no axiom and no docstring changed).
 
 Changes in v1.2 (23 → 22 axioms: one added, two removed; no statement of another axiom changed):
 * `cert_exact_cone` (Proposition 5.7, exact members in the cone, parts (b) and (c); `cone/cert_exact.py` with

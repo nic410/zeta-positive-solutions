@@ -73,7 +73,7 @@ a number field, forces the monoid into the positive integers.
 
 \noindent\textbf{Status.} This note accompanies the companion paper \cite{PaperI} and has not been peer-reviewed. Its
 theorem is proved in full, and no computation is used. Part (a) is Hamburger's theorem in the language of \cite{PaperI};
-to our knowledge part (b) is new. The definitions and the results of \cite{PaperI} that are used are recalled in
+to our knowledge part (b) is new; it is superseded by \cite[Theorem~3.11]{PaperI} (Remark~\ref{rem:general}). The definitions and the results of \cite{PaperI} that are used are recalled in
 Section~\ref{sec:setting}, as Facts.
 
 %======================================================================
@@ -99,6 +99,11 @@ products of these numbers, including the empty product $1$\textup{)} is uniforml
 discrete, then the Riemann hypothesis holds and $(\mu,\nu)=\pz$.
 \end{enumerate}
 \end{theorem}
+
+\begin{remark}[The general case]\label{rem:general}
+Theorem~3.11 of \cite{PaperI} (version 1.3) proves the conclusion whenever $\mu$ is purely atomic with integer weights, whatever $\nu$. This settles
+Problem~\ref{op:Beurling} of Section~\ref{sec:open}, makes Problem~(2) there moot, and supersedes part~(b).
+\end{remark}
 
 The proof is in Section~\ref{sec:proof}. Testing the explicit formula on Poisson kernels shows that
 $L(s):=\int y^{1/2-s}\dd\tilde\nu(y)$ is the negative logarithmic derivative of a generalised Dirichlet series with positive
@@ -127,7 +132,8 @@ of an entire function of a special form. These results impose positivity or
 integrality on the Dirichlet coefficients; Theorem~\ref{thm:integer} imposes integrality on the zero measure and works with the
 explicit formula. With integer atoms, the uniqueness of the admissible pair becomes a uniqueness problem for Beurling
 generalised number systems \cite{Beu37,DZ16} with no generalised primes below $2$ and Riemann's functional equation, and part
-(b) settles it for the systems whose integers are uniformly discrete. The general case is open (Section~\ref{sec:open}).
+(b) settles it for the systems whose integers are uniformly discrete. The general case is settled by \cite[Theorem~3.11]{PaperI}
+(Remark~\ref{rem:general}).
 
 %======================================================================
 \section{Setting}\label{sec:setting}
@@ -255,7 +261,8 @@ admissible pairs exist if and only if $\kappa^*\ge0$ \cite[Theorem~A]{PaperI}. I
 
 \begin{enumerate}[label=\textup{(\arabic*)}]
 \item\label{op:Beurling} \emph{The Beurling case.} Uniqueness of the admissible pair when $\mu$ has integer weights and the prime
-measure generates a monoid that is not uniformly discrete; Theorem~\ref{thm:integer} leaves exactly this case open.
+measure generates a monoid that is not uniformly discrete; Theorem~\ref{thm:integer} leaves exactly this case open. Settled by
+\cite[Theorem~3.11]{PaperI}.
 \item \emph{Weaker discreteness.} Is uniform discreteness of the generated monoid essential? Would discreteness of $\supp\tilde\nu$,
 together with a polynomial bound on the counting function of the monoid, suffice, for instance through the theorem of Kahane
 and Mandelbrojt \cite[Theorem~7]{KM58} and a uniqueness result for measures whose support is not uniformly discrete?
