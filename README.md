@@ -187,6 +187,13 @@ familiar:
 Section 1.5 of the paper discusses related work, including Weil positivity (Connes–Consani, Zhu), the highest lowest
 zero (Miller; Bober et al.) and the classification of Fourier summation formulas.
 
+## Version notes
+
+- **Version 1.4** (October 2026): a note on the first page of the paper and footnotes to Conjectures S and U record
+  that both conjectures are proved in Part II ([nic410/zeta-sharpness-uniqueness](https://github.com/nic410/zeta-sharpness-uniqueness));
+  a contact e-mail address was added (njohns@gmail.com; see [Contact](#contact)). The mathematics is unchanged from
+  version 1.3.
+
 ## How to cite
 
 ```bibtex

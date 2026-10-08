@@ -154,6 +154,9 @@ Nic Johns, \emph{Critical conductors of small archimedean data}, In preparation,
 \bibitem{N4}
 \bysame, \emph{Integer-weight solutions of the explicit formula: a characterisation of {$\zeta$} among uniformly discrete {B}eurling systems}, In preparation, 2026.
 
+\bibitem{PartII}
+\bysame, \emph{Sharpness and uniqueness for positive solutions of the explicit formula for {$\zeta(s)$}}, Preprint, \url{https://github.com/nic410/zeta-sharpness-uniqueness}, 2026, \href{https://doi.org/10.5281/zenodo.23238100}{doi:10.5281/zenodo.23238100}.
+
 \bibitem{KP99}
 Jerzy Kaczorowski and Alberto Perelli, \emph{On the structure of the {S}elberg class, {I}: {$0\le d\le 1$}}, Acta Math. \textbf{182} (1999), no.~2, 207--241, \href{https://doi.org/10.1007/BF02392574}{doi:10.1007/BF02392574}.
 

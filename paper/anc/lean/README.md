@@ -181,7 +181,7 @@ directory `paper/anc/lean`. On every push and
 pull request to `main` (and on demand) it frees disk space, adds 8 GB of swap, starts a resource monitor,
 installs elan, restores the `.lake` cache (keyed on `lake-manifest.json` and `lean-toolchain`), downloads the
 Mathlib build cache (`lake exe cache get`), runs `lake build` (a cold build compiles the imported Zeta23 modules
-from source and takes hours on the 4-core runner; later runs reuse the cache), saves the cache, runs
+from source in about 4 minutes on the 4-core runner; later runs reuse the cache), saves the cache, runs
 `scripts/audit.sh`, and uploads the build, audit and monitor logs.
 
 `scripts/audit.sh` prints one final line, `AUDIT PASSED` or `AUDIT FAILED` (exit code 0 or 1). It fails on:
