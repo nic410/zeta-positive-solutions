@@ -22,6 +22,9 @@ the paper. The theorem on integer weights added in version 1.3 (Theorem 3.11, wi
 produced and independently refereed by Claude agents.
 **No human mathematician has yet checked the proofs line by line.**
 
+**Part II (October 2026).** [nic410/zeta-sharpness-uniqueness](https://github.com/nic410/zeta-sharpness-uniqueness) (DOI [10.5281/zenodo.23238100](https://doi.org/10.5281/zenodo.23238100)) gives proofs of this paper's Conjectures S and U. It was produced the same way
+and has not yet been checked by a human expert either; see [Related repositories](#related-repositories).
+
 ## What the result says, in plain language
 
 The **Riemann zeta function** ζ(s) encodes the distribution of the prime numbers. Its nontrivial zeros are complex
@@ -201,9 +204,16 @@ The DOI above is the concept DOI, which always resolves to the latest archived v
 own version DOI on [Zenodo](https://doi.org/10.5281/zenodo.23197915) (v1.0.0: 10.5281/zenodo.23197916; v1.1: 10.5281/zenodo.23199443; v1.2: 10.5281/zenodo.23211712; v1.3: 10.5281/zenodo.23217537). GitHub's
 "Cite this repository" button (generated from `CITATION.cff`) gives the same reference in other formats.
 
-## Related repository
+## Related repositories
 
-[nic410/dirichlet-critical-zeros](https://github.com/nic410/dirichlet-critical-zeros) (DOI [10.5281/zenodo.23070759](https://doi.org/10.5281/zenodo.23070759)) is an earlier paper by the same author, produced the same way: an unconditional proportion of simple zeros on the critical line for a weighted family of Dirichlet L-functions, with a Lean 4 formalisation. The two papers are independent; neither uses the other's results.
+- [nic410/zeta-sharpness-uniqueness](https://github.com/nic410/zeta-sharpness-uniqueness) (DOI [10.5281/zenodo.23238100](https://doi.org/10.5281/zenodo.23238100)) is Part II of this series, by the same author and produced the same way: *Sharpness and uniqueness for
+  positive solutions of the explicit formula for ζ(s)*. It gives proofs of this paper's Conjectures S and U (the
+  explicit-formula linear programme for ζ has no positive slack, κ\* ≤ 0, and every admissible pair is ζ's own), not
+  yet checked by a human expert. It builds on this paper's framework and restates the results it uses, in particular
+  the zero-side support theorem (Theorem 3.6); its Lean spine depends on this repository's Lean spine at version 1.3.
+- [nic410/dirichlet-critical-zeros](https://github.com/nic410/dirichlet-critical-zeros) (DOI [10.5281/zenodo.23070759](https://doi.org/10.5281/zenodo.23070759)) is an earlier paper by the same author, produced the same way: an unconditional proportion of simple
+  zeros on the critical line for a weighted family of Dirichlet L-functions, with a Lean 4 formalisation. It is
+  independent of this series; neither uses the other's results.
 
 ## Contact
 
