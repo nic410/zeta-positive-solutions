@@ -205,6 +205,10 @@ own version DOI on [Zenodo](https://doi.org/10.5281/zenodo.23197915) (v1.0.0: 10
 
 [nic410/dirichlet-critical-zeros](https://github.com/nic410/dirichlet-critical-zeros) (DOI [10.5281/zenodo.23070759](https://doi.org/10.5281/zenodo.23070759)) is an earlier paper by the same author, produced the same way: an unconditional proportion of simple zeros on the critical line for a weighted family of Dirichlet L-functions, with a Lean 4 formalisation. The two papers are independent; neither uses the other's results.
 
+## Contact
+
+Comments, questions and corrections are welcome by e-mail: Nic Johns, njohns@gmail.com.
+
 ## Licence
 
 Copyright 2026 Nic Johns.
