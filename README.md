@@ -189,7 +189,7 @@ zero (Miller; Bober et al.) and the classification of Fourier summation formulas
 
 ## Version notes
 
-- **Version 1.4** (October 2026): a note on the first page of the paper and footnotes to Conjectures S and U record
+- **Version 1.4** (October 2026; doi:10.5281/zenodo.23238720): a note on the first page of the paper and footnotes to Conjectures S and U record
   that both conjectures are proved in Part II ([nic410/zeta-sharpness-uniqueness](https://github.com/nic410/zeta-sharpness-uniqueness));
   a contact e-mail address was added (njohns@gmail.com; see [Contact](#contact)). The mathematics is unchanged from
   version 1.3.
@@ -209,7 +209,7 @@ zero (Miller; Bober et al.) and the classification of Fourier summation formulas
 ```
 
 The DOI above is the concept DOI, which always resolves to the latest archived version; each release also has its
-own version DOI on [Zenodo](https://doi.org/10.5281/zenodo.23197915) (v1.0.0: 10.5281/zenodo.23197916; v1.1: 10.5281/zenodo.23199443; v1.2: 10.5281/zenodo.23211712; v1.3: 10.5281/zenodo.23217537). GitHub's
+own version DOI on [Zenodo](https://doi.org/10.5281/zenodo.23197915) (v1.0.0: 10.5281/zenodo.23197916; v1.1: 10.5281/zenodo.23199443; v1.2: 10.5281/zenodo.23211712; v1.3: 10.5281/zenodo.23217537; v1.4: 10.5281/zenodo.23238720). GitHub's
 "Cite this repository" button (generated from `CITATION.cff`) gives the same reference in other formats.
 
 ## Related repositories
