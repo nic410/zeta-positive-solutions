@@ -106,7 +106,8 @@ The results, in order of weight:
 - It is **not a proof of RH**. It does not prove that an admissible pair exists without assuming RH; unconditionally
   only κ\* ≥ −2.7112·10⁻³ is known, that is, q_min < 1.017182.
 - It does **not** prove κ\* = 0, Conjecture U or Conjecture S (κ\* ≤ 0). The exponent 1060 reflects a computational
-  budget (J = 111), not a limit.
+  budget (J = 111), not a limit. Conjectures S and U are proved in Part II (see
+  [Related repositories](#related-repositories)); κ\* = 0 remains equivalent to RH.
 - Uniqueness is proved only **near ζ's own solution, or for integer weights**: a zero measure carried by ζ's zeros and
   the origin (any prime measure); a zero measure carried by ζ's zeros plus countably many summable points, with the
   prime measure on the Bondarenko–Radchenko–Seip nodes; or a purely atomic zero measure with integer weights (any prime
